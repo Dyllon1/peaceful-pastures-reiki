@@ -12,7 +12,7 @@ export default function App() {
     if (!date) return [];
     const day = date.getDay();
     if (day === 0) return [];
-    if (day === 6) return ['10:00', '11:00', '12:00', '13:00'];
+    if (day === 6) return ['10:00','11:00','12:00','13:00'];
     return ['10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
   };
 
@@ -20,7 +20,7 @@ export default function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setMessage("Booking confirmed! Melissa will contact you shortly to arrange payment ($125 via e-transfer or cash). Thank you ✨");
+    setMessage("Booking confirmed! Melissa will contact you shortly to arrange payment ($125/session). Namaste");
     setFormData({ name: '', email: '', phone: '', notes: '' });
     setSelectedTime('');
   };
@@ -33,18 +33,18 @@ export default function App() {
           <img src="/melissa.jpg" alt="Melissa Ouderkirk"
             style={{ width:'200px', height:'200px', borderRadius:'50%', objectFit:'cover', marginBottom:'2.5rem', border:'10px solid #f1f5f9', boxShadow:'0 10px 30px rgba(0,0,0,0.1)' }} />
 
-          <h1 style={{ fontSize: '3.8rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-2px', margin: '0 0 1.8rem' }}>
-            Balanced Hearts Holy Fire Reiki
+          <h1 style={{ fontSize: '3.6rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-2px', margin: '0 0 0.3rem', lineHeight: '1' }}>
+            Balanced Hearts
+          </h1>
+          <h1 style={{ fontSize: '3.6rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-2px', margin: '0 0 1.8rem', lineHeight: '1' }}>
+            Holy Fire Reiki
           </h1>
 
           <p style={{ fontSize: '1.75rem', color: '#64748b', fontStyle: 'italic', margin: '0 0 0.5rem' }}>
             with Melissa Ouderkirk
           </p>
-          <p style={{ fontSize: '1.6rem', color: '#475569', fontWeight: '500', marginBottom: '1rem' }}>
+          <p style={{ fontSize: '1.6rem', color: '#475569', fontWeight: '500', marginBottom: '4rem' }}>
             $125 · 60-minute in-person session
-          </p>
-          <p style={{ fontSize: '1.2rem', color: '#6b7280', marginBottom: '4rem' }}>
-            Payment by e-transfer or cash at session
           </p>
 
           <h2 style={{ fontSize: '2rem', color: '#334155', marginBottom: '2.5rem' }}>
@@ -104,20 +104,9 @@ export default function App() {
         </div>
       </div>
 
-      <footer style={{ padding:'3rem', textAlign:'center', background:'white', color:'#475569', fontSize:'1.1rem', lineHeight:'1.8' }}>
-        <p><strong>Contact Melissa</strong></p>
-        <p>Text or call: 403-852-4324</p>
-        <p>Email: melouderkirk@yahoo.com</p>
+      <footer style={{ padding:'3rem', textAlign:'center', background:'white', color:'#64748b', fontSize:'1.1rem' }}>
         <p>Okotoks, Alberta, Canada</p>
       </footer>
     </div>
   );
 }
-Commit changes
-────────────────────────────────────────────
-Write a commit message (optional)
-────────────────────────────────────────────
-✔ Commit directly to the main branch.
-  Create a new branch for this commit and start a pull request.
-────────────────────────────────────────────
-[ update name ]   [ Cancel ]
