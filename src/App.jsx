@@ -53,12 +53,12 @@ export default function App() {
         }}>
           <img src="/melissa.jpg" alt="Melissa" style={{ width: '260px', height: '260px', borderRadius: '50%', objectFit: 'cover', marginBottom: '3rem', border: '12px solid #fdf8f2', boxShadow: '0 15px 40px rgba(0,0,0,0.2)' }} />
 
-          <h1 style={{ fontSize: '4.8rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-2px', margin: '0 0 1.5rem' }}>
-            Balanced Hearts
-          </h1>
-          <h2 style={{ fontSize: '4.2rem', fontWeight: '300', color: '#334155', letterSpacing: '-1px', margin: '0 0 2rem' }}>
-            Holy Fire Reiki
-          </h2>
+          <h1 className="text-6xl md:text-8xl font-['Dancing_Script','Great_Vibes',cursive] text-amber-900 mb-2 tracking-tight">
+  Balanced Hearts
+</h1>
+<h2 className="text-4xl md:text-6xl font-light text-slate-800 -mt-4 mb-12 tracking-widest">
+  Holy Fire Reiki
+</h2>
 
           <p style={{ fontSize: '1.8rem', color: '#64748b', fontStyle: 'italic', margin: '0 0 0.5rem' }}>
             with Melissa Ouderkirk
