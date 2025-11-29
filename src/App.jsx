@@ -34,7 +34,7 @@ export default function App() {
             style={{ width:'200px', height:'200px', borderRadius:'50%', objectFit:'cover', marginBottom:'2.5rem', border:'10px solid #f1f5f9', boxShadow:'0 10px 30px rgba(0,0,0,0.1)' }} />
 
           <h1 style={{ fontSize: '3.8rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-2px', margin: '0 0 1.8rem' }}>
-            Peaceful Pastures Reiki
+            Balanced Hearts Holy Fire Reiki
           </h1>
 
           <p style={{ fontSize: '1.75rem', color: '#64748b', fontStyle: 'italic', margin: '0 0 0.5rem' }}>
@@ -113,3 +113,11 @@ export default function App() {
     </div>
   );
 }
+Commit changes
+────────────────────────────────────────────
+Write a commit message (optional)
+────────────────────────────────────────────
+✔ Commit directly to the main branch.
+  Create a new branch for this commit and start a pull request.
+────────────────────────────────────────────
+[ update name ]   [ Cancel ]
