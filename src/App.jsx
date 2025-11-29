@@ -12,8 +12,8 @@ export default function App() {
     if (!date) return [];
     const day = date.getDay();
     if (day === 0) return [];
-    if (day === 6) return ['10:00', '11:00', '12:00', '13:00'];
-    return ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+    if (day === 6) return ['10:00','11:00','12:00','13:00'];
+    return ['10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
   };
 
   const slots = selectedDate ? getSlots(selectedDate) : [];
@@ -26,64 +26,89 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-rose-50 to-indigo-50 flex flex-col">
-      <main className="flex-1 flex items-center justify-center p-6">
-        <div className="w-full max-w-5xl bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-12 md:p-20 text-center border border-white/30">
+    <div style={{
+      minHeight: '100vh',
+      margin: 0,
+      padding: 0,
+      background: 'linear-gradient(to bottom, #fdf8f2, #f5eeea)',
+      display: 'flex',
+      flexDirection: 'column',
+      fontFamily: '"Playfair Display", Georgia, serif'
+    }}>
+      <main style={{
+        flex: 1,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '2rem'
+      }}>
+        <div style={{
+          width: '100%',
+          maxWidth: '900px',
+          background: 'white',
+          borderRadius: '32px',
+          boxShadow: '0 30px 80px rgba(0,0,0,0.12)',
+          padding: '5rem 4rem',
+          textAlign: 'center'
+        }}>
+          <img src="/melissa.jpg" alt="Melissa" style={{ width: '260px', height: '260px', borderRadius: '50%', objectFit: 'cover', marginBottom: '3rem', border: '12px solid #fdf8f2', boxShadow: '0 15px 40px rgba(0,0,0,0.2)' }} />
 
-          <img src="/melissa.jpg" alt="Melissa Ouderkirk" className="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover mx-auto mb-10 border-12 border-white shadow-2xl" />
-
-          {/* Balanced Hearts — elegant script */}
-          <h1 className="text-6xl md:text-8xl font-['Dancing_Script','Great_Vibes',cursive] text-amber-900 mb-4 tracking-tight">
+          <h1 style={{ fontSize: '4.8rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-2px', margin: '0 0 1.5rem' }}>
             Balanced Hearts
           </h1>
-
-          {/* Holy Fire Reiki — clean serif */}
-          <h2 className="text-5xl md:text-7xl font-light text-slate-800 mb-10 tracking-widest">
+          <h2 style={{ fontSize: '4.2rem', fontWeight: '300', color: '#334155', letterSpacing: '-1px', margin: '0 0 2rem' }}>
             Holy Fire Reiki
           </h2>
 
-          <p className="text-2xl md:text-3xl text-slate-600 italic mb-4">with Melissa Ouderkirk</p>
-          <p className="text-xl md:text-2xl text-slate-700 font-medium mb-16">$125 · 60-minute in-person session</p>
+          <p style={{ fontSize: '1.8rem', color: '#64748b', fontStyle: 'italic', margin: '0 0 0.5rem' }}>
+            with Melissa Ouderkirk
+          </p>
+          <p style={{ fontSize: '1.7rem', color: '#475569', fontWeight: '500', marginBottom: '4.5rem' }}>
+            $125 · 60-minute in-person session
+          </p>
 
-          <h3 className="text-4xl md:text-5xl text-slate-800 mb-12">Schedule Your Session</h3>
+          <h3 style={{ fontSize: '2.5rem', color: '#1e293b', marginBottom: '3rem' }}>
+            Schedule Your Session
+          </h3>
 
-          <div className="inline-block mb-16">
+          <div style={{ margin: '0 auto 4rem', maxWidth: '480px' }}>
             <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline />
           </div>
 
           {selectedDate && slots.length > 0 && (
             <>
-              <h4 className="text-2xl text-slate-700 mb-10">
+              <h4 style={{ fontSize: '1.6rem', color: '#475569', marginBottom: '3rem' }}>
                 Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
               </h4>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 max-w-4xl mx-auto">
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem', marginBottom: '5rem', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
                 {slots.map(time => (
-                  <button
-                    key={time}
-                    onClick={() => setSelectedTime(time)}
-                    className={`py-10 rounded-3xl text-2xl font-medium transition-all ${
-                      selectedTime === time
-                        ? 'bg-gradient-to-br from-amber-600 to-rose-600 text-white shadow-2xl scale-105'
-                        : 'bg-white/80 text-slate-800 border-2 border-slate-200 hover:border-amber-400 hover:shadow-xl'
-                    }`}
-                  >
+                  <button key={time} onClick={() => setSelectedTime(time)}
+                    style={{
+                      padding: '1.8rem', borderRadius: '24px', fontSize: '1.5rem', fontWeight: '600',
+                      background: selectedTime === time ? '#1e293b' : '#fdfcfb',
+                      color: selectedTime === time ? 'white' : '#334155',
+                      border: '3px solid #e2e8f0', cursor: 'pointer', transition: 'all 0.3s',
+                      boxShadow: selectedTime === time ? '0 25px 60px rgba(30,41,59,0.4)' : '0 10px 30px rgba(0,0,0,0.1)'
+                    }}>
                     {time}
                   </button>
                 ))}
               </div>
 
               {selectedTime && (
-                <form onSubmit={handleSubmit} className="space-y-8 max-w-2xl mx-auto">
-                  <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-8 py-6 rounded-2xl border border-slate-300 focus:border-amber-500 focus:outline-none text-xl bg-white/70" />
-                  <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-8 py-6 rounded-2xl border border-slate-300 focus:border-amber-500 focus:outline-none text-xl bg-white/70" />
-                  <input placeholder="Phone (optional)" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-8 py-6 rounded-2xl border border-slate-300 focus:border-amber-500 focus:outline-none text-xl bg-white/70" />
-                  <textarea placeholder="Notes or questions" rows="4" value={formData.notes} onChange={e => setFormData({ ...formData, notes: e.target.value })}
-                    className="w-full px-8 py-6 rounded-2xl border border-slate-300 focus:border-amber-500 focus:outline-none text-xl bg-white/70" />
-                  <button type="submit" className="w-full py-10 bg-gradient-to-br from-amber-600 to-rose-600 text-white rounded-3xl text-3xl font-semibold hover:shadow-2xl transition-all">
+                <form onSubmit={handleSubmit} style={{ maxWidth: '600px', margin: '0 auto' }}>
+                  <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
+                    style={{ width:'100%', padding:'1.6rem', borderRadius:'20px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1.5rem', fontSize:'1.3rem' }} />
+                  <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
+                    style={{ width:'100%', padding:'1.6rem', borderRadius:'20px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1.5rem', fontSize:'1.3rem' }} />
+                  <input placeholder="Phone (optional)" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
+                    style={{ width:'100%', padding:'1.6rem', borderRadius:'20px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1.5rem', fontSize:'1.3rem' }} />
+                  <textarea placeholder="Notes or questions" rows="5" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
+                    style={{ width:'100%', padding:'1.6rem', borderRadius:'20px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'3rem', fontSize:'1.3rem' }} />
+                  <button type="submit" style={{
+                    width:'100%', padding:'2rem', background:'#1e293b', color:'white', border:'none', borderRadius:'24px', fontSize:'1.8rem', fontWeight:'600', cursor:'pointer', boxShadow:'0 30px 70px rgba(30,41,59,0.4)'
+                  }}>
                     Confirm Booking – $125
                   </button>
                 </form>
@@ -92,14 +117,14 @@ export default function App() {
           )}
 
           {message && (
-            <div className="mt-20 p-12 bg-gradient-to-br from-amber-50 to-rose-50 text-amber-900 rounded-3xl text-2xl font-medium border border-amber-200">
+            <div style={{ marginTop:'5rem', padding:'3rem', background:'#ecfdf5', color:'#166534', borderRadius:'24px', fontWeight:'600', fontSize:'1.6rem' }}>
               {message}
             </div>
           )}
         </div>
       </main>
 
-      <footer className="py-16 text-center text-slate-600 bg-white/80 backdrop-blur text-xl">
+      <footer style={{ padding:'5rem', textAlign:'center', background:'white', color:'#64748b', fontSize:'1.4rem' }}>
         <p className="font-medium">Contact Melissa</p>
         <p>Text or call: 403-555-1234</p>
         <p>Email: melissa@balancedheartsholyfirereiki.com</p>
