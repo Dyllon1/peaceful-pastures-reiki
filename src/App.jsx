@@ -26,64 +26,72 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-rose-50 to-indigo-50 flex flex-col">
-      <main className="flex-1 flex items-center justify-center p-6">
-        <div className="w-full max-w-5xl bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-12 md:p-20 text-center border border-white/30">
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #f9fafb, #f3f4f6)', display: 'flex', flexDirection: 'column', fontFamily: 'Georgia, serif' }}>
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1rem' }}>
+        <div style={{ width: '100%', maxWidth: '640px', background: 'rgba(255,255,255,0.97)', borderRadius: '36px', boxShadow: '0 30px 70px rgba(0,0,0,0.12)', padding: '5rem 3rem', textAlign: 'center' }}>
 
-          <img src="/melissa.jpg" alt="Melissa Ouderkirk" className="w-72 h-72 md:w-96 md:h-96 rounded-full object-cover mx-auto mb-12 border-12 border-white shadow-2xl" />
+          <img src="/melissa.jpg" alt="Melissa Ouderkirk"
+            style={{ width:'200px', height:'200px', borderRadius:'50%', objectFit:'cover', marginBottom:'2.5rem', border:'10px solid #f1f5f9', boxShadow:'0 10px 30px rgba(0,0,0,0.1)' }} />
 
-          {/* Balanced Hearts — large script */}
-          <h1 className="text-7xl md:text-9xl font-['Dancing_Script','Great_Vibes',cursive] text-amber-900 mb-2 leading-none tracking-tight">
+          {/* Balanced Hearts – large script */}
+          <h1 style={{ fontSize: '3.6rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-2px', margin: '0 0 0.2rem', lineHeight: '1' }}>
             Balanced Hearts
           </h1>
 
-          {/* Holy Fire Reiki — smaller, one line, pulled up close */}
-          <h2 className="text-5xl md:text-7xl font-light text-slate-800 -mt-6 mb-16 tracking-widest">
+          {/* Holy Fire Reiki – one line, pulled up close */}
+          <h2 style={{ fontSize: '3.2rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-1px', margin: '0 0 2.5rem', lineHeight: '1' }}>
             Holy Fire Reiki
           </h2>
 
-          <p className="text-2xl md:text-3xl text-slate-600 italic mb-4">with Melissa Ouderkirk</p>
-          <p className="text-xl md:text-2xl text-slate-700 font-medium mb-16">$125 · 60-minute in-person session</p>
+          <p style={{ fontSize: '1.75rem', color: '#64748b', fontStyle: 'italic', margin: '0 0 0.5rem' }}>
+            with Melissa Ouderkirk
+          </p>
+          <p style={{ fontSize: '1.6rem', color: '#475569', fontWeight: '500', marginBottom: '4rem' }}>
+            $125 · 60-minute in-person session
+          </p>
 
-          <h3 className="text-4xl md:text-5xl text-slate-800 mb-12">Schedule Your Session</h3>
+          <h2 style={{ fontSize: '2rem', color: '#334155', marginBottom: '2.5rem' }}>
+            Schedule Your Session
+          </h2>
 
-          <div className="inline-block mb-16">
+          <div style={{ margin: '0 auto 3.5rem', maxWidth: '420px' }}>
             <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline />
           </div>
 
           {selectedDate && slots.length > 0 && (
             <>
-              <h4 className="text-2xl md:text-3xl text-slate-700 mb-12">
+              <h3 style={{ fontSize: '1.4rem', color: '#475569', marginBottom: '2rem' }}>
                 Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
-              </h4>
+              </h3>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 max-w-4xl mx-auto">
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '3rem' }}>
                 {slots.map(time => (
-                  <button
-                    key={time}
-                    onClick={() => setSelectedTime(time)}
-                    className={`py-10 rounded-3xl text-2xl md:text-3xl font-medium transition-all ${
-                      selectedTime === time
-                        ? 'bg-gradient-to-br from-amber-600 to-rose-600 text-white shadow-2xl scale-105'
-                        : 'bg-white/70 text-slate-800 border-2 border-slate-200 hover:border-amber-400 hover:shadow-xl'
-                    }`}
-                  >
+                  <button key={time} onClick={() => setSelectedTime(time)}
+                    style={{
+                      padding: '1.2rem', borderRadius: '18px', fontSize: '1.15rem', fontWeight: '500',
+                      background: selectedTime === time ? '#1e293b' : '#fdfcfb',
+                      color: selectedTime === time ? 'white' : '#334155',
+                      border: '2px solid #e2e8f0', cursor: 'pointer', transition: 'all 0.3s',
+                      boxShadow: selectedTime === time ? '0 10px 25px rgba(30,41,59,0.3)' : '0 4px 12px rgba(0,0,0,0.05)'
+                    }}>
                     {time}
                   </button>
                 ))}
               </div>
 
               {selectedTime && (
-                <form onSubmit={handleSubmit} className="space-y-8 max-w-2xl mx-auto">
+                <form onSubmit={handleSubmit}>
                   <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
-                    className="w-full px-10 py-7 rounded-2xl border border-slate-300 focus:border-amber-500 focus:outline-none text-xl bg-white/60" />
+                    style={{ width:'100%', padding:'1.2rem', borderRadius:'16px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1rem' }} />
                   <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
-                    className="w-full px-10 py-7 rounded-2xl border border-slate-300 focus:border-amber-500 focus:outline-none text-xl bg-white/60" />
+                    style={{ width:'100%', padding:'1.2rem', borderRadius:'16px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1rem' }} />
                   <input placeholder="Phone (optional)" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
-                    className="w-full px-10 py-7 rounded-2xl border border-slate-300 focus:border-amber-500 focus:outline-none text-xl bg-white/60" />
-                  <textarea placeholder="Notes or questions" rows="4" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
-                    className="w-full px-10 py-7 rounded-2xl border border-slate-300 focus:border-amber-500 focus:outline-none text-xl bg-white/60" />
-                  <button type="submit" className="w-full py-10 bg-gradient-to-br from-amber-600 to-rose-600 text-white rounded-3xl text-3xl md:text-4xl font-bold hover:shadow-2xl transition-all">
+                    style={{ width:'100%', padding:'1.2rem', borderRadius:'16px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1rem' }} />
+                  <textarea placeholder="Notes or questions" rows="3" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
+                    style={{ width:'100%', padding:'1.2rem', borderRadius:'16px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'2.5rem' }} />
+                  <button type="submit" style={{
+                    width:'100%', padding:'1.4rem', background:'#1e293b', color:'white', border:'none', borderRadius:'18px', fontSize:'1.3rem', fontWeight:'600', cursor:'pointer', boxShadow:'0 15px 35px rgba(30,41,59,0.3)'
+                  }}>
                     Confirm Booking – $125
                   </button>
                 </form>
@@ -92,17 +100,14 @@ export default function App() {
           )}
 
           {message && (
-            <div className="mt-20 p-12 bg-gradient-to-br from-amber-50 to-rose-50 text-amber-900 rounded-3xl text-2xl md:text-3xl font-medium border border-amber-200">
+            <div style={{ marginTop:'3rem', padding:'2rem', background:'#ecfdf5', color:'#166534', borderRadius:'18px', fontWeight:'600' }}>
               {message}
             </div>
           )}
         </div>
-      </main>
+      </div>
 
-      <footer className="py-16 text-center text-slate-600 bg-white/80 backdrop-blur text-xl">
-        <p className="font-medium">Contact Melissa</p>
-        <p>Text or call: 403-555-1234</p>
-        <p>Email: melissa@balancedheartsholyfirereiki.com</p>
+      <footer style={{ padding:'3rem', textAlign:'center', background:'white', color:'#64748b', fontSize:'1.1rem' }}>
         <p>Okotoks, Alberta, Canada</p>
       </footer>
     </div>
