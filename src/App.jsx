@@ -26,21 +26,26 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 flex flex-col">
-      {/* Full-screen main area */}
-      <main className="flex-1 flex items-center justify-center p-4 md:p-8">
-        <div className="w-full max-w-5xl bg-white rounded-3xl shadow-2xl p-10 md:p-20 text-center">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-rose-50 to-indigo-50 flex flex-col">
+      <main className="flex-1 flex items-center justify-center p-6">
+        <div className="w-full max-w-4xl bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-12 md:p-20 text-center border border-white/20">
 
-          <img src="/melissa.jpg" alt="Melissa" className="w-72 h-72 md:w-96 md:h-96 rounded-full object-cover mx-auto mb-10 border-12 border-slate-100 shadow-2xl" />
+          <img src="/melissa.jpg" alt="Melissa" className="w-64 h-64 rounded-full object-cover mx-auto mb-10 border-12 border-white shadow-2xl" />
 
-          <h1 className="text-5xl md:text-8xl font-light text-slate-800 mb-6 tracking-tight">
-            Balanced Hearts Holy Fire Reiki
+          {/* Balanced Hearts — elegant script */}
+          <h1 className="text-6xl md:text-8xl font-['Dancing_Script','Great_Vibes',cursive] text-amber-900 mb-2 tracking-tight">
+            Balanced Hearts
           </h1>
 
-          <p className="text-2xl md:text-3xl text-slate-600 italic mb-4">with Melissa Ouderkirk</p>
-          <p className="text-xl md:text-2xl text-slate-700 font-medium mb-16">$125 · 60-minute in-person session</p>
+          {/* Holy Fire Reiki — clean serif with contrast */}
+          <h2 className="text-5xl md:text-7xl font-light text-slate-800 mb-8 tracking-wider">
+            Holy Fire Reiki
+          </h2>
 
-          <h2 className="text-4xl md:text-5xl text-slate-800 mb-12">Schedule Your Session</h2>
+          <p className="text-2xl text-slate-600 italic mb-3">with Melissa Ouderkirk</p>
+          <p className="text-xl text-slate-700 font-medium mb-16">$125 · 60-minute in-person session</p>
+
+          <h3 className="text-4xl text-slate-800 mb-12">Schedule Your Session</h3>
 
           <div className="inline-block mb-16">
             <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline />
@@ -48,19 +53,19 @@ export default function App() {
 
           {selectedDate && slots.length > 0 && (
             <>
-              <h3 className="text-2xl text-slate-700 mb-10">
+              <h4 className="text-2xl text-slate-700 mb-10">
                 Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
-              </h3>
+              </h4>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-3xl mx-auto">
                 {slots.map(time => (
                   <button
                     key={time}
                     onClick={() => setSelectedTime(time)}
-                    className={`py-8 rounded-3xl text-2xl font-semibold transition-all ${
+                    className={`py-8 rounded-3xl text-2xl font-medium transition-all ${
                       selectedTime === time
-                        ? 'bg-slate-800 text-white shadow-2xl scale-105'
-                        : 'bg-slate-100 text-slate-800 hover:bg-slate-200'
+                        ? 'bg-gradient-to-br from-amber-600 to-rose-600 text-white shadow-2xl scale-105'
+                        : 'bg-white/80 text-slate-800 border-2 border-slate-200 hover:border-amber-400 hover:shadow-xl'
                     }`}
                   >
                     {time}
@@ -69,16 +74,16 @@ export default function App() {
               </div>
 
               {selectedTime && (
-                <form onSubmit={handleSubmit} className="space-y-8 max-w-2xl mx-auto">
+                <form onSubmit={handleSubmit} className="space-y-8 max-w-xl mx-auto">
                   <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
-                    className="w-full px-8 py-6 rounded-2xl border border-slate-300 focus:border-slate-600 focus:outline-none text-xl" />
+                    className="w-full px-8 py-6 rounded-2xl border border-slate-300 focus:border-amber-500 focus:outline-none text-xl bg-white/70" />
                   <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
-                    className="w-full px-8 py-6 rounded-2xl border border-slate-300 focus:border-slate-600 focus:outline-none text-xl" />
+                    className="w-full px-8 py-6 rounded-2xl border border-slate-300 focus:border-amber-500 focus:outline-none text-xl bg-white/70" />
                   <input placeholder="Phone (optional)" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
-                    className="w-full px-8 py-6 rounded-2xl border border-slate-300 focus:border-slate-600 focus:outline-none text-xl" />
+                    className="w-full px-8 py-6 rounded-2xl border border-slate-300 focus:border-amber-500 focus:outline-none text-xl bg-white/70" />
                   <textarea placeholder="Notes or questions" rows="4" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
-                    className="w-full px-8 py-6 rounded-2xl border border-slate-300 focus:border-slate-600 focus:outline-none text-xl" />
-                  <button type="submit" className="w-full py-8 bg-slate-800 text-white rounded-3xl text-3xl font-bold hover:bg-slate-900 transition shadow-2xl">
+                    className="w-full px-8 py-6 rounded-2xl border border-slate-300 focus:border-amber-500 focus:outline-none text-xl bg-white/70" />
+                  <button type="submit" className="w-full py-8 bg-gradient-to-br from-amber-600 to-rose-600 text-white rounded-3xl text-3xl font-semibold hover:shadow-2xl transition-all">
                     Confirm Booking – $125
                   </button>
                 </form>
@@ -87,17 +92,17 @@ export default function App() {
           )}
 
           {message && (
-            <div className="mt-20 p-12 bg-green-50 text-green-800 rounded-3xl text-2xl font-medium">
+            <div className="mt-20 p-12 bg-gradient-to-br from-amber-50 to-rose-50 text-amber-900 rounded-3xl text-2xl font-medium border border-amber-200">
               {message}
             </div>
           )}
         </div>
       </main>
 
-      <footer className="py-16 text-center text-slate-600 bg-white text-xl">
-        <p className="font-semibold">Contact Melissa</p>
-        <p>Text or call: 403-852-4324</p>
-        <p>Email: melouderkirk@yahoo.com</p>
+      <footer className="py-16 text-center text-slate-600 bg-white/80 backdrop-blur text-xl">
+        <p className="font-medium">Contact Melissa</p>
+        <p>Text or call: 403-555-1234</p>
+        <p>Email: melissa@balancedheartsholyfirereiki.com</p>
         <p>Okotoks, Alberta, Canada</p>
       </footer>
     </div>
