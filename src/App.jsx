@@ -26,71 +26,59 @@ export default function App() {
   };
 
   return (
-    <div style={{ 
-      height: '100dvh', 
-      margin: 0, 
-      padding: 0, 
-      background: 'linear-gradient(to bottom, #f9fafb, #f3f4f6)', 
-      display: 'flex', 
-      flexDirection: 'column' 
-    }}>
-      <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1rem' }}>
-        <div style={{ width: '100%', maxWidth: '900px', background: 'white', borderRadius: '40px', boxShadow: '0 40px 100px rgba(0,0,0,0.15)', padding: '6rem 4rem', textAlign: 'center' }}>
-          <img src="/melissa.jpg" alt="Melissa" style={{ width:'280px', height:'280px', borderRadius:'50%', objectFit:'cover', marginBottom:'3rem', border:'16px solid #f1f5f9', boxShadow:'0 20px 50px rgba(0,0,0,0.2)' }} />
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 flex flex-col">
+      {/* Full-screen main area */}
+      <main className="flex-1 flex items-center justify-center p-4 md:p-8">
+        <div className="w-full max-w-5xl bg-white rounded-3xl shadow-2xl p-10 md:p-20 text-center">
 
-          <h1 style={{ fontSize: '5.5rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-3.5px', margin: '0 0 2rem' }}>
+          <img src="/melissa.jpg" alt="Melissa" className="w-72 h-72 md:w-96 md:h-96 rounded-full object-cover mx-auto mb-10 border-12 border-slate-100 shadow-2xl" />
+
+          <h1 className="text-5xl md:text-8xl font-light text-slate-800 mb-6 tracking-tight">
             Balanced Hearts Holy Fire Reiki
           </h1>
 
-          <p style={{ fontSize: '2rem', color: '#64748b', fontStyle: 'italic', margin: '0 0 0.5rem' }}>
-            with Melissa Ouderkirk
-          </p>
-          <p style={{ fontSize: '1.9rem', color: '#475569', fontWeight: '500', marginBottom: '5rem' }}>
-            $125 · 60-minute in-person session
-          </p>
+          <p className="text-2xl md:text-3xl text-slate-600 italic mb-4">with Melissa Ouderkirk</p>
+          <p className="text-xl md:text-2xl text-slate-700 font-medium mb-16">$125 · 60-minute in-person session</p>
 
-          <h2 style={{ fontSize: '2.8rem', color: '#334155', marginBottom: '3rem' }}>
-            Schedule Your Session
-          </h2>
+          <h2 className="text-4xl md:text-5xl text-slate-800 mb-12">Schedule Your Session</h2>
 
-          <div style={{ margin: '0 auto 5rem', maxWidth: '500px' }}>
+          <div className="inline-block mb-16">
             <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline />
           </div>
 
           {selectedDate && slots.length > 0 && (
             <>
-              <h3 style={{ fontSize: '1.8rem', color: '#475569', marginBottom: '3rem' }}>
+              <h3 className="text-2xl text-slate-700 mb-10">
                 Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
               </h3>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem', marginBottom: '5rem', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
                 {slots.map(time => (
-                  <button key={time} onClick={() => setSelectedTime(time)}
-                    style={{
-                      padding: '1.8rem', borderRadius: '24px', fontSize: '1.5rem', fontWeight: '600',
-                      background: selectedTime === time ? '#1e293b' : '#fdfcfb',
-                      color: selectedTime === time ? 'white' : '#334155',
-                      border: '3px solid #e2e8f0', cursor: 'pointer', transition: 'all 0.3s',
-                      boxShadow: selectedTime === time ? '0 25px 60px rgba(30,41,59,0.4)' : '0 10px 30px rgba(0,0,0,0.1)'
-                    }}>
+                  <button
+                    key={time}
+                    onClick={() => setSelectedTime(time)}
+                    className={`py-8 rounded-3xl text-2xl font-semibold transition-all ${
+                      selectedTime === time
+                        ? 'bg-slate-800 text-white shadow-2xl scale-105'
+                        : 'bg-slate-100 text-slate-800 hover:bg-slate-200'
+                    }`}
+                  >
                     {time}
                   </button>
                 ))}
               </div>
 
               {selectedTime && (
-                <form onSubmit={handleSubmit} style={{ maxWidth: '600px', margin: '0 auto' }}>
+                <form onSubmit={handleSubmit} className="space-y-8 max-w-2xl mx-auto">
                   <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
-                    style={{ width:'100%', padding:'1.6rem', borderRadius:'20px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1.5rem', fontSize:'1.3rem' }} />
+                    className="w-full px-8 py-6 rounded-2xl border border-slate-300 focus:border-slate-600 focus:outline-none text-xl" />
                   <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
-                    style={{ width:'100%', padding:'1.6rem', borderRadius:'20px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1.5rem', fontSize:'1.3rem' }} />
+                    className="w-full px-8 py-6 rounded-2xl border border-slate-300 focus:border-slate-600 focus:outline-none text-xl" />
                   <input placeholder="Phone (optional)" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
-                    style={{ width:'100%', padding:'1.6rem', borderRadius:'20px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1.5rem', fontSize:'1.3rem' }} />
-                  <textarea placeholder="Notes or questions" rows="5" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
-                    style={{ width:'100%', padding:'1.6rem', borderRadius:'20px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'3rem', fontSize:'1.3rem' }} />
-                  <button type="submit" style={{
-                    width:'100%', padding:'2rem', background:'#1e293b', color:'white', border:'none', borderRadius:'24px', fontSize:'1.8rem', fontWeight:'600', cursor:'pointer', boxShadow:'0 30px 70px rgba(30,41,59,0.4)'
-                  }}>
+                    className="w-full px-8 py-6 rounded-2xl border border-slate-300 focus:border-slate-600 focus:outline-none text-xl" />
+                  <textarea placeholder="Notes or questions" rows="4" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
+                    className="w-full px-8 py-6 rounded-2xl border border-slate-300 focus:border-slate-600 focus:outline-none text-xl" />
+                  <button type="submit" className="w-full py-8 bg-slate-800 text-white rounded-3xl text-3xl font-bold hover:bg-slate-900 transition shadow-2xl">
                     Confirm Booking – $125
                   </button>
                 </form>
@@ -99,18 +87,17 @@ export default function App() {
           )}
 
           {message && (
-            <div style={{ marginTop:'5rem', padding:'3rem', background:'#ecfdf5', color:'#166534', borderRadius:'24px', fontWeight:'600', fontSize:'1.6rem' }}>
+            <div className="mt-20 p-12 bg-green-50 text-green-800 rounded-3xl text-2xl font-medium">
               {message}
             </div>
           )}
         </div>
       </main>
 
-      {/* Melissa’s contact info — back and beautiful */}
-      <footer style={{ padding:'5rem', textAlign:'center', background:'white', color:'#475569', fontSize:'1.4rem', lineHeight:'2' }}>
-        <p><strong>Contact Melissa</strong></p>
-        <p>Text or call: 403-555-1234</p>
-        <p>Email: melissa@balancedheartsholyfirereiki.com</p>
+      <footer className="py-16 text-center text-slate-600 bg-white text-xl">
+        <p className="font-semibold">Contact Melissa</p>
+        <p>Text or call: 403-852-4324</p>
+        <p>Email: melouderkirk@yahoo.com</p>
         <p>Okotoks, Alberta, Canada</p>
       </footer>
     </div>
