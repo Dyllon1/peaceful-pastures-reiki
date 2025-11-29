@@ -26,50 +26,52 @@ export default function App() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #f9fafb, #f3f4f6)', display: 'flex', flexDirection: 'column', fontFamily: 'Georgia, serif' }}>
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1rem' }}>
-        <div style={{ width: '100%', maxWidth: '640px', background: 'rgba(255,255,255,0.97)', borderRadius: '36px', boxShadow: '0 30px 70px rgba(0,0,0,0.12)', padding: '5rem 3rem', textAlign: 'center' }}>
+    <div style={{ 
+      height: '100dvh', 
+      margin: 0, 
+      padding: 0, 
+      background: 'linear-gradient(to bottom, #f9fafb, #f3f4f6)', 
+      display: 'flex', 
+      flexDirection: 'column' 
+    }}>
+      <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1rem' }}>
+        <div style={{ width: '100%', maxWidth: '900px', background: 'white', borderRadius: '40px', boxShadow: '0 40px 100px rgba(0,0,0,0.15)', padding: '6rem 4rem', textAlign: 'center' }}>
+          <img src="/melissa.jpg" alt="Melissa" style={{ width:'280px', height:'280px', borderRadius:'50%', objectFit:'cover', marginBottom:'3rem', border:'16px solid #f1f5f9', boxShadow:'0 20px 50px rgba(0,0,0,0.2)' }} />
 
-          <img src="/melissa.jpg" alt="Melissa Ouderkirk"
-            style={{ width:'200px', height:'200px', borderRadius:'50%', objectFit:'cover', marginBottom:'2.5rem', border:'10px solid #f1f5f9', boxShadow:'0 10px 30px rgba(0,0,0,0.1)' }} />
-
-          <h1 style={{ fontSize: '3.6rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-2px', margin: '0 0 0.3rem', lineHeight: '1' }}>
-            Balanced Hearts
+          <h1 style={{ fontSize: '5.5rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-3.5px', margin: '0 0 2rem' }}>
+            Balanced Hearts Holy Fire Reiki
           </h1>
-          <h1 style={{ fontSize: '3.6rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-2px', margin: '0 0 1.8rem', lineHeight: '1' }}>
-            Holy Fire Reiki
-          </h1>
 
-          <p style={{ fontSize: '1.75rem', color: '#64748b', fontStyle: 'italic', margin: '0 0 0.5rem' }}>
+          <p style={{ fontSize: '2rem', color: '#64748b', fontStyle: 'italic', margin: '0 0 0.5rem' }}>
             with Melissa Ouderkirk
           </p>
-          <p style={{ fontSize: '1.6rem', color: '#475569', fontWeight: '500', marginBottom: '4rem' }}>
+          <p style={{ fontSize: '1.9rem', color: '#475569', fontWeight: '500', marginBottom: '5rem' }}>
             $125 · 60-minute in-person session
           </p>
 
-          <h2 style={{ fontSize: '2rem', color: '#334155', marginBottom: '2.5rem' }}>
+          <h2 style={{ fontSize: '2.8rem', color: '#334155', marginBottom: '3rem' }}>
             Schedule Your Session
           </h2>
 
-          <div style={{ margin: '0 auto 3.5rem', maxWidth: '420px' }}>
+          <div style={{ margin: '0 auto 5rem', maxWidth: '500px' }}>
             <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline />
           </div>
 
           {selectedDate && slots.length > 0 && (
             <>
-              <h3 style={{ fontSize: '1.4rem', color: '#475569', marginBottom: '2rem' }}>
+              <h3 style={{ fontSize: '1.8rem', color: '#475569', marginBottom: '3rem' }}>
                 Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
               </h3>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '3rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem', marginBottom: '5rem', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
                 {slots.map(time => (
                   <button key={time} onClick={() => setSelectedTime(time)}
                     style={{
-                      padding: '1.2rem', borderRadius: '18px', fontSize: '1.15rem', fontWeight: '500',
+                      padding: '1.8rem', borderRadius: '24px', fontSize: '1.5rem', fontWeight: '600',
                       background: selectedTime === time ? '#1e293b' : '#fdfcfb',
                       color: selectedTime === time ? 'white' : '#334155',
-                      border: '2px solid #e2e8f0', cursor: 'pointer', transition: 'all 0.3s',
-                      boxShadow: selectedTime === time ? '0 10px 25px rgba(30,41,59,0.3)' : '0 4px 12px rgba(0,0,0,0.05)'
+                      border: '3px solid #e2e8f0', cursor: 'pointer', transition: 'all 0.3s',
+                      boxShadow: selectedTime === time ? '0 25px 60px rgba(30,41,59,0.4)' : '0 10px 30px rgba(0,0,0,0.1)'
                     }}>
                     {time}
                   </button>
@@ -77,17 +79,17 @@ export default function App() {
               </div>
 
               {selectedTime && (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} style={{ maxWidth: '600px', margin: '0 auto' }}>
                   <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
-                    style={{ width:'100%', padding:'1.2rem', borderRadius:'16px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1rem' }} />
+                    style={{ width:'100%', padding:'1.6rem', borderRadius:'20px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1.5rem', fontSize:'1.3rem' }} />
                   <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
-                    style={{ width:'100%', padding:'1.2rem', borderRadius:'16px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1rem' }} />
+                    style={{ width:'100%', padding:'1.6rem', borderRadius:'20px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1.5rem', fontSize:'1.3rem' }} />
                   <input placeholder="Phone (optional)" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
-                    style={{ width:'100%', padding:'1.2rem', borderRadius:'16px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1rem' }} />
-                  <textarea placeholder="Notes or questions" rows="3" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
-                    style={{ width:'100%', padding:'1.2rem', borderRadius:'16px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'2.5rem' }} />
+                    style={{ width:'100%', padding:'1.6rem', borderRadius:'20px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1.5rem', fontSize:'1.3rem' }} />
+                  <textarea placeholder="Notes or questions" rows="5" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
+                    style={{ width:'100%', padding:'1.6rem', borderRadius:'20px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'3rem', fontSize:'1.3rem' }} />
                   <button type="submit" style={{
-                    width:'100%', padding:'1.4rem', background:'#1e293b', color:'white', border:'none', borderRadius:'18px', fontSize:'1.3rem', fontWeight:'600', cursor:'pointer', boxShadow:'0 15px 35px rgba(30,41,59,0.3)'
+                    width:'100%', padding:'2rem', background:'#1e293b', color:'white', border:'none', borderRadius:'24px', fontSize:'1.8rem', fontWeight:'600', cursor:'pointer', boxShadow:'0 30px 70px rgba(30,41,59,0.4)'
                   }}>
                     Confirm Booking – $125
                   </button>
@@ -97,14 +99,18 @@ export default function App() {
           )}
 
           {message && (
-            <div style={{ marginTop:'3rem', padding:'2rem', background:'#ecfdf5', color:'#166534', borderRadius:'18px', fontWeight:'600' }}>
+            <div style={{ marginTop:'5rem', padding:'3rem', background:'#ecfdf5', color:'#166534', borderRadius:'24px', fontWeight:'600', fontSize:'1.6rem' }}>
               {message}
             </div>
           )}
         </div>
-      </div>
+      </main>
 
-      <footer style={{ padding:'3rem', textAlign:'center', background:'white', color:'#64748b', fontSize:'1.1rem' }}>
+      {/* Melissa’s contact info — back and beautiful */}
+      <footer style={{ padding:'5rem', textAlign:'center', background:'white', color:'#475569', fontSize:'1.4rem', lineHeight:'2' }}>
+        <p><strong>Contact Melissa</strong></p>
+        <p>Text or call: 403-555-1234</p>
+        <p>Email: melissa@balancedheartsholyfirereiki.com</p>
         <p>Okotoks, Alberta, Canada</p>
       </footer>
     </div>
