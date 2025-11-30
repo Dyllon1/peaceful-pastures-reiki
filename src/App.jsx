@@ -26,118 +26,86 @@ export default function App() {
   };
 
   return (
-    <>
-      {/* This is the magic — kills ALL browser margins and forces full screen */}
-      <style jsx global>{`
-        html, body, #root, div { 
-          margin: 0 !important; 
-          padding: 0 !important; 
-          height: 100% !important; 
-          width: 100% !important; 
-        }
-      `}</style>
+    <div style={{ height: '100vh', background: 'linear-gradient(to bottom, #f9fafb, #f3f4f6)', display: 'flex', flexDirection: 'column' }}>
+      <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+        <div style={{ width: '100%', maxWidth: '900px', background: 'white', borderRadius: '40px', boxShadow: '0 40px 100px rgba(0,0,0,0.15)', padding: '6rem 4rem', textAlign: 'center' }}>
+          <img src="/melissa.jpg" alt="Melissa" style={{ width:'300px', height:'300px', borderRadius:'50%', objectFit:'cover', marginBottom:'3rem', border:'16px solid #f1f5f9', boxShadow:'0 20px 50px rgba(0,0,0,0.2)' }} />
 
-      <div style={{ 
-        height: '100vh', 
-        width: '100vw', 
-        background: 'linear-gradient(to bottom, #f9fafb, #f3f4f6)', 
-        display: 'flex', 
-        flexDirection: 'column' 
-      }}>
-        <main style={{ 
-          flex: 1, 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center', 
-          padding: '2rem' 
-        }}>
-          <div style={{ 
-            width: '95%', 
-            maxWidth: '1200px', 
-            background: 'white', 
-            borderRadius: '40px', 
-            boxShadow: '0 40px 100px rgba(0,0,0,0.15)', 
-            padding: '6rem 4rem', 
-            textAlign: 'center',
-            minHeight: '90vh'
-          }}>
-            <img src="/melissa.jpg" alt="Melissa" style={{ width:'320px', height:'320px', borderRadius:'50%', objectFit:'cover', marginBottom:'3rem', border:'16px solid #f1f5f9', boxShadow:'0 20px 50px rgba(0,0,0,0.2)' }} />
+          <h1 style={{ fontSize: '5.5rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-3px', margin: '0 0 0.5rem' }}>
+            Balanced Hearts
+          </h1>
+          <h2 style={{ fontSize: '4.5rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-2px', margin: '0 0 4rem' }}>
+            Holy Fire Reiki
+          </h2>
 
-            <h1 style={{ fontSize: '6rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-4px', margin: '0 0 1rem' }}>
-              Balanced Hearts
-            </h1>
-            <h2 style={{ fontSize: '5rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-3px', margin: '0 0 4rem' }}>
-              Holy Fire Reiki
-            </h2>
+          <p style={{ fontSize: '2.2rem', color: '#64748b', fontStyle: 'italic', margin: '0 0 0.5rem' }}>
+            with Melissa Ouderkirk
+          </p>
+          <p style={{ fontSize: '2rem', color: '#475569', fontWeight: '500', marginBottom: '5rem' }}>
+            $125 · 60-minute in-person session
+          </p>
 
-            <p style={{ fontSize: '2.2rem', color: '#64748b', fontStyle: 'italic', margin: '0 0 0.5rem' }}>
-              with Melissa Ouderkirk
-            </p>
-            <p style={{ fontSize: '2rem', color: '#475569', fontWeight: '500', marginBottom: '5rem' }}>
-              $125 · 60-minute in-person session
-            </p>
+          <h2 style={{ fontSize: '3rem', color: '#1e293b', marginBottom: '3rem' }}>
+            Schedule Your Session
+          </h2>
 
-            <h2 style={{ fontSize: '3rem', color: '#1e293b', marginBottom: '3rem' }}>
-              Schedule Your Session
-            </h2>
-
-            <div style={{ margin: '0 auto 5rem', maxWidth: '500px' }}>
-              <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline />
-            </div>
-
-            {selectedDate && slots.length > 0 && (
-              <>
-                <h3 style={{ fontSize: '2rem', color: '#475569', marginBottom: '3rem' }}>
-                  Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
-                </h3>
-
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', marginBottom: '5rem' }}>
-                  {slots.map(time => (
-                    <button key={time} onClick={() => setSelectedTime(time)}
-                      style={{
-                        padding: '2rem', borderRadius: '28px', fontSize: '1.8rem', fontWeight: '600',
-                        background: selectedTime === time ? '#1e293b' : '#fdfcfb',
-                        color: selectedTime === time ? 'white' : '#334155',
-                        border: '4px solid #e2e8f0', cursor: 'pointer', transition: 'all 0.3s',
-                        boxShadow: selectedTime === time ? '0 30px 70px rgba(30,41,59,0.4)' : '0 12px 35px rgba(0,0,0,0.1)'
-                      }}>
-                      {time}
-                    </button>
-                  ))}
-                </div>
-
-                {selectedTime && (
-                  <form onSubmit={handleSubmit} style={{ maxWidth: '800px', margin: '0 auto' }}>
-                    <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
-                      style={{ width:'100%', padding:'2rem', borderRadius:'24px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'2rem', fontSize:'1.5rem' }} />
-                    <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
-                      style={{ width:'100%', padding:'2rem', borderRadius:'24px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'2rem', fontSize:'1.5rem' }} />
-                    <input placeholder="Phone (optional)" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
-                      style={{ width:'100%', padding:'2rem', borderRadius:'24px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'2rem', fontSize:'1.5rem' }} />
-                    <textarea placeholder="Notes or questions" rows="6" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
-                      style={{ width:'100%', padding:'2rem', borderRadius:'24px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'4rem', fontSize:'1.5rem' }} />
-                    <button type="submit" style={{
-                      width:'100%', padding:'2.5rem', background:'#1e293b', color:'white', border:'none', borderRadius:'28px', fontSize:'2rem', fontWeight:'600', cursor:'pointer', boxShadow:'0 35px 80px rgba(30,41,59,0.4)'
-                    }}>
-                      Confirm Booking – $125
-                    </button>
-                  </form>
-                )}
-              </>
-            )}
-
-            {message && (
-              <div style={{ marginTop:'6rem', padding:'4rem', background:'#ecfdf5', color:'#166534', borderRadius:'28px', fontWeight:'600', fontSize:'1.8rem' }}>
-                {message}
-              </div>
-            )}
+          {/* Calendar — smaller and perfectly centered */}
+          <div style={{ margin: '0 auto 5rem', width: '380px' }}>
+            <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline />
           </div>
-        </main>
 
-        <footer style={{ padding:'6rem', textAlign:'center', background:'white', color:'#64748b', fontSize:'1.6rem' }}>
-          <p>Okotoks, Alberta, Canada</p>
-        </footer>
-      </div>
-    </>
+          {selectedDate && slots.length > 0 && (
+            <>
+              <h3 style={{ fontSize: '2rem', color: '#475569', marginBottom: '3rem' }}>
+                Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
+              </h3>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', marginBottom: '5rem' }}>
+                {slots.map(time => (
+                  <button key={time} onClick={() => setSelectedTime(time)}
+                    style={{
+                      padding: '2rem', borderRadius: '28px', fontSize: '1.8rem', fontWeight: '600',
+                      background: selectedTime === time ? '#1e293b' : '#fdfcfb',
+                      color: selectedTime === time ? 'white' : '#334155',
+                      border: '4px solid #e2e8f0', cursor: 'pointer', transition: 'all 0.3s',
+                      boxShadow: selectedTime === time ? '0 30px 70px rgba(30,41,59,0.4)' : '0 12px 35px rgba(0,0,0,0.1)'
+                    }}>
+                    {time}
+                  </button>
+                ))}
+              </div>
+
+              {selectedTime && (
+                <form onSubmit={handleSubmit} style={{ maxWidth: '800px', margin: '0 auto' }}>
+                  <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
+                    style={{ width:'100%', padding:'2rem', borderRadius:'24px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'2rem', fontSize:'1.5rem' }} />
+                  <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
+                    style={{ width:'100%', padding:'2rem', borderRadius:'24px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'2rem', fontSize:'1.5rem' }} />
+                  <input placeholder="Phone (optional)" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
+                    style={{ width:'100%', padding:'2rem', borderRadius:'24px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'2rem', fontSize:'1.5rem' }} />
+                  <textarea placeholder="Notes or questions" rows="6" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
+                    style={{ width:'100%', padding:'2rem', borderRadius:'24px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'4rem', fontSize:'1.5rem' }} />
+                  <button type="submit" style={{
+                    width:'100%', padding:'2.5rem', background:'#1e293b', color:'white', border:'none', borderRadius:'28px', fontSize:'2rem', fontWeight:'600', cursor:'pointer', boxShadow:'0 35px 80px rgba(30,41,59,0.4)'
+                  }}>
+                    Confirm Booking – $125
+                  </button>
+                </form>
+              )}
+            </>
+          )}
+
+          {message && (
+            <div style={{ marginTop:'6rem', padding:'4rem', background:'#ecfdf5', color:'#166534', borderRadius:'28px', fontWeight:'600', fontSize:'1.8rem' }}>
+              {message}
+            </div>
+          )}
+        </div>
+      </main>
+
+      <footer style={{ padding:'6rem', textAlign:'center', background:'white', color:'#64748b', fontSize:'1.6rem' }}>
+        <p>Okotoks, Alberta, Canada</p>
+      </footer>
+    </div>
   );
 }
