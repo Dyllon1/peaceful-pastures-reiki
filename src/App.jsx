@@ -26,86 +26,89 @@ export default function App() {
   };
 
   return (
-    <div style={{ height: '100vh', background: 'linear-gradient(to bottom, #f9fafb, #f3f4f6)', display: 'flex', flexDirection: 'column' }}>
-      <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-        <div style={{ width: '100%', maxWidth: '900px', background: 'white', borderRadius: '40px', boxShadow: '0 40px 100px rgba(0,0,0,0.15)', padding: '6rem 4rem', textAlign: 'center' }}>
-          <img src="/melissa.jpg" alt="Melissa" style={{ width:'300px', height:'300px', borderRadius:'50%', objectFit:'cover', marginBottom:'3rem', border:'16px solid #f1f5f9', boxShadow:'0 20px 50px rgba(0,0,0,0.2)' }} />
-
-          <h1 style={{ fontSize: '5.5rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-3px', margin: '0 0 0.5rem' }}>
-            Balanced Hearts
-          </h1>
-          <h2 style={{ fontSize: '4.5rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-2px', margin: '0 0 4rem' }}>
-            Holy Fire Reiki
-          </h2>
-
-          <p style={{ fontSize: '2.2rem', color: '#64748b', fontStyle: 'italic', margin: '0 0 0.5rem' }}>
-            with Melissa Ouderkirk
-          </p>
-          <p style={{ fontSize: '2rem', color: '#475569', fontWeight: '500', marginBottom: '5rem' }}>
-            $125 · 60-minute in-person session
-          </p>
-
-          <h2 style={{ fontSize: '3rem', color: '#1e293b', marginBottom: '3rem' }}>
-            Schedule Your Session
-          </h2>
-
-          {/* Calendar — smaller and perfectly centered */}
-          <div style={{ margin: '0 auto 5rem', width: '380px' }}>
-            <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline />
-          </div>
-
-          {selectedDate && slots.length > 0 && (
-            <>
-              <h3 style={{ fontSize: '2rem', color: '#475569', marginBottom: '3rem' }}>
-                Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
-              </h3>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', marginBottom: '5rem' }}>
-                {slots.map(time => (
-                  <button key={time} onClick={() => setSelectedTime(time)}
-                    style={{
-                      padding: '2rem', borderRadius: '28px', fontSize: '1.8rem', fontWeight: '600',
-                      background: selectedTime === time ? '#1e293b' : '#fdfcfb',
-                      color: selectedTime === time ? 'white' : '#334155',
-                      border: '4px solid #e2e8f0', cursor: 'pointer', transition: 'all 0.3s',
-                      boxShadow: selectedTime === time ? '0 30px 70px rgba(30,41,59,0.4)' : '0 12px 35px rgba(0,0,0,0.1)'
-                    }}>
-                    {time}
-                  </button>
-                ))}
-              </div>
-
-              {selectedTime && (
-                <form onSubmit={handleSubmit} style={{ maxWidth: '800px', margin: '0 auto' }}>
-                  <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
-                    style={{ width:'100%', padding:'2rem', borderRadius:'24px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'2rem', fontSize:'1.5rem' }} />
-                  <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
-                    style={{ width:'100%', padding:'2rem', borderRadius:'24px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'2rem', fontSize:'1.5rem' }} />
-                  <input placeholder="Phone (optional)" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
-                    style={{ width:'100%', padding:'2rem', borderRadius:'24px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'2rem', fontSize:'1.5rem' }} />
-                  <textarea placeholder="Notes or questions" rows="6" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
-                    style={{ width:'100%', padding:'2rem', borderRadius:'24px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'4rem', fontSize:'1.5rem' }} />
-                  <button type="submit" style={{
-                    width:'100%', padding:'2.5rem', background:'#1e293b', color:'white', border:'none', borderRadius:'28px', fontSize:'2rem', fontWeight:'600', cursor:'pointer', boxShadow:'0 35px 80px rgba(30,41,59,0.4)'
-                  }}>
-                    Confirm Booking – $125
-                  </button>
-                </form>
-              )}
-            </>
-          )}
-
-          {message && (
-            <div style={{ marginTop:'6rem', padding:'4rem', background:'#ecfdf5', color:'#166534', borderRadius:'28px', fontWeight:'600', fontSize:'1.8rem' }}>
-              {message}
-            </div>
-          )}
+    <>
+      {/* Hide on desktop */}
+      <div className="hidden md:block min-h-screen bg-gray-100 flex items-center justify-center p-8">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">Mobile Only</h1>
+          <p className="text-xl text-gray-600">This site is designed for phones only.<br/>Please open on your mobile device.</p>
         </div>
-      </main>
+      </div>
 
-      <footer style={{ padding:'6rem', textAlign:'center', background:'white', color:'#64748b', fontSize:'1.6rem' }}>
-        <p>Okotoks, Alberta, Canada</p>
-      </footer>
-    </div>
+      {/* Mobile version — full screen, perfect on phones */}
+      <div className="md:hidden min-h-screen bg-gradient-to-b from-amber-50 to-rose-50 flex flex-col">
+        <main className="flex-1 flex items-center justify-center p-6">
+          <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl p-10 text-center">
+
+            <img src="/melissa.jpg" alt="Melissa" className="w-48 h-48 rounded-full object-cover mx-auto mb-8 border-8 border-amber-100 shadow-xl" />
+
+            <h1 className="text-5xl font-bold text-amber-900 mb-2">Balanced Hearts</h1>
+            <h2 className="text-4xl font-light text-slate-800 mb-8">Holy Fire Reiki</h2>
+
+            <p className="text-xl text-slate-600 italic mb-2">with Melissa Ouderkirk</p>
+            <p className="text-lg text-slate-700 font-medium mb-10">$125 · 60-minute session</p>
+
+            <h3 className="text-2xl text-slate-800 mb-8">Schedule Your Session</h3>
+
+            <div className="mb-10">
+              <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline />
+            </div>
+
+            {selectedDate && slots.length > 0 && (
+              <>
+                <h4 className="text-lg text-slate-700 mb-6">
+                  Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
+                </h4>
+
+                <div className="grid grid-cols-3 gap-4 mb-10">
+                  {slots.map(time => (
+                    <button
+                      key={time}
+                      onClick={() => setSelectedTime(time)}
+                      className={`py-5 rounded-2xl text-lg font-semibold transition-all ${
+                        selectedTime === time
+                          ? 'bg-gradient-to-br from-amber-600 to-rose-600 text-white shadow-xl'
+                          : 'bg-white text-slate-800 border-2 border-slate-300 hover:border-amber-400'
+                      }`}
+                    >
+                      {time}
+                    </button>
+                  ))}
+                </div>
+
+                {selectedTime && (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
+                      className="w-full px-6 py-5 rounded-xl border border-slate-300 focus:border-amber-500 focus:outline-none text-lg bg-white/70" />
+                    <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
+                      className="w-full px-6 py-5 rounded-xl border border-slate-300 focus:border-amber-500 focus:outline-none text-lg bg-white/70" />
+                    <input placeholder="Phone (optional)" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
+                      className="w-full px-6 py-5 rounded-xl border border-slate-300 focus:border-amber-500 focus:outline-none text-lg bg-white/70" />
+                    <textarea placeholder="Notes or questions" rows="3" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
+                      className="w-full px-6 py-5 rounded-xl border border-slate-300 focus:border-amber-500 focus:outline-none text-lg bg-white/70" />
+                    <button type="submit" className="w-full py-7 bg-gradient-to-br from-amber-600 to-rose-600 text-white rounded-2xl text-2xl font-bold hover:shadow-2xl transition-all">
+                      Confirm Booking – $125
+                    </button>
+                  </form>
+                )}
+              </>
+            )}
+
+            {message && (
+              <div className="mt-10 p-8 bg-green-50 text-green-800 rounded-2xl text-xl font-medium">
+                {message}
+              </div>
+            )}
+          </div>
+        </main>
+
+        <footer className="py-10 text-center text-slate-600 bg-white/80 text-lg">
+          <p className="font-medium">Contact Melissa</p>
+          <p>Text or call: 403-555-1234</p>
+          <p>Email: melissa@balancedheartsholyfirereiki.com</p>
+          <p>Okotoks, Alberta, Canada</p>
+        </footer>
+      </div>
+    </>
   );
 }
