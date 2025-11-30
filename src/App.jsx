@@ -86,7 +86,7 @@ export default function App() {
                 Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
               </h3>
 
-             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', marginBottom: '5rem' }}>
+             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem', marginBottom: '5rem' }}>
                 {slots.map(time => (
                   <button key={time} onClick={() => setSelectedTime(time)}
                     style={{
