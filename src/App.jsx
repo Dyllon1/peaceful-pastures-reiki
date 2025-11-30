@@ -7,23 +7,40 @@ export default function App() {
   const [selectedTime, setSelectedTime] = useState('');
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', notes: '' });
   const [message, setMessage] = useState('');
-  const [bookedSlots, setBookedSlots] = useState({});
+  const [bookedSlots, setBookedSlots] = useState(() => {
+    const saved = localStorage.getItem('bookedSlots');
+    return saved ? JSON.parse(saved) : {};
+  });
 
-  const getSlots = (date) => {
+  // Save to localStorage every time a slot is booked
+  useEffect(() => {
+    localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
+  }, [bookedSlots]);
+
+    const getSlots = (date) => {
     if (!date) return [];
     const day = date.getDay();
     const key = date.toLocaleDateString();
-    const all = day === 6 ? ['10:00','11:00','12:00','13:00'] : ['10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
+    const all = day === 6 
+      ? ['10:00','11:00','12:00','13:00'] 
+      : ['10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
+    
     const booked = bookedSlots[key] || [];
     return all.filter(t => !booked.includes(t));
   };
 
   const slots = selectedDate ? getSlots(selectedDate) : [];
 
-  const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
     e.preventDefault();
     const key = selectedDate.toLocaleDateString();
-    setBookedSlots(prev => ({ ...prev, [key]: [...(prev[key] || []), selectedTime] }));
+
+    // Permanently book this slot
+    setBookedSlots(prev => ({
+      ...prev,
+      [key]: [...(prev[key] || []), selectedTime]
+    }));
+
     setMessage("Booking confirmed! Melissa will contact you shortly to arrange payment ($125/session). Namaste");
     setFormData({ name: '', email: '', phone: '', notes: '' });
     setSelectedTime('');
