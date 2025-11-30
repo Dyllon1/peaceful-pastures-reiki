@@ -76,8 +76,8 @@ export default function App() {
             Schedule Your Session
           </h2>
 
-          {/* Calendar — 50% larger and perfectly centered */}
-<div style={{ margin: '0 auto 5rem', maxWidth: '600px', transform: 'scale(1.5)' }}>
+          {/* Calendar — 50% larger, centered, moved down 1 cm */}
+<div style={{ margin: '0 auto 8rem', maxWidth: '600px', transform: 'scale(1.5)' }}>
   <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline />
 </div>
 
