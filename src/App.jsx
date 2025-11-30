@@ -135,8 +135,8 @@ export default function App() {
 
       <footer style={{ padding:'6rem', textAlign:'center', background:'white', color:'#64748b', fontSize:'1.6rem' }}>
         <p>Contact Melissa</p>
-        <p>Text or call: 403-555-1234</p>
-        <p>Email: melissa@balancedheartsholyfirereiki.com</p>
+        <p>Text or call: 403-852-4324</p>
+        <p>Email: melouderkirk@yahoo.com</p>
         <p>Okotoks, Alberta, Canada</p>
       </footer>
     </div>
