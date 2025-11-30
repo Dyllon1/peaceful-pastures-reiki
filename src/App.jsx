@@ -61,7 +61,7 @@ export default function App() {
           <h1 style={{ fontSize: '6rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-4px', margin: '0 0 1rem' }}>
             Balanced Hearts
           </h1>
-          <h2 style={{ fontSize: '5rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-3px', margin: '0 0 4rem' }}>
+          <h2 style={{ fontSize: '3rem', fontWeight: '300', color: '#253145', letterSpacing: '-3px', margin: '0 0 4rem' }}>
             Holy Fire Reiki
           </h2>
 
