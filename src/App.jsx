@@ -26,89 +26,82 @@ export default function App() {
   };
 
   return (
-    <>
-      {/* Hide on desktop */}
-      <div className="hidden md:block min-h-screen bg-gray-100 flex items-center justify-center p-8">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">Mobile Only</h1>
-          <p className="text-xl text-gray-600">This site is designed for phones only.<br/>Please open on your mobile device.</p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-rose-50 to-indigo-50 flex flex-col">
+      <main className="flex-1 flex items-center justify-center p-6 md:p-12">
+        <div className="w-full max-w-5xl bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-12 md:p-20 text-center border border-white/30">
 
-      {/* Mobile version — full screen, perfect on phones */}
-      <div className="md:hidden min-h-screen bg-gradient-to-b from-amber-50 to-rose-50 flex flex-col">
-        <main className="flex-1 flex items-center justify-center p-6">
-          <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl p-10 text-center">
+          <img src="/melissa.jpg" alt="Melissa Ouderkirk" className="w-72 h-72 md:w-96 md:h-96 rounded-full object-cover mx-auto mb-12 border-12 border-white shadow-2xl" />
 
-            <img src="/melissa.jpg" alt="Melissa" className="w-48 h-48 rounded-full object-cover mx-auto mb-8 border-8 border-amber-100 shadow-xl" />
+          <h1 className="text-6xl md:text-9xl font-['Dancing_Script','Great_Vibes',cursive] text-amber-900 mb-4 tracking-tight">
+            Balanced Hearts
+          </h1>
+          <h2 className="text-5xl md:text-7xl font-light text-slate-800 mb-12 tracking-widest">
+            Holy Fire Reiki
+          </h2>
 
-            <h1 className="text-5xl font-bold text-amber-900 mb-2">Balanced Hearts</h1>
-            <h2 className="text-4xl font-light text-slate-800 mb-8">Holy Fire Reiki</h2>
+          <p className="text-2xl md:text-3xl text-slate-600 italic mb-4">with Melissa Ouderkirk</p>
+          <p className="text-xl md:text-2xl text-slate-700 font-medium mb-16">$125 · 60-minute in-person session</p>
 
-            <p className="text-xl text-slate-600 italic mb-2">with Melissa Ouderkirk</p>
-            <p className="text-lg text-slate-700 font-medium mb-10">$125 · 60-minute session</p>
+          <h3 className="text-4xl md:text-5xl text-slate-800 mb-12">Schedule Your Session</h3>
 
-            <h3 className="text-2xl text-slate-800 mb-8">Schedule Your Session</h3>
-
-            <div className="mb-10">
-              <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline />
-            </div>
-
-            {selectedDate && slots.length > 0 && (
-              <>
-                <h4 className="text-lg text-slate-700 mb-6">
-                  Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
-                </h4>
-
-                <div className="grid grid-cols-3 gap-4 mb-10">
-                  {slots.map(time => (
-                    <button
-                      key={time}
-                      onClick={() => setSelectedTime(time)}
-                      className={`py-5 rounded-2xl text-lg font-semibold transition-all ${
-                        selectedTime === time
-                          ? 'bg-gradient-to-br from-amber-600 to-rose-600 text-white shadow-xl'
-                          : 'bg-white text-slate-800 border-2 border-slate-300 hover:border-amber-400'
-                      }`}
-                    >
-                      {time}
-                    </button>
-                  ))}
-                </div>
-
-                {selectedTime && (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
-                      className="w-full px-6 py-5 rounded-xl border border-slate-300 focus:border-amber-500 focus:outline-none text-lg bg-white/70" />
-                    <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
-                      className="w-full px-6 py-5 rounded-xl border border-slate-300 focus:border-amber-500 focus:outline-none text-lg bg-white/70" />
-                    <input placeholder="Phone (optional)" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
-                      className="w-full px-6 py-5 rounded-xl border border-slate-300 focus:border-amber-500 focus:outline-none text-lg bg-white/70" />
-                    <textarea placeholder="Notes or questions" rows="3" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
-                      className="w-full px-6 py-5 rounded-xl border border-slate-300 focus:border-amber-500 focus:outline-none text-lg bg-white/70" />
-                    <button type="submit" className="w-full py-7 bg-gradient-to-br from-amber-600 to-rose-600 text-white rounded-2xl text-2xl font-bold hover:shadow-2xl transition-all">
-                      Confirm Booking – $125
-                    </button>
-                  </form>
-                )}
-              </>
-            )}
-
-            {message && (
-              <div className="mt-10 p-8 bg-green-50 text-green-800 rounded-2xl text-xl font-medium">
-                {message}
-              </div>
-            )}
+          <div className="inline-block mb-16">
+            <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline />
           </div>
-        </main>
 
-        <footer className="py-10 text-center text-slate-600 bg-white/80 text-lg">
-          <p className="font-medium">Contact Melissa</p>
-          <p>Text or call: 403-555-1234</p>
-          <p>Email: melissa@balancedheartsholyfirereiki.com</p>
-          <p>Okotoks, Alberta, Canada</p>
-        </footer>
-      </div>
-    </>
+          {selectedDate && slots.length > 0 && (
+            <>
+              <h4 className="text-2xl md:text-3xl text-slate-700 mb-12">
+                Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
+              </h4>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 max-w-4xl mx-auto">
+                {slots.map(time => (
+                  <button
+                    key={time}
+                    onClick={() => setSelectedTime(time)}
+                    className={`py-10 rounded-3xl text-2xl md:text-3xl font-medium transition-all ${
+                      selectedTime === time
+                        ? 'bg-gradient-to-br from-amber-600 to-rose-600 text-white shadow-2xl scale-105'
+                        : 'bg-white/80 text-slate-800 border-2 border-slate-200 hover:border-amber-400 hover:shadow-xl'
+                    }`}
+                  >
+                    {time}
+                  </button>
+                ))}
+              </div>
+
+              {selectedTime && (
+                <form onSubmit={handleSubmit} className="space-y-8 max-w-2xl mx-auto">
+                  <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
+                    className="w-full px-10 py-7 rounded-2xl border border-slate-300 focus:border-amber-500 focus:outline-none text-xl bg-white/60" />
+                  <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
+                    className="w-full px-10 py-7 rounded-2xl border border-slate-300 focus:border-amber-500 focus:outline-none text-xl bg-white/60" />
+                  <input placeholder="Phone (optional)" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
+                    className="w-full px-10 py-7 rounded-2xl border border-slate-300 focus:border-amber-500 focus:outline-none text-xl bg-white/60" />
+                  <textarea placeholder="Notes or questions" rows="4" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
+                    className="w-full px-10 py-7 rounded-2xl border border-slate-300 focus:border-amber-500 focus:outline-none text-xl bg-white/60" />
+                  <button type="submit" className="w-full py-10 bg-gradient-to-br from-amber-600 to-rose-600 text-white rounded-3xl text-3xl md:text-4xl font-bold hover:shadow-2xl transition-all">
+                    Confirm Booking – $125
+                  </button>
+                </form>
+              )}
+            </>
+          )}
+
+          {message && (
+            <div className="mt-20 p-12 bg-gradient-to-br from-amber-50 to-rose-50 text-amber-900 rounded-3xl text-2xl md:text-3xl font-medium border border-amber-200">
+              {message}
+            </div>
+          )}
+        </div>
+      </main>
+
+      <footer className="py-16 text-center text-slate-600 bg-white/80 backdrop-blur text-xl md:text-2xl">
+        <p className="font-medium">Contact Melissa</p>
+        <p>Text or call: 403-555-1234</p>
+        <p>Email: melissa@balancedheartsholyfirereiki.com</p>
+        <p>Okotoks, Alberta, Canada</p>
+      </footer>
+    </div>
   );
 }
