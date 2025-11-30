@@ -72,12 +72,12 @@ export default function App() {
             $125 · 60-minute in-person session
           </p>
 
-          <h2 style={{ fontSize: '3rem', color: '#1e293b', marginBottom: '3rem' }}>
-            Schedule Your Session
-          </h2>
+          <h2 style={{ fontSize: '3rem', color: '#1e293b', marginBottom: '4rem' }}>
+  Schedule Your Session
+</h2>
 
-          {/* Calendar — 50% larger, centered, moved down 1 cm */}
-<div style={{ margin: '0 auto 8rem', maxWidth: '600px', transform: 'scale(1.5)' }}>
+{/* Calendar — moved down exactly ~1 cm from the heading */}
+<div style={{ marginTop: '1cm', marginBottom: '6rem', maxWidth: '600px', transform: 'scale(1.5)', marginLeft: 'auto', marginRight: 'auto' }}>
   <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline />
 </div>
 
