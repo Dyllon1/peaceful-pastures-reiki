@@ -90,11 +90,11 @@ export default function App() {
                 {slots.map(time => (
                   <button key={time} onClick={() => setSelectedTime(time)}
                     style={{
-                      padding: '2rem', borderRadius: '28px', fontSize: '1.8rem', fontWeight: '600',
+                      padding: '2rem', borderRadius: '38px', fontSize: '2.2rem', fontWeight: '600',
                       background: selectedTime === time ? '#1e293b' : '#fdfcfb',
                       color: selectedTime === time ? 'white' : '#334155',
-                      border: '4px solid #e2e8f0', cursor: 'pointer', transition: 'all 0.3s',
-                      boxShadow: selectedTime === time ? '0 30px 70px rgba(30,41,59,0.4)' : '0 12px 35px rgba(0,0,0,0.1)'
+                      border: '6px solid #e2e8f0', cursor: 'pointer', transition: 'all 0.3s',
+                      boxShadow: selectedTime === time ? '0 45px 100px rgba(30,41,59,0.4)' : '0 18px 50px rgba(0,0,0,0.1)'
                     }}>
                     {time}
                   </button>
