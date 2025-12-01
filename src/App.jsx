@@ -8,13 +8,11 @@ export default function App() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', notes: '' });
   const [message, setMessage] = useState('');
   
-  // Load booked slots from localStorage when the page loads
   const [bookedSlots, setBookedSlots] = useState(() => {
     const saved = localStorage.getItem('bookedSlots');
     return saved ? JSON.parse(saved) : {};
   });
 
-  // Save to localStorage whenever bookedSlots changes
   useEffect(() => {
     localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
   }, [bookedSlots]);
@@ -33,8 +31,6 @@ export default function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const key = selectedDate.toLocaleDateString();
-    
-    // Permanently book this slot
     setBookedSlots(prev => ({
       ...prev,
       [key]: [...(prev[key] || []), selectedTime]
@@ -46,7 +42,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-slate-700 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-200 to-slate-800 flex flex-col">
       <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1rem' }}>
         <div style={{ width: '100%', maxWidth: '900px', background: 'white', borderRadius: '40px', boxShadow: '0 40px 100px rgba(0,0,0,0.15)', padding: '6rem 4rem', textAlign: 'center' }}>
           <img src="/melissa.jpg" alt="Melissa" style={{ width:'300px', height:'300px', borderRadius:'50%', objectFit:'cover', marginBottom:'3rem', border:'16px solid #fde68a', boxShadow:'0 20px 50px rgba(0,0,0,0.2)' }} />
@@ -126,22 +122,24 @@ export default function App() {
         </div>
       </main>
 
-   <footer style={{
-  padding: '4rem 2rem',
-  textAlign: 'center',
-  background: 'white',
-  borderTop: '1px solid #e2e8f0',
-  marginTop: '4rem',
-  fontSize: '1.4rem',
-  color: '#475569'
-}}>
-  <p style={{ margin: '0.5rem 0', fontWeight: '600' }}>Contact Melissa</p>
-  <p style={{ margin: '0.5rem 0' }}>Text or call: <strong>403-852-4324</strong></p>
-  <p style={{ margin: '0.5rem 0' }}>Email: <strong>melouderkirk@yahoo.com</strong></p>
-  <p style={{ margin: '1rem 0 0', fontSize: '1.2rem', color: '#64748b' }}>
-    Okotoks, Alberta, Canada
-  </p>
-</footer>
+      <footer style={{
+        padding: '4rem 2rem',
+        textAlign: 'center',
+        background: 'white',
+        borderTop: '1px solid #e2e8f0',
+        marginTop: '4rem',
+        fontSize: '1.4rem',
+        color: '#475569'
+      }}>
+        <p style={{ margin: '0.5rem 0', fontWeight: '600' }}>Contact Melissa</p>
+        <p style={{ margin: '0.5rem 0' }}>Text or call: <strong>403-852-4324</strong></p>
+        <p style={{ margin: '0.5rem 0' }}>Email: <strong>melouderkirk@yahoo.com</strong></p>
+        <p style={{ margin: '1rem 0 0', fontSize: '1.2rem', color: '#64748b' }}>
+          Okotoks, Alberta, Canada
+        </p>
+      </footer>
     </div>
+  );
+}
   );
 }
