@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -7,34 +7,33 @@ export default function App() {
   const [selectedTime, setSelectedTime] = useState('');
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', notes: '' });
   const [message, setMessage] = useState('');
+  
+  // Load booked slots from localStorage when the page loads
   const [bookedSlots, setBookedSlots] = useState(() => {
     const saved = localStorage.getItem('bookedSlots');
     return saved ? JSON.parse(saved) : {};
   });
 
-  // Save to localStorage every time a slot is booked
+  // Save to localStorage whenever bookedSlots changes
   useEffect(() => {
     localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
   }, [bookedSlots]);
 
-    const getSlots = (date) => {
+  const getSlots = (date) => {
     if (!date) return [];
     const day = date.getDay();
     const key = date.toLocaleDateString();
-    const all = day === 6 
-      ? ['10:00','11:00','12:00','13:00'] 
-      : ['10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
-    
+    const all = day === 6 ? ['10:00','11:00','12:00','13:00'] : ['10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
     const booked = bookedSlots[key] || [];
     return all.filter(t => !booked.includes(t));
   };
 
   const slots = selectedDate ? getSlots(selectedDate) : [];
 
-    const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const key = selectedDate.toLocaleDateString();
-
+    
     // Permanently book this slot
     setBookedSlots(prev => ({
       ...prev,
@@ -47,38 +46,15 @@ export default function App() {
   };
 
   return (
-    <div style={{ 
-      minHeight: '100vh', 
-      background: 'linear-gradient(to bottom, #fefce8, #faf5f0)', 
-      margin: 0, 
-      padding: 0, 
-      display: 'flex', 
-      flexDirection: 'column',
-      fontFamily: 'Georgia, serif'
-    }}>
-      <main style={{ 
-        flex: 1, 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center', 
-        padding: '3rem 1rem' 
-      }}>
-        <div style={{ 
-          width: '100%', 
-          maxWidth: '900px', 
-          background: 'white', 
-          borderRadius: '40px', 
-          boxShadow: '0 40px 100px rgba(0,0,0,0.15)', 
-          padding: '6rem 4rem', 
-          textAlign: 'center',
-          minHeight: '90vh'
-        }}>
-          <img src="/melissa.jpg" alt="Melissa" style={{ width:'320px', height:'320px', borderRadius:'50%', objectFit:'cover', marginBottom:'3rem', border:'16px solid #f1f5f9', boxShadow:'0 20px 50px rgba(0,0,0,0.2)' }} />
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #f9fafb, #f3f4f6)', display: 'flex', flexDirection: 'column' }}>
+      <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1rem' }}>
+        <div style={{ width: '100%', maxWidth: '900px', background: 'white', borderRadius: '40px', boxShadow: '0 40px 100px rgba(0,0,0,0.15)', padding: '6rem 4rem', textAlign: 'center' }}>
+          <img src="/melissa.jpg" alt="Melissa" style={{ width:'300px', height:'300px', borderRadius:'50%', objectFit:'cover', marginBottom:'3rem', border:'16px solid #f1f5f9', boxShadow:'0 20px 50px rgba(0,0,0,0.2)' }} />
 
-          <h1 style={{ fontSize: '6rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-4px', margin: '0 0 1rem' }}>
+          <h1 style={{ fontSize: '5.5rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-3px', margin: '0 0 0.5rem' }}>
             Balanced Hearts
           </h1>
-          <h2 style={{ fontSize: '3rem', fontWeight: '300', color: '#253145', letterSpacing: '-3px', margin: '0 0 4rem' }}>
+          <h2 style={{ fontSize: '4.5rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-2px', margin: '0 0 4rem' }}>
             Holy Fire Reiki
           </h2>
 
@@ -89,14 +65,13 @@ export default function App() {
             $125 · 60-minute in-person session
           </p>
 
-          <h2 style={{ fontSize: '3rem', color: '#1e293b', marginBottom: '4rem' }}>
-  Schedule Your Session
-</h2>
+          <h2 style={{ fontSize: '3rem', color: '#1e293b', marginBottom: '3rem' }}>
+            Schedule Your Session
+          </h2>
 
-{/* Calendar — moved down exactly ~1 cm from the heading */}
-<div style={{ marginTop: '1cm', marginBottom: '6rem', maxWidth: '600px', transform: 'scale(1.5)', marginLeft: 'auto', marginRight: 'auto' }}>
-  <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline />
-</div>
+          <div style={{ margin: '0 auto 5rem', maxWidth: '500px' }}>
+            <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline />
+          </div>
 
           {selectedDate && slots.length > 0 && (
             <>
@@ -104,7 +79,7 @@ export default function App() {
                 Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
               </h3>
 
-             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem', marginBottom: '5rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', marginBottom: '5rem' }}>
                 {slots.map(time => (
                   <button key={time} onClick={() => setSelectedTime(time)}
                     style={{
@@ -152,9 +127,6 @@ export default function App() {
       </main>
 
       <footer style={{ padding:'6rem', textAlign:'center', background:'white', color:'#64748b', fontSize:'1.6rem' }}>
-        <p>Contact Melissa</p>
-        <p>Text or call: 403-852-4324</p>
-        <p>Email: melouderkirk@yahoo.com</p>
         <p>Okotoks, Alberta, Canada</p>
       </footer>
     </div>
