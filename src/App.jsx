@@ -46,7 +46,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col text-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 flex flex-col text-white">
       <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1rem' }}>
         <div style={{ width: '100%', maxWidth: '900px', background: 'white', borderRadius: '40px', boxShadow: '0 40px 100px rgba(0,0,0,0.15)', padding: '6rem 4rem', textAlign: 'center' }}>
           <img src="/melissa.jpg" alt="Melissa" style={{ width:'300px', height:'300px', borderRadius:'50%', objectFit:'cover', marginBottom:'3rem', border:'16px solid #fde68a', boxShadow:'0 20px 50px rgba(0,0,0,0.2)' }} />
