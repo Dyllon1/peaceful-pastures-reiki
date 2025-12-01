@@ -79,7 +79,7 @@ export default function App() {
                 Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
               </h3>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', marginBottom: '5rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem', marginBottom: '5rem' }}>
                 {slots.map(time => (
                   <button key={time} onClick={() => setSelectedTime(time)}
                     style={{
@@ -126,9 +126,22 @@ export default function App() {
         </div>
       </main>
 
-      <footer style={{ padding:'6rem', textAlign:'center', background:'white', color:'#64748b', fontSize:'1.6rem' }}>
-        <p>Okotoks, Alberta, Canada</p>
-      </footer>
+   <footer style={{
+  padding: '4rem 2rem',
+  textAlign: 'center',
+  background: 'white',
+  borderTop: '1px solid #e2e8f0',
+  marginTop: '4rem',
+  fontSize: '1.4rem',
+  color: '#475569'
+}}>
+  <p style={{ margin: '0.5rem 0', fontWeight: '600' }}>Contact Melissa</p>
+  <p style={{ margin: '0.5rem 0' }}>Text or call: <strong>403-852-4324</strong></p>
+  <p style={{ margin: '0.5rem 0' }}>Email: <strong>melouderkirk@yahoo.com</strong></p>
+  <p style={{ margin: '1rem 0 0', fontSize: '1.2rem', color: '#64748b' }}>
+    Okotoks, Alberta, Canada
+  </p>
+</footer>
     </div>
   );
 }
