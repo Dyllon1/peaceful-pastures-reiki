@@ -108,7 +108,21 @@ export default function App() {
           }}>
             $125 · 60-minute in-person session
           </p>
-
+{/* One-sentence benefit — small, classy box */}
+<div style={{
+  margin: '4rem auto 5rem',
+  maxWidth: '700px',
+  padding: '2rem 3rem',
+  background: 'rgba(255,255,255,0.9)',
+  borderRadius: '24px',
+  border: '2px solid #e2e8f0',
+  boxShadow: '0 15px 40px rgba(0,0,0,0.08)',
+  fontSize: '1.6rem',
+  color: '#334155',
+  fontStyle: 'italic',
+  textAlign: 'center'
+}}>
+  Holy Fire Reiki gently releases stress, restores balance, and brings deep peace to body, mind, and spirit.
 </div>
           <h3 style={{ 
             fontSize: '2.8rem', 
