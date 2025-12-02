@@ -98,7 +98,7 @@ export default function App() {
             fontStyle: 'italic', 
             margin: '0 0 0.5rem' 
           }}>
-            with Melissa Ouderkirk
+            with Melissa Lynn
           </p>
           <p style={{ 
             fontSize: '1.8rem', 
