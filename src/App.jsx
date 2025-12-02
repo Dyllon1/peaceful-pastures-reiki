@@ -83,8 +83,8 @@ export default function App() {
             Balanced Hearts
           </h1>
           <h2 style={{ 
-            fontSize: '3.5rem', 
-            fontWeight: '300', 
+            fontSize: '2.5rem', 
+            fontWeight: '200', 
             color: '#334155', 
             letterSpacing: '-1px', 
             margin: '0 0 2.5rem' 
