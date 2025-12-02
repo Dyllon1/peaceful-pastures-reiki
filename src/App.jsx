@@ -122,7 +122,9 @@ export default function App() {
   fontStyle: 'italic',
   textAlign: 'center'
 }}>
-  Holy Fire Reiki gently releases stress, restores balance, and brings deep peace to body, mind, and spirit.
+  Sessions take place in the calming presence of Melissa`s equine companions. Their grounded energy naturally deepens relaxation, supports emotional release and opens the heart to profound peace. After the Reiki session, the horses often share their quiet wisdom.
+
+
 </div>
           <h3 style={{ 
             fontSize: '2.8rem', 
