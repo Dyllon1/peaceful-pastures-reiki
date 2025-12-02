@@ -37,150 +37,62 @@ export default function App() {
   };
 
   return (
-    <div style={{ 
-      minHeight: '100vh', 
-      background: 'linear-gradient(to bottom, #f0fdfa, #ccfbf1)', /* richer teal gradient */
-      margin: 0, 
-      padding: 0, 
-      display: 'flex', 
-      flexDirection: 'column', 
-      fontFamily: '"Playfair Display", Georgia, serif'
-    }}>
-      <main style={{ 
-        flex: 1, 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center', 
-        padding: '2rem 1rem' 
-      }}>
-        <div style={{ 
-          width: '100%', 
-          maxWidth: '800px', 
-          background: 'white', 
-          borderRadius: '32px', 
-          boxShadow: '0 35px 80px rgba(0,0,0,0.12)', 
-          padding: '5rem 3rem', 
-          textAlign: 'center',
-          border: '1px solid #5eead4' /* visible teal border */
-        }}>
-          <img src="/melissa.jpg" alt="Melissa Ouderkirk" style={{ 
-            width: '280px', 
-            height: '280px', 
-            borderRadius: '50%', 
-            objectFit: 'cover', 
-            marginBottom: '3rem', 
-            border: '12px solid #ccfbf1', /* richer teal */
-            boxShadow: '0 20px 50px rgba(0,0,0,0.15)' 
-          }} />
+    <div className="min-h-screen bg-gradient-to-b from-slate-100 to-slate-200 flex flex-col">
+      <main className="flex-1 flex items-center justify-center p-6">
+        {/* ←←← CHARCOAL BOX — everything inside is now on rich charcoal */}
+        <div className="w-full max-w-5xl bg-slate-800 rounded-3xl shadow-2xl p-12 md:p-20 text-center text-white">
 
-          <h1 style={{ 
-            fontSize: '4.5rem', 
-            fontWeight: '400', 
-            color: '#0f766e', /* deep teal */
-            letterSpacing: '-2px', 
-            margin: '0 0 1rem' 
-          }}>
+          <img src="/melissa.jpg" alt="Melissa" className="w-72 h-72 md:w-96 md:h-96 rounded-full object-cover mx-auto mb-12 border-12 border-slate-600 shadow-2xl" />
+
+          <h1 className="text-7xl md:text-9xl font-light text-amber-100 mb-6 tracking-tight">
             Balanced Hearts
           </h1>
-          <h2 style={{ 
-            fontSize: '2.5rem', 
-            fontWeight: '200', 
-            color: '#14b8a6', /* vibrant teal */
-            letterSpacing: '-1px', 
-            margin: '0 0 2.5rem' 
-          }}>
+          <h2 className="text-5xl md:text-7xl font-light text-amber-200 mb-16 tracking-widest">
             Holy Fire Reiki
           </h2>
 
-          <p style={{ 
-            fontSize: '2rem', 
-            color: '#0d9488', /* rich teal */
-            fontStyle: 'italic', 
-            margin: '0 0 0.5rem' 
-          }}>
-            with Melissa Lynn
-          </p>
-          <p style={{ 
-            fontSize: '1.8rem', 
-            color: '#0f766e', 
-            fontWeight: '500', 
-            marginBottom: '4rem' 
-          }}>
-            $125 · 60-minute in-person session
-          </p>
+          <p className="text-2xl md:text-3xl text-amber-100 italic mb-4">with Melissa Lynn</p>
+          <p className="text-xl md:text-2xl text-amber-50 font-medium mb-16">$125 · 60-minute in-person session</p>
 
-          {/* One-sentence benefit — teal theme */}
-          <div style={{
-            margin: '4rem auto 5rem',
-            maxWidth: '700px',
-            padding: '2rem 3rem',
-            background: 'rgba(204,251,241,0.8)', /* rich teal tint */
-            borderRadius: '24px',
-            border: '2px solid #5eead4',
-            boxShadow: '0 15px 40px rgba(0,0,0,0.08)',
-            fontSize: '1.1rem',
-            color: '#0f766e',
-            fontStyle: 'italic',
-            textAlign: 'center'
-          }}>
-            Sessions take place in the calming presence of Melissa’s equine companions. Their grounded energy naturally deepens relaxation, supports emotional release and opens the heart to profound peace. After the Reiki session, the horses often share their quiet wisdom.
-          </div>
+          <h3 className="text-4xl md:text-5xl text-amber-100 mb-12">Schedule Your Session</h3>
 
-          <h3 style={{ 
-            fontSize: '2.8rem', 
-            color: '#0f766e', /* deep teal */
-            marginBottom: '3rem' 
-          }}>
-            Schedule Your Session
-          </h3>
-
-          <div style={{ margin: '0 auto 5rem', maxWidth: '500px' }}>
+          <div className="inline-block mb-16 bg-white/90 rounded-2xl p-4">
             <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline />
           </div>
 
           {selectedDate && slots.length > 0 && (
             <>
-              <h4 style={{ 
-                fontSize: '1.9rem', 
-                color: '#0f766e', 
-                marginBottom: '3rem' 
-              }}>
+              <h4 className="text-2xl md:text-3xl text-amber-100 mb-12">
                 Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
               </h4>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '5rem' }}>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 max-w-4xl mx-auto">
                 {slots.map(time => (
-                  <button key={time} onClick={() => setSelectedTime(time)}
-                    style={{
-                      padding: '1.8rem', 
-                      borderRadius: '24px', 
-                      fontSize: '1.5rem', 
-                      fontWeight: '600',
-                      background: selectedTime === time ? '#0f766e' : '#ccfbf1',
-                      color: selectedTime === time ? 'white' : '#0f766e',
-                      border: '3px solid #5eead4', 
-                      cursor: 'pointer', 
-                      transition: 'all 0.3s',
-                      boxShadow: selectedTime === time ? '0 25px 60px rgba(15,118,110,0.4)' : '0 10px 30px rgba(0,0,0,0.1)'
-                    }}>
+                  <button
+                    key={time}
+                    onClick={() => setSelectedTime(time)}
+                    className={`py-10 rounded-3xl text-2xl md:text-3xl font-medium transition-all ${
+                      selectedTime === time
+                        ? 'bg-gradient-to-br from-amber-500 to-amber-600 text-white shadow-2xl scale-105'
+                        : 'bg-white/20 text-amber-100 border-2 border-amber-300/50 hover:border-amber-300 hover:shadow-xl'
+                    }`}
+                  >
                     {time}
                   </button>
                 ))}
               </div>
 
               {selectedTime && (
-                <form onSubmit={handleSubmit} style={{ maxWidth: '700px', margin: '0 auto' }}>
+                <form onSubmit={handleSubmit} className="space-y-8 max-w-2xl mx-auto">
                   <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
-                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #5eead4', background:'#f0fdfa', marginBottom:'1.5rem', fontSize:'1.4rem' }} />
+                    className="w-full px-10 py-7 rounded-2xl border border-amber-300/50 focus:border-amber-400 focus:outline-none text-xl bg-white/20 text-white placeholder-amber-200 backdrop-blur-sm" />
                   <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
-                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #5eead4', background:'#f0fdfa', marginBottom:'1.5rem', fontSize:'1.4rem' }} />
+                    className="w-full px-10 py-7 rounded-2xl border border-amber-300/50 focus:border-amber-400 focus:outline-none text-xl bg-white/20 text-white placeholder-amber-200 backdrop-blur-sm" />
                   <input placeholder="Phone (optional)" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
-                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #5eead4', background:'#f0fdfa', marginBottom:'1.5rem', fontSize:'1.4rem' }} />
-                  <textarea placeholder="Notes or questions" rows="5" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
-                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #5eead4', background:'#f0fdfa', marginBottom:'3rem', fontSize:'1.4rem' }} />
-                  <button type="submit" style={{
-                    width:'100%', padding:'2.2rem', background:'#0f766e', color:'white', border:'none', borderRadius:'24px', fontSize:'1.7rem', fontWeight:'600', cursor:'pointer', boxShadow:'0 30px 70px rgba(15,118,110,0.4)'
-                  }}>
+                    className="w-full px-10 py-7 rounded-2xl border border-amber-300/50 focus:border-amber-400 focus:outline-none text-xl bg-white/20 text-white placeholder-amber-200 backdrop-blur-sm" />
+                  <textarea placeholder="Notes or questions" rows="4" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
+                    className="w-full px-10 py-7 rounded-2xl border border-amber-300/50 focus:border-amber-400 focus:outline-none text-xl bg-white/20 text-white placeholder-amber-200 backdrop-blur-sm" />
+                  <button type="submit" className="w-full py-10 bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-3xl text-3xl md:text-4xl font-bold hover:shadow-2xl transition-all">
                     Confirm Booking – $125
                   </button>
                 </form>
@@ -189,32 +101,22 @@ export default function App() {
           )}
 
           {selectedDate && slots.length === 0 && (
-            <p style={{ fontSize: '2rem', color: '#0f766e' }}>No available times on this date</p>
+            <p className="text-3xl text-amber-100">No available times on this date</p>
           )}
 
           {message && (
-            <div style={{ marginTop:'6rem', padding:'4rem', background:'#ecfdf5', color:'#166534', borderRadius:'28px', fontWeight:'600', fontSize:'1.8rem' }}>
+            <div className="mt-20 p-12 bg-gradient-to-br from-amber-50/20 to-rose-50/20 text-amber-100 rounded-3xl text-2xl md:text-3xl font-medium border border-amber-200/50">
               {message}
             </div>
           )}
         </div>
       </main>
 
-      <footer style={{
-        padding: '4rem 2rem',
-        textAlign: 'center',
-        background: 'white',
-        borderTop: '1px solid #5eead4',
-        marginTop: '4rem',
-        fontSize: '1.4rem',
-        color: '#0f766e'
-      }}>
-        <p style={{ margin: '0.5rem 0', fontWeight: '600' }}>Contact Melissa</p>
-        <p style={{ margin: '0.5rem 0' }}>Text or call: <strong>403-852-4324</strong></p>
-        <p style={{ margin: '0.5rem 0' }}>Email: <strong>balancedheartsranch@yahoo.com</strong></p>
-        <p style={{ margin: '1rem 0 0', fontSize: '1.2rem', color: '#0f766e' }}>
-          Okotoks, Alberta, Canada
-        </p>
+      <footer className="py-16 text-center text-amber-100 bg-slate-900 text-xl md:text-2xl">
+        <p className="font-medium">Contact Melissa</p>
+        <p>Text or call: 403-852-4324</p>
+        <p>Email: balancedheartsranch@yahoo.com</p>
+        <p className="mt-mt-6">Okotoks, Alberta, Canada</p>
       </footer>
     </div>
   );
