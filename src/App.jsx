@@ -85,22 +85,23 @@ export default function App() {
   color: '#0f766e', 
   fontFamily: '"Dancing Script", cursive', 
   letterSpacing: '-2px', 
-  margin: '0 0 0.5rem',
+  margin: '0 0 1rem',
   lineHeight: '1'
 }}>
   Balanced Hearts
 </h1>
-<h1 style={{ 
-  fontSize: '5rem', 
-  fontWeight: '400', 
-  color: '#0f766e', 
-  fontFamily: '"Dancing Script", cursive', 
-  letterSpacing: '-1.5px', 
+
+<h2 style={{ 
+  fontSize: '4.2rem', 
+  fontWeight: '700', 
+  color: '#1e293b', 
+  fontFamily: '"Montserrat", "Helvetica Neue", sans-serif', 
+  letterSpacing: '-1px', 
   margin: '0 0 4rem',
-  lineHeight: '1'
+  lineHeight: '1.1'
 }}>
   Holy Fire Reiki
-</h1>
+</h2>
 
 <p style={{ fontSize: '2.2rem', color: '#000000', fontStyle: 'italic', margin: '0 0 3rem' }}>
   with Melissa Lynn
