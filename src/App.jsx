@@ -79,14 +79,14 @@ export default function App() {
   }} 
 />
 
-          <h1 style={{ 
-  fontSize: '6rem', 
+         <h1 style={{ 
+  fontSize: '6.5rem', 
   fontWeight: '400', 
-  color: '#1a4731', /* Hunter Green */
-  fontFamily: '"Great Vibes", cursive',
+  color: '#0f766e', /* deep teal */
+  fontFamily: '"Dancing Script", cursive',
   letterSpacing: '-2px', 
   margin: '0 0 1rem',
-  textShadow: '2px 4px 12px rgba(0,0,0,0.15)'
+  textShadow: '3px 6px 15px rgba(0,0,0,0.2)'
 }}>
   Balanced Hearts
 </h1>
