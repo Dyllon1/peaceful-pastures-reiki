@@ -75,7 +75,7 @@ export default function App() {
     padding: '12px',
     background: 'url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Cdefs%3E%3Cpattern id=%27wood%27 patternUnits=%27userSpaceOnUse%27 width=%2720%27 height=%2720%27%3E%3Crect width=%2720%27 height=%2720%27 fill=%27%23d4a574%27/%3E%3Cpath d=%27M0,10 Q10,0 20,10 T40,10 L40,20 L0,20 Z%27 fill=%27%23b8875e%27/%3E%3Cpath d=%27M5,5 Q10,0 15,5 T25,5 L25,15 L5,15 Z%27 fill=%27%23c49568%27/%3E%3C/pattern%3E%3C/defs%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2748%27 fill=%27url(%23wood)%27 stroke=%27%23856d4d%27 stroke-width=%278%27/%3E%3C/svg%3E")',
     boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
-    border: '8px solid #8b6f47'
+    border: '8px solid #5C4033'
   }} 
 />
 
