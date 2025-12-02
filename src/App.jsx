@@ -108,7 +108,40 @@ export default function App() {
           }}>
             $125 · 60-minute in-person session
           </p>
-
+{/* Benefits of Holy Fire Reiki — elegant section */}
+<div style={{ 
+  margin: '5rem auto', 
+  maxWidth: '800px', 
+  padding: '3rem', 
+  background: 'rgba(255,255,255,0.8)', 
+  borderRadius: '32px', 
+  boxShadow: '0 20px 50px rgba(0,0,0,0.1)',
+  border: '1px solid rgba(255,255,255,0.6)'
+}}>
+  <h3 style={{ 
+    fontSize: '2.5rem', 
+    color: '#1e293b', 
+    marginBottom: '2rem', 
+    fontWeight: '400' 
+  }}>
+    Benefits of Holy Fire Reiki
+  </h3>
+  <ul style={{ 
+    textAlign: 'left', 
+    fontSize: '1.4rem', 
+    color: '#475569', 
+    lineHeight: '2.2', 
+    maxWidth: '680px', 
+    margin: '0 auto' 
+  }}>
+    <li>Deep relaxation and stress reduction</li>
+    <li>Release of emotional blockages and past trauma</li>
+    <li>Increased energy, clarity, and inner peace</li>
+    <li>Support for physical healing and pain relief</li>
+    <li>Greater connection to intuition and spiritual guidance</li>
+    <li>Gentle purification on all levels — body, mind, and spirit</li>
+  </ul>
+</div>
           <h3 style={{ 
             fontSize: '2.8rem', 
             color: '#1e293b', 
