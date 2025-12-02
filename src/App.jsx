@@ -84,13 +84,13 @@ export default function App() {
 }}>
   Balanced Hearts
 </h1>
-          <h2 style={{ fontSize: '2.2rem', fontWeight: '200', color: '#0f766e', letterSpacing: '-1px', margin: '0 0 4rem' }}>
-            Holy Fire Reiki
-          </h2>
+          <h2 style={{ fontSize: '2.2rem', fontWeight: '200', color: '#253145', letterSpacing: '-1px', margin: '0 0 1rem' }}>
+  Holy Fire Reiki
+</h2>
 
-          <p style={{ fontSize: '2.2rem', color: '#0f766e', fontStyle: 'italic', margin: '0 0 0.2rem' }}>
-            with Melissa Lynn
-          </p>
+<p style={{ fontSize: '2.2rem', color: '#64748b', fontStyle: 'italic', margin: '0 0 3rem' }}>
+  with Melissa Lynn
+</p>
           <p style={{ fontSize: '2rem', color: '#1a4731', fontWeight: '500', marginBottom: '5rem' }}>
             $125 · 60-minute in-person session
           </p>
