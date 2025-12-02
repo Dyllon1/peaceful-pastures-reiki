@@ -73,7 +73,15 @@ export default function App() {
             boxShadow:'0 20px 50px rgba(0,0,0,0.2)' 
           }} />
 
-          <h1 style={{ fontSize: '5.5rem', fontWeight: '400', color: '#1a4731', letterSpacing: '-3px', margin: '0 0 0.5rem' }}>
+          <h1 style={{ 
+  fontSize: '6rem', 
+  fontWeight: '400', 
+  color: '#1a4731', /* Hunter Green */
+  fontFamily: '"Great Vibes", cursive',
+  letterSpacing: '-2px', 
+  margin: '0 0 1rem',
+  textShadow: '2px 4px 12px rgba(0,0,0,0.15)'
+}}>
   Balanced Hearts
 </h1>
           <h2 style={{ fontSize: '2.2rem', fontWeight: '200', color: '#0f766e', letterSpacing: '-1px', margin: '0 0 4rem' }}>
