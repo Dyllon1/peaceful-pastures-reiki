@@ -69,7 +69,7 @@ export default function App() {
             borderRadius:'50%', 
             objectFit:'cover', 
             marginBottom:'3rem', 
-            border:'16px solid #5eead4', /* teal accent */
+            border:'16px solid #1a4731', /* Hunter green accent */
             boxShadow:'0 20px 50px rgba(0,0,0,0.2)' 
           }} />
 
