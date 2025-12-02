@@ -39,7 +39,7 @@ export default function App() {
   return (
     <div style={{ 
       minHeight: '100vh', 
-      background: 'linear-gradient(to bottom, #f1f5f9, #e2e8f0)', 
+      background: '#f1f5f9', 
       margin: 0, 
       padding: 0, 
       display: 'flex', 
@@ -50,16 +50,16 @@ export default function App() {
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'center', 
-        padding: '2rem 1rem' 
+        padding: '2rem' 
       }}>
-        {/* ←←← CHARCOAL BOX — everything inside is now on rich charcoal */}
+        {/* CHARCOAL BOX — everything inside is on charcoal */}
         <div style={{ 
           width: '100%', 
           maxWidth: '900px', 
-          background: '#1e293b', /* charcoal */
+          background: '#1e293b', 
           color: 'white', 
           borderRadius: '40px', 
-          boxShadow: '0 40px 100px rgba(0,0,0,0.3)', 
+          boxShadow: '0 40px 100px rgba(0,0,0,0.4)', 
           padding: '6rem 4rem', 
           textAlign: 'center' 
         }}>
@@ -70,13 +70,13 @@ export default function App() {
             objectFit:'cover', 
             marginBottom:'3rem', 
             border:'16px solid #334155', 
-            boxShadow:'0 20px 50px rgba(0,0,0,0.4)' 
+            boxShadow:'0 20px 50px rgba(0,0,0,0.5)' 
           }} />
 
           <h1 style={{ fontSize: '5.5rem', fontWeight: '400', color: '#e2e8f0', letterSpacing: '-3px', margin: '0 0 0.5rem' }}>
             Balanced Hearts
           </h1>
-          <h2 style={{ fontSize: '2.2rem', fontWeight: '200', color: '#94a3b8', letterSpacing: '-1px', margin: '0 0 4rem' }}>
+          <h2 style={{ fontSize: '2.2rem', fontWeight: '200', color: '#cbd5e1', letterSpacing: '-1px', margin: '0 0 4rem' }}>
             Holy Fire Reiki
           </h2>
 
@@ -121,10 +121,15 @@ export default function App() {
                 {slots.map(time => (
                   <button key={time} onClick={() => setSelectedTime(time)}
                     style={{
-                      padding: '2rem', borderRadius: '28px', fontSize: '1.8rem', fontWeight: '600',
+                      padding: '2rem', 
+                      borderRadius: '28px', 
+                      fontSize: '1.8rem', 
+                      fontWeight: '600',
                       background: selectedTime === time ? '#e2e8f0' : 'rgba(255,255,255,0.1)',
                       color: selectedTime === time ? '#1e293b' : '#e2e8f0',
-                      border: '4px solid #475569', cursor: 'pointer', transition: 'all 0.3s',
+                      border: '4px solid #475569', 
+                      cursor: 'pointer', 
+                      transition: 'all 0.3s',
                       boxShadow: selectedTime === time ? '0 30px 70px rgba(0,0,0,0.5)' : '0 12px 35px rgba(0,0,0,0.2)'
                     }}>
                     {time}
@@ -179,7 +184,6 @@ export default function App() {
         <p style={{ margin: '1rem 0 0', fontSize: '1.2rem', color: '#64748b' }}>
           Okotoks, Alberta, Canada
         </p>
-      </p>
       </footer>
     </div>
   );
