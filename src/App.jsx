@@ -39,7 +39,7 @@ export default function App() {
   return (
     <div style={{ 
       minHeight: '100vh', 
-      background: 'linear-gradient(to bottom, #fff8e7, #f9fafb)', 
+      background: 'linear-gradient(to bottom, #ecfdf5, #f0fdfa)', /* light teal gradient */
       margin: 0, 
       padding: 0, 
       display: 'flex', 
@@ -61,7 +61,7 @@ export default function App() {
           boxShadow: '0 35px 80px rgba(0,0,0,0.12)', 
           padding: '5rem 3rem', 
           textAlign: 'center',
-          border: '1px solid rgba(255, 248, 231, 0.5)'
+          border: '1px solid rgba(153, 246, 228, 0.5)' /* soft teal border */
         }}>
           <img src="/melissa.jpg" alt="Melissa Ouderkirk" style={{ 
             width: '280px', 
@@ -69,14 +69,14 @@ export default function App() {
             borderRadius: '50%', 
             objectFit: 'cover', 
             marginBottom: '3rem', 
-            border: '12px solid #fff8e7', 
+            border: '12px solid #ecfdf5', /* light teal */
             boxShadow: '0 20px 50px rgba(0,0,0,0.15)' 
           }} />
 
           <h1 style={{ 
             fontSize: '4.5rem', 
             fontWeight: '400', 
-            color: '#1e293b', 
+            color: '#134e4a', /* deep teal */
             letterSpacing: '-2px', 
             margin: '0 0 1rem' 
           }}>
@@ -85,7 +85,7 @@ export default function App() {
           <h2 style={{ 
             fontSize: '2.5rem', 
             fontWeight: '200', 
-            color: '#334155', 
+            color: '#115e59', /* slightly lighter teal */
             letterSpacing: '-1px', 
             margin: '0 0 2.5rem' 
           }}>
@@ -94,7 +94,7 @@ export default function App() {
 
           <p style={{ 
             fontSize: '2rem', 
-            color: '#64748b', 
+            color: '#0f766e', /* teal */
             fontStyle: 'italic', 
             margin: '0 0 0.5rem' 
           }}>
@@ -102,33 +102,33 @@ export default function App() {
           </p>
           <p style={{ 
             fontSize: '1.8rem', 
-            color: '#475569', 
+            color: '#0f766e', 
             fontWeight: '500', 
             marginBottom: '4rem' 
           }}>
             $125 · 60-minute in-person session
           </p>
-{/* One-sentence benefit — small, classy box */}
-<div style={{
-  margin: '4rem auto 5rem',
-  maxWidth: '700px',
-  padding: '2rem 3rem',
-  background: 'rgba(255,255,255,0.9)',
-  borderRadius: '24px',
-  border: '2px solid #e2e8f0',
-  boxShadow: '0 15px 40px rgba(0,0,0,0.08)',
-  fontSize: '1.1rem',
-  color: '#334155',
-  fontStyle: 'italic',
-  textAlign: 'center'
-}}>
-  Sessions take place in the calming presence of Melissa`s equine companions. Their grounded energy naturally deepens relaxation, supports emotional release and opens the heart to profound peace. After the Reiki session, the horses often share their quiet wisdom.
 
+          {/* One-sentence benefit — teal theme */}
+          <div style={{
+            margin: '4rem auto 5rem',
+            maxWidth: '700px',
+            padding: '2rem 3rem',
+            background: 'rgba(240, 253, 250, 0.9)', /* very light teal */
+            borderRadius: '24px',
+            border: '2px solid #99f6e4',
+            boxShadow: '0 15px 40px rgba(0,0,0,0.08)',
+            fontSize: '1.1rem',
+            color: '#134e4a',
+            fontStyle: 'italic',
+            textAlign: 'center'
+          }}>
+            Sessions take place in the calming presence of Melissa’s equine companions. Their grounded energy naturally deepens relaxation, supports emotional release and opens the heart to profound peace. After the Reiki session, the horses often share their quiet wisdom.
+          </div>
 
-</div>
           <h3 style={{ 
             fontSize: '2.8rem', 
-            color: '#1e293b', 
+            color: '#134e4a', /* deep teal */
             marginBottom: '3rem' 
           }}>
             Schedule Your Session
@@ -142,7 +142,7 @@ export default function App() {
             <>
               <h4 style={{ 
                 fontSize: '1.9rem', 
-                color: '#475569', 
+                color: '#0f766e', 
                 marginBottom: '3rem' 
               }}>
                 Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
@@ -156,12 +156,12 @@ export default function App() {
                       borderRadius: '24px', 
                       fontSize: '1.5rem', 
                       fontWeight: '600',
-                      background: selectedTime === time ? '#1e293b' : '#fff8e7',
-                      color: selectedTime === time ? 'white' : '#1e293b',
-                      border: '3px solid #e2e8f0', 
+                      background: selectedTime === time ? '#134e4a' : '#ecfdf5',
+                      color: selectedTime === time ? 'white' : '#134e4a',
+                      border: '3px solid #99f6e4', 
                       cursor: 'pointer', 
                       transition: 'all 0.3s',
-                      boxShadow: selectedTime === time ? '0 25px 60px rgba(30,41,59,0.4)' : '0 10px 30px rgba(0,0,0,0.1)'
+                      boxShadow: selectedTime === time ? '0 25px 60px rgba(19,78,74,0.4)' : '0 10px 30px rgba(0,0,0,0.1)'
                     }}>
                     {time}
                   </button>
@@ -171,15 +171,15 @@ export default function App() {
               {selectedTime && (
                 <form onSubmit={handleSubmit} style={{ maxWidth: '700px', margin: '0 auto' }}>
                   <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
-                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1.5rem', fontSize:'1.4rem' }} />
+                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #99f6e4', background:'#f0fdfa', marginBottom:'1.5rem', fontSize:'1.4rem' }} />
                   <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
-                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1.5rem', fontSize:'1.4rem' }} />
+                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #99f6e4', background:'#f0fdfa', marginBottom:'1.5rem', fontSize:'1.4rem' }} />
                   <input placeholder="Phone (optional)" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
-                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'1.5rem', fontSize:'1.4rem' }} />
+                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #99f6e4', background:'#f0fdfa', marginBottom:'1.5rem', fontSize:'1.4rem' }} />
                   <textarea placeholder="Notes or questions" rows="5" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
-                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #cbd5e1', background:'#fafafa', marginBottom:'3rem', fontSize:'1.4rem' }} />
+                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #99f6e4', background:'#f0fdfa', marginBottom:'3rem', fontSize:'1.4rem' }} />
                   <button type="submit" style={{
-                    width:'100%', padding:'2.2rem', background:'#1e293b', color:'white', border:'none', borderRadius:'24px', fontSize:'1.7rem', fontWeight:'600', cursor:'pointer', boxShadow:'0 30px 70px rgba(30,41,59,0.4)'
+                    width:'100%', padding:'2.2rem', background:'#134e4a', color:'white', border:'none', borderRadius:'24px', fontSize:'1.7rem', fontWeight:'600', cursor:'pointer', boxShadow:'0 30px 70px rgba(19,78,74,0.4)'
                   }}>
                     Confirm Booking – $125
                   </button>
@@ -189,7 +189,7 @@ export default function App() {
           )}
 
           {selectedDate && slots.length === 0 && (
-            <p style={{ fontSize: '2rem', color: '#475569' }}>No available times on this date</p>
+            <p style={{ fontSize: '2rem', color: '#0f766e' }}>No available times on this date</p>
           )}
 
           {message && (
@@ -204,15 +204,15 @@ export default function App() {
         padding: '4rem 2rem',
         textAlign: 'center',
         background: 'white',
-        borderTop: '1px solid #e2e8f0',
+        borderTop: '1px solid #99f6e4',
         marginTop: '4rem',
         fontSize: '1.4rem',
-        color: '#475569'
+        color: '#0f766e'
       }}>
         <p style={{ margin: '0.5rem 0', fontWeight: '600' }}>Contact Melissa</p>
         <p style={{ margin: '0.5rem 0' }}>Text or call: <strong>403-852-4324</strong></p>
         <p style={{ margin: '0.5rem 0' }}>Email: <strong>balancedheartsranch@yahoo.com</strong></p>
-        <p style={{ margin: '1rem 0 0', fontSize: '1.2rem', color: '#64748b' }}>
+        <p style={{ margin: '1rem 0 0', fontSize: '1.2rem', color: '#0f766e' }}>
           Okotoks, Alberta, Canada
         </p>
       </footer>
