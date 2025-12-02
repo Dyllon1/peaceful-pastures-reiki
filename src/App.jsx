@@ -117,7 +117,7 @@ export default function App() {
   borderRadius: '24px',
   border: '2px solid #e2e8f0',
   boxShadow: '0 15px 40px rgba(0,0,0,0.08)',
-  fontSize: '1.6rem',
+  fontSize: '1.1rem',
   color: '#334155',
   fontStyle: 'italic',
   textAlign: 'center'
