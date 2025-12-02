@@ -211,7 +211,7 @@ export default function App() {
       }}>
         <p style={{ margin: '0.5rem 0', fontWeight: '600' }}>Contact Melissa</p>
         <p style={{ margin: '0.5rem 0' }}>Text or call: <strong>403-852-4324</strong></p>
-        <p style={{ margin: '0.5rem 0' }}>Email: <strong>melouderkirk@yahoo.com</strong></p>
+        <p style={{ margin: '0.5rem 0' }}>Email: <strong>balancedheartsranch@yahoo.com</strong></p>
         <p style={{ margin: '1rem 0 0', fontSize: '1.2rem', color: '#64748b' }}>
           Okotoks, Alberta, Canada
         </p>
