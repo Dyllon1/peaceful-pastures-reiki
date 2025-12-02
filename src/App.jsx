@@ -88,7 +88,7 @@ export default function App() {
             Holy Fire Reiki
           </h2>
 
-          <p style={{ fontSize: '2.2rem', color: '#0f766e', fontStyle: 'italic', margin: '0 0 0.5rem' }}>
+          <p style={{ fontSize: '2.2rem', color: '#0f766e', fontStyle: 'italic', margin: '0 0 0.2rem' }}>
             with Melissa Lynn
           </p>
           <p style={{ fontSize: '2rem', color: '#1a4731', fontWeight: '500', marginBottom: '5rem' }}>
