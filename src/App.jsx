@@ -92,7 +92,7 @@ export default function App() {
 </h1>
 
 <h2 style={{ 
-  fontSize: '4.2rem', 
+  fontSize: '2.6rem', 
   fontWeight: '700', 
   color: '#1e293b', 
   fontFamily: '"Montserrat", "Helvetica Neue", sans-serif', 
