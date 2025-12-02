@@ -82,17 +82,25 @@ export default function App() {
          <h1 style={{ 
   fontSize: '6.5rem', 
   fontWeight: '400', 
-  color: '#0f766e', /* deep teal */
-  fontFamily: '"Dancing Script", cursive',
+  color: '#0f766e', 
+  fontFamily: '"Dancing Script", cursive', 
   letterSpacing: '-2px', 
-  margin: '0 0 1rem',
-  textShadow: '3px 6px 15px rgba(0,0,0,0.2)'
+  margin: '0 0 0.5rem',
+  lineHeight: '1'
 }}>
   Balanced Hearts
 </h1>
-          <h2 style={{ fontSize: '2.2rem', fontWeight: '200', color: '#008080', letterSpacing: '-1px', margin: '0 0 1rem' }}>
+<h1 style={{ 
+  fontSize: '5rem', 
+  fontWeight: '400', 
+  color: '#0f766e', 
+  fontFamily: '"Dancing Script", cursive', 
+  letterSpacing: '-1.5px', 
+  margin: '0 0 4rem',
+  lineHeight: '1'
+}}>
   Holy Fire Reiki
-</h2>
+</h1>
 
 <p style={{ fontSize: '2.2rem', color: '#000000', fontStyle: 'italic', margin: '0 0 3rem' }}>
   with Melissa Lynn
