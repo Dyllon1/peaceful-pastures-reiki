@@ -39,7 +39,7 @@ export default function App() {
   return (
     <div style={{ 
       minHeight: '100vh', 
-      background: 'linear-gradient(to bottom, #ecfdf5, #f0fdfa)', /* light teal gradient */
+      background: 'linear-gradient(to bottom, #f0fdfa, #ccfbf1)', /* richer teal gradient */
       margin: 0, 
       padding: 0, 
       display: 'flex', 
@@ -61,7 +61,7 @@ export default function App() {
           boxShadow: '0 35px 80px rgba(0,0,0,0.12)', 
           padding: '5rem 3rem', 
           textAlign: 'center',
-          border: '1px solid rgba(153, 246, 228, 0.5)' /* soft teal border */
+          border: '1px solid #5eead4' /* visible teal border */
         }}>
           <img src="/melissa.jpg" alt="Melissa Ouderkirk" style={{ 
             width: '280px', 
@@ -69,14 +69,14 @@ export default function App() {
             borderRadius: '50%', 
             objectFit: 'cover', 
             marginBottom: '3rem', 
-            border: '12px solid #ecfdf5', /* light teal */
+            border: '12px solid #ccfbf1', /* richer teal */
             boxShadow: '0 20px 50px rgba(0,0,0,0.15)' 
           }} />
 
           <h1 style={{ 
             fontSize: '4.5rem', 
             fontWeight: '400', 
-            color: '#134e4a', /* deep teal */
+            color: '#0f766e', /* deep teal */
             letterSpacing: '-2px', 
             margin: '0 0 1rem' 
           }}>
@@ -85,7 +85,7 @@ export default function App() {
           <h2 style={{ 
             fontSize: '2.5rem', 
             fontWeight: '200', 
-            color: '#115e59', /* slightly lighter teal */
+            color: '#14b8a6', /* vibrant teal */
             letterSpacing: '-1px', 
             margin: '0 0 2.5rem' 
           }}>
@@ -94,7 +94,7 @@ export default function App() {
 
           <p style={{ 
             fontSize: '2rem', 
-            color: '#0f766e', /* teal */
+            color: '#0d9488', /* rich teal */
             fontStyle: 'italic', 
             margin: '0 0 0.5rem' 
           }}>
@@ -114,12 +114,12 @@ export default function App() {
             margin: '4rem auto 5rem',
             maxWidth: '700px',
             padding: '2rem 3rem',
-            background: 'rgba(240, 253, 250, 0.9)', /* very light teal */
+            background: 'rgba(204,251,241,0.8)', /* rich teal tint */
             borderRadius: '24px',
-            border: '2px solid #99f6e4',
+            border: '2px solid #5eead4',
             boxShadow: '0 15px 40px rgba(0,0,0,0.08)',
             fontSize: '1.1rem',
-            color: '#134e4a',
+            color: '#0f766e',
             fontStyle: 'italic',
             textAlign: 'center'
           }}>
@@ -128,7 +128,7 @@ export default function App() {
 
           <h3 style={{ 
             fontSize: '2.8rem', 
-            color: '#134e4a', /* deep teal */
+            color: '#0f766e', /* deep teal */
             marginBottom: '3rem' 
           }}>
             Schedule Your Session
@@ -156,12 +156,12 @@ export default function App() {
                       borderRadius: '24px', 
                       fontSize: '1.5rem', 
                       fontWeight: '600',
-                      background: selectedTime === time ? '#134e4a' : '#ecfdf5',
-                      color: selectedTime === time ? 'white' : '#134e4a',
-                      border: '3px solid #99f6e4', 
+                      background: selectedTime === time ? '#0f766e' : '#ccfbf1',
+                      color: selectedTime === time ? 'white' : '#0f766e',
+                      border: '3px solid #5eead4', 
                       cursor: 'pointer', 
                       transition: 'all 0.3s',
-                      boxShadow: selectedTime === time ? '0 25px 60px rgba(19,78,74,0.4)' : '0 10px 30px rgba(0,0,0,0.1)'
+                      boxShadow: selectedTime === time ? '0 25px 60px rgba(15,118,110,0.4)' : '0 10px 30px rgba(0,0,0,0.1)'
                     }}>
                     {time}
                   </button>
@@ -171,15 +171,15 @@ export default function App() {
               {selectedTime && (
                 <form onSubmit={handleSubmit} style={{ maxWidth: '700px', margin: '0 auto' }}>
                   <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
-                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #99f6e4', background:'#f0fdfa', marginBottom:'1.5rem', fontSize:'1.4rem' }} />
+                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #5eead4', background:'#f0fdfa', marginBottom:'1.5rem', fontSize:'1.4rem' }} />
                   <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
-                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #99f6e4', background:'#f0fdfa', marginBottom:'1.5rem', fontSize:'1.4rem' }} />
+                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #5eead4', background:'#f0fdfa', marginBottom:'1.5rem', fontSize:'1.4rem' }} />
                   <input placeholder="Phone (optional)" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
-                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #99f6e4', background:'#f0fdfa', marginBottom:'1.5rem', fontSize:'1.4rem' }} />
+                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #5eead4', background:'#f0fdfa', marginBottom:'1.5rem', fontSize:'1.4rem' }} />
                   <textarea placeholder="Notes or questions" rows="5" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
-                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #99f6e4', background:'#f0fdfa', marginBottom:'3rem', fontSize:'1.4rem' }} />
+                    style={{ width:'100%', padding:'1.8rem', borderRadius:'20px', border:'1px solid #5eead4', background:'#f0fdfa', marginBottom:'3rem', fontSize:'1.4rem' }} />
                   <button type="submit" style={{
-                    width:'100%', padding:'2.2rem', background:'#134e4a', color:'white', border:'none', borderRadius:'24px', fontSize:'1.7rem', fontWeight:'600', cursor:'pointer', boxShadow:'0 30px 70px rgba(19,78,74,0.4)'
+                    width:'100%', padding:'2.2rem', background:'#0f766e', color:'white', border:'none', borderRadius:'24px', fontSize:'1.7rem', fontWeight:'600', cursor:'pointer', boxShadow:'0 30px 70px rgba(15,118,110,0.4)'
                   }}>
                     Confirm Booking – $125
                   </button>
@@ -204,7 +204,7 @@ export default function App() {
         padding: '4rem 2rem',
         textAlign: 'center',
         background: 'white',
-        borderTop: '1px solid #99f6e4',
+        borderTop: '1px solid #5eead4',
         marginTop: '4rem',
         fontSize: '1.4rem',
         color: '#0f766e'
