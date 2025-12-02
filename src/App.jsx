@@ -73,9 +73,9 @@ export default function App() {
             boxShadow:'0 20px 50px rgba(0,0,0,0.2)' 
           }} />
 
-          <h1 style={{ fontSize: '5.5rem', fontWeight: '400', color: '#1e293b', letterSpacing: '-3px', margin: '0 0 0.5rem' }}>
-            Balanced Hearts
-          </h1>
+          <h1 style={{ fontSize: '5.5rem', fontWeight: '400', color: '#1a4731', letterSpacing: '-3px', margin: '0 0 0.5rem' }}>
+  Balanced Hearts
+</h1>
           <h2 style={{ fontSize: '2.2rem', fontWeight: '200', color: '#0f766e', letterSpacing: '-1px', margin: '0 0 4rem' }}>
             Holy Fire Reiki
           </h2>
@@ -83,7 +83,7 @@ export default function App() {
           <p style={{ fontSize: '2.2rem', color: '#0f766e', fontStyle: 'italic', margin: '0 0 0.5rem' }}>
             with Melissa Lynn
           </p>
-          <p style={{ fontSize: '2rem', color: '#1e293b', fontWeight: '500', marginBottom: '5rem' }}>
+          <p style={{ fontSize: '2rem', color: '#1a4731', fontWeight: '500', marginBottom: '5rem' }}>
             $125 · 60-minute in-person session
           </p>
 
@@ -103,7 +103,7 @@ export default function App() {
             Sessions take place in the calming presence of Melissa’s equine companions. Their grounded energy naturally deepens relaxation, supports emotional release and opens the heart to profound peace. After the Reiki session, the horses often share their quiet wisdom.
           </div>
 
-          <h2 style={{ fontSize: '3rem', color: '#1e293b', marginBottom: '3rem' }}>
+          <h2 style={{ fontSize: '3rem', color: '#1a4731', marginBottom: '3rem' }}>
             Schedule Your Session
           </h2>
 
