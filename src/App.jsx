@@ -134,7 +134,7 @@ export default function App() {
     }
     /* Days of week — darker, bolder, more spaced */
     .react-datepicker__day-name {
-      color: #ccfbf1 !important;
+      color: #000000 !important;
       font-weight: 800 !important;
       font-size: 1.3rem !important;
       margin: 0 0.8rem !important;
