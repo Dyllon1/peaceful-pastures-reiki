@@ -105,20 +105,77 @@ export default function App() {
             Schedule Your Session
           </h2>
 
-         <div style={{ 
+         {/* Beautiful custom-styled calendar */}
+<div style={{ 
   margin: '0 auto 6rem', 
-  maxWidth: '480px', 
-  background: 'linear-gradient(135deg, #0f766e, #14b8a6)', 
+  maxWidth: '500px', 
+  background: 'white', 
   borderRadius: '32px', 
   padding: '2.5rem', 
-  boxShadow: '0 25px 60px rgba(15,118,110,0.3)'
+  boxShadow: '0 25px 60px rgba(0,0,0,0.12)', 
+  border: '3px solid #5eead4',
+  overflow: 'hidden'
 }}>
+  <style jsx>{`
+    /* Teal + Gold Calendar Theme */
+    .react-datepicker {
+      font-family: 'Georgia', serif;
+      border: none;
+      background: white;
+    }
+    .react-datepicker__header {
+      background: #0f766e;
+      border-bottom: none;
+      padding-top: 1.5rem;
+    }
+    .react-datepicker__current-month {
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+    .react-datepicker__day-name {
+      color: #ccfbf1;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .react-datepicker__day {
+      width: 3rem;
+      height: 3rem;
+      line-height: 3rem;
+      margin: 0.4rem;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      color: #1e293b;
+      transition: all 0.3s;
+    }
+    .react-datepicker__day:hover {
+      background: #ccfbf1;
+      color: #0f766e;
+    }
+    .react-datepicker__day--selected,
+    .react-datepicker__day--keyboard-selected {
+      background: #0f766e !important;
+      color: white !important;
+      font-weight: bold;
+    }
+    .react-datepicker__day--today {
+      background: #fbbf24;
+      color: white;
+      font-weight: bold;
+    }
+    .react-datepicker__navigation {
+      top: 1rem;
+    }
+    .react-datepicker__navigation-icon::before {
+      border-color: white;
+    }
+  `}</style>
+
   <DatePicker 
     selected={selectedDate} 
     onChange={setSelectedDate} 
     minDate={new Date()} 
     inline 
-    calendarClassName="text-white"
   />
 </div>
 
