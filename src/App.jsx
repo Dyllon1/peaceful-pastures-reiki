@@ -107,18 +107,18 @@ export default function App() {
 
          <div style={{ 
   margin: '0 auto 6rem', 
-  maxWidth: '460px', 
-  background: 'white', 
-  borderRadius: '24px', 
-  padding: '2rem', 
-  boxShadow: '0 20px 50px rgba(0,0,0,0.1)', 
-  border: '1px solid #ccfbf1'
+  maxWidth: '480px', 
+  background: 'linear-gradient(135deg, #0f766e, #14b8a6)', 
+  borderRadius: '32px', 
+  padding: '2.5rem', 
+  boxShadow: '0 25px 60px rgba(15,118,110,0.3)'
 }}>
   <DatePicker 
     selected={selectedDate} 
     onChange={setSelectedDate} 
     minDate={new Date()} 
     inline 
+    calendarClassName="text-white"
   />
 </div>
 
