@@ -10,19 +10,29 @@ export default function App() {
   const [bookedSlots, setBookedSlots] = useState({});
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem('bookedSlots');
-      if (saved) setBookedSlots(JSON.parse(saved));
-    } catch (e) {
-      console.error('Error loading bookings:', e);
-    }
+    const loadBookings = async () => {
+      try {
+        const result = await window.storage.get('bookedSlots');
+        if (result) {
+          setBookedSlots(JSON.parse(result.value));
+        }
+      } catch (e) {
+        console.error('Error loading bookings:', e);
+      }
+    };
+    loadBookings();
   }, []);
 
   useEffect(() => {
-    try {
-      localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
-    } catch (e) {
-      console.error('Error saving bookings:', e);
+    const saveBookings = async () => {
+      try {
+        await window.storage.set('bookedSlots', JSON.stringify(bookedSlots));
+      } catch (e) {
+        console.error('Error saving bookings:', e);
+      }
+    };
+    if (Object.keys(bookedSlots).length > 0) {
+      saveBookings();
     }
   }, [bookedSlots]);
 
@@ -41,8 +51,11 @@ export default function App() {
 
   const slots = selectedDate ? getSlots(selectedDate) : [];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    if (!formData.name || !formData.email) {
+      alert('Please fill in your name and email');
+      return;
+    }
     const key = selectedDate.toLocaleDateString();
     setBookedSlots(prev => ({ ...prev, [key]: [...(prev[key] || []), selectedTime] }));
     setMessage("Booking confirmed! Melissa will contact you shortly to arrange payment ($125/session). Namaste");
@@ -51,49 +64,43 @@ export default function App() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #0d9488, #14b8a6, #5eead4)', margin: 0, padding: 0, fontFamily: "'Georgia', serif" }}>
+    <div style={{ minHeight: '100vh', background: '#fafafa', margin: 0, padding: 0, fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif" }}>
       <style dangerouslySetInnerHTML={{__html: `
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Spectral:ital,wght@0,300;0,400;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         body {
-          font-family: 'Spectral', 'Georgia', serif;
-        }
-        
-        .western-title {
-          font-family: 'Playfair Display', 'Georgia', serif;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
         
         .react-datepicker {
-          font-family: 'Spectral', 'Georgia', serif;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
           width: 100% !important;
-          border: none;
-          background: #f0fdfa;
+          border: 1px solid #e5e7eb;
+          background: #ffffff;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         .react-datepicker__header {
-          background: #f0fdfa;
-          border-bottom: 3px solid #0f766e;
-          padding: 1.25rem 0;
+          background: #ffffff;
+          border-bottom: 1px solid #e5e7eb;
+          padding: 1rem 0;
         }
         .react-datepicker__current-month {
-          color: #0f766e;
-          font-size: 1.5rem;
-          font-weight: 700;
-          letter-spacing: 1px;
-          text-transform: uppercase;
+          color: #111827;
+          font-size: 1.125rem;
+          font-weight: 600;
         }
         .react-datepicker__day-names {
           display: flex;
           justify-content: space-around;
-          margin-top: 1rem;
+          margin-top: 0.75rem;
         }
         .react-datepicker__day-name {
-          color: #000000 !important;
-          font-weight: 800 !important;
-          font-size: 1.1rem !important;
+          color: #6b7280 !important;
+          font-weight: 600 !important;
+          font-size: 0.875rem !important;
           width: 2.5rem !important;
           line-height: 2.5rem !important;
           margin: 0.2rem !important;
-          text-align: center;
         }
         .react-datepicker__month {
           margin: 1rem 0.5rem;
@@ -107,37 +114,37 @@ export default function App() {
           height: 2.5rem !important;
           line-height: 2.5rem !important;
           margin: 0.2rem !important;
-          border-radius: 50%;
-          font-size: 1rem;
-          color: #0f766e;
-          font-weight: 600;
+          border-radius: 0.5rem;
+          font-size: 0.9375rem;
+          color: #111827;
+          font-weight: 500;
         }
         .react-datepicker__day:hover {
-          background: #99f6e4;
-          color: #0f766e;
+          background: #f0fdfa;
+          color: #0d9488;
         }
         .react-datepicker__day--selected {
-          background: #0f766e !important;
+          background: #0d9488 !important;
           color: white !important;
-          font-weight: 700;
+          font-weight: 600;
         }
         .react-datepicker__day--today {
-          background: #d97706;
-          color: white;
-          font-weight: 700;
+          background: #e0f2fe;
+          color: #111827;
+          font-weight: 600;
         }
         .react-datepicker__day--disabled {
-          color: #cbd5e1;
+          color: #d1d5db;
         }
         .react-datepicker__navigation {
-          top: 1.25rem;
+          top: 1rem;
         }
         @media (max-width: 640px) {
           .react-datepicker__current-month {
-            font-size: 1.25rem;
+            font-size: 1rem;
           }
           .react-datepicker__day-name {
-            font-size: 0.95rem !important;
+            font-size: 0.8125rem !important;
             width: 2.2rem !important;
             line-height: 2.2rem !important;
           }
@@ -145,102 +152,77 @@ export default function App() {
             width: 2.2rem !important;
             height: 2.2rem !important;
             line-height: 2.2rem !important;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
           }
-        }
-        
-        .western-divider {
-          width: 200px;
-          height: 3px;
-          background: linear-gradient(to right, transparent, #0f766e, transparent);
-          margin: 2rem auto;
         }
       `}} />
 
-      <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '3rem 1rem' }}>
+      <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '3rem 1.5rem' }}>
         <div style={{ 
           width: '100%', 
-          maxWidth: '64rem', 
-          background: 'linear-gradient(to bottom, #f0fdfa, #ffffff)', 
-          borderRadius: '2rem', 
-          boxShadow: '0 30px 60px rgba(0,0,0,0.3)', 
-          padding: '4rem 2rem',
+          maxWidth: '56rem', 
+          background: '#ffffff', 
+          borderRadius: '1rem', 
+          boxShadow: '0 1px 3px rgba(0,0,0,0.1), 0 10px 40px rgba(0,0,0,0.05)', 
+          padding: '3rem 2rem',
           textAlign: 'center',
-          border: '4px solid #0f766e',
-          position: 'relative'
+          border: '1px solid #e5e7eb'
         }}>
-          {/* Corner decorations */}
-          <div style={{ position: 'absolute', top: '20px', left: '20px', fontSize: '1.5rem', color: '#0f766e' }}>✦</div>
-          <div style={{ position: 'absolute', top: '20px', right: '20px', fontSize: '1.5rem', color: '#0f766e' }}>✦</div>
-          <div style={{ position: 'absolute', bottom: '20px', left: '20px', fontSize: '1.5rem', color: '#0f766e' }}>✦</div>
-          <div style={{ position: 'absolute', bottom: '20px', right: '20px', fontSize: '1.5rem', color: '#0f766e' }}>✦</div>
-
           <img 
             src="/melissa.jpg" 
             alt="Melissa" 
             style={{ 
-              width: '18rem', 
-              height: '18rem', 
+              width: '10rem', 
+              height: '10rem', 
               borderRadius: '50%', 
               objectFit: 'cover', 
               margin: '0 auto 2rem', 
-              border: '8px solid #0f766e', 
-              boxShadow: '0 25px 50px rgba(15,118,110,0.5)',
-              outline: '3px solid #5eead4',
-              outlineOffset: '4px'
+              border: '3px solid #0d9488', 
+              boxShadow: '0 4px 12px rgba(13,148,136,0.15)'
             }} 
           />
 
-          <div style={{ fontSize: '2.5rem', color: '#0f766e', marginBottom: '1rem' }}>~ ✦ ~</div>
-
-          <h1 className="western-title" style={{ 
-            fontSize: 'clamp(3rem, 10vw, 5.5rem)', 
+          <h1 style={{ 
+            fontSize: 'clamp(2rem, 6vw, 2.75rem)', 
             fontWeight: '700', 
-            color: '#0f766e', 
-            letterSpacing: '3px', 
+            color: '#111827', 
+            letterSpacing: '-0.02em', 
             margin: '0 0 0.5rem',
-            textTransform: 'uppercase',
-            textShadow: '2px 2px 4px rgba(15,118,110,0.2)'
+            lineHeight: '1.2'
           }}>
             Balanced Hearts
           </h1>
           
-          <div className="western-divider"></div>
-          
-          <h2 className="western-title" style={{ 
-            fontSize: 'clamp(1.75rem, 6vw, 3rem)', 
-            fontWeight: '400', 
-            color: '#14b8a6', 
-            letterSpacing: '2px', 
-            margin: '0 0 1rem',
-            fontStyle: 'italic'
+          <h2 style={{ 
+            fontSize: 'clamp(1.25rem, 4vw, 1.5rem)', 
+            fontWeight: '500', 
+            color: '#0d9488', 
+            margin: '0 0 0.5rem',
+            letterSpacing: '-0.01em'
           }}>
             Holy Fire Reiki
           </h2>
 
-          <div className="western-divider"></div>
-
-          <p style={{ fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', color: '#0f766e', fontStyle: 'italic', margin: '0 0 0.5rem', fontWeight: '600' }}>
+          <p style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)', color: '#6b7280', margin: '0 0 0.5rem', fontWeight: '500' }}>
             with Melissa Lynn
           </p>
-          <p style={{ fontSize: 'clamp(1.25rem, 4vw, 2rem)', color: '#b45309', fontWeight: '700', marginBottom: '3rem', letterSpacing: '1px' }}>
+          <p style={{ fontSize: 'clamp(1.125rem, 3.5vw, 1.25rem)', color: '#111827', fontWeight: '600', marginBottom: '2.5rem' }}>
             $125 · 60-minute in-person session
           </p>
 
           <div style={{
-            maxWidth: '52rem',
-            margin: '0 auto 4rem',
-            padding: '2.5rem',
-            background: '#ccfbf1',
-            borderRadius: '0.5rem',
-            border: '3px solid #0f766e',
-            boxShadow: 'inset 0 2px 8px rgba(15,118,110,0.1), 0 15px 40px rgba(0,0,0,0.15)'
+            maxWidth: '48rem',
+            margin: '0 auto 3rem',
+            padding: '2rem',
+            background: '#f9fafb',
+            borderRadius: '0.75rem',
+            border: '1px solid #e5e7eb',
+            textAlign: 'left'
           }}>
             <p style={{ 
-              fontSize: 'clamp(1.125rem, 3.5vw, 1.5rem)', 
-              color: '#0f766e', 
-              fontStyle: 'italic', 
-              lineHeight: '1.8', 
+              fontSize: 'clamp(0.9375rem, 3vw, 1.0625rem)', 
+              color: '#4b5563', 
+              lineHeight: '1.7', 
               margin: 0,
               fontWeight: '400'
             }}>
@@ -248,27 +230,26 @@ export default function App() {
             </p>
           </div>
 
-          <div style={{ fontSize: '2rem', color: '#0f766e', margin: '3rem 0 1rem' }}>~ ✦ ~</div>
+          <div style={{ width: '4rem', height: '1px', background: '#0d9488', margin: '2.5rem auto' }} />
 
-          <h2 className="western-title" style={{ 
-            fontSize: 'clamp(2.25rem, 7vw, 3.5rem)', 
-            color: '#0f766e', 
+          <h2 style={{ 
+            fontSize: 'clamp(1.5rem, 5vw, 2rem)', 
+            color: '#111827', 
             fontWeight: '600', 
-            marginBottom: '3rem',
-            letterSpacing: '2px',
-            textTransform: 'uppercase'
+            marginBottom: '2rem',
+            letterSpacing: '-0.01em'
           }}>
             Schedule Your Session
           </h2>
 
           <div style={{ 
             maxWidth: '28rem', 
-            margin: '0 auto 4rem', 
-            background: '#f0fdfa', 
-            borderRadius: '1rem', 
-            padding: '1.5rem', 
-            boxShadow: '0 20px 50px rgba(15,118,110,0.3)', 
-            border: '3px solid #0f766e'
+            margin: '0 auto 3rem', 
+            background: '#ffffff', 
+            borderRadius: '0.75rem', 
+            padding: '1.25rem', 
+            boxShadow: '0 1px 3px rgba(0,0,0,0.1)', 
+            border: '1px solid #e5e7eb'
           }}>
             <DatePicker 
               selected={selectedDate} 
@@ -281,36 +262,46 @@ export default function App() {
 
           {selectedDate && slots.length > 0 && (
             <>
-              <div style={{ fontSize: '1.5rem', color: '#0f766e', margin: '2rem 0 1rem' }}>~ ~ ~</div>
+              <div style={{ width: '4rem', height: '1px', background: '#d1d5db', margin: '2rem auto' }} />
               
-              <h3 className="western-title" style={{ 
-                fontSize: 'clamp(1.5rem, 5vw, 2.25rem)', 
-                color: '#0f766e', 
-                marginBottom: '2.5rem', 
-                fontWeight: '600',
-                letterSpacing: '1px'
+              <h3 style={{ 
+                fontSize: 'clamp(1.125rem, 4vw, 1.375rem)', 
+                color: '#111827', 
+                marginBottom: '1.5rem', 
+                fontWeight: '600'
               }}>
                 Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
               </h3>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1.25rem', marginBottom: '4rem', maxWidth: '64rem', margin: '0 auto 4rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0.75rem', marginBottom: '3rem', maxWidth: '48rem', margin: '0 auto 3rem' }}>
                 {slots.map(time => (
                   <button 
                     key={time} 
                     onClick={() => setSelectedTime(time)}
                     style={{
-                      padding: '1.75rem 1rem',
+                      padding: '1rem',
                       borderRadius: '0.5rem',
-                      fontSize: 'clamp(1.125rem, 3.5vw, 1.5rem)',
-                      fontWeight: '700',
-                      background: selectedTime === time ? '#0f766e' : '#ccfbf1',
-                      color: selectedTime === time ? 'white' : '#0f766e',
-                      border: '3px solid #0f766e',
+                      fontSize: 'clamp(0.9375rem, 3vw, 1rem)',
+                      fontWeight: '600',
+                      background: selectedTime === time ? '#0d9488' : '#ffffff',
+                      color: selectedTime === time ? 'white' : '#111827',
+                      border: selectedTime === time ? '2px solid #0d9488' : '2px solid #e5e7eb',
                       cursor: 'pointer',
-                      transition: 'all 0.3s',
-                      boxShadow: selectedTime === time ? '0 20px 40px rgba(15,118,110,0.5)' : '0 10px 25px rgba(0,0,0,0.15)',
-                      transform: selectedTime === time ? 'scale(1.05)' : 'scale(1)',
-                      letterSpacing: '1px'
+                      transition: 'all 0.2s',
+                      boxShadow: selectedTime === time ? '0 4px 12px rgba(13,148,136,0.2)' : '0 1px 3px rgba(0,0,0,0.1)',
+                      transform: selectedTime === time ? 'translateY(-1px)' : 'translateY(0)'
+                    }}
+                    onMouseOver={e => {
+                      if (selectedTime !== time) {
+                        e.target.style.borderColor = '#0d9488';
+                        e.target.style.background = '#f0fdfa';
+                      }
+                    }}
+                    onMouseOut={e => {
+                      if (selectedTime !== time) {
+                        e.target.style.borderColor = '#e5e7eb';
+                        e.target.style.background = '#ffffff';
+                      }
                     }}
                   >
                     {time}
@@ -320,9 +311,9 @@ export default function App() {
 
               {selectedTime && (
                 <>
-                  <div style={{ fontSize: '1.5rem', color: '#0f766e', margin: '2rem 0' }}>✦</div>
+                  <div style={{ width: '4rem', height: '1px', background: '#d1d5db', margin: '2.5rem auto' }} />
                   
-                  <form onSubmit={handleSubmit} style={{ maxWidth: '52rem', margin: '0 auto' }}>
+                  <div style={{ maxWidth: '32rem', margin: '0 auto', textAlign: 'left' }}>
                     <input 
                       required 
                       placeholder="Your Name" 
@@ -330,17 +321,20 @@ export default function App() {
                       onChange={e => setFormData({...formData, name: e.target.value})}
                       style={{ 
                         width: '100%', 
-                        padding: '1.5rem', 
+                        padding: '0.875rem 1rem', 
                         borderRadius: '0.5rem', 
-                        border: '2px solid #0f766e', 
-                        background: '#f0fdfa', 
-                        color: '#0f766e', 
-                        marginBottom: '1.5rem', 
-                        fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', 
+                        border: '1px solid #d1d5db', 
+                        background: '#ffffff', 
+                        color: '#111827', 
+                        marginBottom: '1rem', 
+                        fontSize: '1rem', 
                         outline: 'none', 
                         boxSizing: 'border-box',
-                        fontWeight: '500'
+                        fontWeight: '400',
+                        transition: 'border-color 0.2s'
                       }}
+                      onFocus={e => e.target.style.borderColor = '#0d9488'}
+                      onBlur={e => e.target.style.borderColor = '#d1d5db'}
                     />
                     <input 
                       required 
@@ -350,17 +344,20 @@ export default function App() {
                       onChange={e => setFormData({...formData, email: e.target.value})}
                       style={{ 
                         width: '100%', 
-                        padding: '1.5rem', 
+                        padding: '0.875rem 1rem', 
                         borderRadius: '0.5rem', 
-                        border: '2px solid #0f766e', 
-                        background: '#f0fdfa', 
-                        color: '#0f766e', 
-                        marginBottom: '1.5rem', 
-                        fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', 
+                        border: '1px solid #d1d5db', 
+                        background: '#ffffff', 
+                        color: '#111827', 
+                        marginBottom: '1rem', 
+                        fontSize: '1rem', 
                         outline: 'none', 
                         boxSizing: 'border-box',
-                        fontWeight: '500'
+                        fontWeight: '400',
+                        transition: 'border-color 0.2s'
                       }}
+                      onFocus={e => e.target.style.borderColor = '#0d9488'}
+                      onBlur={e => e.target.style.borderColor = '#d1d5db'}
                     />
                     <input 
                       placeholder="Phone (optional)" 
@@ -368,83 +365,95 @@ export default function App() {
                       onChange={e => setFormData({...formData, phone: e.target.value})}
                       style={{ 
                         width: '100%', 
-                        padding: '1.5rem', 
+                        padding: '0.875rem 1rem', 
                         borderRadius: '0.5rem', 
-                        border: '2px solid #0f766e', 
-                        background: '#f0fdfa', 
-                        color: '#0f766e', 
-                        marginBottom: '1.5rem', 
-                        fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', 
+                        border: '1px solid #d1d5db', 
+                        background: '#ffffff', 
+                        color: '#111827', 
+                        marginBottom: '1rem', 
+                        fontSize: '1rem', 
                         outline: 'none', 
                         boxSizing: 'border-box',
-                        fontWeight: '500'
+                        fontWeight: '400',
+                        transition: 'border-color 0.2s'
                       }}
+                      onFocus={e => e.target.style.borderColor = '#0d9488'}
+                      onBlur={e => e.target.style.borderColor = '#d1d5db'}
                     />
                     <textarea 
                       placeholder="Notes or questions" 
-                      rows="5" 
+                      rows="4" 
                       value={formData.notes} 
                       onChange={e => setFormData({...formData, notes: e.target.value})}
                       style={{ 
                         width: '100%', 
-                        padding: '1.5rem', 
+                        padding: '0.875rem 1rem', 
                         borderRadius: '0.5rem', 
-                        border: '2px solid #0f766e', 
-                        background: '#f0fdfa', 
-                        color: '#0f766e', 
-                        marginBottom: '2rem', 
-                        fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', 
+                        border: '1px solid #d1d5db', 
+                        background: '#ffffff', 
+                        color: '#111827', 
+                        marginBottom: '1.5rem', 
+                        fontSize: '1rem', 
                         outline: 'none', 
-                        resize: 'none', 
+                        resize: 'vertical', 
                         boxSizing: 'border-box',
-                        fontWeight: '500'
+                        fontWeight: '400',
+                        fontFamily: 'inherit',
+                        transition: 'border-color 0.2s'
                       }}
+                      onFocus={e => e.target.style.borderColor = '#0d9488'}
+                      onBlur={e => e.target.style.borderColor = '#d1d5db'}
                     />
                     <button 
-                      type="submit" 
-                      className="western-title"
+                      onClick={handleSubmit}
                       style={{
                         width: '100%',
-                        padding: '2rem',
-                        background: '#0f766e',
+                        padding: '1rem',
+                        background: '#0d9488',
                         color: 'white',
-                        border: '3px solid #134e4a',
+                        border: 'none',
                         borderRadius: '0.5rem',
-                        fontSize: 'clamp(1.25rem, 4.5vw, 1.875rem)',
-                        fontWeight: '700',
+                        fontSize: '1.0625rem',
+                        fontWeight: '600',
                         cursor: 'pointer',
-                        boxShadow: '0 30px 60px rgba(15,118,110,0.5)',
-                        transition: 'all 0.3s',
-                        boxSizing: 'border-box',
-                        letterSpacing: '2px',
-                        textTransform: 'uppercase'
+                        boxShadow: '0 4px 12px rgba(13,148,136,0.25)',
+                        transition: 'all 0.2s',
+                        boxSizing: 'border-box'
                       }}
-                      onMouseOver={e => e.target.style.transform = 'scale(1.02)'}
-                      onMouseOut={e => e.target.style.transform = 'scale(1)'}
+                      onMouseOver={e => {
+                        e.target.style.background = '#0f766e';
+                        e.target.style.transform = 'translateY(-1px)';
+                        e.target.style.boxShadow = '0 6px 16px rgba(13,148,136,0.3)';
+                      }}
+                      onMouseOut={e => {
+                        e.target.style.background = '#0d9488';
+                        e.target.style.transform = 'translateY(0)';
+                        e.target.style.boxShadow = '0 4px 12px rgba(13,148,136,0.25)';
+                      }}
                     >
                       Confirm Booking – $125
                     </button>
-                  </form>
+                  </div>
                 </>
               )}
             </>
           )}
 
           {selectedDate && slots.length === 0 && (
-            <p style={{ fontSize: 'clamp(1.25rem, 4vw, 1.875rem)', color: '#0f766e', fontWeight: '600' }}>No available times on this date</p>
+            <p style={{ fontSize: 'clamp(1rem, 3.5vw, 1.125rem)', color: '#6b7280', fontWeight: '500' }}>No available times on this date</p>
           )}
 
           {message && (
             <div style={{ 
-              marginTop: '4rem', 
-              padding: '2.5rem', 
-              background: '#ccfbf1', 
-              color: '#0f766e', 
-              borderRadius: '0.5rem', 
-              fontWeight: '600', 
-              fontSize: 'clamp(1.125rem, 4vw, 1.5rem)', 
-              boxShadow: '0 15px 40px rgba(15,118,110,0.3)', 
-              border: '3px solid #0f766e' 
+              marginTop: '3rem', 
+              padding: '1.5rem', 
+              background: '#ecfdf5', 
+              color: '#065f46', 
+              borderRadius: '0.75rem', 
+              fontWeight: '500', 
+              fontSize: 'clamp(0.9375rem, 3.5vw, 1.0625rem)', 
+              boxShadow: '0 1px 3px rgba(13,148,136,0.1)', 
+              border: '1px solid #a7f3d0' 
             }}>
               {message}
             </div>
@@ -455,16 +464,15 @@ export default function App() {
       <footer style={{
         padding: '3rem 2rem',
         textAlign: 'center',
-        background: 'linear-gradient(to bottom, #0f766e, #0d9488)',
-        borderTop: '4px solid #134e4a',
+        background: '#111827',
+        borderTop: '1px solid #1f2937',
         marginTop: '4rem'
       }}>
-        <div style={{ fontSize: '2rem', color: '#5eead4', marginBottom: '1.5rem' }}>~ ✦ ~</div>
-        <p className="western-title" style={{ margin: '0.75rem 0', fontSize: 'clamp(1.375rem, 4vw, 1.75rem)', fontWeight: '700', color: '#f0fdfa', letterSpacing: '2px', textTransform: 'uppercase' }}>Contact Melissa</p>
-        <p style={{ margin: '0.75rem 0', fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', color: '#ccfbf1' }}>Text or call: <strong style={{ color: '#fbbf24' }}>403-852-4324</strong></p>
-        <p style={{ margin: '0.75rem 0', fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', color: '#ccfbf1' }}>Email: <strong style={{ color: '#fbbf24' }}>balancedheartsranch@yahoo.com</strong></p>
-        <div style={{ fontSize: '1.5rem', color: '#5eead4', margin: '1.5rem 0' }}>✦</div>
-        <p style={{ marginTop: '1rem', fontSize: 'clamp(1rem, 3vw, 1.25rem)', color: '#99f6e4', fontStyle: 'italic' }}>
+        <p style={{ margin: '0 0 1rem', fontSize: 'clamp(1.25rem, 4vw, 1.5rem)', fontWeight: '600', color: '#ffffff' }}>Contact Melissa</p>
+        <p style={{ margin: '0.5rem 0', fontSize: 'clamp(1rem, 3vw, 1.125rem)', color: '#d1d5db' }}>Text or call: <strong style={{ color: '#0d9488' }}>403-852-4324</strong></p>
+        <p style={{ margin: '0.5rem 0', fontSize: 'clamp(1rem, 3vw, 1.125rem)', color: '#d1d5db' }}>Email: <strong style={{ color: '#0d9488' }}>balancedheartsranch@yahoo.com</strong></p>
+        <div style={{ width: '4rem', height: '1px', background: '#374151', margin: '1.5rem auto' }} />
+        <p style={{ marginTop: '1rem', fontSize: 'clamp(0.9375rem, 2.5vw, 1rem)', color: '#9ca3af' }}>
           Okotoks, Alberta, Canada
         </p>
       </footer>
