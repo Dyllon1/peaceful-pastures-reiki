@@ -16,20 +16,18 @@ export default function App() {
     localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
   }, [bookedSlots]);
 
-  // Replace your old getSlots function with this one
-const getSlots = (date) => {
-  if (!date) return [];
-  const day = date.getDay();
-  const key = date.toLocaleDateString();
-  
-  // AM/PM slots — 10:00 AM to 5:00 PM (Mon–Fri), 10:00 AM to 1:00 PM (Sat)
-  const all = day === 6 
-    ? ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM']
-    : ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM'];
-  
-  const booked = bookedSlots[key] || [];
-  return all.filter(t => !booked.includes(t));
-};
+  const getSlots = (date) => {
+    if (!date) return [];
+    const day = date.getDay();
+    const key = date.toLocaleDateString();
+    
+    const all = day === 6 
+      ? ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM']
+      : ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM'];
+    
+    const booked = bookedSlots[key] || [];
+    return all.filter(t => !booked.includes(t));
+  };
 
   const slots = selectedDate ? getSlots(selectedDate) : [];
 
@@ -43,185 +41,192 @@ const getSlots = (date) => {
   };
 
   return (
-    <div style={{ 
-      minHeight: '100vh', 
-      background: 'linear-gradient(to bottom, #f0fdfa, #ccfbf1)', 
-      margin: 0, 
-      padding: 0, 
-      display: 'flex', 
-      flexDirection: 'column' 
-    }}>
-      <main style={{ 
-        flex: 1, 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center', 
-        padding: '2rem 1rem' 
-      }}>
-        <div style={{ 
-          width: '100%', 
-          maxWidth: '900px', 
-          background: 'white', 
-          borderRadius: '40px', 
-          boxShadow: '0 40px 100px rgba(0,0,0,0.15)', 
-          padding: '6rem 4rem', 
-          textAlign: 'center' 
-        }}>
-          <img src="/melissa.jpg" alt="Melissa" style={{ 
-            width:'300px', 
-            height:'300px', 
-            borderRadius:'50%', 
-            objectFit:'cover', 
-            marginBottom:'3rem', 
-            border:'16px solid #5eead4', 
-            boxShadow:'0 20px 50px rgba(0,0,0,0.2)' 
-          }} />
+    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-teal-50">
+      <style jsx>{`
+        .react-datepicker {
+          font-family: 'Georgia', serif;
+          width: 100% !important;
+          border: none;
+          background: white;
+        }
+        .react-datepicker__header {
+          background: white;
+          border-bottom: 2px solid #f59e0b;
+          padding: 1.25rem 0;
+        }
+        .react-datepicker__current-month {
+          color: #0f766e;
+          font-size: 1.5rem;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+        }
+        .react-datepicker__day-names {
+          display: flex;
+          justify-content: space-around;
+          margin-top: 1rem;
+        }
+        .react-datepicker__day-name {
+          color: #000000 !important;
+          font-weight: 800 !important;
+          font-size: 1.1rem !important;
+          width: 2.5rem !important;
+          line-height: 2.5rem !important;
+          margin: 0.2rem !important;
+          text-align: center;
+        }
+        .react-datepicker__month {
+          margin: 1rem 0.5rem;
+        }
+        .react-datepicker__week {
+          display: flex;
+          justify-content: space-around;
+        }
+        .react-datepicker__day {
+          width: 2.5rem !important;
+          height: 2.5rem !important;
+          line-height: 2.5rem !important;
+          margin: 0.2rem !important;
+          border-radius: 50%;
+          font-size: 1rem;
+          color: #1e293b;
+          font-weight: 500;
+        }
+        .react-datepicker__day:hover {
+          background: #ccfbf1;
+          color: #0f766e;
+        }
+        .react-datepicker__day--selected {
+          background: #0f766e !important;
+          color: white !important;
+          font-weight: 700;
+        }
+        .react-datepicker__day--today {
+          background: #fbbf24;
+          color: white;
+          font-weight: 700;
+        }
+        .react-datepicker__day--disabled {
+          color: #cbd5e1;
+        }
+        .react-datepicker__navigation {
+          top: 1.25rem;
+        }
+        @media (max-width: 640px) {
+          .react-datepicker__current-month {
+            font-size: 1.25rem;
+          }
+          .react-datepicker__day-name {
+            font-size: 0.95rem !important;
+            width: 2.2rem !important;
+            line-height: 2.2rem !important;
+          }
+          .react-datepicker__day {
+            width: 2.2rem !important;
+            height: 2.2rem !important;
+            line-height: 2.2rem !important;
+            font-size: 0.9rem;
+          }
+        }
+      `}</style>
 
-          <h1 style={{ fontSize: '5.5rem', fontWeight: '400', color: '#0f766e', letterSpacing: '-3px', margin: '0 0 0.5rem' }}>
+      <main className="flex items-center justify-center px-4 py-8 sm:py-16">
+        <div className="w-full max-w-4xl bg-white rounded-3xl sm:rounded-[3rem] shadow-2xl p-8 sm:p-16 text-center">
+          <img 
+            src="/melissa.jpg" 
+            alt="Melissa" 
+            className="w-48 h-48 sm:w-64 sm:h-64 rounded-full object-cover mx-auto mb-8 border-8 sm:border-[12px] border-teal-300 shadow-2xl" 
+          />
+
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light text-teal-800 tracking-tight mb-2">
             Balanced Hearts
           </h1>
-          <h2 style={{ fontSize: '2.2rem', fontWeight: '200', color: '#14b8a6', letterSpacing: '-1px', margin: '0 0 4rem' }}>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extralight text-teal-500 tracking-wide mb-8 sm:mb-12">
             Holy Fire Reiki
           </h2>
 
-          <p style={{ fontSize: '2.2rem', color: '#0d9488', fontStyle: 'italic', margin: '0 0 0.5rem' }}>
+          <p className="text-xl sm:text-2xl lg:text-3xl text-teal-700 italic mb-2">
             with Melissa Lynn
           </p>
-          <p style={{ fontSize: '2rem', color: '#0f766e', fontWeight: '500', marginBottom: '5rem' }}>
+          <p className="text-lg sm:text-xl lg:text-2xl text-amber-600 font-semibold mb-8 sm:mb-12">
             $125 · 60-minute in-person session
           </p>
 
-          {/* One-sentence benefit */}
-          <div style={{
-            margin: '4rem auto 5rem',
-            maxWidth: '700px',
-            padding: '2rem 3rem',
-            background: '#f0fdfa',
-            borderRadius: '24px',
-            border: '2px solid #5eead4',
-            fontSize: '1.5rem',
-            color: '#0f766e',
-            fontStyle: 'italic',
-            textAlign: 'center'
-          }}>
-            Sessions take place in the calming presence of Melissa’s equine companions. Their grounded energy naturally deepens relaxation, supports emotional release and opens the heart to profound peace. After the Reiki session, the horses often share their quiet wisdom.
+          <div className="max-w-3xl mx-auto mb-10 sm:mb-16 p-6 sm:p-8 bg-gradient-to-br from-amber-50 to-teal-50 rounded-2xl sm:rounded-3xl border-2 border-amber-200 shadow-lg">
+            <p className="text-base sm:text-lg lg:text-xl text-teal-800 italic leading-relaxed">
+              Sessions take place in the calming presence of Melissa's equine companions. Their grounded energy naturally deepens relaxation, supports emotional release and opens the heart to profound peace. After the Reiki session, the horses often share their quiet wisdom.
+            </p>
           </div>
 
-          <h2 style={{ fontSize: '3rem', color: '#0f766e', marginBottom: '3rem' }}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl text-teal-800 font-light mb-8 sm:mb-12">
             Schedule Your Session
           </h2>
 
-{/* Full calendar — perfectly visible, no cut-off, black day names, teal border */}
-<div style={{ 
-  margin: '0 auto 6rem', 
-  maxWidth: '420px',   // ← this makes it fit perfectly on mobile
-  background: 'white', 
-  borderRadius: '32px', 
-  padding: '2rem', 
-  boxShadow: '0 25px 60px rgba(0,0,0,0.12)', 
-  border: '3px solid #5eead4',
-  overflow: 'hidden'
-}}>
-  <style jsx>{`
-    .react-datepicker {
-      font-family: 'Georgia', serif;
-      width: 100% !important;
-      border: none;
-      background: white;
-    }
-    .react-datepicker__header {
-      background: white;
-      border-bottom: 2px solid #e2e8f0;
-      padding: 1rem 0;
-    }
-    .react-datepicker__current-month {
-      color: #1e293b;
-      font-size: 1.7rem;
-      font-weight: 600;
-    }
-    /* Day names — BLACK, bold, perfectly spaced */
-    .react-datepicker__day-name {
-      color: #000000 !important;
-      font-weight: 800 !important;
-      font-size: 1.3rem !important;
-      width: 48px !important;
-      text-align: center;
-    }
-    .react-datepicker__week {
-      display: flex;
-      justify-content: space-between;
-    }
-    .react-datepicker__day {
-      width: 48px !important;
-      height: 48px !important;
-      line-height: 48px !important;
-      margin: 0.25rem;
-      border-radius: 50%;
-      font-size: 1.3rem;
-      color: #1e293b;
-    }
-    .react-datepicker__day:hover {
-      background: #ccfbf1;
-      color: #0f766e;
-    }
-    .react-datepicker__day--selected {
-      background: #0f766e !important;
-      color: white !important;
-    }
-    .react-datepicker__day--today {
-      background: #fbbf24;
-      color: white;
-      font-weight: bold;
-    }
-  `}</style>
-
-  <DatePicker 
-    selected={selectedDate} 
-    onChange={setSelectedDate} 
-    minDate={new Date()} 
-    inline 
-  />
-</div>
+          <div className="max-w-md mx-auto mb-10 sm:mb-16 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-xl border-2 border-amber-200">
+            <DatePicker 
+              selected={selectedDate} 
+              onChange={setSelectedDate} 
+              minDate={new Date()} 
+              inline 
+              filterDate={date => date.getDay() !== 0}
+            />
+          </div>
 
           {selectedDate && slots.length > 0 && (
             <>
-              <h3 style={{ fontSize: '2rem', color: '#0f766e', marginBottom: '3rem' }}>
+              <h3 className="text-xl sm:text-2xl lg:text-3xl text-teal-800 mb-6 sm:mb-10 font-light">
                 Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
               </h3>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem', marginBottom: '5rem' }}>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mb-10 sm:mb-16 max-w-4xl mx-auto">
                 {slots.map(time => (
-                  <button key={time} onClick={() => setSelectedTime(time)}
-                    style={{
-                      padding: '2rem', 
-                      borderRadius: '28px', 
-                      fontSize: '1.8rem', 
-                      fontWeight: '600',
-                      background: selectedTime === time ? '#0f766e' : '#f0fdfa',
-                      color: selectedTime === time ? 'white' : '#0f766e',
-                      border: '4px solid #5eead4', 
-                      cursor: 'pointer', 
-                      transition: 'all 0.3s',
-                      boxShadow: selectedTime === time ? '0 30px 70px rgba(15,118,110,0.4)' : '0 12px 35px rgba(0,0,0,0.1)'
-                    }}>
+                  <button 
+                    key={time} 
+                    onClick={() => setSelectedTime(time)}
+                    className={`py-4 sm:py-5 px-3 sm:px-4 rounded-xl sm:rounded-2xl text-base sm:text-lg lg:text-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl ${
+                      selectedTime === time 
+                        ? 'bg-teal-700 text-white border-2 border-amber-400 scale-105' 
+                        : 'bg-gradient-to-br from-amber-50 to-teal-50 text-teal-800 border-2 border-teal-300 hover:border-amber-400'
+                    }`}
+                  >
                     {time}
                   </button>
                 ))}
               </div>
 
               {selectedTime && (
-                <form onSubmit={handleSubmit} style={{ maxWidth: '800px', margin: '0 auto' }}>
-                  <input required placeholder="Your Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
-                    style={{ width:'100%', padding:'2rem', borderRadius:'24px', border:'1px solid #5eead4', background:'#f0fdfa', color:'#0f766e', marginBottom:'2rem', fontSize:'1.5rem' }} />
-                  <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
-                    style={{ width:'100%', padding:'2rem', borderRadius:'24px', border:'1px solid #5eead4', background:'#f0fdfa', color:'#0f766e', marginBottom:'2rem', fontSize:'1.5rem' }} />
-                  <input placeholder="Phone (optional)" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
-                    style={{ width:'100%', padding:'2rem', borderRadius:'24px', border:'1px solid #5eead4', background:'#f0fdfa', color:'#0f766e', marginBottom:'2rem', fontSize:'1.5rem' }} />
-                  <textarea placeholder="Notes or questions" rows="6" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
-                    style={{ width:'100%', padding:'2rem', borderRadius:'24px', border:'1px solid #5eead4', background:'#f0fdfa', color:'#0f766e', marginBottom:'4rem', fontSize:'1.5rem' }} />
-                  <button type="submit" style={{
-                    width:'100%', padding:'2.5rem', background:'#0f766e', color:'white', border:'none', borderRadius:'28px', fontSize:'2rem', fontWeight:'600', cursor:'pointer', boxShadow:'0 35px 80px rgba(15,118,110,0.4)'
-                  }}>
+                <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-4 sm:space-y-6">
+                  <input 
+                    required 
+                    placeholder="Your Name" 
+                    value={formData.name} 
+                    onChange={e => setFormData({...formData, name: e.target.value})}
+                    className="w-full py-4 sm:py-5 px-5 sm:px-6 rounded-xl sm:rounded-2xl border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-white text-teal-900 text-base sm:text-lg placeholder-teal-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-200 transition-all"
+                  />
+                  <input 
+                    required 
+                    type="email" 
+                    placeholder="Email" 
+                    value={formData.email} 
+                    onChange={e => setFormData({...formData, email: e.target.value})}
+                    className="w-full py-4 sm:py-5 px-5 sm:px-6 rounded-xl sm:rounded-2xl border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-white text-teal-900 text-base sm:text-lg placeholder-teal-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-200 transition-all"
+                  />
+                  <input 
+                    placeholder="Phone (optional)" 
+                    value={formData.phone} 
+                    onChange={e => setFormData({...formData, phone: e.target.value})}
+                    className="w-full py-4 sm:py-5 px-5 sm:px-6 rounded-xl sm:rounded-2xl border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-white text-teal-900 text-base sm:text-lg placeholder-teal-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-200 transition-all"
+                  />
+                  <textarea 
+                    placeholder="Notes or questions" 
+                    rows="5" 
+                    value={formData.notes} 
+                    onChange={e => setFormData({...formData, notes: e.target.value})}
+                    className="w-full py-4 sm:py-5 px-5 sm:px-6 rounded-xl sm:rounded-2xl border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-white text-teal-900 text-base sm:text-lg placeholder-teal-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-200 transition-all resize-none"
+                  />
+                  <button 
+                    type="submit" 
+                    className="w-full py-5 sm:py-6 px-6 bg-gradient-to-r from-teal-700 to-teal-600 text-white rounded-xl sm:rounded-2xl text-lg sm:text-xl lg:text-2xl font-bold shadow-2xl hover:shadow-amber-400/50 hover:scale-[1.02] transition-all duration-300 border-2 border-amber-400"
+                  >
                     Confirm Booking – $125
                   </button>
                 </form>
@@ -230,30 +235,22 @@ const getSlots = (date) => {
           )}
 
           {selectedDate && slots.length === 0 && (
-            <p style={{ fontSize: '2rem', color: '#0f766e' }}>No available times on this date</p>
+            <p className="text-xl sm:text-2xl text-teal-700 font-light">No available times on this date</p>
           )}
 
           {message && (
-            <div style={{ marginTop:'6rem', padding:'4rem', background:'#ecfdf5', color:'#166534', borderRadius:'28px', fontWeight:'600', fontSize:'1.8rem' }}>
+            <div className="mt-10 sm:mt-16 p-6 sm:p-8 bg-gradient-to-br from-green-50 to-teal-50 text-green-800 rounded-2xl sm:rounded-3xl font-semibold text-base sm:text-lg lg:text-xl shadow-xl border-2 border-green-200">
               {message}
             </div>
           )}
         </div>
       </main>
 
-      <footer style={{
-        padding: '4rem 2rem',
-        textAlign: 'center',
-        background: 'white',
-        borderTop: '1px solid #5eead4',
-        marginTop: '4rem',
-        fontSize: '1.4rem',
-        color: '#0f766e'
-      }}>
-        <p style={{ margin: '0.5rem 0', fontWeight: '600' }}>Contact Melissa</p>
-        <p style={{ margin: '0.5rem 0' }}>Text or call: <strong>403-852-4324</strong></p>
-        <p style={{ margin: '0.5rem 0' }}>Email: <strong>balancedheartsranch@yahoo.com</strong></p>
-        <p style={{ margin: '1rem 0 0', fontSize: '1.2rem', color: '#0f766e' }}>
+      <footer className="py-8 sm:py-12 px-4 text-center bg-gradient-to-b from-white to-amber-50 border-t-2 border-amber-200 mt-12 sm:mt-20">
+        <p className="mb-2 sm:mb-3 text-lg sm:text-xl font-semibold text-teal-800">Contact Melissa</p>
+        <p className="mb-2 text-base sm:text-lg text-teal-700">Text or call: <strong className="text-amber-600">403-852-4324</strong></p>
+        <p className="mb-2 text-base sm:text-lg text-teal-700">Email: <strong className="text-amber-600">balancedheartsranch@yahoo.com</strong></p>
+        <p className="mt-4 text-sm sm:text-base text-teal-600">
           Okotoks, Alberta, Canada
         </p>
       </footer>
