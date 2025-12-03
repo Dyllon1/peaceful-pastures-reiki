@@ -16,14 +16,20 @@ export default function App() {
     localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
   }, [bookedSlots]);
 
-  const getSlots = (date) => {
-    if (!date) return [];
-    const day = date.getDay();
-    const key = date.toLocaleDateString();
-    const all = day === 6 ? ['10:00','11:00','12:00','13:00'] : ['10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
-    const booked = bookedSlots[key] || [];
-    return all.filter(t => !booked.includes(t));
-  };
+  // Replace your old getSlots function with this one
+const getSlots = (date) => {
+  if (!date) return [];
+  const day = date.getDay();
+  const key = date.toLocaleDateString();
+  
+  // AM/PM slots — 10:00 AM to 5:00 PM (Mon–Fri), 10:00 AM to 1:00 PM (Sat)
+  const all = day === 6 
+    ? ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM']
+    : ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM'];
+  
+  const booked = bookedSlots[key] || [];
+  return all.filter(t => !booked.includes(t));
+};
 
   const slots = selectedDate ? getSlots(selectedDate) : [];
 
