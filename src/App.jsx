@@ -105,10 +105,10 @@ export default function App() {
             Schedule Your Session
           </h2>
 
-         {/* Beautiful calendar — days of week darker & more spaced */}
+         {/* Perfectly spaced & centered day names */}
 <div style={{ 
   margin: '0 auto 6rem', 
-  maxWidth: '500px', 
+  maxWidth: '540px', 
   background: 'white', 
   borderRadius: '32px', 
   padding: '2.5rem', 
@@ -132,21 +132,31 @@ export default function App() {
       font-size: 1.9rem;
       font-weight: 600;
     }
-    /* Days of week — darker, bolder, more spaced */
+    /* Day names — perfectly spaced and centered over each column */
+    .react-datepicker__day-names {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem;
+    }
     .react-datepicker__day-name {
-      color: #000000 !important;
+      color: #ccfbf1 !important;
       font-weight: 800 !important;
-      font-size: 1.3rem !important;
-      margin: 0 0.8rem !important;
-      letter-spacing: 1px;
+      font-size: 1.4rem !important;
+      width: 60px !important;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+    .react-datepicker__week {
+      display: flex;
+      justify-content: space-between;
     }
     .react-datepicker__day {
-      width: 3.5rem;
-      height: 3.5rem;
-      line-height: 3.5rem;
-      margin: 0.5rem;
+      width: 60px !important;
+      height: 60px !important;
+      line-height: 60px !important;
+      margin: 0.3rem;
       border-radius: 50%;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       color: #1e293b;
       transition: all 0.3s;
     }
@@ -154,11 +164,9 @@ export default function App() {
       background: #ccfbf1;
       color: #0f766e;
     }
-    .react-datepicker__day--selected,
-    .react-datepicker__day--keyboard-selected {
+    .react-datepicker__day--selected {
       background: #0f766e !important;
       color: white !important;
-      font-weight: bold;
     }
     .react-datepicker__day--today {
       background: #fbbf24;
