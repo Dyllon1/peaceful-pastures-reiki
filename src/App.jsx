@@ -111,13 +111,13 @@ const getSlots = (date) => {
             Schedule Your Session
           </h2>
 
-         {/* Perfectly spaced & centered day names */}
+{/* Full calendar — perfectly visible, no cut-off, black day names, teal border */}
 <div style={{ 
   margin: '0 auto 6rem', 
-  maxWidth: '540px', 
+  maxWidth: '420px',   // ← this makes it fit perfectly on mobile
   background: 'white', 
   borderRadius: '32px', 
-  padding: '2.5rem', 
+  padding: '2rem', 
   boxShadow: '0 25px 60px rgba(0,0,0,0.12)', 
   border: '3px solid #5eead4',
   overflow: 'hidden'
@@ -125,46 +125,40 @@ const getSlots = (date) => {
   <style jsx>{`
     .react-datepicker {
       font-family: 'Georgia', serif;
+      width: 100% !important;
       border: none;
       background: white;
     }
     .react-datepicker__header {
-      background: #0f766e;
-      border-bottom: none;
-      padding-top: 1.5rem;
+      background: white;
+      border-bottom: 2px solid #e2e8f0;
+      padding: 1rem 0;
     }
     .react-datepicker__current-month {
-      color: white;
-      font-size: 1.9rem;
+      color: #1e293b;
+      font-size: 1.7rem;
       font-weight: 600;
     }
-    /* Day names — perfectly spaced and centered over each column */
-    .react-datepicker__day-names {
-      display: flex;
-      justify-content: space-between;
-      padding: 0 1rem;
-    }
+    /* Day names — BLACK, bold, perfectly spaced */
     .react-datepicker__day-name {
       color: #000000 !important;
       font-weight: 800 !important;
-      font-size: 1.4rem !important;
-      width: 60px !important;
+      font-size: 1.3rem !important;
+      width: 48px !important;
       text-align: center;
-      letter-spacing: 2px;
     }
     .react-datepicker__week {
       display: flex;
       justify-content: space-between;
     }
     .react-datepicker__day {
-      width: 60px !important;
-      height: 60px !important;
-      line-height: 60px !important;
-      margin: 0.3rem;
+      width: 48px !important;
+      height: 48px !important;
+      line-height: 48px !important;
+      margin: 0.25rem;
       border-radius: 50%;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       color: #1e293b;
-      transition: all 0.3s;
     }
     .react-datepicker__day:hover {
       background: #ccfbf1;
