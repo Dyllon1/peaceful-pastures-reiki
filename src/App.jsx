@@ -234,12 +234,8 @@ export default function App() {
             background: '#ccfbf1',
             borderRadius: '0.5rem',
             border: '3px solid #0f766e',
-            boxShadow: 'inset 0 2px 8px rgba(15,118,110,0.1), 0 15px 40px rgba(0,0,0,0.15)',
-            position: 'relative'
+            boxShadow: 'inset 0 2px 8px rgba(15,118,110,0.1), 0 15px 40px rgba(0,0,0,0.15)'
           }}>
-            <div style={{ position: 'absolute', top: '-15px', left: '50%', transform: 'translateX(-50%)', fontSize: '1.5rem', background: '#f0fdfa', padding: '0 1rem', color: '#0f766e' }}>
-              ✦
-            </div>
             <p style={{ 
               fontSize: 'clamp(1.125rem, 3.5vw, 1.5rem)', 
               color: '#0f766e', 
