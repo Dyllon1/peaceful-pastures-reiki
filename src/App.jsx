@@ -79,7 +79,7 @@ export default function App() {
           </h2>
 
           <p style={{ fontSize: '2.2rem', color: '#0d9488', fontStyle: 'italic', margin: '0 0 0.5rem' }}>
-            with Melissa Ouderkirk
+            with Melissa Lynn
           </p>
           <p style={{ fontSize: '2rem', color: '#0f766e', fontWeight: '500', marginBottom: '5rem' }}>
             $125 · 60-minute in-person session
@@ -93,7 +93,7 @@ export default function App() {
             background: '#f0fdfa',
             borderRadius: '24px',
             border: '2px solid #5eead4',
-            fontSize: '1.1rem',
+            fontSize: '1.5rem',
             color: '#0f766e',
             fontStyle: 'italic',
             textAlign: 'center'
