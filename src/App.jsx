@@ -123,7 +123,7 @@ export default function App() {
       background: white;
     }
     .react-datepicker__header {
-      background: #000000;
+      background: #0f766e;
       border-bottom: none;
       padding-top: 1.5rem;
     }
@@ -139,7 +139,7 @@ export default function App() {
       padding: 0 1rem;
     }
     .react-datepicker__day-name {
-      color: #ccfbf1 !important;
+      color: #000000 !important;
       font-weight: 800 !important;
       font-size: 1.4rem !important;
       width: 60px !important;
