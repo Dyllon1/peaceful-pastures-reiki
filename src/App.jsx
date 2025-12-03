@@ -7,13 +7,23 @@ export default function App() {
   const [selectedTime, setSelectedTime] = useState('');
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', notes: '' });
   const [message, setMessage] = useState('');
-  const [bookedSlots, setBookedSlots] = useState(() => {
-    const saved = localStorage.getItem('bookedSlots');
-    return saved ? JSON.parse(saved) : {};
-  });
+  const [bookedSlots, setBookedSlots] = useState({});
 
   useEffect(() => {
-    localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
+    try {
+      const saved = localStorage.getItem('bookedSlots');
+      if (saved) setBookedSlots(JSON.parse(saved));
+    } catch (e) {
+      console.error('Error loading bookings:', e);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
+    } catch (e) {
+      console.error('Error saving bookings:', e);
+    }
   }, [bookedSlots]);
 
   const getSlots = (date) => {
@@ -41,8 +51,8 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-teal-50">
-      <style jsx>{`
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #fffbeb, #ffffff, #f0fdfa)', margin: 0, padding: 0 }}>
+      <style dangerouslySetInnerHTML={{__html: `
         .react-datepicker {
           font-family: 'Georgia', serif;
           width: 100% !important;
@@ -51,7 +61,7 @@ export default function App() {
         }
         .react-datepicker__header {
           background: white;
-          border-bottom: 2px solid #f59e0b;
+          border-bottom: 2px solid #fbbf24;
           padding: 1.25rem 0;
         }
         .react-datepicker__current-month {
@@ -127,41 +137,57 @@ export default function App() {
             font-size: 0.9rem;
           }
         }
-      `}</style>
+      `}} />
 
-      <main className="flex items-center justify-center px-4 py-8 sm:py-16">
-        <div className="w-full max-w-4xl bg-white rounded-3xl sm:rounded-[3rem] shadow-2xl p-8 sm:p-16 text-center">
+      <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1rem' }}>
+        <div style={{ width: '100%', maxWidth: '64rem', background: 'white', borderRadius: '3rem', boxShadow: '0 25px 50px rgba(0,0,0,0.15)', padding: '4rem 2rem', textAlign: 'center' }}>
           <img 
             src="/melissa.jpg" 
             alt="Melissa" 
-            className="w-48 h-48 sm:w-64 sm:h-64 rounded-full object-cover mx-auto mb-8 border-8 sm:border-[12px] border-teal-300 shadow-2xl" 
+            style={{ width: '16rem', height: '16rem', borderRadius: '50%', objectFit: 'cover', margin: '0 auto 2rem', border: '12px solid #5eead4', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }} 
           />
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light text-teal-800 tracking-tight mb-2">
+          <h1 style={{ fontSize: 'clamp(2.5rem, 8vw, 4.5rem)', fontWeight: '300', color: '#0f766e', letterSpacing: '-2px', margin: '0 0 0.5rem' }}>
             Balanced Hearts
           </h1>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extralight text-teal-500 tracking-wide mb-8 sm:mb-12">
+          <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.5rem)', fontWeight: '200', color: '#14b8a6', letterSpacing: '-0.5px', margin: '0 0 3rem' }}>
             Holy Fire Reiki
           </h2>
 
-          <p className="text-xl sm:text-2xl lg:text-3xl text-teal-700 italic mb-2">
+          <p style={{ fontSize: 'clamp(1.25rem, 4vw, 2rem)', color: '#0f766e', fontStyle: 'italic', margin: '0 0 0.5rem' }}>
             with Melissa Lynn
           </p>
-          <p className="text-lg sm:text-xl lg:text-2xl text-amber-600 font-semibold mb-8 sm:mb-12">
+          <p style={{ fontSize: 'clamp(1.1rem, 3.5vw, 1.75rem)', color: '#d97706', fontWeight: '600', marginBottom: '3rem' }}>
             $125 · 60-minute in-person session
           </p>
 
-          <div className="max-w-3xl mx-auto mb-10 sm:mb-16 p-6 sm:p-8 bg-gradient-to-br from-amber-50 to-teal-50 rounded-2xl sm:rounded-3xl border-2 border-amber-200 shadow-lg">
-            <p className="text-base sm:text-lg lg:text-xl text-teal-800 italic leading-relaxed">
+          <div style={{
+            maxWidth: '48rem',
+            margin: '0 auto 4rem',
+            padding: '2rem',
+            background: 'linear-gradient(to bottom right, #fffbeb, #f0fdfa)',
+            borderRadius: '2rem',
+            border: '2px solid #fde68a',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.08)'
+          }}>
+            <p style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)', color: '#0f766e', fontStyle: 'italic', lineHeight: '1.7', margin: 0 }}>
               Sessions take place in the calming presence of Melissa's equine companions. Their grounded energy naturally deepens relaxation, supports emotional release and opens the heart to profound peace. After the Reiki session, the horses often share their quiet wisdom.
             </p>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl text-teal-800 font-light mb-8 sm:mb-12">
+          <h2 style={{ fontSize: 'clamp(2rem, 6vw, 3rem)', color: '#0f766e', fontWeight: '300', marginBottom: '3rem' }}>
             Schedule Your Session
           </h2>
 
-          <div className="max-w-md mx-auto mb-10 sm:mb-16 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-xl border-2 border-amber-200">
+          <div style={{ 
+            maxWidth: '28rem', 
+            margin: '0 auto 4rem', 
+            background: 'white', 
+            borderRadius: '2rem', 
+            padding: '1.5rem', 
+            boxShadow: '0 20px 40px rgba(0,0,0,0.12)', 
+            border: '2px solid #fde68a'
+          }}>
             <DatePicker 
               selected={selectedDate} 
               onChange={setSelectedDate} 
@@ -173,20 +199,28 @@ export default function App() {
 
           {selectedDate && slots.length > 0 && (
             <>
-              <h3 className="text-xl sm:text-2xl lg:text-3xl text-teal-800 mb-6 sm:mb-10 font-light">
+              <h3 style={{ fontSize: 'clamp(1.25rem, 4vw, 1.875rem)', color: '#0f766e', marginBottom: '2.5rem', fontWeight: '300' }}>
                 Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
               </h3>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mb-10 sm:mb-16 max-w-4xl mx-auto">
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '1rem', marginBottom: '4rem', maxWidth: '64rem', margin: '0 auto 4rem' }}>
                 {slots.map(time => (
                   <button 
                     key={time} 
                     onClick={() => setSelectedTime(time)}
-                    className={`py-4 sm:py-5 px-3 sm:px-4 rounded-xl sm:rounded-2xl text-base sm:text-lg lg:text-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl ${
-                      selectedTime === time 
-                        ? 'bg-teal-700 text-white border-2 border-amber-400 scale-105' 
-                        : 'bg-gradient-to-br from-amber-50 to-teal-50 text-teal-800 border-2 border-teal-300 hover:border-amber-400'
-                    }`}
+                    style={{
+                      padding: '1.5rem 1rem',
+                      borderRadius: '1.25rem',
+                      fontSize: 'clamp(1rem, 3vw, 1.25rem)',
+                      fontWeight: '600',
+                      background: selectedTime === time ? '#0f766e' : 'linear-gradient(to bottom right, #fffbeb, #f0fdfa)',
+                      color: selectedTime === time ? 'white' : '#0f766e',
+                      border: selectedTime === time ? '2px solid #fbbf24' : '2px solid #5eead4',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s',
+                      boxShadow: selectedTime === time ? '0 20px 40px rgba(15,118,110,0.4)' : '0 8px 20px rgba(0,0,0,0.08)',
+                      transform: selectedTime === time ? 'scale(1.05)' : 'scale(1)'
+                    }}
                   >
                     {time}
                   </button>
@@ -194,13 +228,13 @@ export default function App() {
               </div>
 
               {selectedTime && (
-                <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-4 sm:space-y-6">
+                <form onSubmit={handleSubmit} style={{ maxWidth: '48rem', margin: '0 auto' }}>
                   <input 
                     required 
                     placeholder="Your Name" 
                     value={formData.name} 
                     onChange={e => setFormData({...formData, name: e.target.value})}
-                    className="w-full py-4 sm:py-5 px-5 sm:px-6 rounded-xl sm:rounded-2xl border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-white text-teal-900 text-base sm:text-lg placeholder-teal-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-200 transition-all"
+                    style={{ width: '100%', padding: '1.5rem', borderRadius: '1.25rem', border: '2px solid #fde68a', background: 'linear-gradient(to bottom right, #fffbeb, #ffffff)', color: '#0f766e', marginBottom: '1.5rem', fontSize: 'clamp(1rem, 3vw, 1.125rem)', outline: 'none', boxSizing: 'border-box' }}
                   />
                   <input 
                     required 
@@ -208,24 +242,39 @@ export default function App() {
                     placeholder="Email" 
                     value={formData.email} 
                     onChange={e => setFormData({...formData, email: e.target.value})}
-                    className="w-full py-4 sm:py-5 px-5 sm:px-6 rounded-xl sm:rounded-2xl border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-white text-teal-900 text-base sm:text-lg placeholder-teal-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-200 transition-all"
+                    style={{ width: '100%', padding: '1.5rem', borderRadius: '1.25rem', border: '2px solid #fde68a', background: 'linear-gradient(to bottom right, #fffbeb, #ffffff)', color: '#0f766e', marginBottom: '1.5rem', fontSize: 'clamp(1rem, 3vw, 1.125rem)', outline: 'none', boxSizing: 'border-box' }}
                   />
                   <input 
                     placeholder="Phone (optional)" 
                     value={formData.phone} 
                     onChange={e => setFormData({...formData, phone: e.target.value})}
-                    className="w-full py-4 sm:py-5 px-5 sm:px-6 rounded-xl sm:rounded-2xl border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-white text-teal-900 text-base sm:text-lg placeholder-teal-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-200 transition-all"
+                    style={{ width: '100%', padding: '1.5rem', borderRadius: '1.25rem', border: '2px solid #fde68a', background: 'linear-gradient(to bottom right, #fffbeb, #ffffff)', color: '#0f766e', marginBottom: '1.5rem', fontSize: 'clamp(1rem, 3vw, 1.125rem)', outline: 'none', boxSizing: 'border-box' }}
                   />
                   <textarea 
                     placeholder="Notes or questions" 
                     rows="5" 
                     value={formData.notes} 
                     onChange={e => setFormData({...formData, notes: e.target.value})}
-                    className="w-full py-4 sm:py-5 px-5 sm:px-6 rounded-xl sm:rounded-2xl border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-white text-teal-900 text-base sm:text-lg placeholder-teal-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-200 transition-all resize-none"
+                    style={{ width: '100%', padding: '1.5rem', borderRadius: '1.25rem', border: '2px solid #fde68a', background: 'linear-gradient(to bottom right, #fffbeb, #ffffff)', color: '#0f766e', marginBottom: '2rem', fontSize: 'clamp(1rem, 3vw, 1.125rem)', outline: 'none', resize: 'none', boxSizing: 'border-box' }}
                   />
                   <button 
                     type="submit" 
-                    className="w-full py-5 sm:py-6 px-6 bg-gradient-to-r from-teal-700 to-teal-600 text-white rounded-xl sm:rounded-2xl text-lg sm:text-xl lg:text-2xl font-bold shadow-2xl hover:shadow-amber-400/50 hover:scale-[1.02] transition-all duration-300 border-2 border-amber-400"
+                    style={{
+                      width: '100%',
+                      padding: '1.75rem',
+                      background: 'linear-gradient(to right, #0f766e, #14b8a6)',
+                      color: 'white',
+                      border: '2px solid #fbbf24',
+                      borderRadius: '1.25rem',
+                      fontSize: 'clamp(1.125rem, 4vw, 1.5rem)',
+                      fontWeight: '700',
+                      cursor: 'pointer',
+                      boxShadow: '0 25px 50px rgba(15,118,110,0.4)',
+                      transition: 'all 0.3s',
+                      boxSizing: 'border-box'
+                    }}
+                    onMouseOver={e => e.target.style.transform = 'scale(1.02)'}
+                    onMouseOut={e => e.target.style.transform = 'scale(1)'}
                   >
                     Confirm Booking – $125
                   </button>
@@ -235,22 +284,28 @@ export default function App() {
           )}
 
           {selectedDate && slots.length === 0 && (
-            <p className="text-xl sm:text-2xl text-teal-700 font-light">No available times on this date</p>
+            <p style={{ fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', color: '#0f766e', fontWeight: '300' }}>No available times on this date</p>
           )}
 
           {message && (
-            <div className="mt-10 sm:mt-16 p-6 sm:p-8 bg-gradient-to-br from-green-50 to-teal-50 text-green-800 rounded-2xl sm:rounded-3xl font-semibold text-base sm:text-lg lg:text-xl shadow-xl border-2 border-green-200">
+            <div style={{ marginTop: '4rem', padding: '2.5rem', background: 'linear-gradient(to bottom right, #ecfdf5, #f0fdfa)', color: '#166534', borderRadius: '1.5rem', fontWeight: '600', fontSize: 'clamp(1rem, 3.5vw, 1.25rem)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', border: '2px solid #86efac' }}>
               {message}
             </div>
           )}
         </div>
       </main>
 
-      <footer className="py-8 sm:py-12 px-4 text-center bg-gradient-to-b from-white to-amber-50 border-t-2 border-amber-200 mt-12 sm:mt-20">
-        <p className="mb-2 sm:mb-3 text-lg sm:text-xl font-semibold text-teal-800">Contact Melissa</p>
-        <p className="mb-2 text-base sm:text-lg text-teal-700">Text or call: <strong className="text-amber-600">403-852-4324</strong></p>
-        <p className="mb-2 text-base sm:text-lg text-teal-700">Email: <strong className="text-amber-600">balancedheartsranch@yahoo.com</strong></p>
-        <p className="mt-4 text-sm sm:text-base text-teal-600">
+      <footer style={{
+        padding: '3rem 2rem',
+        textAlign: 'center',
+        background: 'linear-gradient(to bottom, #ffffff, #fffbeb)',
+        borderTop: '2px solid #fde68a',
+        marginTop: '4rem'
+      }}>
+        <p style={{ margin: '0.5rem 0', fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', fontWeight: '600', color: '#0f766e' }}>Contact Melissa</p>
+        <p style={{ margin: '0.5rem 0', fontSize: 'clamp(1rem, 3vw, 1.125rem)', color: '#0f766e' }}>Text or call: <strong style={{ color: '#d97706' }}>403-852-4324</strong></p>
+        <p style={{ margin: '0.5rem 0', fontSize: 'clamp(1rem, 3vw, 1.125rem)', color: '#0f766e' }}>Email: <strong style={{ color: '#d97706' }}>balancedheartsranch@yahoo.com</strong></p>
+        <p style={{ marginTop: '1rem', fontSize: 'clamp(0.875rem, 2.5vw, 1rem)', color: '#14b8a6' }}>
           Okotoks, Alberta, Canada
         </p>
       </footer>
