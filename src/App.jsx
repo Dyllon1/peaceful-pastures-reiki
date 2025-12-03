@@ -216,7 +216,7 @@ export default function App() {
             Holy Fire Reiki
           </h2>
 
-          <div style={{ fontSize: '2rem', color: '#0f766e', margin: '2rem 0' }}>✦ ✦ ✦</div>
+          <div className="western-divider"></div>
 
           <p style={{ fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', color: '#0f766e', fontStyle: 'italic', margin: '0 0 0.5rem', fontWeight: '600' }}>
             with Melissa Lynn
