@@ -51,11 +51,8 @@ export default function App() {
 
   const slots = selectedDate ? getSlots(selectedDate) : [];
 
-  const handleSubmit = () => {
-    if (!formData.name || !formData.email) {
-      alert('Please fill in your name and email');
-      return;
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const key = selectedDate.toLocaleDateString();
     setBookedSlots(prev => ({ ...prev, [key]: [...(prev[key] || []), selectedTime] }));
     setMessage("Booking confirmed! Melissa will contact you shortly to arrange payment ($125/session). Namaste");
@@ -313,7 +310,7 @@ export default function App() {
                 <>
                   <div style={{ width: '4rem', height: '1px', background: '#d1d5db', margin: '2.5rem auto' }} />
                   
-                  <div style={{ maxWidth: '32rem', margin: '0 auto', textAlign: 'left' }}>
+                  <form onSubmit={handleSubmit} style={{ maxWidth: '32rem', margin: '0 auto', textAlign: 'left' }}>
                     <input 
                       required 
                       placeholder="Your Name" 
@@ -405,7 +402,7 @@ export default function App() {
                       onBlur={e => e.target.style.borderColor = '#d1d5db'}
                     />
                     <button 
-                      onClick={handleSubmit}
+                      type="submit" 
                       style={{
                         width: '100%',
                         padding: '1rem',
@@ -433,7 +430,7 @@ export default function App() {
                     >
                       Confirm Booking – $125
                     </button>
-                  </div>
+                  </form>
                 </>
               )}
             </>
