@@ -45,7 +45,7 @@ export default function App() {
     e.preventDefault();
     const key = selectedDate.toLocaleDateString();
     setBookedSlots(prev => ({ ...prev, [key]: [...(prev[key] || []), selectedTime] }));
-    setMessage("Booking confirmed! Melissa will contact you shortly to arrange payment ($125/session). Namaste 🐴");
+    setMessage("Booking confirmed! Melissa will contact you shortly to arrange payment ($125/session). Namaste");
     setFormData({ name: '', email: '', phone: '', notes: '' });
     setSelectedTime('');
   };
@@ -191,7 +191,7 @@ export default function App() {
             }} 
           />
 
-          <div style={{ fontSize: '2.5rem', color: '#0f766e', marginBottom: '1rem' }}>~ 🐴 ~</div>
+          <div style={{ fontSize: '2.5rem', color: '#0f766e', marginBottom: '1rem' }}>~ ✦ ~</div>
 
           <h1 className="western-title" style={{ 
             fontSize: 'clamp(3rem, 10vw, 5.5rem)', 
@@ -237,8 +237,8 @@ export default function App() {
             boxShadow: 'inset 0 2px 8px rgba(15,118,110,0.1), 0 15px 40px rgba(0,0,0,0.15)',
             position: 'relative'
           }}>
-            <div style={{ position: 'absolute', top: '-15px', left: '50%', transform: 'translateX(-50%)', fontSize: '2rem', background: '#f0fdfa', padding: '0 1rem', color: '#0f766e' }}>
-              🐴
+            <div style={{ position: 'absolute', top: '-15px', left: '50%', transform: 'translateX(-50%)', fontSize: '1.5rem', background: '#f0fdfa', padding: '0 1rem', color: '#0f766e' }}>
+              ✦
             </div>
             <p style={{ 
               fontSize: 'clamp(1.125rem, 3.5vw, 1.5rem)', 
@@ -463,7 +463,7 @@ export default function App() {
         borderTop: '4px solid #134e4a',
         marginTop: '4rem'
       }}>
-        <div style={{ fontSize: '2rem', color: '#5eead4', marginBottom: '1.5rem' }}>~ 🐴 ~</div>
+        <div style={{ fontSize: '2rem', color: '#5eead4', marginBottom: '1.5rem' }}>~ ✦ ~</div>
         <p className="western-title" style={{ margin: '0.75rem 0', fontSize: 'clamp(1.375rem, 4vw, 1.75rem)', fontWeight: '700', color: '#f0fdfa', letterSpacing: '2px', textTransform: 'uppercase' }}>Contact Melissa</p>
         <p style={{ margin: '0.75rem 0', fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', color: '#ccfbf1' }}>Text or call: <strong style={{ color: '#fbbf24' }}>403-852-4324</strong></p>
         <p style={{ margin: '0.75rem 0', fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', color: '#ccfbf1' }}>Email: <strong style={{ color: '#fbbf24' }}>balancedheartsranch@yahoo.com</strong></p>
