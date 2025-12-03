@@ -170,8 +170,8 @@ export default function App() {
           position: 'relative'
         }}>
           {/* Corner decorations */}
-          <div style={{ position: 'absolute', top: '20px', left: '20px', fontSize: '3rem', color: '#0f766e' }}>✦</div>
-          <div style={{ position: 'absolute', top: '20px', right: '20px', fontSize: '3rem', color: '#0f766e' }}>✦</div>
+          <div style={{ position: 'absolute', top: '20px', left: '20px', fontSize: '3rem', color: '#0f766e' }}>�horseshoe</div>
+          <div style={{ position: 'absolute', top: '20px', right: '20px', fontSize: '3rem', color: '#0f766e' }}>�horseshoe</div>
           <div style={{ position: 'absolute', bottom: '20px', left: '20px', fontSize: '3rem', color: '#0f766e' }}>✦</div>
           <div style={{ position: 'absolute', bottom: '20px', right: '20px', fontSize: '3rem', color: '#0f766e' }}>✦</div>
 
