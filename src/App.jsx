@@ -105,7 +105,7 @@ export default function App() {
             Schedule Your Session
           </h2>
 
-         {/* Beautiful custom-styled calendar */}
+         {/* Beautiful calendar — days of week darker & more spaced */}
 <div style={{ 
   margin: '0 auto 6rem', 
   maxWidth: '500px', 
@@ -117,7 +117,6 @@ export default function App() {
   overflow: 'hidden'
 }}>
   <style jsx>{`
-    /* Teal + Gold Calendar Theme */
     .react-datepicker {
       font-family: 'Georgia', serif;
       border: none;
@@ -130,21 +129,24 @@ export default function App() {
     }
     .react-datepicker__current-month {
       color: white;
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       font-weight: 600;
     }
+    /* Days of week — darker, bolder, more spaced */
     .react-datepicker__day-name {
-      color: #ccfbf1;
-      font-weight: 600;
-      font-size: 1.1rem;
+      color: #ccfbf1 !important;
+      font-weight: 800 !important;
+      font-size: 1.3rem !important;
+      margin: 0 0.8rem !important;
+      letter-spacing: 1px;
     }
     .react-datepicker__day {
-      width: 3rem;
-      height: 3rem;
-      line-height: 3rem;
-      margin: 0.4rem;
+      width: 3.5rem;
+      height: 3.5rem;
+      line-height: 3.5rem;
+      margin: 0.5rem;
       border-radius: 50%;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       color: #1e293b;
       transition: all 0.3s;
     }
@@ -162,12 +164,6 @@ export default function App() {
       background: #fbbf24;
       color: white;
       font-weight: bold;
-    }
-    .react-datepicker__navigation {
-      top: 1rem;
-    }
-    .react-datepicker__navigation-icon::before {
-      border-color: white;
     }
   `}</style>
 
