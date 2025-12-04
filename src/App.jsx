@@ -51,256 +51,178 @@ export default function App() {
 
   const slots = selectedDate ? getSlots(selectedDate) : [];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    if (!formData.name || !formData.email) {
+      alert('Please fill in your name and email');
+      return;
+    }
     const key = selectedDate.toLocaleDateString();
     setBookedSlots(prev => ({ ...prev, [key]: [...(prev[key] || []), selectedTime] }));
-    setMessage("Booking confirmed! Melissa will contact you shortly to arrange payment ($125/session). Namaste");
+    setMessage("Booking confirmed! Melissa will contact you shortly to arrange payment ($125/session). Namaste ✦");
     setFormData({ name: '', email: '', phone: '', notes: '' });
     setSelectedTime('');
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#fafafa', margin: 0, padding: 0, fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif" }}>
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #0a4f4a 0%, #0d6b65 50%, #14b8a6 100%)', margin: 0, padding: 0, fontFamily: "'Cormorant Garamond', 'Georgia', serif", position: 'relative', overflow: 'hidden' }}>
       <style dangerouslySetInnerHTML={{__html: `
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Cinzel:wght@400;500;600;700&display=swap');
         
-        body {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        body { font-family: 'Cormorant Garamond', 'Georgia', serif; }
+        .luxury-title { font-family: 'Cinzel', 'Georgia', serif; }
+        
+        .pattern-overlay {
+          position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+          background-image: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+          pointer-events: none;
         }
         
         .react-datepicker {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-          width: 100% !important;
-          border: 1px solid #e5e7eb;
-          background: #ffffff;
-          box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+          font-family: 'Cormorant Garamond', 'Georgia', serif !important;
+          width: 100% !important; border: 2px solid #14b8a6;
+          background: linear-gradient(to bottom, #ffffff, #f0fdfa);
+          box-shadow: 0 8px 32px rgba(13, 148, 136, 0.2); border-radius: 0.75rem;
         }
         .react-datepicker__header {
-          background: #ffffff;
-          border-bottom: 1px solid #e5e7eb;
-          padding: 1rem 0;
+          background: linear-gradient(to bottom, #ffffff, #f0fdfa);
+          border-bottom: 2px solid #14b8a6; padding: 1.25rem 0; border-radius: 0.75rem 0.75rem 0 0;
         }
-        .react-datepicker__current-month {
-          color: #111827;
-          font-size: 1.125rem;
-          font-weight: 600;
-        }
-        .react-datepicker__day-names {
-          display: flex;
-          justify-content: space-around;
-          margin-top: 0.75rem;
-        }
-        .react-datepicker__day-name {
-          color: #6b7280 !important;
-          font-weight: 600 !important;
-          font-size: 0.875rem !important;
-          width: 2.5rem !important;
-          line-height: 2.5rem !important;
-          margin: 0.2rem !important;
-        }
-        .react-datepicker__month {
-          margin: 1rem 0.5rem;
-        }
-        .react-datepicker__week {
-          display: flex;
-          justify-content: space-around;
-        }
+        .react-datepicker__current-month { color: #0a4f4a; font-size: 1.375rem; font-weight: 600; letter-spacing: 0.5px; }
+        .react-datepicker__day-names { display: flex; justify-content: space-around; margin-top: 1rem; }
+        .react-datepicker__day-name { color: #0d6b65 !important; font-weight: 700 !important; font-size: 1rem !important;
+          width: 2.5rem !important; line-height: 2.5rem !important; margin: 0.2rem !important; }
+        .react-datepicker__month { margin: 1rem 0.5rem; }
+        .react-datepicker__week { display: flex; justify-content: space-around; }
         .react-datepicker__day {
-          width: 2.5rem !important;
-          height: 2.5rem !important;
-          line-height: 2.5rem !important;
-          margin: 0.2rem !important;
-          border-radius: 0.5rem;
-          font-size: 0.9375rem;
-          color: #111827;
-          font-weight: 500;
+          width: 2.5rem !important; height: 2.5rem !important; line-height: 2.5rem !important; margin: 0.2rem !important;
+          border-radius: 0.5rem; font-size: 1.0625rem; color: #0a4f4a; font-weight: 600; transition: all 0.2s;
         }
-        .react-datepicker__day:hover {
-          background: #f0fdfa;
-          color: #0d9488;
-        }
+        .react-datepicker__day:hover { background: linear-gradient(135deg, #5eead4, #14b8a6); color: white; transform: scale(1.05); }
         .react-datepicker__day--selected {
-          background: #0d9488 !important;
-          color: white !important;
-          font-weight: 600;
+          background: linear-gradient(135deg, #0d9488, #0a4f4a) !important; color: white !important;
+          font-weight: 700; box-shadow: 0 4px 12px rgba(13, 148, 136, 0.4);
         }
-        .react-datepicker__day--today {
-          background: #e0f2fe;
-          color: #111827;
-          font-weight: 600;
-        }
-        .react-datepicker__day--disabled {
-          color: #d1d5db;
-        }
-        .react-datepicker__navigation {
-          top: 1rem;
-        }
+        .react-datepicker__day--today { background: #fef3c7; color: #92400e; font-weight: 700; border: 2px solid #f59e0b; }
+        .react-datepicker__day--disabled { color: #cbd5e1; }
+        .react-datepicker__navigation { top: 1.25rem; }
+        
         @media (max-width: 640px) {
-          .react-datepicker__current-month {
-            font-size: 1rem;
-          }
-          .react-datepicker__day-name {
-            font-size: 0.8125rem !important;
-            width: 2.2rem !important;
-            line-height: 2.2rem !important;
-          }
-          .react-datepicker__day {
-            width: 2.2rem !important;
-            height: 2.2rem !important;
-            line-height: 2.2rem !important;
-            font-size: 0.875rem;
-          }
+          .react-datepicker__current-month { font-size: 1.125rem; }
+          .react-datepicker__day-name { font-size: 0.875rem !important; width: 2.2rem !important; line-height: 2.2rem !important; }
+          .react-datepicker__day { width: 2.2rem !important; height: 2.2rem !important; line-height: 2.2rem !important; font-size: 0.9375rem; }
+        }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.6s ease-out; }
+        .decorative-line {
+          width: 100px; height: 2px; background: linear-gradient(to right, transparent, #14b8a6, transparent); margin: 1.5rem auto;
         }
       `}} />
 
-      <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '3rem 1.5rem' }}>
-        <div style={{ 
-          width: '100%', 
-          maxWidth: '56rem', 
-          background: '#ffffff', 
-          borderRadius: '1rem', 
-          boxShadow: '0 1px 3px rgba(0,0,0,0.1), 0 10px 40px rgba(0,0,0,0.05)', 
-          padding: '3rem 2rem',
-          textAlign: 'center',
-          border: '1px solid #e5e7eb'
-        }}>
-          <img 
-            src="/melissa.jpg" 
-            alt="Melissa" 
-            style={{ 
-              width: '10rem', 
-              height: '10rem', 
-              borderRadius: '50%', 
-              objectFit: 'cover', 
-              margin: '0 auto 2rem', 
-              border: '3px solid #0d9488', 
-              boxShadow: '0 4px 12px rgba(13,148,136,0.15)'
-            }} 
-          />
+      <div className="pattern-overlay"></div>
 
-          <h1 style={{ 
-            fontSize: 'clamp(2rem, 6vw, 2.75rem)', 
-            fontWeight: '700', 
-            color: '#111827', 
-            letterSpacing: '-0.02em', 
-            margin: '0 0 0.5rem',
-            lineHeight: '1.2'
-          }}>
-            Balanced Hearts
+      <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '4rem 1.5rem', position: 'relative', zIndex: 1 }}>
+        <div className="fade-in" style={{ 
+          width: '100%', maxWidth: '62rem', background: 'linear-gradient(to bottom, #ffffff, #f0fdfa)', 
+          borderRadius: '1.5rem', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(20, 184, 166, 0.1)', 
+          padding: '4rem 3rem', textAlign: 'center', border: '3px solid #14b8a6', position: 'relative'
+        }}>
+          <div style={{ position: 'absolute', top: '1.5rem', left: '1.5rem', width: '40px', height: '40px', borderTop: '3px solid #14b8a6', borderLeft: '3px solid #14b8a6', borderRadius: '0.5rem 0 0 0' }}></div>
+          <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', width: '40px', height: '40px', borderTop: '3px solid #14b8a6', borderRight: '3px solid #14b8a6', borderRadius: '0 0.5rem 0 0' }}></div>
+          <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', width: '40px', height: '40px', borderBottom: '3px solid #14b8a6', borderLeft: '3px solid #14b8a6', borderRadius: '0 0 0 0.5rem' }}></div>
+          <div style={{ position: 'absolute', bottom: '1.5rem', right: '1.5rem', width: '40px', height: '40px', borderBottom: '3px solid #14b8a6', borderRight: '3px solid #14b8a6', borderRadius: '0 0 0.5rem 0' }}></div>
+
+          <div style={{ width: '12rem', height: '12rem', borderRadius: '50%', margin: '0 auto 2.5rem',
+            background: 'linear-gradient(135deg, #14b8a6, #0d9488)', padding: '6px',
+            boxShadow: '0 12px 40px rgba(13, 148, 136, 0.3), 0 0 0 8px rgba(20, 184, 166, 0.1)' }}>
+            <img src="/melissa.jpg" alt="Melissa" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+          </div>
+
+          <div style={{ fontSize: '2.5rem', color: '#14b8a6', marginBottom: '1rem' }}>✦</div>
+
+          <h1 className="luxury-title" style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', fontWeight: '700', color: '#0a4f4a', 
+            letterSpacing: '3px', margin: '0 0 1rem', lineHeight: '1.1', textShadow: '0 2px 8px rgba(13, 148, 136, 0.1)' }}>
+            BALANCED HEARTS
           </h1>
           
-          <h2 style={{ 
-            fontSize: 'clamp(1.25rem, 4vw, 1.5rem)', 
-            fontWeight: '500', 
-            color: '#0d9488', 
-            margin: '0 0 0.5rem',
-            letterSpacing: '-0.01em'
-          }}>
+          <div className="decorative-line"></div>
+          
+          <h2 className="luxury-title" style={{ fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', fontWeight: '500', 
+            color: '#14b8a6', letterSpacing: '2px', margin: '0 0 1rem', fontStyle: 'italic' }}>
             Holy Fire Reiki
           </h2>
 
-          <p style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)', color: '#6b7280', margin: '0 0 0.5rem', fontWeight: '500' }}>
+          <div className="decorative-line"></div>
+
+          <p style={{ fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', color: '#0d6b65', fontStyle: 'italic', margin: '0 0 0.75rem', fontWeight: '600' }}>
             with Melissa Lynn
           </p>
-          <p style={{ fontSize: 'clamp(1.125rem, 3.5vw, 1.25rem)', color: '#111827', fontWeight: '600', marginBottom: '2.5rem' }}>
-            $125 · 60-minute in-person session
+          <p style={{ fontSize: 'clamp(1.375rem, 4vw, 1.875rem)', color: '#0a4f4a', fontWeight: '700', marginBottom: '3rem',
+            padding: '1rem 2rem', background: 'linear-gradient(135deg, #ccfbf1, #f0fdfa)', borderRadius: '0.75rem',
+            display: 'inline-block', border: '2px solid #14b8a6', boxShadow: '0 4px 16px rgba(13, 148, 136, 0.15)' }}>
+            $125 · 60-minute session
           </p>
 
-          <div style={{
-            maxWidth: '48rem',
-            margin: '0 auto 3rem',
-            padding: '2rem',
-            background: '#f9fafb',
-            borderRadius: '0.75rem',
-            border: '1px solid #e5e7eb',
-            textAlign: 'left'
-          }}>
-            <p style={{ 
-              fontSize: 'clamp(0.9375rem, 3vw, 1.0625rem)', 
-              color: '#4b5563', 
-              lineHeight: '1.7', 
-              margin: 0,
-              fontWeight: '400'
-            }}>
+          <div style={{ maxWidth: '52rem', margin: '0 auto 4rem', padding: '2.5rem',
+            background: 'linear-gradient(135deg, #f0fdfa, #ccfbf1)', borderRadius: '1rem',
+            border: '2px solid #14b8a6', boxShadow: '0 8px 24px rgba(13, 148, 136, 0.15)', position: 'relative' }}>
+            <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)', 
+              background: 'linear-gradient(to bottom, #ffffff, #f0fdfa)', padding: '0 1rem', color: '#14b8a6', fontSize: '1.5rem' }}>✦</div>
+            <p style={{ fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', color: '#0a4f4a', lineHeight: '1.8', margin: 0, fontWeight: '500' }}>
               Sessions take place in the calming presence of Melissa's equine companions. Their grounded energy naturally deepens relaxation, supports emotional release and opens the heart to profound peace. After the Reiki session, the horses often share their quiet wisdom.
             </p>
           </div>
 
-          <div style={{ width: '4rem', height: '1px', background: '#0d9488', margin: '2.5rem auto' }} />
+          <div style={{ fontSize: '2.5rem', color: '#14b8a6', margin: '3rem 0 2rem' }}>✦ ✦ ✦</div>
 
-          <h2 style={{ 
-            fontSize: 'clamp(1.5rem, 5vw, 2rem)', 
-            color: '#111827', 
-            fontWeight: '600', 
-            marginBottom: '2rem',
-            letterSpacing: '-0.01em'
-          }}>
-            Schedule Your Session
+          <h2 className="luxury-title" style={{ fontSize: 'clamp(2rem, 6vw, 3rem)', color: '#0a4f4a', 
+            fontWeight: '600', marginBottom: '3rem', letterSpacing: '2px' }}>
+            SCHEDULE YOUR SESSION
           </h2>
 
-          <div style={{ 
-            maxWidth: '28rem', 
-            margin: '0 auto 3rem', 
-            background: '#ffffff', 
-            borderRadius: '0.75rem', 
-            padding: '1.25rem', 
-            boxShadow: '0 1px 3px rgba(0,0,0,0.1)', 
-            border: '1px solid #e5e7eb'
-          }}>
-            <DatePicker 
-              selected={selectedDate} 
-              onChange={setSelectedDate} 
-              minDate={new Date()} 
-              inline 
-              filterDate={date => date.getDay() !== 0}
-            />
+          <div style={{ maxWidth: '32rem', margin: '0 auto 4rem', background: 'transparent', borderRadius: '1rem', padding: '1.5rem' }}>
+            <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline filterDate={date => date.getDay() !== 0} />
           </div>
 
           {selectedDate && slots.length > 0 && (
             <>
-              <div style={{ width: '4rem', height: '1px', background: '#d1d5db', margin: '2rem auto' }} />
+              <div style={{ fontSize: '2rem', color: '#14b8a6', margin: '2rem 0 1.5rem' }}>✦ ✦ ✦</div>
               
-              <h3 style={{ 
-                fontSize: 'clamp(1.125rem, 4vw, 1.375rem)', 
-                color: '#111827', 
-                marginBottom: '1.5rem', 
-                fontWeight: '600'
-              }}>
-                Available times on {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
+              <h3 className="luxury-title" style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)', color: '#0a4f4a', 
+                marginBottom: '2.5rem', fontWeight: '600', letterSpacing: '1px' }}>
+                Available Times
               </h3>
+              <p style={{ fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', color: '#0d6b65', marginBottom: '2rem', fontWeight: '500' }}>
+                {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
+              </p>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0.75rem', marginBottom: '3rem', maxWidth: '48rem', margin: '0 auto 3rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1rem', marginBottom: '4rem', maxWidth: '56rem', margin: '0 auto 4rem' }}>
                 {slots.map(time => (
-                  <button 
-                    key={time} 
-                    onClick={() => setSelectedTime(time)}
+                  <button key={time} onClick={() => setSelectedTime(time)}
                     style={{
-                      padding: '1rem',
-                      borderRadius: '0.5rem',
-                      fontSize: 'clamp(0.9375rem, 3vw, 1rem)',
-                      fontWeight: '600',
-                      background: selectedTime === time ? '#0d9488' : '#ffffff',
-                      color: selectedTime === time ? 'white' : '#111827',
-                      border: selectedTime === time ? '2px solid #0d9488' : '2px solid #e5e7eb',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s',
-                      boxShadow: selectedTime === time ? '0 4px 12px rgba(13,148,136,0.2)' : '0 1px 3px rgba(0,0,0,0.1)',
-                      transform: selectedTime === time ? 'translateY(-1px)' : 'translateY(0)'
+                      padding: '1.5rem 1rem', borderRadius: '0.75rem', fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', fontWeight: '600',
+                      background: selectedTime === time ? 'linear-gradient(135deg, #0d9488, #0a4f4a)' : 'linear-gradient(to bottom, #ffffff, #f0fdfa)',
+                      color: selectedTime === time ? 'white' : '#0a4f4a',
+                      border: selectedTime === time ? '3px solid #14b8a6' : '2px solid #14b8a6', cursor: 'pointer', transition: 'all 0.3s',
+                      boxShadow: selectedTime === time ? '0 8px 24px rgba(13, 148, 136, 0.4)' : '0 4px 12px rgba(13, 148, 136, 0.15)',
+                      transform: selectedTime === time ? 'translateY(-4px)' : 'translateY(0)', letterSpacing: '0.5px',
+                      fontFamily: "'Cormorant Garamond', 'Georgia', serif"
                     }}
                     onMouseOver={e => {
                       if (selectedTime !== time) {
-                        e.target.style.borderColor = '#0d9488';
-                        e.target.style.background = '#f0fdfa';
+                        e.target.style.background = 'linear-gradient(135deg, #ccfbf1, #f0fdfa)';
+                        e.target.style.transform = 'translateY(-2px)';
+                        e.target.style.boxShadow = '0 6px 20px rgba(13, 148, 136, 0.25)';
                       }
                     }}
                     onMouseOut={e => {
                       if (selectedTime !== time) {
-                        e.target.style.borderColor = '#e5e7eb';
-                        e.target.style.background = '#ffffff';
+                        e.target.style.background = 'linear-gradient(to bottom, #ffffff, #f0fdfa)';
+                        e.target.style.transform = 'translateY(0)';
+                        e.target.style.boxShadow = '0 4px 12px rgba(13, 148, 136, 0.15)';
                       }
-                    }}
-                  >
+                    }}>
                     {time}
                   </button>
                 ))}
@@ -308,168 +230,104 @@ export default function App() {
 
               {selectedTime && (
                 <>
-                  <div style={{ width: '4rem', height: '1px', background: '#d1d5db', margin: '2.5rem auto' }} />
+                  <div style={{ fontSize: '2rem', color: '#14b8a6', margin: '3rem 0 2rem' }}>✦</div>
                   
-                  <form onSubmit={handleSubmit} style={{ maxWidth: '32rem', margin: '0 auto', textAlign: 'left' }}>
-                    <input 
-                      required 
-                      placeholder="Your Name" 
-                      value={formData.name} 
+                  <div style={{ maxWidth: '38rem', margin: '0 auto', textAlign: 'left' }}>
+                    <input required placeholder="Your Name" value={formData.name} 
                       onChange={e => setFormData({...formData, name: e.target.value})}
-                      style={{ 
-                        width: '100%', 
-                        padding: '0.875rem 1rem', 
-                        borderRadius: '0.5rem', 
-                        border: '1px solid #d1d5db', 
-                        background: '#ffffff', 
-                        color: '#111827', 
-                        marginBottom: '1rem', 
-                        fontSize: '1rem', 
-                        outline: 'none', 
-                        boxSizing: 'border-box',
-                        fontWeight: '400',
-                        transition: 'border-color 0.2s'
-                      }}
-                      onFocus={e => e.target.style.borderColor = '#0d9488'}
-                      onBlur={e => e.target.style.borderColor = '#d1d5db'}
+                      style={{ width: '100%', padding: '1.25rem 1.5rem', borderRadius: '0.75rem', border: '2px solid #14b8a6',
+                        background: 'linear-gradient(to bottom, #ffffff, #f0fdfa)', color: '#0a4f4a', marginBottom: '1.25rem',
+                        fontSize: '1.125rem', outline: 'none', boxSizing: 'border-box', fontWeight: '500',
+                        fontFamily: "'Cormorant Garamond', 'Georgia', serif", transition: 'all 0.3s',
+                        boxShadow: '0 2px 8px rgba(13, 148, 136, 0.1)' }}
+                      onFocus={e => { e.target.style.borderColor = '#0d9488'; e.target.style.boxShadow = '0 4px 16px rgba(13, 148, 136, 0.2)'; }}
+                      onBlur={e => { e.target.style.borderColor = '#14b8a6'; e.target.style.boxShadow = '0 2px 8px rgba(13, 148, 136, 0.1)'; }}
                     />
-                    <input 
-                      required 
-                      type="email" 
-                      placeholder="Email" 
-                      value={formData.email} 
+                    <input required type="email" placeholder="Email Address" value={formData.email} 
                       onChange={e => setFormData({...formData, email: e.target.value})}
-                      style={{ 
-                        width: '100%', 
-                        padding: '0.875rem 1rem', 
-                        borderRadius: '0.5rem', 
-                        border: '1px solid #d1d5db', 
-                        background: '#ffffff', 
-                        color: '#111827', 
-                        marginBottom: '1rem', 
-                        fontSize: '1rem', 
-                        outline: 'none', 
-                        boxSizing: 'border-box',
-                        fontWeight: '400',
-                        transition: 'border-color 0.2s'
-                      }}
-                      onFocus={e => e.target.style.borderColor = '#0d9488'}
-                      onBlur={e => e.target.style.borderColor = '#d1d5db'}
+                      style={{ width: '100%', padding: '1.25rem 1.5rem', borderRadius: '0.75rem', border: '2px solid #14b8a6',
+                        background: 'linear-gradient(to bottom, #ffffff, #f0fdfa)', color: '#0a4f4a', marginBottom: '1.25rem',
+                        fontSize: '1.125rem', outline: 'none', boxSizing: 'border-box', fontWeight: '500',
+                        fontFamily: "'Cormorant Garamond', 'Georgia', serif", transition: 'all 0.3s',
+                        boxShadow: '0 2px 8px rgba(13, 148, 136, 0.1)' }}
+                      onFocus={e => { e.target.style.borderColor = '#0d9488'; e.target.style.boxShadow = '0 4px 16px rgba(13, 148, 136, 0.2)'; }}
+                      onBlur={e => { e.target.style.borderColor = '#14b8a6'; e.target.style.boxShadow = '0 2px 8px rgba(13, 148, 136, 0.1)'; }}
                     />
-                    <input 
-                      placeholder="Phone (optional)" 
-                      value={formData.phone} 
+                    <input placeholder="Phone Number (optional)" value={formData.phone} 
                       onChange={e => setFormData({...formData, phone: e.target.value})}
-                      style={{ 
-                        width: '100%', 
-                        padding: '0.875rem 1rem', 
-                        borderRadius: '0.5rem', 
-                        border: '1px solid #d1d5db', 
-                        background: '#ffffff', 
-                        color: '#111827', 
-                        marginBottom: '1rem', 
-                        fontSize: '1rem', 
-                        outline: 'none', 
-                        boxSizing: 'border-box',
-                        fontWeight: '400',
-                        transition: 'border-color 0.2s'
-                      }}
-                      onFocus={e => e.target.style.borderColor = '#0d9488'}
-                      onBlur={e => e.target.style.borderColor = '#d1d5db'}
+                      style={{ width: '100%', padding: '1.25rem 1.5rem', borderRadius: '0.75rem', border: '2px solid #14b8a6',
+                        background: 'linear-gradient(to bottom, #ffffff, #f0fdfa)', color: '#0a4f4a', marginBottom: '1.25rem',
+                        fontSize: '1.125rem', outline: 'none', boxSizing: 'border-box', fontWeight: '500',
+                        fontFamily: "'Cormorant Garamond', 'Georgia', serif", transition: 'all 0.3s',
+                        boxShadow: '0 2px 8px rgba(13, 148, 136, 0.1)' }}
+                      onFocus={e => { e.target.style.borderColor = '#0d9488'; e.target.style.boxShadow = '0 4px 16px rgba(13, 148, 136, 0.2)'; }}
+                      onBlur={e => { e.target.style.borderColor = '#14b8a6'; e.target.style.boxShadow = '0 2px 8px rgba(13, 148, 136, 0.1)'; }}
                     />
-                    <textarea 
-                      placeholder="Notes or questions" 
-                      rows="4" 
-                      value={formData.notes} 
+                    <textarea placeholder="Any notes or questions for Melissa..." rows="5" value={formData.notes}
                       onChange={e => setFormData({...formData, notes: e.target.value})}
-                      style={{ 
-                        width: '100%', 
-                        padding: '0.875rem 1rem', 
-                        borderRadius: '0.5rem', 
-                        border: '1px solid #d1d5db', 
-                        background: '#ffffff', 
-                        color: '#111827', 
-                        marginBottom: '1.5rem', 
-                        fontSize: '1rem', 
-                        outline: 'none', 
-                        resize: 'vertical', 
-                        boxSizing: 'border-box',
-                        fontWeight: '400',
-                        fontFamily: 'inherit',
-                        transition: 'border-color 0.2s'
-                      }}
-                      onFocus={e => e.target.style.borderColor = '#0d9488'}
-                      onBlur={e => e.target.style.borderColor = '#d1d5db'}
+                      style={{ width: '100%', padding: '1.25rem 1.5rem', borderRadius: '0.75rem', border: '2px solid #14b8a6',
+                        background: 'linear-gradient(to bottom, #ffffff, #f0fdfa)', color: '#0a4f4a', marginBottom: '2rem',
+                        fontSize: '1.125rem', outline: 'none', resize: 'vertical', boxSizing: 'border-box', fontWeight: '500',
+                        fontFamily: "'Cormorant Garamond', 'Georgia', serif", transition: 'all 0.3s',
+                        boxShadow: '0 2px 8px rgba(13, 148, 136, 0.1)', lineHeight: '1.6' }}
+                      onFocus={e => { e.target.style.borderColor = '#0d9488'; e.target.style.boxShadow = '0 4px 16px rgba(13, 148, 136, 0.2)'; }}
+                      onBlur={e => { e.target.style.borderColor = '#14b8a6'; e.target.style.boxShadow = '0 2px 8px rgba(13, 148, 136, 0.1)'; }}
                     />
-                    <button 
-                      type="submit" 
+                    <button onClick={handleSubmit} className="luxury-title"
                       style={{
-                        width: '100%',
-                        padding: '1rem',
-                        background: '#0d9488',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '0.5rem',
-                        fontSize: '1.0625rem',
-                        fontWeight: '600',
-                        cursor: 'pointer',
-                        boxShadow: '0 4px 12px rgba(13,148,136,0.25)',
-                        transition: 'all 0.2s',
-                        boxSizing: 'border-box'
+                        width: '100%', padding: '1.75rem 2rem', background: 'linear-gradient(135deg, #0d9488, #0a4f4a)',
+                        color: 'white', border: '3px solid #14b8a6', borderRadius: '0.75rem', fontSize: '1.5rem',
+                        fontWeight: '600', cursor: 'pointer', boxShadow: '0 8px 24px rgba(13, 148, 136, 0.4)',
+                        transition: 'all 0.3s', boxSizing: 'border-box', letterSpacing: '2px'
                       }}
                       onMouseOver={e => {
-                        e.target.style.background = '#0f766e';
-                        e.target.style.transform = 'translateY(-1px)';
-                        e.target.style.boxShadow = '0 6px 16px rgba(13,148,136,0.3)';
+                        e.target.style.transform = 'translateY(-2px)';
+                        e.target.style.boxShadow = '0 12px 32px rgba(13, 148, 136, 0.5)';
+                        e.target.style.background = 'linear-gradient(135deg, #14b8a6, #0d9488)';
                       }}
                       onMouseOut={e => {
-                        e.target.style.background = '#0d9488';
                         e.target.style.transform = 'translateY(0)';
-                        e.target.style.boxShadow = '0 4px 12px rgba(13,148,136,0.25)';
-                      }}
-                    >
-                      Confirm Booking – $125
+                        e.target.style.boxShadow = '0 8px 24px rgba(13, 148, 136, 0.4)';
+                        e.target.style.background = 'linear-gradient(135deg, #0d9488, #0a4f4a)';
+                      }}>
+                      CONFIRM BOOKING — $125
                     </button>
-                  </form>
+                  </div>
                 </>
               )}
             </>
           )}
 
           {selectedDate && slots.length === 0 && (
-            <p style={{ fontSize: 'clamp(1rem, 3.5vw, 1.125rem)', color: '#6b7280', fontWeight: '500' }}>No available times on this date</p>
+            <p style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)', color: '#0d6b65', fontWeight: '600', fontStyle: 'italic' }}>
+              No available times on this date
+            </p>
           )}
 
           {message && (
-            <div style={{ 
-              marginTop: '3rem', 
-              padding: '1.5rem', 
-              background: '#ecfdf5', 
-              color: '#065f46', 
-              borderRadius: '0.75rem', 
-              fontWeight: '500', 
-              fontSize: 'clamp(0.9375rem, 3.5vw, 1.0625rem)', 
-              boxShadow: '0 1px 3px rgba(13,148,136,0.1)', 
-              border: '1px solid #a7f3d0' 
-            }}>
+            <div style={{ marginTop: '4rem', padding: '2rem 2.5rem', background: 'linear-gradient(135deg, #d1fae5, #ccfbf1)',
+              color: '#065f46', borderRadius: '1rem', fontWeight: '600', fontSize: 'clamp(1.125rem, 4vw, 1.375rem)',
+              boxShadow: '0 8px 24px rgba(13, 148, 136, 0.2)', border: '2px solid #14b8a6', fontStyle: 'italic', lineHeight: '1.6' }}>
               {message}
             </div>
           )}
         </div>
       </main>
 
-      <footer style={{
-        padding: '3rem 2rem',
-        textAlign: 'center',
-        background: '#111827',
-        borderTop: '1px solid #1f2937',
-        marginTop: '4rem'
-      }}>
-        <p style={{ margin: '0 0 1rem', fontSize: 'clamp(1.25rem, 4vw, 1.5rem)', fontWeight: '600', color: '#ffffff' }}>Contact Melissa</p>
-        <p style={{ margin: '0.5rem 0', fontSize: 'clamp(1rem, 3vw, 1.125rem)', color: '#d1d5db' }}>Text or call: <strong style={{ color: '#0d9488' }}>403-852-4324</strong></p>
-        <p style={{ margin: '0.5rem 0', fontSize: 'clamp(1rem, 3vw, 1.125rem)', color: '#d1d5db' }}>Email: <strong style={{ color: '#0d9488' }}>balancedheartsranch@yahoo.com</strong></p>
-        <div style={{ width: '4rem', height: '1px', background: '#374151', margin: '1.5rem auto' }} />
-        <p style={{ marginTop: '1rem', fontSize: 'clamp(0.9375rem, 2.5vw, 1rem)', color: '#9ca3af' }}>
+      <footer style={{ padding: '4rem 2rem', textAlign: 'center', background: 'linear-gradient(to bottom, #0a4f4a, #064e3b)',
+        borderTop: '3px solid #14b8a6', marginTop: '0', position: 'relative' }}>
+        <div style={{ fontSize: '2.5rem', color: '#14b8a6', marginBottom: '2rem' }}>✦</div>
+        <p className="luxury-title" style={{ margin: '0 0 1.5rem', fontSize: 'clamp(1.75rem, 4vw, 2.25rem)', 
+          fontWeight: '600', color: '#ffffff', letterSpacing: '2px' }}>CONTACT MELISSA</p>
+        <div className="decorative-line" style={{ background: 'linear-gradient(to right, transparent, #14b8a6, transparent)' }}></div>
+        <p style={{ margin: '1rem 0', fontSize: 'clamp(1.25rem, 3.5vw, 1.5rem)', color: '#ccfbf1', fontWeight: '500' }}>
+          Text or call: <strong style={{ color: '#14b8a6', fontWeight: '700' }}>403-852-4324</strong>
+        </p>
+        <p style={{ margin: '1rem 0', fontSize: 'clamp(1.25rem, 3.5vw, 1.5rem)', color: '#ccfbf1', fontWeight: '500' }}>
+          Email: <strong style={{ color: '#14b8a6', fontWeight: '700' }}>balancedheartsranch@yahoo.com</strong>
+        </p>
+        <div className="decorative-line" style={{ background: 'linear-gradient(to right, transparent, #14b8a6, transparent)', marginTop: '2rem' }}></div>
+        <p style={{ marginTop: '1.5rem', fontSize: 'clamp(1.125rem, 3vw, 1.375rem)', color: '#99f6e4', fontStyle: 'italic' }}>
           Okotoks, Alberta, Canada
         </p>
       </footer>
