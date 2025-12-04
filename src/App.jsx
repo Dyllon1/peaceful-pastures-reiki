@@ -171,8 +171,9 @@ export default function App() {
           <div style={{ maxWidth: '52rem', margin: '0 auto 4rem', padding: '2.5rem',
             background: 'linear-gradient(135deg, #f0fdfa, #ccfbf1)', borderRadius: '1rem',
             border: '2px solid #14b8a6', boxShadow: '0 8px 24px rgba(13, 148, 136, 0.15)', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)', 
-              background: 'linear-gradient(to bottom, #ffffff, #f0fdfa)', padding: '0 1rem', color: '#14b8a6', fontSize: '1.5rem' }}>✦</div>
+            <div style={{ position: 'absolute', top: '-15px', left: '50%', transform: 'translateX(-50%)', 
+              background: 'linear-gradient(to bottom, #ffffff, #f0fdfa)', padding: '0 1rem', color: '#14b8a6', fontSize: '1.5rem',
+              border: '2px solid #14b8a6', borderRadius: '50%', width: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✦</div>
             <p style={{ fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', color: '#0a4f4a', lineHeight: '1.8', margin: 0, fontWeight: '500' }}>
               Sessions take place in the calming presence of Melissa's equine companions. Their grounded energy naturally deepens relaxation, supports emotional release and opens the heart to profound peace. After the Reiki session, the horses often share their quiet wisdom.
             </p>
