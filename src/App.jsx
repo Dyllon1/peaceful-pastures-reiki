@@ -83,7 +83,7 @@ export default function App() {
         .floating-ornament {
           position: absolute;
           font-size: 3rem;
-          color: rgba(20, 184, 166, 0.15);
+          color: rgba(20, 184, 166, 0.4);
           animation: float 6s ease-in-out infinite;
           pointer-events: none;
         }
