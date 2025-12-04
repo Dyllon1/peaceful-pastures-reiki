@@ -8,16 +8,23 @@ export default function App() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', notes: '' });
   const [message, setMessage] = useState('');
   const [bookedSlots, setBookedSlots] = useState({});
+  const [storageLoaded, setStorageLoaded] = useState(false);
 
   useEffect(() => {
     const loadBookings = async () => {
       try {
         const result = await window.storage.get('bookedSlots');
         if (result && result.value) {
-          setBookedSlots(JSON.parse(result.value));
+          const parsed = JSON.parse(result.value);
+          console.log('Loaded bookings:', parsed);
+          setBookedSlots(parsed);
+        } else {
+          console.log('No existing bookings found');
         }
       } catch (e) {
-        console.log('No existing bookings found or error loading:', e);
+        console.log('Error or no bookings:', e);
+      } finally {
+        setStorageLoaded(true);
       }
     };
     loadBookings();
@@ -25,17 +32,21 @@ export default function App() {
 
   useEffect(() => {
     const saveBookings = async () => {
-      if (Object.keys(bookedSlots).length > 0) {
-        try {
-          await window.storage.set('bookedSlots', JSON.stringify(bookedSlots));
-          console.log('Bookings saved successfully:', bookedSlots);
-        } catch (e) {
-          console.error('Error saving bookings:', e);
-        }
+      if (!storageLoaded) return; // Don't save until we've loaded
+      
+      try {
+        const result = await window.storage.set('bookedSlots', JSON.stringify(bookedSlots));
+        console.log('Save result:', result);
+        console.log('Saved bookings:', bookedSlots);
+      } catch (e) {
+        console.error('Error saving bookings:', e);
       }
     };
-    saveBookings();
-  }, [bookedSlots]);
+    
+    if (storageLoaded) {
+      saveBookings();
+    }
+  }, [bookedSlots, storageLoaded]);
 
   const getSlots = (date) => {
     if (!date) return [];
