@@ -83,7 +83,7 @@ export default function App() {
         .floating-ornament {
           position: absolute;
           font-size: 3rem;
-          color: rgba(255, 255, 255, 0.15);
+          color: rgba(20, 184, 166, 0.15);
           animation: float 6s ease-in-out infinite;
           pointer-events: none;
         }
@@ -103,13 +103,16 @@ export default function App() {
         .ornament-3 { top: 60%; left: 8%; animation-delay: 4s; font-size: 2rem; }
         .ornament-4 { top: 70%; right: 12%; animation-delay: 1s; font-size: 3.5rem; }
         .ornament-5 { top: 40%; left: 5%; animation-delay: 3s; font-size: 2rem; }
-        
-        .corner-ornament {
-          position: absolute;
-          font-size: 1rem;
-          color: #14b8a6;
-          animation: floatCorner 3s ease-in-out infinite;
-        }
+        .ornament-6 { top: 10%; left: 50%; animation-delay: 1.5s; font-size: 2rem; }
+        .ornament-7 { top: 35%; right: 8%; animation-delay: 3.5s; font-size: 2.8rem; }
+        .ornament-8 { top: 80%; left: 15%; animation-delay: 2.5s; font-size: 2.2rem; }
+        .ornament-9 { top: 50%; right: 20%; animation-delay: 4.5s; font-size: 3rem; }
+        .ornament-10 { top: 5%; right: 30%; animation-delay: 0.8s; font-size: 1.8rem; }
+        .ornament-11 { top: 45%; left: 12%; animation-delay: 2.8s; font-size: 2.4rem; }
+        .ornament-12 { top: 85%; right: 25%; animation-delay: 3.8s; font-size: 2.6rem; }
+        .ornament-13 { top: 20%; left: 25%; animation-delay: 1.2s; font-size: 2.1rem; }
+        .ornament-14 { top: 75%; left: 40%; animation-delay: 4.2s; font-size: 2.9rem; }
+        .ornament-15 { top: 30%; right: 35%; animation-delay: 0.5s; font-size: 2.3rem; }
         
         .react-datepicker {
           font-family: 'Cormorant Garamond', 'Georgia', serif !important;
@@ -162,6 +165,16 @@ export default function App() {
       <div className="floating-ornament ornament-3">✦</div>
       <div className="floating-ornament ornament-4">✦</div>
       <div className="floating-ornament ornament-5">✦</div>
+      <div className="floating-ornament ornament-6">✦</div>
+      <div className="floating-ornament ornament-7">✦</div>
+      <div className="floating-ornament ornament-8">✦</div>
+      <div className="floating-ornament ornament-9">✦</div>
+      <div className="floating-ornament ornament-10">✦</div>
+      <div className="floating-ornament ornament-11">✦</div>
+      <div className="floating-ornament ornament-12">✦</div>
+      <div className="floating-ornament ornament-13">✦</div>
+      <div className="floating-ornament ornament-14">✦</div>
+      <div className="floating-ornament ornament-15">✦</div>
 
       <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1.5rem', position: 'relative', zIndex: 1 }}>
         <div className="fade-in" style={{ 
@@ -169,18 +182,10 @@ export default function App() {
           borderRadius: '1.5rem', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)', 
           padding: '3rem 3rem 4rem 3rem', textAlign: 'center', border: '3px solid #14b8a6', position: 'relative'
         }}>
-          <div style={{ position: 'absolute', top: '1.5rem', left: '1.5rem', width: '50px', height: '50px', borderTop: '3px solid #14b8a6', borderLeft: '3px solid #14b8a6', borderRadius: '0.5rem 0 0 0' }}>
-            <div className="corner-ornament" style={{ top: '-8px', left: '-8px', animationDelay: '0s' }}>✦</div>
-          </div>
-          <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', width: '50px', height: '50px', borderTop: '3px solid #14b8a6', borderRight: '3px solid #14b8a6', borderRadius: '0 0.5rem 0 0' }}>
-            <div className="corner-ornament" style={{ top: '-8px', right: '-8px', animationDelay: '0.5s' }}>✦</div>
-          </div>
-          <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', width: '50px', height: '50px', borderBottom: '3px solid #14b8a6', borderLeft: '3px solid #14b8a6', borderRadius: '0 0 0 0.5rem' }}>
-            <div className="corner-ornament" style={{ bottom: '-8px', left: '-8px', animationDelay: '1s' }}>✦</div>
-          </div>
-          <div style={{ position: 'absolute', bottom: '1.5rem', right: '1.5rem', width: '50px', height: '50px', borderBottom: '3px solid #14b8a6', borderRight: '3px solid #14b8a6', borderRadius: '0 0 0.5rem 0' }}>
-            <div className="corner-ornament" style={{ bottom: '-8px', right: '-8px', animationDelay: '1.5s' }}>✦</div>
-          </div>
+          <div style={{ position: 'absolute', top: '1.5rem', left: '1.5rem', width: '50px', height: '50px', borderTop: '3px solid #14b8a6', borderLeft: '3px solid #14b8a6', borderRadius: '0.5rem 0 0 0' }}></div>
+          <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', width: '50px', height: '50px', borderTop: '3px solid #14b8a6', borderRight: '3px solid #14b8a6', borderRadius: '0 0.5rem 0 0' }}></div>
+          <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', width: '50px', height: '50px', borderBottom: '3px solid #14b8a6', borderLeft: '3px solid #14b8a6', borderRadius: '0 0 0 0.5rem' }}></div>
+          <div style={{ position: 'absolute', bottom: '1.5rem', right: '1.5rem', width: '50px', height: '50px', borderBottom: '3px solid #14b8a6', borderRight: '3px solid #14b8a6', borderRadius: '0 0 0.5rem 0' }}></div>
 
           <div style={{ width: '12rem', height: '12rem', borderRadius: '50%', margin: '-4rem auto 2rem',
             background: 'linear-gradient(135deg, #14b8a6, #0d9488)', padding: '6px',
