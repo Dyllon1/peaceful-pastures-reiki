@@ -219,10 +219,14 @@ export default function App() {
             with Melissa Lynn
           </p>
           
-          <p style={{ fontSize: 'clamp(1.375rem, 4vw, 1.875rem)', color: '#0a4f4a', fontWeight: '700', margin: '0 0 3rem',
+          <p style={{ fontSize: 'clamp(1.375rem, 4vw, 1.875rem)', color: '#0a4f4a', fontWeight: '700', margin: '0 0 1rem',
             padding: '1rem 2rem', background: 'linear-gradient(135deg, #ccfbf1, #f0fdfa)', borderRadius: '0.75rem',
             border: '2px solid #14b8a6', boxShadow: '0 4px 16px rgba(13, 148, 136, 0.15)', display: 'inline-block' }}>
             $125 · 60-minute session
+          </p>
+          
+          <p style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)', color: '#0d6b65', fontStyle: 'italic', margin: '0 0 3rem', fontWeight: '500' }}>
+            Payment by e-transfer or cash at appointment
           </p>
 
           <div style={{ maxWidth: '52rem', margin: '0 auto 4rem', padding: '2.5rem',
