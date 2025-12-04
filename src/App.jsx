@@ -64,7 +64,7 @@ export default function App() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #14b8a6 0%, #2dd4bf 50%, #5eead4 100%)', margin: 0, padding: 0, fontFamily: "'Cormorant Garamond', 'Georgia', serif", position: 'relative', overflow: 'hidden' }}>
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #0d9488 0%, #14b8a6 25%, #2dd4bf 50%, #5eead4 75%, #99f6e4 100%)', margin: 0, padding: 0, fontFamily: "'Cormorant Garamond', 'Georgia', serif", position: 'relative', overflow: 'hidden' }}>
       <style dangerouslySetInnerHTML={{__html: `
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Cinzel:wght@400;500;600;700&display=swap');
         
