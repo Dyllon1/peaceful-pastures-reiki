@@ -64,7 +64,7 @@ export default function App() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #a7f3d0 0%, #5eead4 20%, #2dd4bf 40%, #14b8a6 60%, #0d9488 80%, #0f766e 100%)', margin: 0, padding: 0, fontFamily: "'Cormorant Garamond', 'Georgia', serif", position: 'relative', overflow: 'hidden' }}>
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #f0fdfa 0%, #e0f2fe 20%, #ccfbf1 40%, #99f6e4 60%, #5eead4 80%, #2dd4bf 100%)', margin: 0, padding: 0, fontFamily: "'Cormorant Garamond', 'Georgia', serif", position: 'relative', overflow: 'hidden' }}>
       <style dangerouslySetInnerHTML={{__html: `
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Cinzel:wght@400;500;600;700&display=swap');
         
@@ -83,7 +83,7 @@ export default function App() {
         .floating-ornament {
           position: absolute;
           font-size: 3rem;
-          color: rgba(20, 184, 166, 0.4);
+          color: rgba(13, 148, 136, 0.3);
           animation: float 6s ease-in-out infinite;
           pointer-events: none;
         }
