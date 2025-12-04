@@ -13,11 +13,11 @@ export default function App() {
     const loadBookings = async () => {
       try {
         const result = await window.storage.get('bookedSlots');
-        if (result) {
+        if (result && result.value) {
           setBookedSlots(JSON.parse(result.value));
         }
       } catch (e) {
-        console.error('Error loading bookings:', e);
+        console.log('No existing bookings found or error loading:', e);
       }
     };
     loadBookings();
@@ -25,15 +25,16 @@ export default function App() {
 
   useEffect(() => {
     const saveBookings = async () => {
-      try {
-        await window.storage.set('bookedSlots', JSON.stringify(bookedSlots));
-      } catch (e) {
-        console.error('Error saving bookings:', e);
+      if (Object.keys(bookedSlots).length > 0) {
+        try {
+          await window.storage.set('bookedSlots', JSON.stringify(bookedSlots));
+          console.log('Bookings saved successfully:', bookedSlots);
+        } catch (e) {
+          console.error('Error saving bookings:', e);
+        }
       }
     };
-    if (Object.keys(bookedSlots).length > 0) {
-      saveBookings();
-    }
+    saveBookings();
   }, [bookedSlots]);
 
   const getSlots = (date) => {
