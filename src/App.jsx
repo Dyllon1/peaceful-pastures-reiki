@@ -93,11 +93,23 @@ export default function App() {
           50% { transform: translateY(-20px) rotate(5deg); }
         }
         
+        @keyframes floatCorner {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
+        }
+        
         .ornament-1 { top: 15%; left: 10%; animation-delay: 0s; }
         .ornament-2 { top: 25%; right: 15%; animation-delay: 2s; font-size: 2.5rem; }
         .ornament-3 { top: 60%; left: 8%; animation-delay: 4s; font-size: 2rem; }
         .ornament-4 { top: 70%; right: 12%; animation-delay: 1s; font-size: 3.5rem; }
         .ornament-5 { top: 40%; left: 5%; animation-delay: 3s; font-size: 2rem; }
+        
+        .corner-ornament {
+          position: absolute;
+          font-size: 1rem;
+          color: #14b8a6;
+          animation: floatCorner 3s ease-in-out infinite;
+        }
         
         .react-datepicker {
           font-family: 'Cormorant Garamond', 'Georgia', serif !important;
@@ -158,16 +170,16 @@ export default function App() {
           padding: '3rem 3rem 4rem 3rem', textAlign: 'center', border: '3px solid #14b8a6', position: 'relative'
         }}>
           <div style={{ position: 'absolute', top: '1.5rem', left: '1.5rem', width: '50px', height: '50px', borderTop: '3px solid #14b8a6', borderLeft: '3px solid #14b8a6', borderRadius: '0.5rem 0 0 0' }}>
-            <div style={{ position: 'absolute', top: '-8px', left: '-8px', color: '#14b8a6', fontSize: '1rem' }}>✦</div>
+            <div className="corner-ornament" style={{ top: '-8px', left: '-8px', animationDelay: '0s' }}>✦</div>
           </div>
           <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', width: '50px', height: '50px', borderTop: '3px solid #14b8a6', borderRight: '3px solid #14b8a6', borderRadius: '0 0.5rem 0 0' }}>
-            <div style={{ position: 'absolute', top: '-8px', right: '-8px', color: '#14b8a6', fontSize: '1rem' }}>✦</div>
+            <div className="corner-ornament" style={{ top: '-8px', right: '-8px', animationDelay: '0.5s' }}>✦</div>
           </div>
           <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', width: '50px', height: '50px', borderBottom: '3px solid #14b8a6', borderLeft: '3px solid #14b8a6', borderRadius: '0 0 0 0.5rem' }}>
-            <div style={{ position: 'absolute', bottom: '-8px', left: '-8px', color: '#14b8a6', fontSize: '1rem' }}>✦</div>
+            <div className="corner-ornament" style={{ bottom: '-8px', left: '-8px', animationDelay: '1s' }}>✦</div>
           </div>
           <div style={{ position: 'absolute', bottom: '1.5rem', right: '1.5rem', width: '50px', height: '50px', borderBottom: '3px solid #14b8a6', borderRight: '3px solid #14b8a6', borderRadius: '0 0 0.5rem 0' }}>
-            <div style={{ position: 'absolute', bottom: '-8px', right: '-8px', color: '#14b8a6', fontSize: '1rem' }}>✦</div>
+            <div className="corner-ornament" style={{ bottom: '-8px', right: '-8px', animationDelay: '1.5s' }}>✦</div>
           </div>
 
           <div style={{ width: '12rem', height: '12rem', borderRadius: '50%', margin: '-4rem auto 2rem',
@@ -176,7 +188,7 @@ export default function App() {
             <img src="/melissa.jpg" alt="Melissa" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
           </div>
 
-          <div style={{ fontSize: '2rem', color: '#14b8a6', marginBottom: '1rem' }}>✦</div>
+          <div style={{ fontSize: '2rem', color: '#14b8a6', marginBottom: '1rem' }}>〰</div>
 
           <h1 className="luxury-title" style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', fontWeight: '700', color: '#0a4f4a', 
             letterSpacing: '3px', margin: '0 0 1rem', lineHeight: '1.1', textShadow: '0 2px 8px rgba(13, 148, 136, 0.1)' }}>
@@ -220,7 +232,7 @@ export default function App() {
             </p>
           </div>
 
-          <div style={{ fontSize: '2rem', color: '#14b8a6', margin: '3rem 0 2rem' }}>✦</div>
+          <div style={{ fontSize: '2rem', color: '#14b8a6', margin: '3rem 0 2rem' }}>〰</div>
 
           <h2 className="luxury-title" style={{ fontSize: 'clamp(2rem, 6vw, 3rem)', color: '#0a4f4a', 
             fontWeight: '600', marginBottom: '3rem', letterSpacing: '2px' }}>
@@ -233,7 +245,7 @@ export default function App() {
 
           {selectedDate && slots.length > 0 && (
             <>
-              <div style={{ fontSize: '2rem', color: '#14b8a6', margin: '2rem 0 1.5rem' }}>✦</div>
+              <div style={{ fontSize: '2rem', color: '#14b8a6', margin: '2rem 0 1.5rem' }}>〰</div>
               
               <h3 className="luxury-title" style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)', color: '#0a4f4a', 
                 marginBottom: '2.5rem', fontWeight: '600', letterSpacing: '1px' }}>
@@ -278,7 +290,7 @@ export default function App() {
 
               {selectedTime && (
                 <>
-                  <div style={{ fontSize: '2rem', color: '#14b8a6', margin: '3rem 0 2rem' }}>✦</div>
+                  <div style={{ fontSize: '2rem', color: '#14b8a6', margin: '3rem 0 2rem' }}>〰</div>
                   
                   <div style={{ maxWidth: '38rem', margin: '0 auto', textAlign: 'left' }}>
                     <input required placeholder="Your Name" value={formData.name} 
@@ -359,7 +371,7 @@ export default function App() {
               color: '#065f46', borderRadius: '1rem', fontWeight: '600', fontSize: 'clamp(1.125rem, 4vw, 1.375rem)',
               boxShadow: '0 8px 24px rgba(13, 148, 136, 0.2)', border: '2px solid #14b8a6', fontStyle: 'italic', lineHeight: '1.6',
               position: 'relative' }}>
-              <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)', color: '#14b8a6', fontSize: '1.5rem', background: 'white', padding: '0 0.5rem' }}>✦</div>
+              <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)', color: '#14b8a6', fontSize: '1.5rem', background: 'white', padding: '0 0.5rem' }}>〰</div>
               {message}
             </div>
           )}
@@ -368,7 +380,7 @@ export default function App() {
 
       <footer style={{ padding: '4rem 2rem', textAlign: 'center', background: 'linear-gradient(to bottom, #0a4f4a, #064e3b)',
         borderTop: '3px solid #14b8a6', marginTop: '0' }}>
-        <div style={{ fontSize: '2rem', color: '#14b8a6', marginBottom: '2rem' }}>✦</div>
+        <div style={{ fontSize: '2rem', color: '#14b8a6', marginBottom: '2rem' }}>〰</div>
         <p className="luxury-title" style={{ margin: '0 0 1.5rem', fontSize: 'clamp(1.75rem, 4vw, 2.25rem)', 
           fontWeight: '600', color: '#ffffff', letterSpacing: '2px' }}>CONTACT MELISSA</p>
         <div style={{ margin: '1.5rem auto', width: '100px', height: '2px', background: 'linear-gradient(to right, transparent, #14b8a6, transparent)' }}></div>
