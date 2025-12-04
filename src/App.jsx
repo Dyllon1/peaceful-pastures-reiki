@@ -176,7 +176,7 @@ export default function App() {
             <img src="/melissa.jpg" alt="Melissa" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
           </div>
 
-          <div style={{ fontSize: '2.5rem', color: '#14b8a6', marginBottom: '1rem', letterSpacing: '1rem' }}>✦ ✦ ✦</div>
+          <div style={{ fontSize: '2rem', color: '#14b8a6', marginBottom: '1rem' }}>✦</div>
 
           <h1 className="luxury-title" style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', fontWeight: '700', color: '#0a4f4a', 
             letterSpacing: '3px', margin: '0 0 1rem', lineHeight: '1.1', textShadow: '0 2px 8px rgba(13, 148, 136, 0.1)' }}>
@@ -184,9 +184,8 @@ export default function App() {
           </h1>
           
           <div style={{ margin: '1.5rem auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-            <div style={{ width: '60px', height: '2px', background: 'linear-gradient(to right, transparent, #14b8a6)' }}></div>
-            <div style={{ color: '#14b8a6', fontSize: '1.25rem' }}>✦</div>
-            <div style={{ width: '60px', height: '2px', background: 'linear-gradient(to left, transparent, #14b8a6)' }}></div>
+            <div style={{ width: '80px', height: '2px', background: 'linear-gradient(to right, transparent, #14b8a6)' }}></div>
+            <div style={{ width: '80px', height: '2px', background: 'linear-gradient(to left, transparent, #14b8a6)' }}></div>
           </div>
           
           <h2 className="luxury-title" style={{ fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', fontWeight: '500', 
@@ -195,24 +194,19 @@ export default function App() {
           </h2>
 
           <div style={{ margin: '1.5rem auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-            <div style={{ width: '60px', height: '2px', background: 'linear-gradient(to right, transparent, #14b8a6)' }}></div>
-            <div style={{ color: '#14b8a6', fontSize: '1.25rem' }}>✦</div>
-            <div style={{ width: '60px', height: '2px', background: 'linear-gradient(to left, transparent, #14b8a6)' }}></div>
+            <div style={{ width: '80px', height: '2px', background: 'linear-gradient(to right, transparent, #14b8a6)' }}></div>
+            <div style={{ width: '80px', height: '2px', background: 'linear-gradient(to left, transparent, #14b8a6)' }}></div>
           </div>
 
           <p style={{ fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', color: '#0d6b65', fontStyle: 'italic', margin: '0 0 0.75rem', fontWeight: '600' }}>
             with Melissa Lynn
           </p>
           
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
-            <div style={{ fontSize: '1.5rem', color: '#14b8a6' }}>✦</div>
-            <p style={{ fontSize: 'clamp(1.375rem, 4vw, 1.875rem)', color: '#0a4f4a', fontWeight: '700', margin: 0,
-              padding: '1rem 2rem', background: 'linear-gradient(135deg, #ccfbf1, #f0fdfa)', borderRadius: '0.75rem',
-              border: '2px solid #14b8a6', boxShadow: '0 4px 16px rgba(13, 148, 136, 0.15)' }}>
-              $125 · 60-minute session
-            </p>
-            <div style={{ fontSize: '1.5rem', color: '#14b8a6' }}>✦</div>
-          </div>
+          <p style={{ fontSize: 'clamp(1.375rem, 4vw, 1.875rem)', color: '#0a4f4a', fontWeight: '700', margin: '0 0 3rem',
+            padding: '1rem 2rem', background: 'linear-gradient(135deg, #ccfbf1, #f0fdfa)', borderRadius: '0.75rem',
+            border: '2px solid #14b8a6', boxShadow: '0 4px 16px rgba(13, 148, 136, 0.15)', display: 'inline-block' }}>
+            $125 · 60-minute session
+          </p>
 
           <div style={{ maxWidth: '52rem', margin: '0 auto 4rem', padding: '2.5rem',
             background: 'linear-gradient(135deg, #f0fdfa, #ccfbf1)', borderRadius: '1rem',
@@ -226,7 +220,7 @@ export default function App() {
             </p>
           </div>
 
-          <div style={{ fontSize: '2.5rem', color: '#14b8a6', margin: '3rem 0 2rem', letterSpacing: '0.5rem' }}>✦ ✦ ✦ ✦ ✦</div>
+          <div style={{ fontSize: '2rem', color: '#14b8a6', margin: '3rem 0 2rem' }}>✦</div>
 
           <h2 className="luxury-title" style={{ fontSize: 'clamp(2rem, 6vw, 3rem)', color: '#0a4f4a', 
             fontWeight: '600', marginBottom: '3rem', letterSpacing: '2px' }}>
@@ -239,7 +233,7 @@ export default function App() {
 
           {selectedDate && slots.length > 0 && (
             <>
-              <div style={{ fontSize: '2rem', color: '#14b8a6', margin: '2rem 0 1.5rem', letterSpacing: '0.5rem' }}>✦ ✦ ✦ ✦ ✦</div>
+              <div style={{ fontSize: '2rem', color: '#14b8a6', margin: '2rem 0 1.5rem' }}>✦</div>
               
               <h3 className="luxury-title" style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)', color: '#0a4f4a', 
                 marginBottom: '2.5rem', fontWeight: '600', letterSpacing: '1px' }}>
@@ -374,7 +368,7 @@ export default function App() {
 
       <footer style={{ padding: '4rem 2rem', textAlign: 'center', background: 'linear-gradient(to bottom, #0a4f4a, #064e3b)',
         borderTop: '3px solid #14b8a6', marginTop: '0' }}>
-        <div style={{ fontSize: '2.5rem', color: '#14b8a6', marginBottom: '2rem', letterSpacing: '0.5rem' }}>✦ ✦ ✦</div>
+        <div style={{ fontSize: '2rem', color: '#14b8a6', marginBottom: '2rem' }}>✦</div>
         <p className="luxury-title" style={{ margin: '0 0 1.5rem', fontSize: 'clamp(1.75rem, 4vw, 2.25rem)', 
           fontWeight: '600', color: '#ffffff', letterSpacing: '2px' }}>CONTACT MELISSA</p>
         <div style={{ margin: '1.5rem auto', width: '100px', height: '2px', background: 'linear-gradient(to right, transparent, #14b8a6, transparent)' }}></div>
