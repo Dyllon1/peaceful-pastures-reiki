@@ -74,10 +74,29 @@ export default function App() {
       return;
     }
     const key = selectedDate.toLocaleDateString();
-    setBookedSlots(prev => ({ ...prev, [key]: [...(prev[key] || []), selectedTime] }));
+    const newBookedSlots = { ...bookedSlots, [key]: [...(bookedSlots[key] || []), selectedTime] };
+    
+    console.log('Before booking:', bookedSlots);
+    console.log('New booked slots:', newBookedSlots);
+    
+    setBookedSlots(newBookedSlots);
     setMessage("Booking confirmed! Melissa will contact you shortly to arrange payment ($125/session). Namaste");
     setFormData({ name: '', email: '', phone: '', notes: '' });
     setSelectedTime('');
+    
+    // Force immediate save
+    setTimeout(async () => {
+      try {
+        const result = await window.storage.set('bookedSlots', JSON.stringify(newBookedSlots));
+        console.log('Immediate save result:', result);
+        
+        // Verify it was saved
+        const verify = await window.storage.get('bookedSlots');
+        console.log('Verification read:', verify);
+      } catch (e) {
+        console.error('Error in immediate save:', e);
+      }
+    }, 100);
   };
 
   return (
@@ -204,7 +223,7 @@ export default function App() {
           <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', width: '50px', height: '50px', borderBottom: '3px solid #14b8a6', borderLeft: '3px solid #14b8a6', borderRadius: '0 0 0 0.5rem' }}></div>
           <div style={{ position: 'absolute', bottom: '1.5rem', right: '1.5rem', width: '50px', height: '50px', borderBottom: '3px solid #14b8a6', borderRight: '3px solid #14b8a6', borderRadius: '0 0 0.5rem 0' }}></div>
 
-          <div style={{ width: '10rem', height: '10rem', borderRadius: '50%', margin: '-4rem auto 2rem',
+          <div style={{ width: '10rem', height: '10rem', borderRadius: '50%', margin: '0 auto 2rem',
             background: 'linear-gradient(135deg, #14b8a6, #0d9488)', padding: '6px',
             boxShadow: '0 12px 40px rgba(13, 148, 136, 0.3), 0 0 0 8px rgba(20, 184, 166, 0.1), 0 0 0 12px rgba(255, 255, 255, 0.8)' }}>
             <img src="/melissa.jpg" alt="Melissa" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
