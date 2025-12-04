@@ -58,10 +58,15 @@ export default function App() {
       : ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM'];
     
     const booked = bookedSlots[key] || [];
-    return all.filter(t => !booked.includes(t));
+    
+    return all.map(time => ({
+      time,
+      isBooked: booked.includes(time)
+    }));
   };
 
   const slots = selectedDate ? getSlots(selectedDate) : [];
+  const availableSlots = slots.filter(slot => !slot.isBooked);
 
   const handleSubmit = () => {
     if (!formData.name || !formData.email) {
@@ -277,39 +282,53 @@ export default function App() {
               </p>
 
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1rem', marginBottom: '4rem', maxWidth: '56rem', margin: '0 auto 4rem' }}>
-                {slots.map(time => (
-                  <button key={time} onClick={() => setSelectedTime(time)}
+                {slots.map(slot => (
+                  <button 
+                    key={slot.time} 
+                    onClick={() => !slot.isBooked && setSelectedTime(slot.time)}
+                    disabled={slot.isBooked}
                     style={{
                       padding: '1.5rem 1rem', borderRadius: '0.75rem', fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', fontWeight: '600',
-                      background: selectedTime === time ? 'linear-gradient(135deg, #0d9488, #0a4f4a)' : 'linear-gradient(to bottom, #ffffff, #f0fdfa)',
-                      color: selectedTime === time ? 'white' : '#0a4f4a',
-                      border: selectedTime === time ? '3px solid #14b8a6' : '2px solid #14b8a6', cursor: 'pointer', transition: 'all 0.3s',
-                      boxShadow: selectedTime === time ? '0 8px 24px rgba(13, 148, 136, 0.4)' : '0 4px 12px rgba(13, 148, 136, 0.15)',
-                      transform: selectedTime === time ? 'translateY(-4px)' : 'translateY(0)', letterSpacing: '0.5px',
+                      background: slot.isBooked 
+                        ? 'linear-gradient(to bottom, #f3f4f6, #e5e7eb)' 
+                        : (selectedTime === slot.time ? 'linear-gradient(135deg, #0d9488, #0a4f4a)' : 'linear-gradient(to bottom, #ffffff, #f0fdfa)'),
+                      color: slot.isBooked 
+                        ? '#9ca3af' 
+                        : (selectedTime === slot.time ? 'white' : '#0a4f4a'),
+                      border: slot.isBooked 
+                        ? '2px solid #d1d5db' 
+                        : (selectedTime === slot.time ? '3px solid #14b8a6' : '2px solid #14b8a6'),
+                      cursor: slot.isBooked ? 'not-allowed' : 'pointer',
+                      transition: 'all 0.3s',
+                      boxShadow: selectedTime === slot.time ? '0 8px 24px rgba(13, 148, 136, 0.4)' : '0 4px 12px rgba(13, 148, 136, 0.15)',
+                      transform: selectedTime === slot.time ? 'translateY(-4px)' : 'translateY(0)',
+                      letterSpacing: '0.5px',
                       fontFamily: "'Cormorant Garamond', 'Georgia', serif",
-                      position: 'relative'
+                      position: 'relative',
+                      textDecoration: slot.isBooked ? 'line-through' : 'none',
+                      opacity: slot.isBooked ? 0.6 : 1
                     }}
                     onMouseOver={e => {
-                      if (selectedTime !== time) {
+                      if (!slot.isBooked && selectedTime !== slot.time) {
                         e.target.style.background = 'linear-gradient(135deg, #ccfbf1, #f0fdfa)';
                         e.target.style.transform = 'translateY(-2px)';
                         e.target.style.boxShadow = '0 6px 20px rgba(13, 148, 136, 0.25)';
                       }
                     }}
                     onMouseOut={e => {
-                      if (selectedTime !== time) {
+                      if (!slot.isBooked && selectedTime !== slot.time) {
                         e.target.style.background = 'linear-gradient(to bottom, #ffffff, #f0fdfa)';
                         e.target.style.transform = 'translateY(0)';
                         e.target.style.boxShadow = '0 4px 12px rgba(13, 148, 136, 0.15)';
                       }
                     }}>
-                    {selectedTime === time && <span style={{ position: 'absolute', top: '4px', right: '8px', fontSize: '0.75rem' }}>✦</span>}
-                    {time}
+                    {selectedTime === slot.time && !slot.isBooked && <span style={{ position: 'absolute', top: '4px', right: '8px', fontSize: '0.75rem' }}>✦</span>}
+                    {slot.time}
                   </button>
                 ))}
               </div>
 
-              {selectedTime && (
+              {selectedTime && availableSlots.some(slot => slot.time === selectedTime) && (
                 <>
                   <div style={{ fontSize: '2rem', color: '#14b8a6', margin: '3rem 0 2rem' }}>〰</div>
                   
