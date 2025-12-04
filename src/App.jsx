@@ -126,11 +126,11 @@ export default function App() {
 
       <div className="pattern-overlay"></div>
 
-      <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '4rem 1.5rem', position: 'relative', zIndex: 1 }}>
+      <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1.5rem', position: 'relative', zIndex: 1 }}>
         <div className="fade-in" style={{ 
           width: '100%', maxWidth: '62rem', background: 'linear-gradient(to bottom, #ffffff, #f0fdfa)', 
           borderRadius: '1.5rem', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(20, 184, 166, 0.1)', 
-          padding: '4rem 3rem', textAlign: 'center', border: '3px solid #14b8a6', position: 'relative'
+          padding: '3rem 3rem 4rem 3rem', textAlign: 'center', border: '3px solid #14b8a6', position: 'relative'
         }}>
           <div style={{ position: 'absolute', top: '1.5rem', left: '1.5rem', width: '40px', height: '40px', borderTop: '3px solid #14b8a6', borderLeft: '3px solid #14b8a6', borderRadius: '0.5rem 0 0 0' }}></div>
           <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', width: '40px', height: '40px', borderTop: '3px solid #14b8a6', borderRight: '3px solid #14b8a6', borderRadius: '0 0.5rem 0 0' }}></div>
