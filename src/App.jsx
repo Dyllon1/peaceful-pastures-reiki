@@ -221,8 +221,6 @@ export default function App() {
               background: 'linear-gradient(to bottom, #ffffff, #f0fdfa)', padding: '0 1rem', color: '#14b8a6', fontSize: '1.5rem',
               border: '2px solid #14b8a6', borderRadius: '50%', width: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✦</div>
             
-            <div style={{ fontSize: '3rem', marginBottom: '1rem', opacity: 0.7 }}>🐴</div>
-            
             <p style={{ fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', color: '#0a4f4a', lineHeight: '1.8', margin: 0, fontWeight: '500' }}>
               Sessions take place in the calming presence of Melissa's equine companions. Their grounded energy naturally deepens relaxation, supports emotional release and opens the heart to profound peace. After the Reiki session, the horses often share their quiet wisdom.
             </p>
@@ -388,7 +386,7 @@ export default function App() {
         </p>
         <div style={{ margin: '2rem auto 1.5rem', width: '100px', height: '2px', background: 'linear-gradient(to right, transparent, #14b8a6, transparent)' }}></div>
         <p style={{ marginTop: '1.5rem', fontSize: 'clamp(1.125rem, 3vw, 1.375rem)', color: '#99f6e4', fontStyle: 'italic' }}>
-          🐴 Okotoks, Alberta, Canada 🐴
+          Okotoks, Alberta, Canada
         </p>
       </footer>
     </div>
