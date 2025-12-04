@@ -170,7 +170,7 @@ export default function App() {
             <div style={{ position: 'absolute', bottom: '-8px', right: '-8px', color: '#14b8a6', fontSize: '1rem' }}>✦</div>
           </div>
 
-          <div style={{ width: '12rem', height: '12rem', borderRadius: '50%', margin: '-6rem auto 2rem',
+          <div style={{ width: '12rem', height: '12rem', borderRadius: '50%', margin: '-4rem auto 2rem',
             background: 'linear-gradient(135deg, #14b8a6, #0d9488)', padding: '6px',
             boxShadow: '0 12px 40px rgba(13, 148, 136, 0.3), 0 0 0 8px rgba(20, 184, 166, 0.1), 0 0 0 12px rgba(255, 255, 255, 0.8)' }}>
             <img src="/melissa.jpg" alt="Melissa" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
