@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 export default function App() {
+  const [currentScreen, setCurrentScreen] = useState('splash');
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState('');
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', notes: '' });
@@ -10,19 +11,24 @@ export default function App() {
   const [bookedSlots, setBookedSlots] = useState({});
   const [storageLoaded, setStorageLoaded] = useState(false);
 
+  // Auto-transition from splash to main
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCurrentScreen('main');
+    }, 3500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Load bookings from storage
   useEffect(() => {
     const loadBookings = async () => {
       try {
         const result = await window.storage.get('bookedSlots');
         if (result && result.value) {
-          const parsed = JSON.parse(result.value);
-          console.log('Loaded bookings:', parsed);
-          setBookedSlots(parsed);
-        } else {
-          console.log('No existing bookings found');
+          setBookedSlots(JSON.parse(result.value));
         }
       } catch (e) {
-        console.log('Error or no bookings:', e);
+        console.log('Storage not available or error:', e);
       } finally {
         setStorageLoaded(true);
       }
@@ -30,430 +36,160 @@ export default function App() {
     loadBookings();
   }, []);
 
+  // Save bookings to storage
   useEffect(() => {
     const saveBookings = async () => {
-      if (!storageLoaded) return; // Don't save until we've loaded
-      
+      if (!storageLoaded) return;
       try {
-        const result = await window.storage.set('bookedSlots', JSON.stringify(bookedSlots));
-        console.log('Save result:', result);
-        console.log('Saved bookings:', bookedSlots);
+        await window.storage.set('bookedSlots', JSON.stringify(bookedSlots));
       } catch (e) {
-        console.error('Error saving bookings:', e);
+        console.error('Error saving:', e);
       }
     };
-    
-    if (storageLoaded) {
-      saveBookings();
-    }
+    if (storageLoaded) saveBookings();
   }, [bookedSlots, storageLoaded]);
 
   const getSlots = (date) => {
     if (!date) return [];
     const day = date.getDay();
     const key = date.toLocaleDateString();
-    
-    const all = day === 6 
-      ? ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM']
-      : ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM'];
-    
+    const all = day === 6 ? ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM'] : ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM'];
     const booked = bookedSlots[key] || [];
-    
-    return all.map(time => ({
-      time,
-      isBooked: booked.includes(time)
-    }));
+    return all.map(time => ({ time, isBooked: booked.includes(time) }));
   };
 
   const slots = selectedDate ? getSlots(selectedDate) : [];
   const availableSlots = slots.filter(slot => !slot.isBooked);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!formData.name || !formData.email) {
       alert('Please fill in your name and email');
       return;
     }
     const key = selectedDate.toLocaleDateString();
     const newBookedSlots = { ...bookedSlots, [key]: [...(bookedSlots[key] || []), selectedTime] };
-    
-    console.log('Before booking:', bookedSlots);
-    console.log('New booked slots:', newBookedSlots);
-    
     setBookedSlots(newBookedSlots);
-    setMessage("Booking confirmed! Melissa will contact you shortly to arrange payment ($125/session). Namaste");
+    setMessage("Booking confirmed! Melissa will contact you shortly. Namaste 🙏");
     setFormData({ name: '', email: '', phone: '', notes: '' });
     setSelectedTime('');
-    
-    // Force immediate save
     setTimeout(async () => {
-      try {
-        const result = await window.storage.set('bookedSlots', JSON.stringify(newBookedSlots));
-        console.log('Immediate save result:', result);
-        
-        // Verify it was saved
-        const verify = await window.storage.get('bookedSlots');
-        console.log('Verification read:', verify);
-      } catch (e) {
-        console.error('Error in immediate save:', e);
-      }
+      try { await window.storage.set('bookedSlots', JSON.stringify(newBookedSlots)); } catch (e) {}
     }, 100);
   };
 
-  return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #f0fdfa 0%, #e0f2fe 20%, #ccfbf1 40%, #99f6e4 60%, #5eead4 80%, #2dd4bf 100%)', margin: 0, padding: 0, fontFamily: "'Cormorant Garamond', 'Georgia', serif", position: 'relative', overflow: 'hidden' }}>
-      <style dangerouslySetInnerHTML={{__html: `
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Cinzel:wght@400;500;600;700&display=swap');
-        
-        body { font-family: 'Cormorant Garamond', 'Georgia', serif; }
-        .luxury-title { font-family: 'Cinzel', 'Georgia', serif; }
-        
-        .pattern-overlay {
-          position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-          background-image: 
-            radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-            radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-            radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 40%);
-          pointer-events: none;
-        }
-        
-        .floating-ornament {
-          position: absolute;
-          font-size: 3rem;
-          color: rgba(13, 148, 136, 0.3);
-          animation: float 6s ease-in-out infinite;
-          pointer-events: none;
-        }
-        
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(5deg); }
-        }
-        
-        @keyframes floatCorner {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-8px); }
-        }
-        
-        .ornament-1 { top: 15%; left: 10%; animation-delay: 0s; }
-        .ornament-2 { top: 25%; right: 15%; animation-delay: 2s; font-size: 2.5rem; }
-        .ornament-3 { top: 60%; left: 8%; animation-delay: 4s; font-size: 2rem; }
-        .ornament-4 { top: 70%; right: 12%; animation-delay: 1s; font-size: 3.5rem; }
-        .ornament-5 { top: 40%; left: 5%; animation-delay: 3s; font-size: 2rem; }
-        .ornament-6 { top: 10%; left: 50%; animation-delay: 1.5s; font-size: 2rem; }
-        .ornament-7 { top: 35%; right: 8%; animation-delay: 3.5s; font-size: 2.8rem; }
-        .ornament-8 { top: 80%; left: 15%; animation-delay: 2.5s; font-size: 2.2rem; }
-        .ornament-9 { top: 50%; right: 20%; animation-delay: 4.5s; font-size: 3rem; }
-        .ornament-10 { top: 5%; right: 30%; animation-delay: 0.8s; font-size: 1.8rem; }
-        .ornament-11 { top: 45%; left: 12%; animation-delay: 2.8s; font-size: 2.4rem; }
-        .ornament-12 { top: 85%; right: 25%; animation-delay: 3.8s; font-size: 2.6rem; }
-        .ornament-13 { top: 20%; left: 25%; animation-delay: 1.2s; font-size: 2.1rem; }
-        .ornament-14 { top: 75%; left: 40%; animation-delay: 4.2s; font-size: 2.9rem; }
-        .ornament-15 { top: 30%; right: 35%; animation-delay: 0.5s; font-size: 2.3rem; }
-        
-        .react-datepicker {
-          font-family: 'Cormorant Garamond', 'Georgia', serif !important;
-          width: 100% !important; border: 2px solid #14b8a6 !important;
-          background: linear-gradient(to bottom, #ffffff, #f0fdfa);
-          box-shadow: 0 8px 32px rgba(13, 148, 136, 0.2); border-radius: 0.75rem !important;
-          overflow: hidden;
-        }
-        .react-datepicker__header {
-          background: linear-gradient(to bottom, #ffffff, #f0fdfa);
-          border-bottom: 2px solid #14b8a6 !important; padding: 1.25rem 0.75rem !important; 
-          border-radius: 0 !important;
-        }
-        .react-datepicker__current-month { color: #0a4f4a; font-size: 1.375rem; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 0.75rem !important; }
-        .react-datepicker__day-names { display: flex !important; justify-content: space-around !important; margin-top: 0 !important; padding: 0 0.5rem !important; }
-        .react-datepicker__day-name { color: #0d6b65 !important; font-weight: 700 !important; font-size: 1rem !important;
-          width: 2.5rem !important; line-height: 2.5rem !important; margin: 0.15rem !important; text-align: center !important; }
-        .react-datepicker__month { margin: 1rem 0.75rem 1rem 0.75rem !important; }
-        .react-datepicker__week { display: flex !important; justify-content: space-around !important; }
-        .react-datepicker__day {
-          width: 2.5rem !important; height: 2.5rem !important; line-height: 2.5rem !important; margin: 0.15rem !important;
-          border-radius: 0.5rem; font-size: 1.0625rem; color: #0a4f4a; font-weight: 600; transition: all 0.2s;
-        }
-        .react-datepicker__day:hover { background: linear-gradient(135deg, #5eead4, #14b8a6); color: white; transform: scale(1.05); }
-        .react-datepicker__day--selected {
-          background: linear-gradient(135deg, #0d9488, #0a4f4a) !important; color: white !important;
-          font-weight: 700; box-shadow: 0 4px 12px rgba(13, 148, 136, 0.4);
-        }
-        .react-datepicker__day--today { background: #fef3c7; color: #92400e; font-weight: 700; border: 2px solid #f59e0b; }
-        .react-datepicker__day--disabled { color: #cbd5e1; }
-        .react-datepicker__navigation { top: 1.25rem; }
-        
-        @media (max-width: 640px) {
-          .react-datepicker__current-month { font-size: 1.125rem; }
-          .react-datepicker__day-name { font-size: 0.875rem !important; width: 2.2rem !important; line-height: 2.2rem !important; margin: 0.1rem !important; }
-          .react-datepicker__day { width: 2.2rem !important; height: 2.2rem !important; line-height: 2.2rem !important; font-size: 0.9375rem; margin: 0.1rem !important; }
-          .react-datepicker__month { margin: 0.75rem 0.5rem !important; }
-          .react-datepicker__header { padding: 1rem 0.5rem !important; }
-          .floating-ornament { display: none; }
-        }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-in { animation: fadeIn 0.6s ease-out; }
-      `}} />
+  return (<>
+    <style>{`@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,sans-serif;overflow-x:hidden;background:#0A0E1A}
+.splash-screen{position:fixed;top:0;left:0;width:100%;height:100vh;background:linear-gradient(180deg,#0A0E1A,#0D3B4A);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;animation:fadeOut .5s ease 3s forwards}
+@keyframes fadeOut{to{opacity:0;pointer-events:none}}
+.logo-container{width:280px;height:380px;animation:logoFadeIn 1.5s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes logoFadeIn{0%{opacity:0;transform:scale(.9) translateY(20px);filter:blur(10px)}100%{opacity:1;transform:scale(1) translateY(0);filter:blur(0)}}
+.logo-image{width:100%;height:100%;filter:drop-shadow(0 10px 40px rgba(255,74,28,.4))}
+.brand-name{font-family:Cinzel,serif;font-size:32px;font-weight:700;color:#FF4A1C;text-align:center;margin-top:24px;letter-spacing:.1em;text-shadow:0 0 30px rgba(255,74,28,.5);animation:textGlow 2s ease-in-out infinite}
+@keyframes textGlow{0%,100%{text-shadow:0 0 30px rgba(255,74,28,.5)}50%{text-shadow:0 0 50px rgba(255,74,28,.8)}}
+.tagline{font-size:15px;color:#9AA5B1;text-align:center;margin-top:12px;letter-spacing:.15em;text-transform:uppercase;font-weight:500;opacity:0;animation:fadeInUp 1s ease-out .5s forwards}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.main-content{min-height:100vh;background:linear-gradient(135deg,#0A0E1A 0%,#0E1D34 50%,#0D3B4A 100%);position:relative;padding:2rem 1rem}
+.pattern-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(circle at 50% 50%,rgba(255,74,28,.05) 0%,transparent 50%);pointer-events:none}
+.react-datepicker{font-family:Inter,sans-serif!important;border:1px solid rgba(255,107,61,.2)!important;background:#1A2235!important;box-shadow:0 8px 32px rgba(255,74,28,.2)!important;border-radius:14px!important}
+.react-datepicker__header{background:#222B3F!important;border-bottom:1px solid rgba(255,255,255,.05)!important;padding:1rem!important;border-radius:14px 14px 0 0!important}
+.react-datepicker__current-month{color:#F8FAFB!important;font-size:1.125rem!important;font-weight:600!important}
+.react-datepicker__day-name{color:#9AA5B1!important;font-weight:600!important}
+.react-datepicker__day{color:#E5E9ED!important;font-weight:500!important;border-radius:8px!important;transition:all .2s!important}
+.react-datepicker__day:hover{background:rgba(255,74,28,.2)!important;color:#FF6B3D!important}
+.react-datepicker__day--selected{background:linear-gradient(135deg,#FF4A1C,#FF6B3D)!important;color:white!important;box-shadow:0 4px 12px rgba(255,74,28,.4)!important}
+.react-datepicker__day--today{background:rgba(251,191,36,.2)!important;color:#FCD34D!important;border:1px solid #F59E0B!important}
+.react-datepicker__day--disabled{color:#52606D!important;opacity:.4!important}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeIn .8s ease-out}
+@media(max-width:640px){.logo-container{width:220px;height:300px}.brand-name{font-size:24px}}`}</style>
 
-      <div className="pattern-overlay"></div>
-      
-      <div className="floating-ornament ornament-1">✦</div>
-      <div className="floating-ornament ornament-2">✦</div>
-      <div className="floating-ornament ornament-3">✦</div>
-      <div className="floating-ornament ornament-4">✦</div>
-      <div className="floating-ornament ornament-5">✦</div>
-      <div className="floating-ornament ornament-6">✦</div>
-      <div className="floating-ornament ornament-7">✦</div>
-      <div className="floating-ornament ornament-8">✦</div>
-      <div className="floating-ornament ornament-9">✦</div>
-      <div className="floating-ornament ornament-10">✦</div>
-      <div className="floating-ornament ornament-11">✦</div>
-      <div className="floating-ornament ornament-12">✦</div>
-      <div className="floating-ornament ornament-13">✦</div>
-      <div className="floating-ornament ornament-14">✦</div>
-      <div className="floating-ornament ornament-15">✦</div>
+    {currentScreen==='splash'&&<div className="splash-screen"><div className="logo-container">
+      <svg className="logo-image" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M150 80C130 70,120 90,120 110L120 180C120 200,130 220,150 230C170 220,180 200,180 180L180 110C180 90,170 70,150 80Z" fill="#1A2235"/>
+        <ellipse cx="150" cy="95" rx="8" ry="12" fill="#FF4A1C"/>
+        <path d="M150 60Q155 40,160 50T150 60" fill="#FF4A1C" opacity=".9"/>
+        <path d="M145 55Q140 35,150 45T145 55" fill="#FF6B3D" opacity=".7"/>
+        <path d="M155 58Q160 38,165 48T155 58" fill="#FF8A5C" opacity=".6"/>
+        <path d="M100 150Q100 120,130 120Q150 120,150 140Q150 120,170 120Q200 120,200 150Q200 190,150 220Q100 190,100 150Z" stroke="#FF4A1C" strokeWidth="3" fill="none" opacity=".8">
+          <animate attributeName="stroke-width" values="3;4;3" dur="2s" repeatCount="indefinite"/></path>
+        <path d="M90 260Q85 270,90 280L100 290Q105 295,110 290" stroke="#FF6B3D" strokeWidth="4" fill="none" strokeLinecap="round"/>
+        <path d="M210 260Q215 270,210 280L200 290Q195 295,190 290" stroke="#FF6B3D" strokeWidth="4" fill="none" strokeLinecap="round"/>
+        <circle cx="130" cy="200" r="3" fill="#FF8A5C" opacity=".4"><animate attributeName="cy" values="200;180;200" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".4;.8;.4" dur="3s" repeatCount="indefinite"/></circle>
+        <circle cx="170" cy="210" r="3" fill="#FF8A5C" opacity=".4"><animate attributeName="cy" values="210;190;210" dur="3.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".4;.8;.4" dur="3.5s" repeatCount="indefinite"/></circle>
+      </svg></div>
+      <div className="brand-name">SACRED FIRE REIKI</div>
+      <div className="tagline">Where Healing Ignites</div></div>}
 
-      <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1.5rem', position: 'relative', zIndex: 1 }}>
-        <div className="fade-in" style={{ 
-          width: '100%', maxWidth: '62rem', background: 'linear-gradient(to bottom, #ffffff, #f0fdfa)', 
-          borderRadius: '1.5rem', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)', 
-          padding: '3rem 3rem 4rem 3rem', textAlign: 'center', border: '3px solid #14b8a6', position: 'relative'
-        }}>
-          <div style={{ position: 'absolute', top: '1.5rem', left: '1.5rem', width: '50px', height: '50px', borderTop: '3px solid #14b8a6', borderLeft: '3px solid #14b8a6', borderRadius: '0.5rem 0 0 0' }}></div>
-          <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', width: '50px', height: '50px', borderTop: '3px solid #14b8a6', borderRight: '3px solid #14b8a6', borderRadius: '0 0.5rem 0 0' }}></div>
-          <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', width: '50px', height: '50px', borderBottom: '3px solid #14b8a6', borderLeft: '3px solid #14b8a6', borderRadius: '0 0 0 0.5rem' }}></div>
-          <div style={{ position: 'absolute', bottom: '1.5rem', right: '1.5rem', width: '50px', height: '50px', borderBottom: '3px solid #14b8a6', borderRight: '3px solid #14b8a6', borderRadius: '0 0 0.5rem 0' }}></div>
+    <div className="main-content"><div className="pattern-overlay"></div>
+      <main style={{position:'relative',zIndex:1,maxWidth:'1000px',margin:'0 auto'}}>
+        <div className="fade-in" style={{background:'linear-gradient(to bottom,rgba(26,34,53,.95),rgba(34,43,63,.95))',borderRadius:'20px',boxShadow:'0 20px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(255,74,28,.2)',padding:'3rem 2.5rem 4rem',textAlign:'center',backdropFilter:'blur(10px)'}}>
 
-          <div style={{ width: '10rem', height: '10rem', borderRadius: '50%', margin: '0 auto 2rem',
-            background: 'linear-gradient(135deg, #14b8a6, #0d9488)', padding: '6px',
-            boxShadow: '0 12px 40px rgba(13, 148, 136, 0.3), 0 0 0 8px rgba(20, 184, 166, 0.1), 0 0 0 12px rgba(255, 255, 255, 0.8)' }}>
-            <img src="/melissa.jpg" alt="Melissa" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+          <div style={{width:'140px',height:'140px',borderRadius:'50%',margin:'0 auto 2rem',background:'linear-gradient(135deg,#FF4A1C,#FF8A5C)',padding:'5px',boxShadow:'0 0 40px rgba(255,74,28,.4), 0 0 0 8px rgba(255,74,28,.1)'}}>
+            <img src="/melissa.jpg" alt="Melissa Lynn" style={{width:'100%',height:'100%',borderRadius:'50%',objectFit:'cover'}}/>
           </div>
 
-          <div style={{ fontSize: '2rem', color: '#14b8a6', marginBottom: '1rem' }}>〰</div>
-
-          <h1 className="luxury-title" style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', fontWeight: '700', color: '#0a4f4a', 
-            letterSpacing: '3px', margin: '0 0 1rem', lineHeight: '1.1', textShadow: '0 2px 8px rgba(13, 148, 136, 0.1)' }}>
-            BALANCED HEARTS
-          </h1>
+          <h1 style={{fontFamily:'Cinzel,serif',fontSize:'clamp(2.5rem,7vw,4rem)',fontWeight:'700',color:'#F8FAFB',letterSpacing:'.1em',margin:'0 0 .5rem',lineHeight:'1.1',textShadow:'0 2px 20px rgba(255,74,28,.3)'}}>SACRED FIRE REIKI</h1>
           
-          <div style={{ margin: '1.5rem auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-            <div style={{ width: '80px', height: '2px', background: 'linear-gradient(to right, transparent, #14b8a6)' }}></div>
-            <div style={{ width: '80px', height: '2px', background: 'linear-gradient(to left, transparent, #14b8a6)' }}></div>
-          </div>
+          <div style={{width:'100px',height:'3px',background:'linear-gradient(to right,transparent,#FF4A1C,transparent)',margin:'1.5rem auto'}}></div>
           
-          <h2 className="luxury-title" style={{ fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', fontWeight: '500', 
-            color: '#14b8a6', letterSpacing: '2px', margin: '0 0 1rem', fontStyle: 'italic' }}>
-            Holy Fire Reiki
-          </h2>
+          <p style={{fontSize:'clamp(1.25rem,4vw,1.75rem)',color:'#FF8A5C',fontStyle:'italic',margin:'0 0 .75rem',fontWeight:'500'}}>with Melissa Lynn</p>
+          
+          <p style={{fontSize:'clamp(1.5rem,4vw,2rem)',color:'#F8FAFB',fontWeight:'700',margin:'0 0 .5rem',padding:'1rem 2rem',background:'rgba(255,74,28,.1)',borderRadius:'12px',border:'2px solid rgba(255,74,28,.3)',boxShadow:'0 4px 16px rgba(255,74,28,.2)',display:'inline-block'}}>$125 · 60-minute session</p>
+          
+          <p style={{fontSize:'clamp(.9rem,3vw,1.125rem)',color:'#9AA5B1',fontStyle:'italic',margin:'.5rem 0 3rem',fontWeight:'400'}}>Payment by e-transfer or cash at appointment</p>
 
-          <div style={{ margin: '1.5rem auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-            <div style={{ width: '80px', height: '2px', background: 'linear-gradient(to right, transparent, #14b8a6)' }}></div>
-            <div style={{ width: '80px', height: '2px', background: 'linear-gradient(to left, transparent, #14b8a6)' }}></div>
+          <div style={{maxWidth:'700px',margin:'0 auto 3rem',padding:'2rem',background:'rgba(255,74,28,.05)',borderRadius:'14px',border:'1px solid rgba(255,74,28,.2)',boxShadow:'0 4px 16px rgba(0,0,0,.3)'}}>
+            <p style={{fontSize:'clamp(1rem,3vw,1.25rem)',color:'#E5E9ED',lineHeight:'1.7',margin:0,fontWeight:'400'}}>Sessions take place in the calming presence of Melissa's equine companions. Their grounded energy naturally deepens relaxation, supports emotional release, and opens the heart to profound peace.</p>
           </div>
 
-          <p style={{ fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', color: '#0d6b65', fontStyle: 'italic', margin: '0 0 0.75rem', fontWeight: '600' }}>
-            with Melissa Lynn
-          </p>
-          
-          <p style={{ fontSize: 'clamp(1.375rem, 4vw, 1.875rem)', color: '#0a4f4a', fontWeight: '700', margin: '0 0 1rem',
-            padding: '1rem 2rem', background: 'linear-gradient(135deg, #ccfbf1, #f0fdfa)', borderRadius: '0.75rem',
-            border: '2px solid #14b8a6', boxShadow: '0 4px 16px rgba(13, 148, 136, 0.15)', display: 'inline-block' }}>
-            $125 · 60-minute session
-          </p>
-          
-          <p style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)', color: '#0d6b65', fontStyle: 'italic', margin: '0 0 3rem', fontWeight: '500' }}>
-            Payment by e-transfer or cash at appointment
-          </p>
+          <div style={{width:'100px',height:'3px',background:'linear-gradient(to right,transparent,#FF4A1C,transparent)',margin:'3rem auto 2rem'}}></div>
 
-          <div style={{ maxWidth: '52rem', margin: '0 auto 4rem', padding: '2.5rem',
-            background: 'linear-gradient(135deg, #f0fdfa, #ccfbf1)', borderRadius: '1rem',
-            border: '2px solid #14b8a6', boxShadow: '0 8px 24px rgba(13, 148, 136, 0.15)', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: '-15px', left: '50%', transform: 'translateX(-50%)', 
-              background: 'linear-gradient(to bottom, #ffffff, #f0fdfa)', padding: '0 1rem', color: '#14b8a6', fontSize: '1.5rem',
-              border: '2px solid #14b8a6', borderRadius: '50%', width: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✦</div>
+          <h2 style={{fontFamily:'Cinzel,serif',fontSize:'clamp(2rem,5vw,2.75rem)',color:'#F8FAFB',fontWeight:'600',marginBottom:'2.5rem',letterSpacing:'.08em'}}>SCHEDULE YOUR SESSION</h2>
+
+          <div style={{maxWidth:'420px',margin:'0 auto 3rem'}}>
+            <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline filterDate={date=>date.getDay()!==0}/>
+          </div>
+
+          {selectedDate&&slots.length>0&&<>
+            <div style={{width:'60px',height:'2px',background:'linear-gradient(to right,transparent,#FF4A1C,transparent)',margin:'2rem auto 1.5rem'}}></div>
             
-            <p style={{ fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', color: '#0a4f4a', lineHeight: '1.8', margin: 0, fontWeight: '500' }}>
-              Sessions take place in the calming presence of Melissa's equine companions. Their grounded energy naturally deepens relaxation, supports emotional release and opens the heart to profound peace. After the Reiki session, the horses often share their quiet wisdom.
+            <h3 style={{fontFamily:'Cinzel,serif',fontSize:'clamp(1.5rem,4vw,1.875rem)',color:'#F8FAFB',marginBottom:'1rem',fontWeight:'600',letterSpacing:'.05em'}}>AVAILABLE TIMES</h3>
+            <p style={{fontSize:'clamp(1rem,3vw,1.25rem)',color:'#FF8A5C',marginBottom:'2rem',fontWeight:'500'}}>
+              {selectedDate.toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'})}
             </p>
-          </div>
 
-          <div style={{ fontSize: '2rem', color: '#14b8a6', margin: '3rem 0 2rem' }}>〰</div>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(140px,1fr))',gap:'1rem',marginBottom:'3rem',maxWidth:'700px',margin:'0 auto 3rem'}}>
+              {slots.map(slot=><button key={slot.time} onClick={()=>!slot.isBooked&&setSelectedTime(slot.time)} disabled={slot.isBooked} style={{padding:'1.25rem .75rem',borderRadius:'12px',fontSize:'clamp(1rem,3vw,1.25rem)',fontWeight:'600',background:slot.isBooked?'rgba(82,96,109,.3)':(selectedTime===slot.time?'linear-gradient(135deg,#FF4A1C,#FF6B3D)':'rgba(255,74,28,.1)'),color:slot.isBooked?'#52606D':(selectedTime===slot.time?'white':'#E5E9ED'),border:slot.isBooked?'2px solid rgba(82,96,109,.3)':(selectedTime===slot.time?'2px solid #FF8A5C':'2px solid rgba(255,74,28,.3)'),cursor:slot.isBooked?'not-allowed':'pointer',transition:'all .3s',boxShadow:selectedTime===slot.time?'0 8px 24px rgba(255,74,28,.4)':'0 2px 8px rgba(0,0,0,.2)',transform:selectedTime===slot.time?'translateY(-2px)':'translateY(0)',fontFamily:'Inter,sans-serif',textDecoration:slot.isBooked?'line-through':'none',opacity:slot.isBooked?.5:1}}>{slot.time}</button>)}
+            </div>
 
-          <h2 className="luxury-title" style={{ fontSize: 'clamp(2rem, 6vw, 3rem)', color: '#0a4f4a', 
-            fontWeight: '600', marginBottom: '3rem', letterSpacing: '2px' }}>
-            SCHEDULE YOUR SESSION
-          </h2>
-
-          <div style={{ maxWidth: '28rem', margin: '0 auto 4rem', background: 'transparent', borderRadius: '1rem', padding: '0' }}>
-            <DatePicker selected={selectedDate} onChange={setSelectedDate} minDate={new Date()} inline filterDate={date => date.getDay() !== 0} />
-          </div>
-
-          {selectedDate && slots.length > 0 && (
-            <>
-              <div style={{ fontSize: '2rem', color: '#14b8a6', margin: '2rem 0 1.5rem' }}>〰</div>
+            {selectedTime&&availableSlots.some(slot=>slot.time===selectedTime)&&<>
+              <div style={{width:'60px',height:'2px',background:'linear-gradient(to right,transparent,#FF4A1C,transparent)',margin:'3rem auto 2rem'}}></div>
               
-              <h3 className="luxury-title" style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)', color: '#0a4f4a', 
-                marginBottom: '2.5rem', fontWeight: '600', letterSpacing: '1px' }}>
-                Available Times
-              </h3>
-              <p style={{ fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', color: '#0d6b65', marginBottom: '2rem', fontWeight: '500' }}>
-                {selectedDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
-              </p>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1rem', marginBottom: '4rem', maxWidth: '56rem', margin: '0 auto 4rem' }}>
-                {slots.map(slot => (
-                  <button 
-                    key={slot.time} 
-                    onClick={() => !slot.isBooked && setSelectedTime(slot.time)}
-                    disabled={slot.isBooked}
-                    style={{
-                      padding: '1.5rem 1rem', borderRadius: '0.75rem', fontSize: 'clamp(1.125rem, 3.5vw, 1.375rem)', fontWeight: '600',
-                      background: slot.isBooked 
-                        ? 'linear-gradient(to bottom, #f3f4f6, #e5e7eb)' 
-                        : (selectedTime === slot.time ? 'linear-gradient(135deg, #0d9488, #0a4f4a)' : 'linear-gradient(to bottom, #ffffff, #f0fdfa)'),
-                      color: slot.isBooked 
-                        ? '#9ca3af' 
-                        : (selectedTime === slot.time ? 'white' : '#0a4f4a'),
-                      border: slot.isBooked 
-                        ? '2px solid #d1d5db' 
-                        : (selectedTime === slot.time ? '3px solid #14b8a6' : '2px solid #14b8a6'),
-                      cursor: slot.isBooked ? 'not-allowed' : 'pointer',
-                      transition: 'all 0.3s',
-                      boxShadow: selectedTime === slot.time ? '0 8px 24px rgba(13, 148, 136, 0.4)' : '0 4px 12px rgba(13, 148, 136, 0.15)',
-                      transform: selectedTime === slot.time ? 'translateY(-4px)' : 'translateY(0)',
-                      letterSpacing: '0.5px',
-                      fontFamily: "'Cormorant Garamond', 'Georgia', serif",
-                      position: 'relative',
-                      textDecoration: slot.isBooked ? 'line-through' : 'none',
-                      opacity: slot.isBooked ? 0.6 : 1
-                    }}
-                    onMouseOver={e => {
-                      if (!slot.isBooked && selectedTime !== slot.time) {
-                        e.target.style.background = 'linear-gradient(135deg, #ccfbf1, #f0fdfa)';
-                        e.target.style.transform = 'translateY(-2px)';
-                        e.target.style.boxShadow = '0 6px 20px rgba(13, 148, 136, 0.25)';
-                      }
-                    }}
-                    onMouseOut={e => {
-                      if (!slot.isBooked && selectedTime !== slot.time) {
-                        e.target.style.background = 'linear-gradient(to bottom, #ffffff, #f0fdfa)';
-                        e.target.style.transform = 'translateY(0)';
-                        e.target.style.boxShadow = '0 4px 12px rgba(13, 148, 136, 0.15)';
-                      }
-                    }}>
-                    {selectedTime === slot.time && !slot.isBooked && <span style={{ position: 'absolute', top: '4px', right: '8px', fontSize: '0.75rem' }}>✦</span>}
-                    {slot.time}
-                  </button>
-                ))}
+              <div style={{maxWidth:'500px',margin:'0 auto',textAlign:'left'}}>
+                <input required placeholder="Your Name" value={formData.name} onChange={e=>setFormData({...formData,name:e.target.value})} style={{width:'100%',padding:'1rem 1.25rem',borderRadius:'10px',border:'2px solid rgba(255,74,28,.3)',background:'rgba(26,34,53,.8)',color:'#F8FAFB',marginBottom:'1rem',fontSize:'1rem',outline:'none',fontWeight:'500',fontFamily:'Inter,sans-serif',transition:'all .3s'}}/>
+                <input required type="email" placeholder="Email Address" value={formData.email} onChange={e=>setFormData({...formData,email:e.target.value})} style={{width:'100%',padding:'1rem 1.25rem',borderRadius:'10px',border:'2px solid rgba(255,74,28,.3)',background:'rgba(26,34,53,.8)',color:'#F8FAFB',marginBottom:'1rem',fontSize:'1rem',outline:'none',fontWeight:'500',fontFamily:'Inter,sans-serif',transition:'all .3s'}}/>
+                <input placeholder="Phone (optional)" value={formData.phone} onChange={e=>setFormData({...formData,phone:e.target.value})} style={{width:'100%',padding:'1rem 1.25rem',borderRadius:'10px',border:'2px solid rgba(255,74,28,.3)',background:'rgba(26,34,53,.8)',color:'#F8FAFB',marginBottom:'1rem',fontSize:'1rem',outline:'none',fontWeight:'500',fontFamily:'Inter,sans-serif',transition:'all .3s'}}/>
+                <textarea placeholder="Notes or questions..." rows="4" value={formData.notes} onChange={e=>setFormData({...formData,notes:e.target.value})} style={{width:'100%',padding:'1rem 1.25rem',borderRadius:'10px',border:'2px solid rgba(255,74,28,.3)',background:'rgba(26,34,53,.8)',color:'#F8FAFB',marginBottom:'1.5rem',fontSize:'1rem',outline:'none',resize:'vertical',fontWeight:'500',fontFamily:'Inter,sans-serif',transition:'all .3s',lineHeight:'1.6'}}/>
+                <button onClick={handleSubmit} style={{width:'100%',padding:'1.25rem 2rem',background:'linear-gradient(135deg,#FF4A1C,#FF6B3D)',color:'white',border:'none',borderRadius:'12px',fontSize:'1.25rem',fontWeight:'700',cursor:'pointer',boxShadow:'0 8px 24px rgba(255,74,28,.4)',transition:'all .3s',fontFamily:'Cinzel,serif',letterSpacing:'.05em'}}>CONFIRM BOOKING — $125</button>
               </div>
+            </>}
+          </>}
 
-              {selectedTime && availableSlots.some(slot => slot.time === selectedTime) && (
-                <>
-                  <div style={{ fontSize: '2rem', color: '#14b8a6', margin: '3rem 0 2rem' }}>〰</div>
-                  
-                  <div style={{ maxWidth: '38rem', margin: '0 auto', textAlign: 'left' }}>
-                    <input required placeholder="Your Name" value={formData.name} 
-                      onChange={e => setFormData({...formData, name: e.target.value})}
-                      style={{ width: '100%', padding: '1.25rem 1.5rem', borderRadius: '0.75rem', border: '2px solid #14b8a6',
-                        background: 'linear-gradient(to bottom, #ffffff, #f0fdfa)', color: '#0a4f4a', marginBottom: '1.25rem',
-                        fontSize: '1.125rem', outline: 'none', boxSizing: 'border-box', fontWeight: '500',
-                        fontFamily: "'Cormorant Garamond', 'Georgia', serif", transition: 'all 0.3s',
-                        boxShadow: '0 2px 8px rgba(13, 148, 136, 0.1)' }}
-                      onFocus={e => { e.target.style.borderColor = '#0d9488'; e.target.style.boxShadow = '0 4px 16px rgba(13, 148, 136, 0.2)'; }}
-                      onBlur={e => { e.target.style.borderColor = '#14b8a6'; e.target.style.boxShadow = '0 2px 8px rgba(13, 148, 136, 0.1)'; }}
-                    />
-                    <input required type="email" placeholder="Email Address" value={formData.email} 
-                      onChange={e => setFormData({...formData, email: e.target.value})}
-                      style={{ width: '100%', padding: '1.25rem 1.5rem', borderRadius: '0.75rem', border: '2px solid #14b8a6',
-                        background: 'linear-gradient(to bottom, #ffffff, #f0fdfa)', color: '#0a4f4a', marginBottom: '1.25rem',
-                        fontSize: '1.125rem', outline: 'none', boxSizing: 'border-box', fontWeight: '500',
-                        fontFamily: "'Cormorant Garamond', 'Georgia', serif", transition: 'all 0.3s',
-                        boxShadow: '0 2px 8px rgba(13, 148, 136, 0.1)' }}
-                      onFocus={e => { e.target.style.borderColor = '#0d9488'; e.target.style.boxShadow = '0 4px 16px rgba(13, 148, 136, 0.2)'; }}
-                      onBlur={e => { e.target.style.borderColor = '#14b8a6'; e.target.style.boxShadow = '0 2px 8px rgba(13, 148, 136, 0.1)'; }}
-                    />
-                    <input placeholder="Phone Number (optional)" value={formData.phone} 
-                      onChange={e => setFormData({...formData, phone: e.target.value})}
-                      style={{ width: '100%', padding: '1.25rem 1.5rem', borderRadius: '0.75rem', border: '2px solid #14b8a6',
-                        background: 'linear-gradient(to bottom, #ffffff, #f0fdfa)', color: '#0a4f4a', marginBottom: '1.25rem',
-                        fontSize: '1.125rem', outline: 'none', boxSizing: 'border-box', fontWeight: '500',
-                        fontFamily: "'Cormorant Garamond', 'Georgia', serif", transition: 'all 0.3s',
-                        boxShadow: '0 2px 8px rgba(13, 148, 136, 0.1)' }}
-                      onFocus={e => { e.target.style.borderColor = '#0d9488'; e.target.style.boxShadow = '0 4px 16px rgba(13, 148, 136, 0.2)'; }}
-                      onBlur={e => { e.target.style.borderColor = '#14b8a6'; e.target.style.boxShadow = '0 2px 8px rgba(13, 148, 136, 0.1)'; }}
-                    />
-                    <textarea placeholder="Any notes or questions for Melissa..." rows="5" value={formData.notes}
-                      onChange={e => setFormData({...formData, notes: e.target.value})}
-                      style={{ width: '100%', padding: '1.25rem 1.5rem', borderRadius: '0.75rem', border: '2px solid #14b8a6',
-                        background: 'linear-gradient(to bottom, #ffffff, #f0fdfa)', color: '#0a4f4a', marginBottom: '2rem',
-                        fontSize: '1.125rem', outline: 'none', resize: 'vertical', boxSizing: 'border-box', fontWeight: '500',
-                        fontFamily: "'Cormorant Garamond', 'Georgia', serif", transition: 'all 0.3s',
-                        boxShadow: '0 2px 8px rgba(13, 148, 136, 0.1)', lineHeight: '1.6' }}
-                      onFocus={e => { e.target.style.borderColor = '#0d9488'; e.target.style.boxShadow = '0 4px 16px rgba(13, 148, 136, 0.2)'; }}
-                      onBlur={e => { e.target.style.borderColor = '#14b8a6'; e.target.style.boxShadow = '0 2px 8px rgba(13, 148, 136, 0.1)'; }}
-                    />
-                    <button onClick={handleSubmit} className="luxury-title"
-                      style={{
-                        width: '100%', padding: '1.75rem 2rem', background: 'linear-gradient(135deg, #0d9488, #0a4f4a)',
-                        color: 'white', border: '3px solid #14b8a6', borderRadius: '0.75rem', fontSize: '1.5rem',
-                        fontWeight: '600', cursor: 'pointer', boxShadow: '0 8px 24px rgba(13, 148, 136, 0.4)',
-                        transition: 'all 0.3s', boxSizing: 'border-box', letterSpacing: '2px'
-                      }}
-                      onMouseOver={e => {
-                        e.target.style.transform = 'translateY(-2px)';
-                        e.target.style.boxShadow = '0 12px 32px rgba(13, 148, 136, 0.5)';
-                        e.target.style.background = 'linear-gradient(135deg, #14b8a6, #0d9488)';
-                      }}
-                      onMouseOut={e => {
-                        e.target.style.transform = 'translateY(0)';
-                        e.target.style.boxShadow = '0 8px 24px rgba(13, 148, 136, 0.4)';
-                        e.target.style.background = 'linear-gradient(135deg, #0d9488, #0a4f4a)';
-                      }}>
-                      ✦ CONFIRM BOOKING — $125 ✦
-                    </button>
-                  </div>
-                </>
-              )}
-            </>
-          )}
+          {selectedDate&&slots.length===0&&<div style={{padding:'2rem',background:'rgba(251,191,36,.1)',borderRadius:'12px',border:'2px solid rgba(251,191,36,.3)'}}><p style={{fontSize:'clamp(1.125rem,4vw,1.375rem)',color:'#FCD34D',fontWeight:'600',fontStyle:'italic',margin:0}}>No times available. Please select another day.</p></div>}
 
-          {selectedDate && slots.length === 0 && (
-            <div style={{ padding: '2rem', background: 'linear-gradient(135deg, #fef3c7, #fde68a)', borderRadius: '0.75rem', border: '2px solid #f59e0b' }}>
-              <p style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)', color: '#92400e', fontWeight: '600', fontStyle: 'italic', margin: 0 }}>
-                ✦ No available times on this date ✦
-              </p>
-            </div>
-          )}
-
-          {message && (
-            <div style={{ marginTop: '4rem', padding: '2rem 2.5rem', background: 'linear-gradient(135deg, #d1fae5, #ccfbf1)',
-              color: '#065f46', borderRadius: '1rem', fontWeight: '600', fontSize: 'clamp(1.125rem, 4vw, 1.375rem)',
-              boxShadow: '0 8px 24px rgba(13, 148, 136, 0.2)', border: '2px solid #14b8a6', fontStyle: 'italic', lineHeight: '1.6',
-              position: 'relative' }}>
-              <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)', color: '#14b8a6', fontSize: '1.5rem', background: 'white', padding: '0 0.5rem' }}>〰</div>
-              {message}
-            </div>
-          )}
+          {message&&<div style={{marginTop:'3rem',padding:'1.5rem 2rem',background:'rgba(16,185,129,.1)',color:'#10B981',borderRadius:'12px',fontWeight:'600',fontSize:'clamp(1rem,3.5vw,1.25rem)',boxShadow:'0 4px 16px rgba(16,185,129,.2)',border:'2px solid rgba(16,185,129,.3)',fontStyle:'italic',lineHeight:'1.6'}}>{message}</div>}
         </div>
       </main>
 
-      <footer style={{ padding: '4rem 2rem', textAlign: 'center', background: 'linear-gradient(to bottom, #0a4f4a, #064e3b)',
-        borderTop: '3px solid #14b8a6', marginTop: '0' }}>
-        <div style={{ fontSize: '2rem', color: '#14b8a6', marginBottom: '2rem' }}>〰</div>
-        <p className="luxury-title" style={{ margin: '0 0 1.5rem', fontSize: 'clamp(1.75rem, 4vw, 2.25rem)', 
-          fontWeight: '600', color: '#ffffff', letterSpacing: '2px' }}>CONTACT MELISSA</p>
-        <div style={{ margin: '1.5rem auto', width: '100px', height: '2px', background: 'linear-gradient(to right, transparent, #14b8a6, transparent)' }}></div>
-        <p style={{ margin: '1rem 0', fontSize: 'clamp(1.25rem, 3.5vw, 1.5rem)', color: '#ccfbf1', fontWeight: '500' }}>
-          Text or call: <strong style={{ color: '#14b8a6', fontWeight: '700' }}>403-852-4324</strong>
-        </p>
-        <p style={{ margin: '1rem 0', fontSize: 'clamp(1.25rem, 3.5vw, 1.5rem)', color: '#ccfbf1', fontWeight: '500' }}>
-          Email: <strong style={{ color: '#14b8a6', fontWeight: '700' }}>balancedheartsranch@yahoo.com</strong>
-        </p>
-        <div style={{ margin: '2rem auto 1.5rem', width: '100px', height: '2px', background: 'linear-gradient(to right, transparent, #14b8a6, transparent)' }}></div>
-        <p style={{ marginTop: '1.5rem', fontSize: 'clamp(1.125rem, 3vw, 1.375rem)', color: '#99f6e4', fontStyle: 'italic' }}>
-          Okotoks, Alberta, Canada
-        </p>
+      <footer style={{padding:'4rem 2rem',textAlign:'center',background:'rgba(10,14,26,.8)',borderTop:'1px solid rgba(255,74,28,.2)',marginTop:'3rem'}}>
+        <div style={{width:'80px',height:'2px',background:'linear-gradient(to right,transparent,#FF4A1C,transparent)',margin:'0 auto 2rem'}}></div>
+        <p style={{margin:'0 0 1.5rem',fontSize:'clamp(1.5rem,4vw,2rem)',fontWeight:'600',color:'#F8FAFB',letterSpacing:'.08em',fontFamily:'Cinzel,serif'}}>CONTACT MELISSA</p>
+        <p style={{margin:'1rem 0',fontSize:'clamp(1.125rem,3vw,1.375rem)',color:'#CBD2D9',fontWeight:'500'}}>Text or call: <strong style={{color:'#FF6B3D',fontWeight:'700'}}>403-852-4324</strong></p>
+        <p style={{margin:'1rem 0',fontSize:'clamp(1.125rem,3vw,1.375rem)',color:'#CBD2D9',fontWeight:'500'}}>Email: <strong style={{color:'#FF6B3D',fontWeight:'700'}}>balancedheartsranch@yahoo.com</strong></p>
+        <div style={{width:'80px',height:'2px',background:'linear-gradient(to right,transparent,#FF4A1C,transparent)',margin:'2rem auto 1.5rem'}}></div>
+        <p style={{marginTop:'1.5rem',fontSize:'clamp(1rem,3vw,1.25rem)',color:'#9AA5B1',fontStyle:'italic'}}>Okotoks, Alberta, Canada</p>
       </footer>
     </div>
-  );
+  </>);
 }
