@@ -86,7 +86,7 @@ export default function App() {
         @keyframes fadeOut { to { opacity: 0; pointer-events: none; } }
         
         .logo-container {
-          width: 280px; height: 380px; background: transparent;
+          width: 280px; height: 380px;
           animation: logoFadeIn 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         @keyframes logoFadeIn {
@@ -99,6 +99,7 @@ export default function App() {
           filter: drop-shadow(0 10px 40px rgba(255, 74, 28, 0.4)) 
                   drop-shadow(0 0 60px rgba(255, 74, 28, 0.3)) 
                   brightness(1.1);
+          background: transparent !important;
         }
         
         .main-content {
@@ -160,7 +161,7 @@ export default function App() {
               src="/melissa.png" 
               alt="Sacred Fire Reiki Logo" 
               className="logo-image" 
-              style={{width: '100%', height: '100%', objectFit: 'contain', background: 'transparent'}} 
+              style={{width: '100%', height: '100%', objectFit: 'contain'}} 
             />
           </div>
           <div style={{marginTop: '2rem', maxWidth: '500px', textAlign: 'center', padding: '0 2rem'}}>
@@ -196,7 +197,8 @@ export default function App() {
               margin: '0 auto 2rem', 
               display: 'flex', 
               alignItems: 'center', 
-              justifyContent: 'center'
+              justifyContent: 'center',
+              background: 'transparent'
             }}>
               <img 
                 src="/melissa.png" 
@@ -205,7 +207,8 @@ export default function App() {
                   width: '100%', 
                   height: '100%', 
                   objectFit: 'contain', 
-                  filter: 'drop-shadow(0 10px 40px rgba(255, 74, 28, 0.5))'
+                  filter: 'drop-shadow(0 10px 40px rgba(255, 74, 28, 0.5))',
+                  background: 'transparent'
                 }} 
               />
             </div>
