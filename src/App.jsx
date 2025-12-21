@@ -105,21 +105,8 @@ export default function App() {
 @media(max-width:640px){.logo-container{width:220px;height:300px}.brand-name{font-size:24px}}`}</style>
 
     {currentScreen==='splash'&&<div className="splash-screen"><div className="logo-container">
-      <svg className="logo-image" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M150 80C130 70,120 90,120 110L120 180C120 200,130 220,150 230C170 220,180 200,180 180L180 110C180 90,170 70,150 80Z" fill="#1A2235"/>
-        <ellipse cx="150" cy="95" rx="8" ry="12" fill="#FF4A1C"/>
-        <path d="M150 60Q155 40,160 50T150 60" fill="#FF4A1C" opacity=".9"/>
-        <path d="M145 55Q140 35,150 45T145 55" fill="#FF6B3D" opacity=".7"/>
-        <path d="M155 58Q160 38,165 48T155 58" fill="#FF8A5C" opacity=".6"/>
-        <path d="M100 150Q100 120,130 120Q150 120,150 140Q150 120,170 120Q200 120,200 150Q200 190,150 220Q100 190,100 150Z" stroke="#FF4A1C" strokeWidth="3" fill="none" opacity=".8">
-          <animate attributeName="stroke-width" values="3;4;3" dur="2s" repeatCount="indefinite"/></path>
-        <path d="M90 260Q85 270,90 280L100 290Q105 295,110 290" stroke="#FF6B3D" strokeWidth="4" fill="none" strokeLinecap="round"/>
-        <path d="M210 260Q215 270,210 280L200 290Q195 295,190 290" stroke="#FF6B3D" strokeWidth="4" fill="none" strokeLinecap="round"/>
-        <circle cx="130" cy="200" r="3" fill="#FF8A5C" opacity=".4"><animate attributeName="cy" values="200;180;200" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".4;.8;.4" dur="3s" repeatCount="indefinite"/></circle>
-        <circle cx="170" cy="210" r="3" fill="#FF8A5C" opacity=".4"><animate attributeName="cy" values="210;190;210" dur="3.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".4;.8;.4" dur="3.5s" repeatCount="indefinite"/></circle>
-      </svg></div>
-      <div className="brand-name">SACRED FIRE REIKI</div>
-      <div className="tagline">Where Healing Ignites</div></div>}
+      <img src="/melissa.jpg" alt="Sacred Fire Reiki Logo" className="logo-image" style={{width:'100%',height:'100%',objectFit:'contain'}}/>
+    </div></div>}
 
     <div className="main-content"><div className="pattern-overlay"></div>
       <main style={{position:'relative',zIndex:1,maxWidth:'1000px',margin:'0 auto'}}>
