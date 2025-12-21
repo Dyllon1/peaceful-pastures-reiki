@@ -117,8 +117,8 @@ export default function App() {
       <main style={{position:'relative',zIndex:1,maxWidth:'1000px',margin:'0 auto'}}>
         <div className="fade-in" style={{background:'linear-gradient(to bottom,rgba(26,34,53,.95),rgba(34,43,63,.95))',borderRadius:'20px',boxShadow:'0 20px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(255,74,28,.2)',padding:'3rem 2.5rem 4rem',textAlign:'center',backdropFilter:'blur(10px)'}}>
 
-          <div style={{width:'140px',height:'140px',borderRadius:'50%',margin:'0 auto 2rem',background:'linear-gradient(135deg,#FF4A1C,#FF8A5C)',padding:'5px',boxShadow:'0 0 40px rgba(255,74,28,.4), 0 0 0 8px rgba(255,74,28,.1)'}}>
-            <img src="/melissa.png" alt="Sacred Fire Logo" style={{width:'100%',height:'100%',borderRadius:'50%',objectFit:'cover'}}/>
+          <div style={{width:'280px',height:'280px',margin:'0 auto 2rem',display:'flex',alignItems:'center',justifyContent:'center'}}>
+            <img src="/melissa.png" alt="Sacred Fire Logo" style={{width:'100%',height:'100%',objectFit:'contain',filter:'drop-shadow(0 10px 40px rgba(255,74,28,0.5))'}}/>
           </div>
 
           <h1 style={{fontFamily:'Cinzel,serif',fontSize:'clamp(2.5rem,7vw,4rem)',fontWeight:'700',color:'#F8FAFB',letterSpacing:'.1em',margin:'0 0 .5rem',lineHeight:'1.1',textShadow:'0 2px 20px rgba(255,74,28,.3)'}}>SACRED FIRE REIKI</h1>
