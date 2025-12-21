@@ -84,7 +84,7 @@ export default function App() {
 @keyframes fadeOut{to{opacity:0;pointer-events:none}}
 .logo-container{width:280px;height:380px;animation:logoFadeIn 1.5s cubic-bezier(.4,0,.2,1) forwards}
 @keyframes logoFadeIn{0%{opacity:0;transform:scale(.9) translateY(20px);filter:blur(10px)}100%{opacity:1;transform:scale(1) translateY(0);filter:blur(0)}}
-.logo-image{width:100%;height:100%;filter:drop-shadow(0 10px 40px rgba(255,74,28,.4))}
+.logo-image{width:100%;height:100%;filter:drop-shadow(0 10px 40px rgba(255,74,28,.4)) drop-shadow(0 0 60px rgba(255,74,28,.3)) brightness(1.1)}
 .brand-name{font-family:Cinzel,serif;font-size:32px;font-weight:700;color:#FF4A1C;text-align:center;margin-top:24px;letter-spacing:.1em;text-shadow:0 0 30px rgba(255,74,28,.5);animation:textGlow 2s ease-in-out infinite}
 @keyframes textGlow{0%,100%{text-shadow:0 0 30px rgba(255,74,28,.5)}50%{text-shadow:0 0 50px rgba(255,74,28,.8)}}
 .tagline{font-size:15px;color:#9AA5B1;text-align:center;margin-top:12px;letter-spacing:.15em;text-transform:uppercase;font-weight:500;opacity:0;animation:fadeInUp 1s ease-out .5s forwards}
@@ -105,7 +105,7 @@ export default function App() {
 @media(max-width:640px){.logo-container{width:220px;height:300px}.brand-name{font-size:24px}}`}</style>
 
     {currentScreen==='splash'&&<div className="splash-screen"><div className="logo-container">
-      <img src="/melissa.jpg" alt="Sacred Fire Reiki Logo" className="logo-image" style={{width:'100%',height:'100%',objectFit:'contain'}}/>
+      <img src="/melissa.jpg" alt="Sacred Fire Reiki Logo" className="logo-image" style={{width:'100%',height:'100%',objectFit:'contain',mixBlendMode:'lighten',opacity:'0.95'}}/>
     </div></div>}
 
     <div className="main-content"><div className="pattern-overlay"></div>
