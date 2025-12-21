@@ -82,7 +82,7 @@ export default function App() {
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,sans-serif;overflow-x:hidden;background:#0A0E1A}
 .splash-screen{position:fixed;top:0;left:0;width:100%;height:100vh;background:linear-gradient(180deg,#0A0E1A,#0D3B4A);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;animation:fadeOut .5s ease 3s forwards}
 @keyframes fadeOut{to{opacity:0;pointer-events:none}}
-.logo-container{width:280px;height:380px;animation:logoFadeIn 1.5s cubic-bezier(.4,0,.2,1) forwards}
+.logo-container{width:280px;height:380px;animation:logoFadeIn 1.5s cubic-bezier(.4,0,.2,1) forwards;background:transparent}
 @keyframes logoFadeIn{0%{opacity:0;transform:scale(.9) translateY(20px);filter:blur(10px)}100%{opacity:1;transform:scale(1) translateY(0);filter:blur(0)}}
 .logo-image{width:100%;height:100%;filter:drop-shadow(0 10px 40px rgba(255,74,28,.4)) drop-shadow(0 0 60px rgba(255,74,28,.3)) brightness(1.1)}
 .brand-name{font-family:Cinzel,serif;font-size:32px;font-weight:700;color:#FF4A1C;text-align:center;margin-top:24px;letter-spacing:.1em;text-shadow:0 0 30px rgba(255,74,28,.5);animation:textGlow 2s ease-in-out infinite}
@@ -104,8 +104,13 @@ export default function App() {
 .fade-in{animation:fadeIn .8s ease-out}
 @media(max-width:640px){.logo-container{width:220px;height:300px}.brand-name{font-size:24px}}`}</style>
 
-    {currentScreen==='splash'&&<div className="splash-screen"><div className="logo-container">
-      <img src="/melissa.png" alt="Sacred Fire Reiki Logo" className="logo-image" style={{width:'100%',height:'100%',objectFit:'contain'}}/>
+    {currentScreen==='splash'&&<div className="splash-screen"><div className="logo-container" style={{background:'transparent'}}>
+      <img src="/melissa.png" alt="Sacred Fire Reiki Logo" className="logo-image" style={{width:'100%',height:'100%',objectFit:'contain',background:'transparent'}}/></div>
+      <div style={{marginTop:'2rem',maxWidth:'500px',textAlign:'center',padding:'0 2rem'}}>
+        <p style={{fontFamily:'Cinzel,serif',fontSize:'1.25rem',color:'#FF8A5C',fontStyle:'italic',lineHeight:'1.8',letterSpacing:'0.02em'}}>
+          "Energy flows where intention goes"
+        </p>
+      </div></div>}
     </div></div>}
 
     <div className="main-content"><div className="pattern-overlay"></div>
