@@ -77,6 +77,8 @@ export default function App() {
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Inter, sans-serif; overflow-x: hidden; background: #0A0E1A; }
         
+        img { background: transparent !important; }
+        
         .splash-screen {
           position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
           background: linear-gradient(180deg, #0A0E1A, #0D3B4A);
