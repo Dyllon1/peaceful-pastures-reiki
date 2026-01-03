@@ -157,7 +157,14 @@ export default function App() {
         
         @media (max-width: 640px) { 
           .logo-container { width: 220px; height: 300px; }
-          .home-logo-container { width: 300px !important; height: 300px !important; margin: 0 auto 2rem !important; }
+          .home-logo-container { 
+            width: 300px !important; 
+            height: 300px !important; 
+            margin: 0 auto 2rem !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            max-width: 90vw !important;
+          }
         }
       `}</style>
 
@@ -201,11 +208,16 @@ export default function App() {
             <div className="home-logo-container" style={{
               width: '400px', 
               height: '400px', 
-              margin: '0 auto 2rem', 
+              margin: '0 auto 2rem',
+              marginLeft: 'auto',
+              marginRight: 'auto',
               display: 'flex', 
               alignItems: 'center', 
               justifyContent: 'center',
-              background: 'transparent'
+              background: 'transparent',
+              position: 'relative',
+              left: '0',
+              right: '0'
             }}>
               <img 
                 src="/melissa2.png" 
