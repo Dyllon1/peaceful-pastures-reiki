@@ -98,10 +98,10 @@ export default function App() {
         
         .logo-image {
           width: 100%; height: 100%;
-          filter: drop-shadow(0 0 10px rgba(0, 0, 0, 1))
-                  drop-shadow(0 0 25px rgba(0, 0, 0, 0.8))
-                  drop-shadow(0 0 50px rgba(10, 14, 26, 0.6)) 
-                  drop-shadow(0 0 80px rgba(10, 14, 26, 0.4))
+          filter: drop-shadow(0 0 10px rgba(30, 41, 59, 0.8))
+                  drop-shadow(0 0 25px rgba(15, 23, 42, 0.6))
+                  drop-shadow(0 0 50px rgba(10, 14, 26, 0.4)) 
+                  drop-shadow(0 0 80px rgba(0, 0, 0, 0.3))
                   brightness(1.1);
           background: transparent !important;
         }
@@ -214,7 +214,7 @@ export default function App() {
               display: 'flex', 
               alignItems: 'center', 
               justifyContent: 'center',
-              background: 'transparent',
+              background: 'radial-gradient(circle, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.3) 30%, rgba(0, 0, 0, 0) 70%)',
               position: 'relative',
               left: '0',
               right: '0'
@@ -226,7 +226,7 @@ export default function App() {
                   width: '100%', 
                   height: '100%', 
                   objectFit: 'contain', 
-                  filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 1)) drop-shadow(0 0 25px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 50px rgba(10, 14, 26, 0.6)) drop-shadow(0 0 80px rgba(10, 14, 26, 0.4))',
+                  filter: 'drop-shadow(0 0 10px rgba(30, 41, 59, 0.8)) drop-shadow(0 0 25px rgba(15, 23, 42, 0.6)) drop-shadow(0 0 50px rgba(10, 14, 26, 0.4)) drop-shadow(0 0 80px rgba(0, 0, 0, 0.3))',
                   background: 'transparent'
                 }} 
               />
