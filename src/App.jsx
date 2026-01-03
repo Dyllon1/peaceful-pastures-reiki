@@ -342,55 +342,55 @@ export default function App() {
               boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
               overflow: 'hidden'
             }}>
-              <div 
-                onClick={() => toggleService('service1')}
-                style={{
-                  padding: '2rem 2.5rem',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  transition: 'background 0.2s'
-                }}
-                onMouseEnter={e => e.currentTarget.style.background = 'rgba(255, 74, 28, 0.08)'}
-                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-              >
-                <div style={{flex: 1}}>
-                  <h3 style={{
-                    fontFamily: 'Cinzel, serif', 
-                    fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', 
-                    color: '#FF6B3D', 
-                    marginBottom: '0.75rem',
-                    letterSpacing: '0.05em'
-                  }}>
-                    One-on-One Sacred Fire Reiki Session
-                  </h3>
-                  <div style={{display: 'flex', gap: '2rem', flexWrap: 'wrap'}}>
-                    <p style={{fontSize: '1rem', color: '#CBD2D9', margin: 0}}>
-                      <strong style={{color: '#FF8A5C'}}>Length:</strong> 60 minutes
-                    </p>
-                    <p style={{fontSize: '1rem', color: '#CBD2D9', margin: 0}}>
-                      <strong style={{color: '#FF8A5C'}}>Investment:</strong> $125 CAD
-                    </p>
-                  </div>
-                </div>
-                <div style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  background: 'rgba(255, 107, 61, 0.2)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '1.5rem',
-                  color: '#FF6B3D',
-                  transition: 'transform 0.3s',
-                  transform: expandedService === 'service1' ? 'rotate(45deg)' : 'rotate(0deg)',
-                  flexShrink: 0,
-                  marginLeft: '1rem'
+              <div style={{padding: '2rem 2.5rem'}}>
+                <h3 style={{
+                  fontFamily: 'Cinzel, serif', 
+                  fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', 
+                  color: '#FF6B3D', 
+                  marginBottom: '0.75rem',
+                  letterSpacing: '0.05em'
                 }}>
-                  +
+                  One-on-One Sacred Fire Reiki Session
+                </h3>
+                <div style={{display: 'flex', gap: '2rem', flexWrap: 'wrap', marginBottom: '1rem'}}>
+                  <p style={{fontSize: '1rem', color: '#CBD2D9', margin: 0}}>
+                    <strong style={{color: '#FF8A5C'}}>Length:</strong> 60 minutes
+                  </p>
+                  <p style={{fontSize: '1rem', color: '#CBD2D9', margin: 0}}>
+                    <strong style={{color: '#FF8A5C'}}>Investment:</strong> $125 CAD
+                  </p>
                 </div>
+                
+                <button
+                  onClick={() => toggleService('service1')}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    background: 'rgba(255, 107, 61, 0.15)',
+                    border: '1px solid rgba(255, 107, 61, 0.3)',
+                    borderRadius: '8px',
+                    color: '#FF6B3D',
+                    fontSize: '0.95rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.5rem',
+                    fontFamily: 'Inter, sans-serif'
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255, 107, 61, 0.25)'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(255, 107, 61, 0.15)'}
+                >
+                  <span style={{
+                    fontSize: '1.25rem',
+                    transition: 'transform 0.3s',
+                    transform: expandedService === 'service1' ? 'rotate(45deg)' : 'rotate(0deg)',
+                    display: 'inline-block'
+                  }}>+</span>
+                  {expandedService === 'service1' ? 'Show Less' : 'Learn More'}
+                </button>
               </div>
 
               {expandedService === 'service1' && (
@@ -430,55 +430,55 @@ export default function App() {
               boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
               overflow: 'hidden'
             }}>
-              <div 
-                onClick={() => toggleService('service2')}
-                style={{
-                  padding: '2rem 2.5rem',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  transition: 'background 0.2s'
-                }}
-                onMouseEnter={e => e.currentTarget.style.background = 'rgba(255, 74, 28, 0.08)'}
-                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-              >
-                <div style={{flex: 1}}>
-                  <h3 style={{
-                    fontFamily: 'Cinzel, serif', 
-                    fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', 
-                    color: '#FF6B3D', 
-                    marginBottom: '0.75rem',
-                    letterSpacing: '0.05em'
-                  }}>
-                    Sacred Fire Reiki with the Horses
-                  </h3>
-                  <div style={{display: 'flex', gap: '2rem', flexWrap: 'wrap'}}>
-                    <p style={{fontSize: '1rem', color: '#CBD2D9', margin: 0}}>
-                      <strong style={{color: '#FF8A5C'}}>Length:</strong> 75 minutes
-                    </p>
-                    <p style={{fontSize: '1rem', color: '#CBD2D9', margin: 0}}>
-                      <strong style={{color: '#FF8A5C'}}>Investment:</strong> $175 CAD
-                    </p>
-                  </div>
-                </div>
-                <div style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  background: 'rgba(255, 107, 61, 0.2)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '1.5rem',
-                  color: '#FF6B3D',
-                  transition: 'transform 0.3s',
-                  transform: expandedService === 'service2' ? 'rotate(45deg)' : 'rotate(0deg)',
-                  flexShrink: 0,
-                  marginLeft: '1rem'
+              <div style={{padding: '2rem 2.5rem'}}>
+                <h3 style={{
+                  fontFamily: 'Cinzel, serif', 
+                  fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', 
+                  color: '#FF6B3D', 
+                  marginBottom: '0.75rem',
+                  letterSpacing: '0.05em'
                 }}>
-                  +
+                  Sacred Fire Reiki with the Horses
+                </h3>
+                <div style={{display: 'flex', gap: '2rem', flexWrap: 'wrap', marginBottom: '1rem'}}>
+                  <p style={{fontSize: '1rem', color: '#CBD2D9', margin: 0}}>
+                    <strong style={{color: '#FF8A5C'}}>Length:</strong> 75 minutes
+                  </p>
+                  <p style={{fontSize: '1rem', color: '#CBD2D9', margin: 0}}>
+                    <strong style={{color: '#FF8A5C'}}>Investment:</strong> $175 CAD
+                  </p>
                 </div>
+                
+                <button
+                  onClick={() => toggleService('service2')}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    background: 'rgba(255, 107, 61, 0.15)',
+                    border: '1px solid rgba(255, 107, 61, 0.3)',
+                    borderRadius: '8px',
+                    color: '#FF6B3D',
+                    fontSize: '0.95rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.5rem',
+                    fontFamily: 'Inter, sans-serif'
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255, 107, 61, 0.25)'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(255, 107, 61, 0.15)'}
+                >
+                  <span style={{
+                    fontSize: '1.25rem',
+                    transition: 'transform 0.3s',
+                    transform: expandedService === 'service2' ? 'rotate(45deg)' : 'rotate(0deg)',
+                    display: 'inline-block'
+                  }}>+</span>
+                  {expandedService === 'service2' ? 'Show Less' : 'Learn More'}
+                </button>
               </div>
 
               {expandedService === 'service2' && (
@@ -522,58 +522,58 @@ export default function App() {
               boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
               overflow: 'hidden'
             }}>
-              <div 
-                onClick={() => toggleService('service3')}
-                style={{
-                  padding: '2rem 2.5rem',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  transition: 'background 0.2s'
-                }}
-                onMouseEnter={e => e.currentTarget.style.background = 'rgba(255, 74, 28, 0.08)'}
-                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-              >
-                <div style={{flex: 1}}>
-                  <h3 style={{
-                    fontFamily: 'Cinzel, serif', 
-                    fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', 
-                    color: '#FF6B3D', 
-                    marginBottom: '0.75rem',
-                    letterSpacing: '0.05em'
-                  }}>
-                    Travel Sacred Fire Reiki — Client or Horse
-                  </h3>
-                  <div style={{display: 'flex', gap: '2rem', flexWrap: 'wrap', marginBottom: '0.5rem'}}>
-                    <p style={{fontSize: '1rem', color: '#CBD2D9', margin: 0}}>
-                      <strong style={{color: '#FF8A5C'}}>Length:</strong> 60 minutes
-                    </p>
-                    <p style={{fontSize: '1rem', color: '#CBD2D9', margin: 0}}>
-                      <strong style={{color: '#FF8A5C'}}>Investment:</strong> $225 CAD + travel
-                    </p>
-                  </div>
-                  <p style={{fontSize: '0.85rem', color: '#9AA5B1', fontStyle: 'italic', margin: 0}}>
-                    (Travel fee calculated based on distance)
+              <div style={{padding: '2rem 2.5rem'}}>
+                <h3 style={{
+                  fontFamily: 'Cinzel, serif', 
+                  fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', 
+                  color: '#FF6B3D', 
+                  marginBottom: '0.75rem',
+                  letterSpacing: '0.05em'
+                }}>
+                  Travel Sacred Fire Reiki — Client or Horse
+                </h3>
+                <div style={{display: 'flex', gap: '2rem', flexWrap: 'wrap', marginBottom: '0.5rem'}}>
+                  <p style={{fontSize: '1rem', color: '#CBD2D9', margin: 0}}>
+                    <strong style={{color: '#FF8A5C'}}>Length:</strong> 60 minutes
+                  </p>
+                  <p style={{fontSize: '1rem', color: '#CBD2D9', margin: 0}}>
+                    <strong style={{color: '#FF8A5C'}}>Investment:</strong> $225 CAD + travel
                   </p>
                 </div>
-                <div style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  background: 'rgba(255, 107, 61, 0.2)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '1.5rem',
-                  color: '#FF6B3D',
-                  transition: 'transform 0.3s',
-                  transform: expandedService === 'service3' ? 'rotate(45deg)' : 'rotate(0deg)',
-                  flexShrink: 0,
-                  marginLeft: '1rem'
-                }}>
-                  +
-                </div>
+                <p style={{fontSize: '0.85rem', color: '#9AA5B1', fontStyle: 'italic', margin: '0 0 1rem 0'}}>
+                  (Travel fee calculated based on distance)
+                </p>
+                
+                <button
+                  onClick={() => toggleService('service3')}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    background: 'rgba(255, 107, 61, 0.15)',
+                    border: '1px solid rgba(255, 107, 61, 0.3)',
+                    borderRadius: '8px',
+                    color: '#FF6B3D',
+                    fontSize: '0.95rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.5rem',
+                    fontFamily: 'Inter, sans-serif'
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255, 107, 61, 0.25)'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(255, 107, 61, 0.15)'}
+                >
+                  <span style={{
+                    fontSize: '1.25rem',
+                    transition: 'transform 0.3s',
+                    transform: expandedService === 'service3' ? 'rotate(45deg)' : 'rotate(0deg)',
+                    display: 'inline-block'
+                  }}>+</span>
+                  {expandedService === 'service3' ? 'Show Less' : 'Learn More'}
+                </button>
               </div>
 
               {expandedService === 'service3' && (
