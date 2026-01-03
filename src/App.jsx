@@ -190,7 +190,7 @@ export default function App() {
         <div className="pattern-overlay"></div>
         <main style={{position: 'relative', zIndex: 1, maxWidth: '1000px', margin: '0 auto'}}>
           <div className="fade-in" style={{
-            background: 'linear-gradient(to bottom, rgba(26, 34, 53, 0.95), rgba(34, 43, 63, 0.95))', 
+            background: 'rgba(0, 0, 0, 0.95)', 
             borderRadius: '20px', 
             boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 74, 28, 0.2)', 
             padding: '3rem 2.5rem 4rem', 
