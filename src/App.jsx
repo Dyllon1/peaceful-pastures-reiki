@@ -81,7 +81,7 @@ export default function App() {
         
         .splash-screen {
           position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-          background: linear-gradient(180deg, #0A0E1A, #0D3B4A);
+          background: #000000;
           display: flex; flex-direction: column; align-items: center; justify-content: center;
           z-index: 9999; animation: fadeOut 0.5s ease 3s forwards;
         }
@@ -216,7 +216,7 @@ export default function App() {
               justifyContent: 'center',
               background: 'radial-gradient(circle, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.3) 30%, rgba(0, 0, 0, 0) 70%)',
               position: 'relative',
-              left: '0',
+              left: '-10px',
               right: '0'
             }}>
               <img 
