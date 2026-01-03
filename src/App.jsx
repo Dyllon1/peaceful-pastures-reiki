@@ -290,6 +290,272 @@ export default function App() {
               </p>
             </div>
 
+            {/* Services Section */}
+            <div style={{
+              width: '100px', 
+              height: '3px', 
+              background: 'linear-gradient(to right, transparent, #FF4A1C, transparent)', 
+              margin: '4rem auto 2rem'
+            }}></div>
+
+            <h2 style={{
+              fontFamily: 'Cinzel, serif', 
+              fontSize: 'clamp(2rem, 5vw, 2.75rem)', 
+              color: '#F8FAFB', 
+              fontWeight: '600', 
+              marginBottom: '3rem', 
+              letterSpacing: '0.08em'
+            }}>
+              SERVICES
+            </h2>
+
+            {/* Service 1: One-on-One Sacred Fire Reiki */}
+            <div style={{
+              maxWidth: '800px', 
+              margin: '0 auto 3rem', 
+              padding: '2.5rem', 
+              background: 'rgba(255, 74, 28, 0.05)', 
+              borderRadius: '16px', 
+              border: '1px solid rgba(255, 74, 28, 0.2)', 
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+              textAlign: 'left'
+            }}>
+              <h3 style={{
+                fontFamily: 'Cinzel, serif', 
+                fontSize: 'clamp(1.5rem, 4vw, 2rem)', 
+                color: '#FF6B3D', 
+                marginBottom: '1rem',
+                letterSpacing: '0.05em'
+              }}>
+                One-on-One Sacred Fire Reiki Session
+              </h3>
+              
+              <div style={{marginBottom: '1.5rem'}}>
+                <p style={{fontSize: '1.125rem', color: '#CBD2D9', marginBottom: '0.5rem'}}>
+                  <strong style={{color: '#FF8A5C'}}>Length:</strong> 60 minutes
+                </p>
+                <p style={{fontSize: '1.125rem', color: '#CBD2D9'}}>
+                  <strong style={{color: '#FF8A5C'}}>Investment:</strong> $125 CAD
+                </p>
+              </div>
+
+              <p style={{fontSize: '1rem', color: '#9AA5B1', fontStyle: 'italic', marginBottom: '1.5rem'}}>
+                <strong style={{color: '#CBD2D9'}}>Who it's for:</strong> Individuals seeking grounding, emotional balance, nervous system regulation, or energetic support during stress, transition, or integration.
+              </p>
+
+              <p style={{fontSize: '1.05rem', color: '#E5E9ED', lineHeight: '1.7', marginBottom: '1.5rem'}}>
+                This private Sacred Fire Reiki session offers intuitive, focused energy work to support relaxation, alignment, and inner stability. Clients often experience a sense of calm, emotional settling, and renewed clarity as Sacred Fire gently releases energetic holding patterns and restores balance.
+              </p>
+
+              <p style={{fontSize: '1rem', color: '#CBD2D9', marginBottom: '0.75rem', fontWeight: '600'}}>
+                Common intentions include:
+              </p>
+              <ul style={{color: '#9AA5B1', fontSize: '1rem', lineHeight: '1.8', marginLeft: '1.5rem'}}>
+                <li>Stress or burnout support</li>
+                <li>Emotional regulation</li>
+                <li>Grounding and embodiment</li>
+                <li>Energetic recalibration</li>
+              </ul>
+            </div>
+
+            {/* Service 2: Sacred Fire Reiki with the Horses */}
+            <div style={{
+              maxWidth: '800px', 
+              margin: '0 auto 3rem', 
+              padding: '2.5rem', 
+              background: 'rgba(255, 74, 28, 0.05)', 
+              borderRadius: '16px', 
+              border: '1px solid rgba(255, 74, 28, 0.2)', 
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+              textAlign: 'left'
+            }}>
+              <h3 style={{
+                fontFamily: 'Cinzel, serif', 
+                fontSize: 'clamp(1.5rem, 4vw, 2rem)', 
+                color: '#FF6B3D', 
+                marginBottom: '1rem',
+                letterSpacing: '0.05em'
+              }}>
+                Sacred Fire Reiki with the Horses
+              </h3>
+              
+              <div style={{marginBottom: '1.5rem'}}>
+                <p style={{fontSize: '1.125rem', color: '#CBD2D9', marginBottom: '0.5rem'}}>
+                  <strong style={{color: '#FF8A5C'}}>Length:</strong> 75 minutes
+                </p>
+                <p style={{fontSize: '1.125rem', color: '#CBD2D9'}}>
+                  <strong style={{color: '#FF8A5C'}}>Investment:</strong> $175 CAD
+                </p>
+              </div>
+
+              <p style={{fontSize: '1rem', color: '#9AA5B1', fontStyle: 'italic', marginBottom: '1.5rem'}}>
+                <strong style={{color: '#CBD2D9'}}>Who it's for:</strong> Individuals seeking deeper grounding, embodied healing, and heart-centered awareness through equine-assisted energy work.
+              </p>
+
+              <p style={{fontSize: '1.05rem', color: '#E5E9ED', lineHeight: '1.7', marginBottom: '1rem'}}>
+                This session weaves Sacred Fire Reiki with the grounded, intuitive presence of my horses, who serve as energetic partners and sacred space holders. Their steady wisdom supports regulation, embodiment, and emotional integration while Sacred Fire moves through the field.
+              </p>
+
+              <p style={{fontSize: '1.05rem', color: '#E5E9ED', lineHeight: '1.7', marginBottom: '1.5rem', fontStyle: 'italic'}}>
+                No horse experience is required. All interaction is optional and guided by the horse's comfort and consent.
+              </p>
+
+              <p style={{fontSize: '1rem', color: '#CBD2D9', marginBottom: '0.75rem', fontWeight: '600'}}>
+                Common intentions include:
+              </p>
+              <ul style={{color: '#9AA5B1', fontSize: '1rem', lineHeight: '1.8', marginLeft: '1.5rem'}}>
+                <li>Emotional release and nervous system regulation</li>
+                <li>Feeling safe and present in the body</li>
+                <li>Heart coherence and grounding</li>
+                <li>Support through life transitions</li>
+              </ul>
+            </div>
+
+            {/* Service 3: Travel Sacred Fire Reiki */}
+            <div style={{
+              maxWidth: '800px', 
+              margin: '0 auto 3rem', 
+              padding: '2.5rem', 
+              background: 'rgba(255, 74, 28, 0.05)', 
+              borderRadius: '16px', 
+              border: '1px solid rgba(255, 74, 28, 0.2)', 
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+              textAlign: 'left'
+            }}>
+              <h3 style={{
+                fontFamily: 'Cinzel, serif', 
+                fontSize: 'clamp(1.5rem, 4vw, 2rem)', 
+                color: '#FF6B3D', 
+                marginBottom: '1rem',
+                letterSpacing: '0.05em'
+              }}>
+                Travel Sacred Fire Reiki — Client or Horse
+              </h3>
+              
+              <div style={{marginBottom: '1.5rem'}}>
+                <p style={{fontSize: '1.125rem', color: '#CBD2D9', marginBottom: '0.5rem'}}>
+                  <strong style={{color: '#FF8A5C'}}>Length:</strong> 60 minutes (per individual)
+                </p>
+                <p style={{fontSize: '1.125rem', color: '#CBD2D9'}}>
+                  <strong style={{color: '#FF8A5C'}}>Investment:</strong> $225 CAD + travel fee
+                </p>
+                <p style={{fontSize: '0.95rem', color: '#9AA5B1', fontStyle: 'italic', marginTop: '0.5rem'}}>
+                  (Travel fee calculated based on distance)
+                </p>
+              </div>
+
+              <p style={{fontSize: '1rem', color: '#9AA5B1', fontStyle: 'italic', marginBottom: '1.5rem'}}>
+                <strong style={{color: '#CBD2D9'}}>Who it's for:</strong> Clients or horses who benefit from receiving Reiki in a familiar environment.
+              </p>
+
+              <p style={{fontSize: '1.05rem', color: '#E5E9ED', lineHeight: '1.7', marginBottom: '1.5rem'}}>
+                Travel sessions are available for Sacred Fire Reiki offered individually to either the client or their horse. These sessions support balance, regulation, and energetic alignment while honoring the horse's autonomy and sensitivity. Working in a familiar setting allows Sacred Fire to integrate gently and respectfully.
+              </p>
+
+              <p style={{fontSize: '1rem', color: '#CBD2D9', marginBottom: '0.75rem', fontWeight: '600'}}>
+                Common intentions include:
+              </p>
+              <ul style={{color: '#9AA5B1', fontSize: '1rem', lineHeight: '1.8', marginLeft: '1.5rem'}}>
+                <li>Stress or anxiety support</li>
+                <li>Post-event or transition integration</li>
+                <li>Emotional or energetic settling</li>
+                <li>Support for sensitive or senior horses</li>
+              </ul>
+            </div>
+
+            {/* Session Preparation */}
+            <div style={{
+              maxWidth: '800px', 
+              margin: '0 auto 3rem', 
+              padding: '2.5rem', 
+              background: 'rgba(13, 59, 74, 0.15)', 
+              borderRadius: '16px', 
+              border: '1px solid rgba(94, 234, 212, 0.2)', 
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+              textAlign: 'left'
+            }}>
+              <h3 style={{
+                fontFamily: 'Cinzel, serif', 
+                fontSize: 'clamp(1.5rem, 4vw, 2rem)', 
+                color: '#5EEAD4', 
+                marginBottom: '1.5rem',
+                letterSpacing: '0.05em'
+              }}>
+                Session Preparation
+              </h3>
+
+              <p style={{fontSize: '1.05rem', color: '#E5E9ED', lineHeight: '1.7', marginBottom: '1.5rem'}}>
+                To receive the most from your session, please consider the following:
+              </p>
+
+              <ul style={{color: '#CBD2D9', fontSize: '1.05rem', lineHeight: '1.9', marginLeft: '1.5rem', marginBottom: '1.5rem'}}>
+                <li>Wear comfortable clothing</li>
+                <li>Avoid heavy meals immediately before your session</li>
+                <li>Stay well hydrated</li>
+                <li>Arrive with an open, relaxed mindset—no intention is required</li>
+                <li>For horse sessions, ensure a calm environment and allow the horse freedom to move or rest</li>
+              </ul>
+
+              <p style={{fontSize: '1.05rem', color: '#9AA5B1', fontStyle: 'italic', lineHeight: '1.7'}}>
+                There is no need to prepare emotionally or energetically—Sacred Fire Reiki meets you (or your horse) exactly where you are.
+              </p>
+            </div>
+
+            {/* What to Expect */}
+            <div style={{
+              maxWidth: '800px', 
+              margin: '0 auto 3rem', 
+              padding: '2.5rem', 
+              background: 'rgba(13, 59, 74, 0.15)', 
+              borderRadius: '16px', 
+              border: '1px solid rgba(94, 234, 212, 0.2)', 
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+              textAlign: 'left'
+            }}>
+              <h3 style={{
+                fontFamily: 'Cinzel, serif', 
+                fontSize: 'clamp(1.5rem, 4vw, 2rem)', 
+                color: '#5EEAD4', 
+                marginBottom: '1.5rem',
+                letterSpacing: '0.05em'
+              }}>
+                What to Expect
+              </h3>
+
+              <p style={{fontSize: '1.05rem', color: '#E5E9ED', lineHeight: '1.7', marginBottom: '1.5rem'}}>
+                Each session begins with a brief check-in to clarify intentions and ensure comfort. Reiki is then offered through gentle, non-invasive energy work, either hands-on or hands-off depending on preference and consent.
+              </p>
+
+              <p style={{fontSize: '1.05rem', color: '#E5E9ED', lineHeight: '1.7', marginBottom: '1.5rem'}}>
+                Clients may experience sensations such as warmth, relaxation, emotional release, imagery, or deep stillness. Horses may shift posture, yawn, rest, move away, or engage—all responses are respected and honored.
+              </p>
+
+              <p style={{fontSize: '1.1rem', color: '#5EEAD4', fontStyle: 'italic', fontWeight: '500', lineHeight: '1.7'}}>
+                Every session is unique. Healing unfolds in alignment with what is ready to be received.
+              </p>
+            </div>
+
+            {/* Disclaimer */}
+            <div style={{
+              maxWidth: '800px', 
+              margin: '0 auto 3rem', 
+              padding: '2rem', 
+              background: 'rgba(82, 96, 109, 0.15)', 
+              borderRadius: '12px', 
+              border: '1px solid rgba(203, 210, 217, 0.2)', 
+              textAlign: 'left'
+            }}>
+              <p style={{fontSize: '0.95rem', color: '#9AA5B1', lineHeight: '1.7', marginBottom: '1rem'}}>
+                <strong style={{color: '#CBD2D9'}}>Gentle Reiki Disclaimer:</strong>
+              </p>
+              <p style={{fontSize: '0.95rem', color: '#9AA5B1', lineHeight: '1.7'}}>
+                Sacred Fire Reiki is a complementary, energy-based practice intended to support relaxation, balance, and overall well-being. It is not a substitute for medical, veterinary, psychological, or professional care. No diagnosis or treatment is offered or implied. Clients are encouraged to seek appropriate professional support for medical or veterinary concerns.
+              </p>
+              <p style={{fontSize: '0.95rem', color: '#9AA5B1', lineHeight: '1.7', marginTop: '1rem', fontStyle: 'italic'}}>
+                All sessions honor consent, autonomy, and the innate wisdom of both human and horse.
+              </p>
+            </div>
+
             <div style={{
               width: '100px', 
               height: '3px', 
