@@ -98,9 +98,10 @@ export default function App() {
         
         .logo-image {
           width: 100%; height: 100%;
-          filter: drop-shadow(0 5px 15px rgba(10, 14, 26, 0.8))
-                  drop-shadow(0 10px 40px rgba(255, 138, 92, 0.6)) 
-                  drop-shadow(0 0 60px rgba(255, 74, 28, 0.5)) 
+          filter: drop-shadow(0 0 10px rgba(0, 0, 0, 1))
+                  drop-shadow(0 0 25px rgba(0, 0, 0, 0.8))
+                  drop-shadow(0 0 50px rgba(10, 14, 26, 0.6)) 
+                  drop-shadow(0 0 80px rgba(10, 14, 26, 0.4))
                   brightness(1.1);
           background: transparent !important;
         }
@@ -210,7 +211,7 @@ export default function App() {
                   width: '100%', 
                   height: '100%', 
                   objectFit: 'contain', 
-                  filter: 'drop-shadow(0 5px 15px rgba(10, 14, 26, 0.8)) drop-shadow(0 10px 40px rgba(255, 138, 92, 0.6)) drop-shadow(0 0 60px rgba(255, 74, 28, 0.5))',
+                  filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 1)) drop-shadow(0 0 25px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 50px rgba(10, 14, 26, 0.6)) drop-shadow(0 0 80px rgba(10, 14, 26, 0.4))',
                   background: 'transparent',
                   WebkitMaskImage: 'radial-gradient(circle, black 85%, transparent 100%)',
                   maskImage: 'radial-gradient(circle, black 85%, transparent 100%)'
