@@ -75,7 +75,7 @@ export default function App() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Inter, sans-serif; overflow-x: hidden; background: #0A0E1A; }
+        body { font-family: Inter, sans-serif; overflow-x: hidden; background: #000000; }
         
         img { background: transparent !important; }
         
@@ -108,7 +108,7 @@ export default function App() {
         
         .main-content {
           min-height: 100vh;
-          background: linear-gradient(135deg, #0A0E1A 0%, #0E1D34 50%, #0D3B4A 100%);
+          background: #000000;
           position: relative; padding: 2rem 1rem;
         }
         
@@ -196,8 +196,8 @@ export default function App() {
           }}>
 
             <div style={{
-              width: '280px', 
-              height: '280px', 
+              width: '400px', 
+              height: '400px', 
               margin: '0 auto 2rem', 
               display: 'flex', 
               alignItems: 'center', 
@@ -205,7 +205,7 @@ export default function App() {
               background: 'transparent'
             }}>
               <img 
-                src="/melissa.png" 
+                src="/melissa2.png" 
                 alt="Sacred Fire Logo" 
                 style={{
                   width: '100%', 
@@ -269,7 +269,7 @@ export default function App() {
               margin: '0.5rem 0 3rem', 
               fontWeight: '400'
             }}>
-              Payment by e-transfer or cash at appointment
+              Payment by e-transfer
             </p>
 
             <div style={{
