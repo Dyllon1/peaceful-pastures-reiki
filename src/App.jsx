@@ -155,7 +155,10 @@ export default function App() {
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .fade-in { animation: fadeIn 0.8s ease-out; }
         
-        @media (max-width: 640px) { .logo-container { width: 220px; height: 300px; } }
+        @media (max-width: 640px) { 
+          .logo-container { width: 220px; height: 300px; }
+          .home-logo-container { width: 300px !important; height: 300px !important; margin: 0 auto 2rem !important; }
+        }
       `}</style>
 
       {currentScreen === 'splash' && (
@@ -195,7 +198,7 @@ export default function App() {
             backdropFilter: 'blur(10px)'
           }}>
 
-            <div style={{
+            <div className="home-logo-container" style={{
               width: '400px', 
               height: '400px', 
               margin: '0 auto 2rem', 
