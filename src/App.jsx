@@ -187,63 +187,6 @@ export default function App() {
         @keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 1000px; } }
         .fade-in { animation: fadeIn 0.8s ease-out; }
         
-        @keyframes glow1 {
-          0%, 25%, 100% { opacity: 0; }
-          5% { opacity: 0.15; }
-          12.5% { opacity: 0; }
-        }
-        
-        @keyframes glow2 {
-          0%, 100% { opacity: 0; }
-          25% { opacity: 0; }
-          30% { opacity: 0.13; }
-          37.5% { opacity: 0; }
-          50%, 100% { opacity: 0; }
-        }
-        
-        @keyframes glow3 {
-          0%, 50% { opacity: 0; }
-          55% { opacity: 0.17; }
-          62.5% { opacity: 0; }
-          75%, 100% { opacity: 0; }
-        }
-        
-        @keyframes glow4 {
-          0%, 75% { opacity: 0; }
-          80% { opacity: 0.14; }
-          87.5% { opacity: 0; }
-          100% { opacity: 0; }
-        }
-        
-        .fire-glow {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
-        }
-        
-        .glow-1 {
-          background: radial-gradient(circle at 30% 40%, rgba(255, 107, 61, 1) 0%, rgba(255, 74, 28, 0.6) 30%, transparent 60%);
-          animation: glow1 40s ease-in-out infinite;
-        }
-        
-        .glow-2 {
-          background: radial-gradient(circle at 70% 60%, rgba(255, 138, 92, 1) 0%, rgba(255, 107, 61, 0.6) 35%, transparent 65%);
-          animation: glow2 40s ease-in-out infinite;
-        }
-        
-        .glow-3 {
-          background: radial-gradient(circle at 40% 70%, rgba(255, 74, 28, 1) 0%, rgba(255, 107, 61, 0.6) 30%, transparent 60%);
-          animation: glow3 40s ease-in-out infinite;
-        }
-        
-        .glow-4 {
-          background: radial-gradient(circle at 60% 30%, rgba(255, 107, 61, 1) 0%, rgba(255, 138, 92, 0.6) 35%, transparent 65%);
-          animation: glow4 40s ease-in-out infinite;
-        }
-        
         .sticky-nav {
           position: fixed;
           top: 0;
@@ -349,12 +292,7 @@ export default function App() {
       )}
 
       <div className="main-content">
-        <div className="pattern-overlay">
-          <div className="fire-glow glow-1"></div>
-          <div className="fire-glow glow-2"></div>
-          <div className="fire-glow glow-3"></div>
-          <div className="fire-glow glow-4"></div>
-        </div>
+        <div className="pattern-overlay"></div>
         <main style={{position: 'relative', zIndex: 1, maxWidth: '1000px', margin: '0 auto'}}>
           <div id="home" className="fade-in" style={{
             background: 'rgba(0, 0, 0, 0.95)', 
