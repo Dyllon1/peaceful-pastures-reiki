@@ -1356,11 +1356,11 @@ export default function App() {
               <div style={{
                 maxWidth: '1000px',
                 margin: '0 auto',
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                display: 'flex',
+                flexWrap: 'wrap',
                 gap: '2.5rem',
                 padding: '0 1rem',
-                justifyItems: 'center'
+                justifyContent: 'center'
               }}>
                 {[
                   {name: 'DC', img: '/dc.jpg', desc: 'DC carries a calm, stabilizing fire shaped by ancient, ancestral wisdom—an energy that remembers the rhythm of the earth and the intelligence of stillness. Through Sacred Fire Reiki, his presence anchors the Root chakra while gently opening the Heart, allowing fear, tension, and emotional holding to release with trust. He holds sacred space as a quiet elder, guiding clients back into embodied safety, balance, and inner knowing.', title: 'Sacred Guardian of Grounded Fire'},
@@ -1378,7 +1378,6 @@ export default function App() {
                     overflow: 'hidden',
                     width: '100%',
                     maxWidth: '380px',
-                    margin: '0 auto',
                     boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
                     transition: 'transform 0.3s, box-shadow 0.3s'
                   }}
