@@ -187,6 +187,38 @@ export default function App() {
         @keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 1000px; } }
         .fade-in { animation: fadeIn 0.8s ease-out; }
         
+        @keyframes gallop1 {
+          0% { left: -15%; opacity: 0; }
+          10% { opacity: 0.15; }
+          90% { opacity: 0.15; }
+          100% { left: 115%; opacity: 0; }
+        }
+        
+        @keyframes gallop2 {
+          0% { left: -20%; opacity: 0; }
+          10% { opacity: 0.12; }
+          90% { opacity: 0.12; }
+          100% { left: 120%; opacity: 0; }
+        }
+        
+        .fire-horse {
+          position: absolute;
+          width: 200px;
+          height: 150px;
+          filter: drop-shadow(0 0 20px rgba(255, 107, 61, 0.4));
+        }
+        
+        .fire-horse-1 {
+          top: 15%;
+          animation: gallop1 60s linear infinite;
+        }
+        
+        .fire-horse-2 {
+          top: 65%;
+          animation: gallop2 75s linear infinite;
+          animation-delay: -30s;
+        }
+        
         .sticky-nav {
           position: fixed;
           top: 0;
@@ -292,7 +324,72 @@ export default function App() {
       )}
 
       <div className="main-content">
-        <div className="pattern-overlay"></div>
+        <div className="pattern-overlay">
+          {/* Fire Horse Silhouettes */}
+          <svg className="fire-horse fire-horse-1" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+            {/* Horse body - dark silhouette */}
+            <path d="M 180 90 Q 170 70, 160 65 L 150 60 Q 140 55, 130 60 L 120 70 Q 110 80, 100 85 L 90 90 Q 80 95, 70 95 L 60 95 Q 50 95, 45 85 L 40 70 Q 38 60, 40 50 L 45 40 Q 50 35, 60 35 L 70 35 Q 80 35, 90 40 L 100 45 Q 110 50, 120 50 L 140 50 Q 150 50, 160 55 L 170 65 Q 175 75, 180 90 Z" 
+                  fill="rgba(10, 14, 26, 0.8)" />
+            {/* Legs */}
+            <rect x="65" y="95" width="8" height="45" fill="rgba(10, 14, 26, 0.8)" rx="2" />
+            <rect x="85" y="95" width="8" height="50" fill="rgba(10, 14, 26, 0.8)" rx="2" />
+            <rect x="130" y="85" width="8" height="55" fill="rgba(10, 14, 26, 0.8)" rx="2" />
+            <rect x="150" y="85" width="8" height="50" fill="rgba(10, 14, 26, 0.8)" rx="2" />
+            {/* Glowing mane */}
+            <path d="M 60 35 Q 55 25, 58 15 Q 62 20, 65 15 Q 68 22, 72 18 Q 75 25, 78 20 Q 80 28, 85 25" 
+                  fill="none" 
+                  stroke="rgba(255, 107, 61, 0.6)" 
+                  strokeWidth="3"
+                  filter="url(#fireGlow)" />
+            {/* Glowing tail */}
+            <path d="M 180 90 Q 185 95, 190 100 Q 188 110, 192 115 Q 190 120, 195 125" 
+                  fill="none" 
+                  stroke="rgba(255, 107, 61, 0.6)" 
+                  strokeWidth="3"
+                  filter="url(#fireGlow)" />
+            <defs>
+              <filter id="fireGlow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+          </svg>
+
+          <svg className="fire-horse fire-horse-2" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+            {/* Horse body - dark silhouette */}
+            <path d="M 180 90 Q 170 70, 160 65 L 150 60 Q 140 55, 130 60 L 120 70 Q 110 80, 100 85 L 90 90 Q 80 95, 70 95 L 60 95 Q 50 95, 45 85 L 40 70 Q 38 60, 40 50 L 45 40 Q 50 35, 60 35 L 70 35 Q 80 35, 90 40 L 100 45 Q 110 50, 120 50 L 140 50 Q 150 50, 160 55 L 170 65 Q 175 75, 180 90 Z" 
+                  fill="rgba(10, 14, 26, 0.7)" />
+            {/* Legs */}
+            <rect x="65" y="95" width="8" height="45" fill="rgba(10, 14, 26, 0.7)" rx="2" />
+            <rect x="85" y="95" width="8" height="50" fill="rgba(10, 14, 26, 0.7)" rx="2" />
+            <rect x="130" y="85" width="8" height="55" fill="rgba(10, 14, 26, 0.7)" rx="2" />
+            <rect x="150" y="85" width="8" height="50" fill="rgba(10, 14, 26, 0.7)" rx="2" />
+            {/* Glowing mane */}
+            <path d="M 60 35 Q 55 25, 58 15 Q 62 20, 65 15 Q 68 22, 72 18 Q 75 25, 78 20 Q 80 28, 85 25" 
+                  fill="none" 
+                  stroke="rgba(255, 138, 92, 0.5)" 
+                  strokeWidth="3"
+                  filter="url(#fireGlow2)" />
+            {/* Glowing tail */}
+            <path d="M 180 90 Q 185 95, 190 100 Q 188 110, 192 115 Q 190 120, 195 125" 
+                  fill="none" 
+                  stroke="rgba(255, 138, 92, 0.5)" 
+                  strokeWidth="3"
+                  filter="url(#fireGlow2)" />
+            <defs>
+              <filter id="fireGlow2">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+          </svg>
+        </div>
         <main style={{position: 'relative', zIndex: 1, maxWidth: '1000px', margin: '0 auto'}}>
           <div id="home" className="fade-in" style={{
             background: 'rgba(0, 0, 0, 0.95)', 
