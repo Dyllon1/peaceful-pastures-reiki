@@ -407,6 +407,7 @@ export default function App() {
       <nav className={`sticky-nav ${showNav ? 'visible' : ''}`} role="navigation" aria-label="Main navigation">
         <a className="nav-link" onClick={() => scrollToSection('home')} role="button" tabIndex={0}>Home</a>
         <a className="nav-link" onClick={() => scrollToSection('services')} role="button" tabIndex={0}>Services</a>
+        <a className="nav-link" onClick={() => scrollToSection('herd')} role="button" tabIndex={0}>Meet the Herd</a>
         <a className="nav-link" onClick={() => scrollToSection('booking')} role="button" tabIndex={0}>Book Now</a>
         <a className="nav-link" onClick={() => scrollToSection('policies')} role="button" tabIndex={0}>Policies</a>
         <a className="nav-link" onClick={() => scrollToSection('contact')} role="button" tabIndex={0}>Contact</a>
@@ -1072,6 +1073,168 @@ export default function App() {
                   </p>
                 </div>
               )}
+            </div>
+
+            {/* Meet the Herd Section */}
+            <div id="herd" style={{
+              width: '100px', 
+              height: '3px', 
+              background: 'linear-gradient(to right, transparent, #FF8A5C, transparent)', 
+              margin: '5rem auto 2rem'
+            }}></div>
+
+            <h2 style={{
+              fontFamily: 'Cinzel, serif', 
+              fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', 
+              color: '#FF8A5C', 
+              fontWeight: '600', 
+              marginBottom: '1rem', 
+              letterSpacing: '0.08em'
+            }}>
+              MEET THE HERD
+            </h2>
+
+            <p style={{
+              fontSize: 'clamp(1rem, 3vw, 1.2rem)', 
+              color: '#9AA5B1', 
+              fontStyle: 'italic', 
+              margin: '0 auto 3rem',
+              maxWidth: '700px',
+              lineHeight: '1.7'
+            }}>
+              Our horses are sacred partners in this healing work. Each one brings their own gentle wisdom, grounded presence, and intuitive knowing.
+            </p>
+
+            {/* Horse Card Template - You'll add your horse photos here */}
+            <div style={{
+              maxWidth: '900px',
+              margin: '0 auto',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '2rem',
+              padding: '0 1rem'
+            }}>
+              
+              {/* Horse 1 - Replace with your actual horse info */}
+              <div style={{
+                background: 'rgba(255, 138, 92, 0.08)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 138, 92, 0.2)',
+                overflow: 'hidden',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+                transition: 'transform 0.3s, box-shadow 0.3s'
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 138, 92, 0.3)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.3)';
+              }}>
+                {/* Horse Image - Replace with actual image */}
+                <div style={{
+                  width: '100%',
+                  height: '250px',
+                  background: 'linear-gradient(135deg, rgba(255, 138, 92, 0.2), rgba(255, 107, 61, 0.2))',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#9AA5B1',
+                  fontSize: '0.9rem',
+                  fontStyle: 'italic'
+                }}>
+                  {/* Add: <img src="/horse1.jpg" alt="Horse name" style={{width: '100%', height: '100%', objectFit: 'cover'}} /> */}
+                  [Upload horse photo to /public folder]
+                </div>
+                <div style={{padding: '1.5rem'}}>
+                  <h3 style={{
+                    fontFamily: 'Cinzel, serif',
+                    fontSize: '1.5rem',
+                    color: '#FF8A5C',
+                    marginBottom: '0.5rem',
+                    letterSpacing: '0.05em'
+                  }}>
+                    Horse Name
+                  </h3>
+                  <p style={{
+                    fontSize: '0.95rem',
+                    color: '#E5E9ED',
+                    lineHeight: '1.7',
+                    marginBottom: '0.75rem'
+                  }}>
+                    Add a brief description of this horse's personality, energy, and what they bring to the healing space.
+                  </p>
+                  <p style={{
+                    fontSize: '0.85rem',
+                    color: '#9AA5B1',
+                    fontStyle: 'italic'
+                  }}>
+                    Age • Breed (optional)
+                  </p>
+                </div>
+              </div>
+
+              {/* Horse 2 - Duplicate this card for each horse */}
+              <div style={{
+                background: 'rgba(255, 138, 92, 0.08)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 138, 92, 0.2)',
+                overflow: 'hidden',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+                transition: 'transform 0.3s, box-shadow 0.3s'
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 138, 92, 0.3)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.3)';
+              }}>
+                <div style={{
+                  width: '100%',
+                  height: '250px',
+                  background: 'linear-gradient(135deg, rgba(255, 138, 92, 0.2), rgba(255, 107, 61, 0.2))',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#9AA5B1',
+                  fontSize: '0.9rem',
+                  fontStyle: 'italic'
+                }}>
+                  [Upload horse photo to /public folder]
+                </div>
+                <div style={{padding: '1.5rem'}}>
+                  <h3 style={{
+                    fontFamily: 'Cinzel, serif',
+                    fontSize: '1.5rem',
+                    color: '#FF8A5C',
+                    marginBottom: '0.5rem',
+                    letterSpacing: '0.05em'
+                  }}>
+                    Horse Name
+                  </h3>
+                  <p style={{
+                    fontSize: '0.95rem',
+                    color: '#E5E9ED',
+                    lineHeight: '1.7',
+                    marginBottom: '0.75rem'
+                  }}>
+                    Add a brief description of this horse's personality, energy, and what they bring to the healing space.
+                  </p>
+                  <p style={{
+                    fontSize: '0.85rem',
+                    color: '#9AA5B1',
+                    fontStyle: 'italic'
+                  }}>
+                    Age • Breed (optional)
+                  </p>
+                </div>
+              </div>
+
+              {/* Add more horse cards by duplicating the above block */}
+
             </div>
 
             <div id="booking" style={{
