@@ -408,21 +408,11 @@ export default function App() {
               fontSize: 'clamp(2rem, 5vw, 2.75rem)', 
               color: '#F8FAFB', 
               fontWeight: '600', 
-              marginBottom: '1rem', 
+              marginBottom: '3rem', 
               letterSpacing: '0.08em'
             }}>
               SERVICES
             </h2>
-
-            <p style={{
-              fontSize: 'clamp(1rem, 3vw, 1.25rem)', 
-              color: '#9AA5B1', 
-              fontStyle: 'italic', 
-              margin: '0 0 3rem', 
-              fontWeight: '500'
-            }}>
-              Payment by e-transfer
-            </p>
 
             {/* Service 1: One-on-One Sacred Fire Reiki */}
             <div style={{
@@ -931,11 +921,21 @@ export default function App() {
               fontSize: 'clamp(2rem, 5vw, 2.75rem)', 
               color: '#F8FAFB', 
               fontWeight: '600', 
-              marginBottom: '2.5rem', 
+              marginBottom: '1rem', 
               letterSpacing: '0.08em'
             }}>
               SCHEDULE YOUR SESSION
             </h2>
+
+            <p style={{
+              fontSize: 'clamp(0.95rem, 3vw, 1.125rem)', 
+              color: '#9AA5B1', 
+              fontStyle: 'italic', 
+              margin: '0 0 2.5rem', 
+              fontWeight: '500'
+            }}>
+              Payment accepted via e-transfer
+            </p>
 
             <div style={{maxWidth: '420px', margin: '0 auto 3rem'}}>
               <DatePicker 
