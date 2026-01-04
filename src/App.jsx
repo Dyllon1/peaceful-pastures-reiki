@@ -189,28 +189,28 @@ export default function App() {
         
         @keyframes glow1 {
           0%, 25%, 100% { opacity: 0; }
-          5% { opacity: 0.25; }
+          5% { opacity: 0.15; }
           12.5% { opacity: 0; }
         }
         
         @keyframes glow2 {
           0%, 100% { opacity: 0; }
           25% { opacity: 0; }
-          30% { opacity: 0.22; }
+          30% { opacity: 0.13; }
           37.5% { opacity: 0; }
           50%, 100% { opacity: 0; }
         }
         
         @keyframes glow3 {
           0%, 50% { opacity: 0; }
-          55% { opacity: 0.28; }
+          55% { opacity: 0.17; }
           62.5% { opacity: 0; }
           75%, 100% { opacity: 0; }
         }
         
         @keyframes glow4 {
           0%, 75% { opacity: 0; }
-          80% { opacity: 0.24; }
+          80% { opacity: 0.14; }
           87.5% { opacity: 0; }
           100% { opacity: 0; }
         }
