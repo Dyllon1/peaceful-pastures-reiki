@@ -350,17 +350,30 @@ export default function App() {
               margin: '1.5rem auto'
             }}></div>
             
-            <p style={{
-              fontFamily: 'Cinzel, serif',
-              fontSize: 'clamp(1.5rem, 5vw, 2.25rem)', 
-              color: '#FF8A5C', 
-              fontStyle: 'normal', 
-              margin: '0 0 2rem', 
-              fontWeight: '600',
-              letterSpacing: '0.08em'
-            }}>
-              with Melissa Lynn
-            </p>
+            <div style={{margin: '0 0 2rem'}}>
+              <p style={{
+                fontFamily: 'Inter, sans-serif',
+                fontSize: 'clamp(0.9rem, 3vw, 1.125rem)', 
+                color: '#9AA5B1', 
+                fontStyle: 'italic', 
+                margin: '0 0 0.5rem', 
+                fontWeight: '400',
+                letterSpacing: '0.05em'
+              }}>
+                with
+              </p>
+              <p style={{
+                fontFamily: 'Cinzel, serif',
+                fontSize: 'clamp(1.5rem, 5vw, 2.25rem)', 
+                color: '#FF8A5C', 
+                fontStyle: 'normal', 
+                margin: 0, 
+                fontWeight: '600',
+                letterSpacing: '0.08em'
+              }}>
+                Melissa Lynn
+              </p>
+            </div>
 
             <div style={{
               maxWidth: '700px', 
