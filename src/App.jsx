@@ -42,6 +42,152 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // SEO Meta Tags
+  useEffect(() => {
+    // Set page title
+    document.title = "Sacred Fire Reiki with Melissa Lynn | Equine-Assisted Energy Healing in Calgary, AB";
+    
+    // Add meta description
+    const metaDescription = document.querySelector('meta[name="description"]') || document.createElement('meta');
+    metaDescription.name = "description";
+    metaDescription.content = "Experience Sacred Fire Reiki energy healing with Melissa Lynn in Calgary, Alberta. Offering one-on-one sessions, equine-assisted Reiki with horses, and travel services for clients and horses. Book your transformative healing session today.";
+    if (!document.querySelector('meta[name="description"]')) {
+      document.head.appendChild(metaDescription);
+    }
+
+    // Add meta keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]') || document.createElement('meta');
+    metaKeywords.name = "keywords";
+    metaKeywords.content = "Sacred Fire Reiki, Reiki Calgary, energy healing, equine assisted therapy, horse therapy, Reiki with horses, holistic healing, nervous system regulation, emotional healing, Melissa Lynn, Calgary Reiki practitioner, energy work, spiritual healing, animal Reiki";
+    if (!document.querySelector('meta[name="keywords"]')) {
+      document.head.appendChild(metaKeywords);
+    }
+
+    // Open Graph meta tags for social media
+    const ogTitle = document.querySelector('meta[property="og:title"]') || document.createElement('meta');
+    ogTitle.setAttribute('property', 'og:title');
+    ogTitle.content = "Sacred Fire Reiki with Melissa Lynn | Calgary Energy Healing";
+    if (!document.querySelector('meta[property="og:title"]')) {
+      document.head.appendChild(ogTitle);
+    }
+
+    const ogDescription = document.querySelector('meta[property="og:description"]') || document.createElement('meta');
+    ogDescription.setAttribute('property', 'og:description');
+    ogDescription.content = "Transformative Sacred Fire Reiki sessions in Calgary. Experience deep healing with one-on-one sessions or unique equine-assisted energy work.";
+    if (!document.querySelector('meta[property="og:description"]')) {
+      document.head.appendChild(ogDescription);
+    }
+
+    const ogType = document.querySelector('meta[property="og:type"]') || document.createElement('meta');
+    ogType.setAttribute('property', 'og:type');
+    ogType.content = "website";
+    if (!document.querySelector('meta[property="og:type"]')) {
+      document.head.appendChild(ogType);
+    }
+
+    const ogUrl = document.querySelector('meta[property="og:url"]') || document.createElement('meta');
+    ogUrl.setAttribute('property', 'og:url');
+    ogUrl.content = "https://www.balancedheartsholyfirereiki.ca";
+    if (!document.querySelector('meta[property="og:url"]')) {
+      document.head.appendChild(ogUrl);
+    }
+
+    // Add canonical URL
+    const canonical = document.querySelector('link[rel="canonical"]') || document.createElement('link');
+    canonical.rel = "canonical";
+    canonical.href = "https://www.balancedheartsholyfirereiki.ca";
+    if (!document.querySelector('link[rel="canonical"]')) {
+      document.head.appendChild(canonical);
+    }
+
+    // Add Schema.org structured data for Local Business
+    const existingScript = document.querySelector('script[type="application/ld+json"]');
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "HealthAndBeautyBusiness",
+        "name": "Sacred Fire Reiki with Melissa Lynn",
+        "description": "Sacred Fire Reiki energy healing services including one-on-one sessions, equine-assisted therapy, and travel services in Calgary, Alberta.",
+        "url": "https://www.balancedheartsholyfirereiki.ca",
+        "telephone": "+1-403-852-4324",
+        "email": "balancedheartsranch@yahoo.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Calgary",
+          "addressRegion": "AB",
+          "addressCountry": "CA"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "51.0447",
+          "longitude": "-114.0719"
+        },
+        "priceRange": "$125 - $225",
+        "openingHours": "Mo-Sa 09:00-18:00",
+        "paymentAccepted": "E-transfer",
+        "areaServed": {
+          "@type": "City",
+          "name": "Calgary",
+          "containedIn": {
+            "@type": "AdministrativeArea",
+            "name": "Alberta"
+          }
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Sacred Fire Reiki Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "One-on-One Sacred Fire Reiki Session",
+                "description": "60-minute private Sacred Fire Reiki session for relaxation, alignment, and inner stability",
+                "provider": {
+                  "@type": "Person",
+                  "name": "Melissa Lynn"
+                }
+              },
+              "price": "125",
+              "priceCurrency": "CAD"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Sacred Fire Reiki with the Horses",
+                "description": "75-minute equine-assisted Sacred Fire Reiki session for deeper grounding and embodied healing",
+                "provider": {
+                  "@type": "Person",
+                  "name": "Melissa Lynn"
+                }
+              },
+              "price": "175",
+              "priceCurrency": "CAD"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Travel Sacred Fire Reiki",
+                "description": "60-minute Sacred Fire Reiki session at client or horse location with travel fee",
+                "provider": {
+                  "@type": "Person",
+                  "name": "Melissa Lynn"
+                }
+              },
+              "price": "225",
+              "priceCurrency": "CAD"
+            }
+          ]
+        }
+      });
+      document.head.appendChild(script);
+    }
+  }, []);
+
   useEffect(() => {
     const timer = setTimeout(() => setCurrentScreen('main'), 3500);
     return () => clearTimeout(timer);
@@ -258,12 +404,12 @@ export default function App() {
       `}</style>
 
       {/* Sticky Navigation */}
-      <nav className={`sticky-nav ${showNav ? 'visible' : ''}`}>
-        <a className="nav-link" onClick={() => scrollToSection('home')}>Home</a>
-        <a className="nav-link" onClick={() => scrollToSection('services')}>Services</a>
-        <a className="nav-link" onClick={() => scrollToSection('booking')}>Book Now</a>
-        <a className="nav-link" onClick={() => scrollToSection('policies')}>Policies</a>
-        <a className="nav-link" onClick={() => scrollToSection('contact')}>Contact</a>
+      <nav className={`sticky-nav ${showNav ? 'visible' : ''}`} role="navigation" aria-label="Main navigation">
+        <a className="nav-link" onClick={() => scrollToSection('home')} role="button" tabIndex={0}>Home</a>
+        <a className="nav-link" onClick={() => scrollToSection('services')} role="button" tabIndex={0}>Services</a>
+        <a className="nav-link" onClick={() => scrollToSection('booking')} role="button" tabIndex={0}>Book Now</a>
+        <a className="nav-link" onClick={() => scrollToSection('policies')} role="button" tabIndex={0}>Policies</a>
+        <a className="nav-link" onClick={() => scrollToSection('contact')} role="button" tabIndex={0}>Contact</a>
       </nav>
 
       {currentScreen === 'splash' && (
@@ -271,7 +417,7 @@ export default function App() {
           <div className="logo-container">
             <img 
               src="/melissa.png" 
-              alt="Sacred Fire Reiki Logo" 
+              alt="Sacred Fire Reiki with Melissa Lynn - Calgary energy healing and horse therapy practitioner" 
               className="logo-image" 
               style={{width: '100%', height: '100%', objectFit: 'contain'}} 
             />
@@ -293,8 +439,8 @@ export default function App() {
 
       <div className="main-content">
         <div className="pattern-overlay"></div>
-        <main style={{position: 'relative', zIndex: 1, maxWidth: '1000px', margin: '0 auto'}}>
-          <div id="home" className="fade-in" style={{
+        <main style={{position: 'relative', zIndex: 1, maxWidth: '1000px', margin: '0 auto'}} role="main">
+          <article id="home" className="fade-in" style={{
             background: 'rgba(0, 0, 0, 0.95)', 
             borderRadius: '20px', 
             boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 74, 28, 0.2)', 
@@ -319,7 +465,7 @@ export default function App() {
             }}>
               <img 
                 src="/melissa2.png" 
-                alt="Sacred Fire Logo" 
+                alt="Sacred Fire Reiki logo featuring Melissa Lynn - Energy healing and equine-assisted therapy in Calgary, Alberta" 
                 style={{
                   width: '100%', 
                   height: '100%', 
@@ -1194,11 +1340,11 @@ export default function App() {
                 {message}
               </div>
             )}
-          </div>
+          </article>
         </main>
 
         {/* Cancellation Policy */}
-        <div id="policies" style={{
+        <section id="policies" style={{
           maxWidth: '800px',
           margin: '3rem auto',
           padding: '0 2rem'
@@ -1340,9 +1486,9 @@ export default function App() {
               </div>
             )}
           </div>
-        </div>
+        </section>
 
-        <footer id="contact" style={{
+        <footer id="contact" role="contentinfo" aria-label="Contact information" style={{
           padding: '4rem 2rem', 
           textAlign: 'center', 
           background: 'rgba(10, 14, 26, 0.8)', 
