@@ -409,11 +409,8 @@ export default function App() {
       {/* Sticky Navigation */}
       <nav className={`sticky-nav visible`} role="navigation" aria-label="Main navigation">
         <a className="nav-link" onClick={() => { setCurrentPage('home'); window.scrollTo(0, 0); }} role="button" tabIndex={0}>Home</a>
-        <a className="nav-link" onClick={() => { setCurrentPage('home'); setTimeout(() => scrollToSection('services'), 100); }} role="button" tabIndex={0}>Services</a>
         <a className="nav-link" onClick={() => { setCurrentPage('herd'); window.scrollTo(0, 0); }} role="button" tabIndex={0}>Meet the Herd</a>
         <a className="nav-link" onClick={() => { setCurrentPage('sessionInfo'); window.scrollTo(0, 0); }} role="button" tabIndex={0}>Session Info</a>
-        <a className="nav-link" onClick={() => { setCurrentPage('home'); setTimeout(() => scrollToSection('booking'), 100); }} role="button" tabIndex={0}>Book Now</a>
-        <a className="nav-link" onClick={() => { setCurrentPage('home'); setTimeout(() => scrollToSection('policies'), 100); }} role="button" tabIndex={0}>Policies</a>
         <a className="nav-link" onClick={() => { setCurrentPage('home'); setTimeout(() => scrollToSection('contact'), 100); }} role="button" tabIndex={0}>Contact</a>
       </nav>
 
