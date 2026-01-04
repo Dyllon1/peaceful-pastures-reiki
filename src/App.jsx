@@ -12,6 +12,7 @@ export default function App() {
   const [storageLoaded, setStorageLoaded] = useState(false);
   const [expandedService, setExpandedService] = useState(null);
   const [expandedInfo, setExpandedInfo] = useState(null);
+  const [showNav, setShowNav] = useState(false);
 
   const toggleService = (serviceId) => {
     setExpandedService(expandedService === serviceId ? null : serviceId);
@@ -20,6 +21,26 @@ export default function App() {
   const toggleInfo = (infoId) => {
     setExpandedInfo(expandedInfo === infoId ? null : infoId);
   };
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80; // Account for sticky nav height
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: elementPosition - offset,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowNav(window.scrollY > 300);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => setCurrentScreen('main'), 3500);
@@ -166,6 +187,54 @@ export default function App() {
         @keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 1000px; } }
         .fade-in { animation: fadeIn 0.8s ease-out; }
         
+        .sticky-nav {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          background: rgba(0, 0, 0, 0.95);
+          backdrop-filter: blur(10px);
+          border-bottom: 1px solid rgba(255, 74, 28, 0.3);
+          z-index: 1000;
+          padding: 1rem 2rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 2rem;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+          opacity: 0;
+          transform: translateY(-100%);
+          transition: opacity 0.3s, transform 0.3s;
+        }
+        
+        .sticky-nav.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        
+        .nav-link {
+          color: #CBD2D9;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.95rem;
+          padding: 0.5rem 1rem;
+          border-radius: 8px;
+          transition: all 0.2s;
+          cursor: pointer;
+          letter-spacing: 0.05em;
+          font-family: 'Inter', sans-serif;
+        }
+        
+        .nav-link:hover {
+          color: #FF6B3D;
+          background: rgba(255, 74, 28, 0.1);
+        }
+        
+        .nav-link.active {
+          color: #FF6B3D;
+          background: rgba(255, 74, 28, 0.15);
+        }
+        
         @media (max-width: 640px) { 
           .logo-container { width: 220px; height: 300px; }
           .home-logo-container { 
@@ -176,8 +245,26 @@ export default function App() {
             margin-right: auto !important;
             max-width: 90vw !important;
           }
+          .sticky-nav {
+            padding: 0.75rem 1rem;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+          }
+          .nav-link {
+            font-size: 0.85rem;
+            padding: 0.4rem 0.75rem;
+          }
         }
       `}</style>
+
+      {/* Sticky Navigation */}
+      <nav className={`sticky-nav ${showNav ? 'visible' : ''}`}>
+        <a className="nav-link" onClick={() => scrollToSection('home')}>Home</a>
+        <a className="nav-link" onClick={() => scrollToSection('services')}>Services</a>
+        <a className="nav-link" onClick={() => scrollToSection('booking')}>Book Now</a>
+        <a className="nav-link" onClick={() => scrollToSection('policies')}>Policies</a>
+        <a className="nav-link" onClick={() => scrollToSection('contact')}>Contact</a>
+      </nav>
 
       {currentScreen === 'splash' && (
         <div className="splash-screen">
@@ -207,7 +294,7 @@ export default function App() {
       <div className="main-content">
         <div className="pattern-overlay"></div>
         <main style={{position: 'relative', zIndex: 1, maxWidth: '1000px', margin: '0 auto'}}>
-          <div className="fade-in" style={{
+          <div id="home" className="fade-in" style={{
             background: 'rgba(0, 0, 0, 0.95)', 
             borderRadius: '20px', 
             boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 74, 28, 0.2)', 
@@ -319,7 +406,7 @@ export default function App() {
             </div>
 
             {/* Services Section */}
-            <div style={{
+            <div id="services" style={{
               width: '100px', 
               height: '3px', 
               background: 'linear-gradient(to right, transparent, #FF4A1C, transparent)', 
@@ -832,7 +919,7 @@ export default function App() {
               )}
             </div>
 
-            <div style={{
+            <div id="booking" style={{
               width: '100px', 
               height: '3px', 
               background: 'linear-gradient(to right, transparent, #FF4A1C, transparent)', 
@@ -1092,7 +1179,7 @@ export default function App() {
         </main>
 
         {/* Cancellation Policy */}
-        <div style={{
+        <div id="policies" style={{
           maxWidth: '800px',
           margin: '3rem auto',
           padding: '0 2rem'
@@ -1194,7 +1281,7 @@ export default function App() {
           </div>
         </div>
 
-        <footer style={{
+        <footer id="contact" style={{
           padding: '4rem 2rem', 
           textAlign: 'center', 
           background: 'rgba(10, 14, 26, 0.8)', 
