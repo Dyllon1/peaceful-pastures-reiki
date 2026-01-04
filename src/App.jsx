@@ -1378,6 +1378,7 @@ export default function App() {
                     overflow: 'hidden',
                     width: '100%',
                     maxWidth: '380px',
+                    margin: '0 auto',
                     boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
                     transition: 'transform 0.3s, box-shadow 0.3s'
                   }}
