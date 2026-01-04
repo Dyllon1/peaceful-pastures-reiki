@@ -1365,7 +1365,7 @@ export default function App() {
                 letterSpacing: '0.05em',
                 textAlign: 'center'
               }}>
-                Cancellation Policy
+                Booking & Cancellation Policy
               </h3>
               
               <button
@@ -1406,82 +1406,193 @@ export default function App() {
                 textAlign: 'left',
                 animation: 'slideDown 0.3s ease-out'
               }}>
+                {/* Booking Section */}
+                <h4 style={{
+                  fontSize: '1.125rem',
+                  color: '#F8FAFB',
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  fontFamily: 'Cinzel, serif',
+                  letterSpacing: '0.05em'
+                }}>
+                  Booking
+                </h4>
                 <p style={{
-                  fontSize: '1.05rem',
+                  fontSize: '1rem',
                   color: '#E5E9ED',
                   lineHeight: '1.8',
-                  marginBottom: '1.25rem'
+                  marginBottom: '1.5rem'
                 }}>
-                  I understand that life happens and schedules change. To honor both your time and mine, please note the following:
+                  All sessions must be booked in advance. Full payment is required at the time of booking to secure your appointment. By booking a session, you acknowledge and agree to the terms outlined below.
                 </p>
 
-                <div style={{marginBottom: '1.25rem'}}>
-                  <p style={{
-                    fontSize: '1rem',
-                    color: '#CBD2D9',
-                    fontWeight: '600',
-                    marginBottom: '0.5rem'
-                  }}>
-                    • 24-Hour Notice
-                  </p>
+                {/* Cancellations & Rescheduling */}
+                <h4 style={{
+                  fontSize: '1.125rem',
+                  color: '#F8FAFB',
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  fontFamily: 'Cinzel, serif',
+                  letterSpacing: '0.05em',
+                  marginTop: '1.5rem'
+                }}>
+                  Cancellations & Rescheduling
+                </h4>
+                <p style={{
+                  fontSize: '1rem',
+                  color: '#E5E9ED',
+                  lineHeight: '1.8',
+                  marginBottom: '1rem'
+                }}>
+                  I understand that life happens. If you need to cancel or reschedule, please provide at least 48 hours' notice.
+                </p>
+
+                <div style={{marginBottom: '0.75rem'}}>
                   <p style={{
                     fontSize: '1rem',
                     color: '#9AA5B1',
                     lineHeight: '1.7',
                     marginLeft: '1.5rem'
                   }}>
-                    Cancellations or reschedules made with at least 24 hours' notice will receive a full refund or the option to reschedule at no charge.
+                    • Cancellations or rescheduling requests made with 48 hours' notice will receive a full refund or may be rescheduled without penalty.
                   </p>
                 </div>
 
-                <div style={{marginBottom: '1.25rem'}}>
-                  <p style={{
-                    fontSize: '1rem',
-                    color: '#CBD2D9',
-                    fontWeight: '600',
-                    marginBottom: '0.5rem'
-                  }}>
-                  • Late Cancellations
-                  </p>
+                <div style={{marginBottom: '0.75rem'}}>
                   <p style={{
                     fontSize: '1rem',
                     color: '#9AA5B1',
                     lineHeight: '1.7',
                     marginLeft: '1.5rem'
                   }}>
-                    Cancellations made with less than 24 hours' notice will be charged 50% of the session fee.
+                    • Cancellations made within 48 hours or less of the scheduled session are non-refundable.
                   </p>
                 </div>
 
-                <div style={{marginBottom: '1.5rem'}}>
-                  <p style={{
-                    fontSize: '1rem',
-                    color: '#CBD2D9',
-                    fontWeight: '600',
-                    marginBottom: '0.5rem'
-                  }}>
-                    • No-Shows
-                  </p>
+                <div style={{marginBottom: '1rem'}}>
                   <p style={{
                     fontSize: '1rem',
                     color: '#9AA5B1',
                     lineHeight: '1.7',
                     marginLeft: '1.5rem'
                   }}>
-                    No-shows or same-day cancellations will be charged the full session fee.
+                    • No-shows are considered a missed appointment and are non-refundable.
                   </p>
                 </div>
 
+                <p style={{
+                  fontSize: '0.95rem',
+                  color: '#CBD2D9',
+                  fontStyle: 'italic',
+                  lineHeight: '1.7',
+                  marginBottom: '1.5rem'
+                }}>
+                  This policy helps honor the time, energy, and preparation reserved for each client and horse.
+                </p>
+
+                {/* Late Arrivals */}
+                <h4 style={{
+                  fontSize: '1.125rem',
+                  color: '#F8FAFB',
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  fontFamily: 'Cinzel, serif',
+                  letterSpacing: '0.05em',
+                  marginTop: '1.5rem'
+                }}>
+                  Late Arrivals
+                </h4>
+                <p style={{
+                  fontSize: '1rem',
+                  color: '#E5E9ED',
+                  lineHeight: '1.8',
+                  marginBottom: '1.5rem'
+                }}>
+                  If you arrive late, your session will still end at the originally scheduled time to respect following appointments. The full session fee applies.
+                </p>
+
+                {/* Travel Sessions */}
+                <h4 style={{
+                  fontSize: '1.125rem',
+                  color: '#F8FAFB',
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  fontFamily: 'Cinzel, serif',
+                  letterSpacing: '0.05em',
+                  marginTop: '1.5rem'
+                }}>
+                  Travel Sessions
+                </h4>
+                <p style={{
+                  fontSize: '1rem',
+                  color: '#E5E9ED',
+                  lineHeight: '1.8',
+                  marginBottom: '1.5rem'
+                }}>
+                  For travel sessions, cancellations within 48 hours are non-refundable once travel has been confirmed. Travel fees are non-refundable once incurred.
+                </p>
+
+                {/* Horse Sessions */}
+                <h4 style={{
+                  fontSize: '1.125rem',
+                  color: '#F8FAFB',
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  fontFamily: 'Cinzel, serif',
+                  letterSpacing: '0.05em',
+                  marginTop: '1.5rem'
+                }}>
+                  Horse Sessions
+                </h4>
+                <p style={{
+                  fontSize: '1rem',
+                  color: '#E5E9ED',
+                  lineHeight: '1.8',
+                  marginBottom: '1.5rem'
+                }}>
+                  All equine-assisted sessions are guided by the horse's consent and well-being. If a horse chooses not to participate on the day of the session, the session may be adapted, at the practitioner's discretion.
+                </p>
+
+                {/* Weather & Safety */}
+                <h4 style={{
+                  fontSize: '1.125rem',
+                  color: '#F8FAFB',
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  fontFamily: 'Cinzel, serif',
+                  letterSpacing: '0.05em',
+                  marginTop: '1.5rem'
+                }}>
+                  Weather & Safety
+                </h4>
+                <p style={{
+                  fontSize: '1rem',
+                  color: '#E5E9ED',
+                  lineHeight: '1.8',
+                  marginBottom: '1.5rem'
+                }}>
+                  In the event of unsafe weather or conditions, sessions may be rescheduled to ensure the safety of both clients and horses.
+                </p>
+
+                {/* Energetic Boundaries */}
+                <h4 style={{
+                  fontSize: '1.125rem',
+                  color: '#F8FAFB',
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  fontFamily: 'Cinzel, serif',
+                  letterSpacing: '0.05em',
+                  marginTop: '1.5rem'
+                }}>
+                  Energetic Boundaries
+                </h4>
                 <p style={{
                   fontSize: '1rem',
                   color: '#5EEAD4',
-                  fontStyle: 'italic',
-                  lineHeight: '1.7',
-                  marginTop: '1.5rem',
-                  paddingTop: '1.5rem',
-                  borderTop: '1px solid rgba(203, 210, 217, 0.15)'
+                  lineHeight: '1.8',
+                  fontStyle: 'italic'
                 }}>
-                  In cases of emergency or unexpected circumstances, please reach out—compassionate exceptions can be made. Thank you for respecting this policy and the sacred space we hold together.
+                  Sacred Fire Reiki sessions involve intentional energetic preparation. Late cancellations or no-shows disrupt this process and the availability of space for other clients.
                 </p>
               </div>
             )}
