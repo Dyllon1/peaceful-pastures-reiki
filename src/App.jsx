@@ -352,7 +352,7 @@ export default function App() {
                 }}>
                   One-on-One Sacred Fire Reiki Session
                 </h3>
-                <div style={{display: 'flex', gap: '2rem', flexWrap: 'wrap', marginBottom: '1rem'}}>
+                <div style={{display: 'flex', gap: '2rem', flexWrap: 'wrap', marginBottom: '1rem', justifyContent: 'center'}}>
                   <p style={{fontSize: '1rem', color: '#CBD2D9', margin: 0}}>
                     <strong style={{color: '#FF8A5C'}}>Length:</strong> 60 minutes
                   </p>
@@ -440,7 +440,7 @@ export default function App() {
                 }}>
                   Sacred Fire Reiki with the Horses
                 </h3>
-                <div style={{display: 'flex', gap: '2rem', flexWrap: 'wrap', marginBottom: '1rem'}}>
+                <div style={{display: 'flex', gap: '2rem', flexWrap: 'wrap', marginBottom: '1rem', justifyContent: 'center'}}>
                   <p style={{fontSize: '1rem', color: '#CBD2D9', margin: 0}}>
                     <strong style={{color: '#FF8A5C'}}>Length:</strong> 75 minutes
                   </p>
@@ -532,7 +532,7 @@ export default function App() {
                 }}>
                   Travel Sacred Fire Reiki — Client or Horse
                 </h3>
-                <div style={{display: 'flex', gap: '2rem', flexWrap: 'wrap', marginBottom: '0.5rem'}}>
+                <div style={{display: 'flex', gap: '2rem', flexWrap: 'wrap', marginBottom: '0.5rem', justifyContent: 'center'}}>
                   <p style={{fontSize: '1rem', color: '#CBD2D9', margin: 0}}>
                     <strong style={{color: '#FF8A5C'}}>Length:</strong> 60 minutes
                   </p>
@@ -540,7 +540,7 @@ export default function App() {
                     <strong style={{color: '#FF8A5C'}}>Investment:</strong> $225 CAD + travel
                   </p>
                 </div>
-                <p style={{fontSize: '0.85rem', color: '#9AA5B1', fontStyle: 'italic', margin: '0 0 1rem 0'}}>
+                <p style={{fontSize: '0.85rem', color: '#9AA5B1', fontStyle: 'italic', margin: '0 0 1rem 0', textAlign: 'center'}}>
                   (Travel fee calculated based on distance)
                 </p>
                 
