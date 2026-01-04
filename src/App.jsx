@@ -685,6 +685,25 @@ export default function App() {
               )}
             </div>
 
+            {/* Divider & Section Heading */}
+            <div style={{
+              width: '100px', 
+              height: '3px', 
+              background: 'linear-gradient(to right, transparent, #5EEAD4, transparent)', 
+              margin: '5rem auto 2rem'
+            }}></div>
+
+            <h2 style={{
+              fontFamily: 'Cinzel, serif', 
+              fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', 
+              color: '#5EEAD4', 
+              fontWeight: '600', 
+              marginBottom: '3rem', 
+              letterSpacing: '0.08em'
+            }}>
+              IMPORTANT INFORMATION
+            </h2>
+
             {/* Session Preparation */}
             <div style={{
               maxWidth: '800px', 
