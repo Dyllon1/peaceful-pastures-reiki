@@ -4,7 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState('splash');
-  const [currentPage, setCurrentPage] = useState('home'); // 'home' or 'herd'
+  const [currentPage, setCurrentPage] = useState('home'); // 'home', 'herd', or 'sessionInfo'
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState('');
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', notes: '' });
@@ -411,6 +411,7 @@ export default function App() {
         <a className="nav-link" onClick={() => { setCurrentPage('home'); window.scrollTo(0, 0); }} role="button" tabIndex={0}>Home</a>
         <a className="nav-link" onClick={() => { setCurrentPage('home'); setTimeout(() => scrollToSection('services'), 100); }} role="button" tabIndex={0}>Services</a>
         <a className="nav-link" onClick={() => { setCurrentPage('herd'); window.scrollTo(0, 0); }} role="button" tabIndex={0}>Meet the Herd</a>
+        <a className="nav-link" onClick={() => { setCurrentPage('sessionInfo'); window.scrollTo(0, 0); }} role="button" tabIndex={0}>Session Info</a>
         <a className="nav-link" onClick={() => { setCurrentPage('home'); setTimeout(() => scrollToSection('booking'), 100); }} role="button" tabIndex={0}>Book Now</a>
         <a className="nav-link" onClick={() => { setCurrentPage('home'); setTimeout(() => scrollToSection('policies'), 100); }} role="button" tabIndex={0}>Policies</a>
         <a className="nav-link" onClick={() => { setCurrentPage('home'); setTimeout(() => scrollToSection('contact'), 100); }} role="button" tabIndex={0}>Contact</a>
@@ -1609,6 +1610,175 @@ export default function App() {
                 onMouseLeave={e => {
                   e.currentTarget.style.transform = 'translateY(0)';
                   e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 74, 28, 0.4)';
+                }}
+              >
+                ← Back to Home
+              </button>
+
+            </div>
+          )}
+
+          {/* Session Info Page */}
+          {currentPage === 'sessionInfo' && (
+            <div className="fade-in" style={{
+              background: 'rgba(0, 0, 0, 0.95)', 
+              borderRadius: '20px', 
+              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(94, 234, 212, 0.3)', 
+              padding: '3rem 2.5rem 4rem', 
+              textAlign: 'center', 
+              backdropFilter: 'blur(10px)',
+              minHeight: '80vh'
+            }}>
+              
+              <h1 style={{
+                fontFamily: 'Cinzel, serif', 
+                fontSize: 'clamp(2rem, 6vw, 3.5rem)', 
+                color: '#5EEAD4', 
+                fontWeight: '700', 
+                marginBottom: '1rem', 
+                letterSpacing: '0.1em'
+              }}>
+                SESSION INFORMATION
+              </h1>
+
+              <div style={{
+                width: '100px', 
+                height: '3px', 
+                background: 'linear-gradient(to right, transparent, #5EEAD4, transparent)', 
+                margin: '1.5rem auto 3rem'
+              }}></div>
+
+              <p style={{
+                fontSize: 'clamp(1rem, 3vw, 1.25rem)', 
+                color: '#CBD2D9', 
+                fontStyle: 'italic', 
+                margin: '0 auto 4rem',
+                maxWidth: '700px',
+                lineHeight: '1.8'
+              }}>
+                Everything you need to know to prepare for and receive the fullness of your Sacred Fire Reiki session.
+              </p>
+
+              {/* Info Sections Container */}
+              <div style={{maxWidth: '900px', margin: '0 auto', textAlign: 'left'}}>
+                
+                {/* Session Preparation */}
+                <div style={{
+                  marginBottom: '2rem',
+                  background: 'rgba(13, 59, 74, 0.15)',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(94, 234, 212, 0.2)',
+                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+                  overflow: 'hidden'
+                }}>
+                  <div style={{padding: '2rem 2.5rem'}}>
+                    <h2 style={{
+                      fontFamily: 'Cinzel, serif',
+                      fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                      color: '#5EEAD4',
+                      marginBottom: '1.5rem',
+                      letterSpacing: '0.05em',
+                      textAlign: 'center'
+                    }}>
+                      Session Preparation
+                    </h2>
+                    <p style={{fontSize: '1.05rem', color: '#E5E9ED', lineHeight: '1.8', marginBottom: '1.5rem'}}>
+                      To support the fullness of your session, please arrive in comfortable clothing, stay hydrated, and minimize heavy meals beforehand. If possible, set an intention or reflect on what you'd like to receive or release during your time together.
+                    </p>
+                    <p style={{fontSize: '1.05rem', color: '#E5E9ED', lineHeight: '1.8'}}>
+                      For equine sessions, appropriate footwear is recommended, and an openness to being guided by the horse's energy is encouraged.
+                    </p>
+                  </div>
+                </div>
+
+                {/* What to Expect */}
+                <div style={{
+                  marginBottom: '2rem',
+                  background: 'rgba(13, 59, 74, 0.15)',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(94, 234, 212, 0.2)',
+                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+                  overflow: 'hidden'
+                }}>
+                  <div style={{padding: '2rem 2.5rem'}}>
+                    <h2 style={{
+                      fontFamily: 'Cinzel, serif',
+                      fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                      color: '#5EEAD4',
+                      marginBottom: '1.5rem',
+                      letterSpacing: '0.05em',
+                      textAlign: 'center'
+                    }}>
+                      What to Expect
+                    </h2>
+                    <p style={{fontSize: '1.05rem', color: '#E5E9ED', lineHeight: '1.8', marginBottom: '1.5rem'}}>
+                      Each session begins with a brief check-in to clarify intentions and ensure comfort. Reiki is then offered through gentle, non-invasive energy work, either hands-on or hands-off depending on preference and consent.
+                    </p>
+                    <p style={{fontSize: '1.05rem', color: '#E5E9ED', lineHeight: '1.8', marginBottom: '1.5rem'}}>
+                      Clients may experience sensations such as warmth, relaxation, emotional release, imagery, or deep stillness. Horses may shift posture, yawn, rest, move away, or engage—all responses are respected and honored.
+                    </p>
+                    <p style={{fontSize: '1.05rem', color: '#E5E9ED', lineHeight: '1.8'}}>
+                      Sessions close with grounding and integration, offering space for reflection or questions.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Disclaimer */}
+                <div style={{
+                  marginBottom: '2rem',
+                  background: 'rgba(26, 34, 53, 0.15)',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(203, 210, 217, 0.2)',
+                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+                  overflow: 'hidden'
+                }}>
+                  <div style={{padding: '2rem 2.5rem'}}>
+                    <h2 style={{
+                      fontFamily: 'Cinzel, serif',
+                      fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                      color: '#CBD2D9',
+                      marginBottom: '1.5rem',
+                      letterSpacing: '0.05em',
+                      textAlign: 'center'
+                    }}>
+                      Gentle Reiki Disclaimer
+                    </h2>
+                    <p style={{fontSize: '1rem', color: '#9AA5B1', lineHeight: '1.8', marginBottom: '1rem'}}>
+                      Sacred Fire Reiki is a complementary, energy-based practice intended to support relaxation, balance, and overall well-being. It is not a substitute for medical, veterinary, psychological, or professional care. No diagnosis or treatment is offered or implied. Clients are encouraged to seek appropriate professional support for medical or veterinary concerns.
+                    </p>
+                    <p style={{fontSize: '1rem', color: '#9AA5B1', lineHeight: '1.8', fontStyle: 'italic'}}>
+                      All sessions honor consent, autonomy, and the innate wisdom of both human and horse.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Back to Home Button */}
+              <button
+                onClick={() => setCurrentPage('home')}
+                style={{
+                  marginTop: '3rem',
+                  padding: '1rem 2.5rem',
+                  background: 'linear-gradient(135deg, #5EEAD4, #14B8A6)',
+                  color: '#0A0E1A',
+                  border: 'none',
+                  borderRadius: '12px',
+                  fontSize: '1.125rem',
+                  fontWeight: '700',
+                  cursor: 'pointer',
+                  boxShadow: '0 8px 24px rgba(94, 234, 212, 0.4)',
+                  transition: 'all 0.3s',
+                  fontFamily: 'Cinzel, serif',
+                  letterSpacing: '0.05em'
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(94, 234, 212, 0.5)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(94, 234, 212, 0.4)';
                 }}
               >
                 ← Back to Home
