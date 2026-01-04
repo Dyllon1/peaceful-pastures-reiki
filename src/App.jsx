@@ -1112,10 +1112,10 @@ export default function App() {
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
               gap: '2rem',
-              padding: '0 1rem'
+              padding: '0 1rem 3rem'
             }}>
               
-              {/* Horse 1 - Replace with your actual horse info */}
+              {/* DC */}
               <div style={{
                 background: 'rgba(255, 138, 92, 0.08)',
                 borderRadius: '16px',
@@ -1132,21 +1132,11 @@ export default function App() {
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.3)';
               }}>
-                {/* Horse Image - Replace with actual image */}
-                <div style={{
-                  width: '100%',
-                  height: '250px',
-                  background: 'linear-gradient(135deg, rgba(255, 138, 92, 0.2), rgba(255, 107, 61, 0.2))',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#9AA5B1',
-                  fontSize: '0.9rem',
-                  fontStyle: 'italic'
-                }}>
-                  {/* Add: <img src="/horse1.jpg" alt="Horse name" style={{width: '100%', height: '100%', objectFit: 'cover'}} /> */}
-                  [Upload horse photo to /public folder]
-                </div>
+                <img 
+                  src="/dc.jpg" 
+                  alt="DC - Sacred Guardian of Grounded Fire, Reiki healing horse" 
+                  style={{width: '100%', height: '250px', objectFit: 'cover'}} 
+                />
                 <div style={{padding: '1.5rem'}}>
                   <h3 style={{
                     fontFamily: 'Cinzel, serif',
@@ -1155,7 +1145,7 @@ export default function App() {
                     marginBottom: '0.5rem',
                     letterSpacing: '0.05em'
                   }}>
-                    Horse Name
+                    DC
                   </h3>
                   <p style={{
                     fontSize: '0.95rem',
@@ -1163,19 +1153,20 @@ export default function App() {
                     lineHeight: '1.7',
                     marginBottom: '0.75rem'
                   }}>
-                    Add a brief description of this horse's personality, energy, and what they bring to the healing space.
+                    DC carries a calm, stabilizing fire shaped by ancient, ancestral wisdom—an energy that remembers the rhythm of the earth and the intelligence of stillness. Through Sacred Fire Reiki, his presence anchors the Root chakra while gently opening the Heart, allowing fear, tension, and emotional holding to release with trust. He holds sacred space as a quiet elder, guiding clients back into embodied safety, balance, and inner knowing.
                   </p>
                   <p style={{
                     fontSize: '0.85rem',
-                    color: '#9AA5B1',
-                    fontStyle: 'italic'
+                    color: '#FF8A5C',
+                    fontStyle: 'italic',
+                    fontWeight: '600'
                   }}>
-                    Age • Breed (optional)
+                    Sacred Guardian of Grounded Fire
                   </p>
                 </div>
               </div>
 
-              {/* Horse 2 - Duplicate this card for each horse */}
+              {/* Dally */}
               <div style={{
                 background: 'rgba(255, 138, 92, 0.08)',
                 borderRadius: '16px',
@@ -1192,19 +1183,11 @@ export default function App() {
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.3)';
               }}>
-                <div style={{
-                  width: '100%',
-                  height: '250px',
-                  background: 'linear-gradient(135deg, rgba(255, 138, 92, 0.2), rgba(255, 107, 61, 0.2))',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#9AA5B1',
-                  fontSize: '0.9rem',
-                  fontStyle: 'italic'
-                }}>
-                  [Upload horse photo to /public folder]
-                </div>
+                <img 
+                  src="/dally.jpg" 
+                  alt="Dally - Joyful Sacred Fire, equine-assisted Reiki partner" 
+                  style={{width: '100%', height: '250px', objectFit: 'cover'}} 
+                />
                 <div style={{padding: '1.5rem'}}>
                   <h3 style={{
                     fontFamily: 'Cinzel, serif',
@@ -1213,7 +1196,7 @@ export default function App() {
                     marginBottom: '0.5rem',
                     letterSpacing: '0.05em'
                   }}>
-                    Horse Name
+                    Dally
                   </h3>
                   <p style={{
                     fontSize: '0.95rem',
@@ -1221,19 +1204,273 @@ export default function App() {
                     lineHeight: '1.7',
                     marginBottom: '0.75rem'
                   }}>
-                    Add a brief description of this horse's personality, energy, and what they bring to the healing space.
+                    Dally carries Sacred Fire as joyful innocence. Her energy flows through the sacral, heart, and solar plexus chakras, supporting emotional openness, confidence, and playful curiosity. She brings lightness and renewal into the healing space, reminding the body how to trust joy and new beginnings. With Dally, Sacred Fire dances as a bright, youthful flame, awakening vitality, freedom, and gentle self-expression.
                   </p>
                   <p style={{
                     fontSize: '0.85rem',
-                    color: '#9AA5B1',
-                    fontStyle: 'italic'
+                    color: '#FF8A5C',
+                    fontStyle: 'italic',
+                    fontWeight: '600'
                   }}>
-                    Age • Breed (optional)
+                    Bright, Youthful Flame
                   </p>
                 </div>
               </div>
 
-              {/* Add more horse cards by duplicating the above block */}
+              {/* Rose */}
+              <div style={{
+                background: 'rgba(255, 138, 92, 0.08)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 138, 92, 0.2)',
+                overflow: 'hidden',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+                transition: 'transform 0.3s, box-shadow 0.3s'
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 138, 92, 0.3)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.3)';
+              }}>
+                <img 
+                  src="/rose.jpg" 
+                  alt="Rose - Gentle yet powerful Sacred Fire healing partner" 
+                  style={{width: '100%', height: '250px', objectFit: 'cover'}} 
+                />
+                <div style={{padding: '1.5rem'}}>
+                  <h3 style={{
+                    fontFamily: 'Cinzel, serif',
+                    fontSize: '1.5rem',
+                    color: '#FF8A5C',
+                    marginBottom: '0.5rem',
+                    letterSpacing: '0.05em'
+                  }}>
+                    Rose
+                  </h3>
+                  <p style={{
+                    fontSize: '0.95rem',
+                    color: '#E5E9ED',
+                    lineHeight: '1.7',
+                    marginBottom: '0.75rem'
+                  }}>
+                    Rose holds a gentle yet powerful Sacred Fire. Her presence grounds the body, softens the heart, and restores a deep sense of safety. Working through stillness, she supports emotional release, nervous system regulation, and heart-centered healing. With Rose, Sacred Fire flows as a calm, warming flame—reminding us that true healing is quiet, rooted, and deeply transformative.
+                  </p>
+                  <p style={{
+                    fontSize: '0.85rem',
+                    color: '#FF8A5C',
+                    fontStyle: 'italic',
+                    fontWeight: '600'
+                  }}>
+                    Calm, Warming Flame
+                  </p>
+                </div>
+              </div>
+
+              {/* Wyatt */}
+              <div style={{
+                background: 'rgba(255, 138, 92, 0.08)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 138, 92, 0.2)',
+                overflow: 'hidden',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+                transition: 'transform 0.3s, box-shadow 0.3s'
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 138, 92, 0.3)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.3)';
+              }}>
+                <img 
+                  src="/wyatt.jpg" 
+                  alt="Wyatt - Strength in motion, Sacred Fire Reiki healing horse" 
+                  style={{width: '100%', height: '250px', objectFit: 'cover'}} 
+                />
+                <div style={{padding: '1.5rem'}}>
+                  <h3 style={{
+                    fontFamily: 'Cinzel, serif',
+                    fontSize: '1.5rem',
+                    color: '#FF8A5C',
+                    marginBottom: '0.5rem',
+                    letterSpacing: '0.05em'
+                  }}>
+                    Wyatt
+                  </h3>
+                  <p style={{
+                    fontSize: '0.95rem',
+                    color: '#E5E9ED',
+                    lineHeight: '1.7',
+                    marginBottom: '0.75rem'
+                  }}>
+                    Wyatt carries Sacred Fire as strength in motion. His energy works through the root, solar plexus, and throat chakras, grounding the body, awakening personal power, and restoring clear energetic boundaries. He supports confidence, courage, and aligned self-expression. With Wyatt, Sacred Fire moves as a steady, guiding flame—activating clarity, protection, and forward momentum.
+                  </p>
+                  <p style={{
+                    fontSize: '0.85rem',
+                    color: '#FF8A5C',
+                    fontStyle: 'italic',
+                    fontWeight: '600'
+                  }}>
+                    Steady, Guiding Flame
+                  </p>
+                </div>
+              </div>
+
+              {/* Luka */}
+              <div style={{
+                background: 'rgba(255, 138, 92, 0.08)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 138, 92, 0.2)',
+                overflow: 'hidden',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+                transition: 'transform 0.3s, box-shadow 0.3s'
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 138, 92, 0.3)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.3)';
+              }}>
+                <img 
+                  src="/luka.jpg" 
+                  alt="Luka - Calm integration, harmonizing Sacred Fire energy" 
+                  style={{width: '100%', height: '250px', objectFit: 'cover'}} 
+                />
+                <div style={{padding: '1.5rem'}}>
+                  <h3 style={{
+                    fontFamily: 'Cinzel, serif',
+                    fontSize: '1.5rem',
+                    color: '#FF8A5C',
+                    marginBottom: '0.5rem',
+                    letterSpacing: '0.05em'
+                  }}>
+                    Luka
+                  </h3>
+                  <p style={{
+                    fontSize: '0.95rem',
+                    color: '#E5E9ED',
+                    lineHeight: '1.7',
+                    marginBottom: '0.75rem'
+                  }}>
+                    Luka carries Sacred Fire as calm integration. His energy flows through the heart, root, and third eye chakras, supporting emotional balance, grounded awareness, and inner clarity. He helps settle the nervous system and bridge heart and mind. With Luka, Sacred Fire feels steady and reassuring—a harmonizing flame that restores peace, presence, and trust.
+                  </p>
+                  <p style={{
+                    fontSize: '0.85rem',
+                    color: '#FF8A5C',
+                    fontStyle: 'italic',
+                    fontWeight: '600'
+                  }}>
+                    Harmonizing Flame
+                  </p>
+                </div>
+              </div>
+
+              {/* Lost */}
+              <div style={{
+                background: 'rgba(255, 138, 92, 0.08)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 138, 92, 0.2)',
+                overflow: 'hidden',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+                transition: 'transform 0.3s, box-shadow 0.3s'
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 138, 92, 0.3)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.3)';
+              }}>
+                <img 
+                  src="/lost.jpg" 
+                  alt="Lost - Untamed remembrance, Sacred Fire healing companion" 
+                  style={{width: '100%', height: '250px', objectFit: 'cover'}} 
+                />
+                <div style={{padding: '1.5rem'}}>
+                  <h3 style={{
+                    fontFamily: 'Cinzel, serif',
+                    fontSize: '1.5rem',
+                    color: '#FF8A5C',
+                    marginBottom: '0.5rem',
+                    letterSpacing: '0.05em'
+                  }}>
+                    Lost
+                  </h3>
+                  <p style={{
+                    fontSize: '0.95rem',
+                    color: '#E5E9ED',
+                    lineHeight: '1.7',
+                    marginBottom: '0.75rem'
+                  }}>
+                    Lost carries Sacred Fire as untamed remembrance. His energy works through the root, sacral, and heart chakras, awakening instinct, resilience, and emotional truth. He gently mirrors themes of belonging, trust, and self-discovery. With Lost, Sacred Fire feels wild yet innocent—a flickering flame of becoming, guiding the journey home to self.
+                  </p>
+                  <p style={{
+                    fontSize: '0.85rem',
+                    color: '#FF8A5C',
+                    fontStyle: 'italic',
+                    fontWeight: '600'
+                  }}>
+                    Flickering Flame of Becoming
+                  </p>
+                </div>
+              </div>
+
+              {/* Gypsy */}
+              <div style={{
+                background: 'rgba(255, 138, 92, 0.08)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 138, 92, 0.2)',
+                overflow: 'hidden',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+                transition: 'transform 0.3s, box-shadow 0.3s'
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 138, 92, 0.3)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.3)';
+              }}>
+                <img 
+                  src="/gypsy.jpg" 
+                  alt="Gypsy - Intuitive flow, Sacred Fire Reiki healing mare" 
+                  style={{width: '100%', height: '250px', objectFit: 'cover'}} 
+                />
+                <div style={{padding: '1.5rem'}}>
+                  <h3 style={{
+                    fontFamily: 'Cinzel, serif',
+                    fontSize: '1.5rem',
+                    color: '#FF8A5C',
+                    marginBottom: '0.5rem',
+                    letterSpacing: '0.05em'
+                  }}>
+                    Gypsy
+                  </h3>
+                  <p style={{
+                    fontSize: '0.95rem',
+                    color: '#E5E9ED',
+                    lineHeight: '1.7',
+                    marginBottom: '0.75rem'
+                  }}>
+                    Gypsy carries Sacred Fire as intuitive flow. Her energy moves through the sacral, heart, and crown chakras, supporting emotional release, creative expression, and spiritual connection. She gently dissolves old patterns and invites trust, softness, and inner listening. Restoring harmony, intuition, and soulful alignment.
+                  </p>
+                  <p style={{
+                    fontSize: '0.85rem',
+                    color: '#FF8A5C',
+                    fontStyle: 'italic',
+                    fontWeight: '600'
+                  }}>
+                    Intuitive Flow
+                  </p>
+                </div>
+              </div>
 
             </div>
 
