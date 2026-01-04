@@ -955,6 +955,109 @@ export default function App() {
           </div>
         </main>
 
+        {/* Cancellation Policy */}
+        <div style={{
+          maxWidth: '800px',
+          margin: '3rem auto',
+          padding: '0 2rem'
+        }}>
+          <div style={{
+            padding: '2.5rem',
+            background: 'rgba(26, 34, 53, 0.6)',
+            borderRadius: '16px',
+            border: '1px solid rgba(203, 210, 217, 0.2)',
+            textAlign: 'left'
+          }}>
+            <h3 style={{
+              fontFamily: 'Cinzel, serif',
+              fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+              color: '#F8FAFB',
+              marginBottom: '1.5rem',
+              letterSpacing: '0.05em'
+            }}>
+              Cancellation Policy
+            </h3>
+
+            <p style={{
+              fontSize: '1.05rem',
+              color: '#E5E9ED',
+              lineHeight: '1.8',
+              marginBottom: '1.25rem'
+            }}>
+              I understand that life happens and schedules change. To honor both your time and mine, please note the following:
+            </p>
+
+            <div style={{marginBottom: '1.25rem'}}>
+              <p style={{
+                fontSize: '1rem',
+                color: '#CBD2D9',
+                fontWeight: '600',
+                marginBottom: '0.5rem'
+              }}>
+                • 24-Hour Notice
+              </p>
+              <p style={{
+                fontSize: '1rem',
+                color: '#9AA5B1',
+                lineHeight: '1.7',
+                marginLeft: '1.5rem'
+              }}>
+                Cancellations or reschedules made with at least 24 hours' notice will receive a full refund or the option to reschedule at no charge.
+              </p>
+            </div>
+
+            <div style={{marginBottom: '1.25rem'}}>
+              <p style={{
+                fontSize: '1rem',
+                color: '#CBD2D9',
+                fontWeight: '600',
+                marginBottom: '0.5rem'
+              }}>
+              • Late Cancellations
+              </p>
+              <p style={{
+                fontSize: '1rem',
+                color: '#9AA5B1',
+                lineHeight: '1.7',
+                marginLeft: '1.5rem'
+              }}>
+                Cancellations made with less than 24 hours' notice will be charged 50% of the session fee.
+              </p>
+            </div>
+
+            <div style={{marginBottom: '1.5rem'}}>
+              <p style={{
+                fontSize: '1rem',
+                color: '#CBD2D9',
+                fontWeight: '600',
+                marginBottom: '0.5rem'
+              }}>
+                • No-Shows
+              </p>
+              <p style={{
+                fontSize: '1rem',
+                color: '#9AA5B1',
+                lineHeight: '1.7',
+                marginLeft: '1.5rem'
+              }}>
+                No-shows or same-day cancellations will be charged the full session fee.
+              </p>
+            </div>
+
+            <p style={{
+              fontSize: '1rem',
+              color: '#5EEAD4',
+              fontStyle: 'italic',
+              lineHeight: '1.7',
+              marginTop: '1.5rem',
+              paddingTop: '1.5rem',
+              borderTop: '1px solid rgba(203, 210, 217, 0.15)'
+            }}>
+              In cases of emergency or unexpected circumstances, please reach out—compassionate exceptions can be made. Thank you for respecting this policy and the sacred space we hold together.
+            </p>
+          </div>
+        </div>
+
         <footer style={{
           padding: '4rem 2rem', 
           textAlign: 'center', 
