@@ -407,6 +407,7 @@ export default function App() {
       <nav className={`sticky-nav ${showNav ? 'visible' : ''}`} role="navigation" aria-label="Main navigation">
         <a className="nav-link" onClick={() => scrollToSection('home')} role="button" tabIndex={0}>Home</a>
         <a className="nav-link" onClick={() => scrollToSection('services')} role="button" tabIndex={0}>Services</a>
+        <a className="nav-link" onClick={() => scrollToSection('herd')} role="button" tabIndex={0}>Meet the Herd</a>
         <a className="nav-link" onClick={() => scrollToSection('booking')} role="button" tabIndex={0}>Book Now</a>
         <a className="nav-link" onClick={() => scrollToSection('policies')} role="button" tabIndex={0}>Policies</a>
         <a className="nav-link" onClick={() => scrollToSection('contact')} role="button" tabIndex={0}>Contact</a>
@@ -1074,6 +1075,168 @@ export default function App() {
               )}
             </div>
 
+            {/* Meet the Herd Section */}
+            <div id="herd" style={{
+              width: '100px', 
+              height: '3px', 
+              background: 'linear-gradient(to right, transparent, #FF8A5C, transparent)', 
+              margin: '5rem auto 2rem'
+            }}></div>
+
+            <h2 style={{
+              fontFamily: 'Cinzel, serif', 
+              fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', 
+              color: '#FF8A5C', 
+              fontWeight: '600', 
+              marginBottom: '1rem', 
+              letterSpacing: '0.08em'
+            }}>
+              MEET THE HERD
+            </h2>
+
+            <p style={{
+              fontSize: 'clamp(1rem, 3vw, 1.2rem)', 
+              color: '#9AA5B1', 
+              fontStyle: 'italic', 
+              margin: '0 auto 3rem',
+              maxWidth: '700px',
+              lineHeight: '1.7'
+            }}>
+              Our horses are sacred partners in this healing work. Each one brings their own gentle wisdom, grounded presence, and intuitive knowing.
+            </p>
+
+            {/* Horse Card Template - You'll add your horse photos here */}
+            <div style={{
+              maxWidth: '900px',
+              margin: '0 auto',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '2rem',
+              padding: '0 1rem'
+            }}>
+              
+              {/* Horse 1 - Replace with your actual horse info */}
+              <div style={{
+                background: 'rgba(255, 138, 92, 0.08)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 138, 92, 0.2)',
+                overflow: 'hidden',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+                transition: 'transform 0.3s, box-shadow 0.3s'
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 138, 92, 0.3)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.3)';
+              }}>
+                {/* Horse Image - Replace with actual image */}
+                <div style={{
+                  width: '100%',
+                  height: '250px',
+                  background: 'linear-gradient(135deg, rgba(255, 138, 92, 0.2), rgba(255, 107, 61, 0.2))',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#9AA5B1',
+                  fontSize: '0.9rem',
+                  fontStyle: 'italic'
+                }}>
+                  {/* Add: <img src="/horse1.jpg" alt="Horse name" style={{width: '100%', height: '100%', objectFit: 'cover'}} /> */}
+                  [Upload horse photo to /public folder]
+                </div>
+                <div style={{padding: '1.5rem'}}>
+                  <h3 style={{
+                    fontFamily: 'Cinzel, serif',
+                    fontSize: '1.5rem',
+                    color: '#FF8A5C',
+                    marginBottom: '0.5rem',
+                    letterSpacing: '0.05em'
+                  }}>
+                    Horse Name
+                  </h3>
+                  <p style={{
+                    fontSize: '0.95rem',
+                    color: '#E5E9ED',
+                    lineHeight: '1.7',
+                    marginBottom: '0.75rem'
+                  }}>
+                    Add a brief description of this horse's personality, energy, and what they bring to the healing space.
+                  </p>
+                  <p style={{
+                    fontSize: '0.85rem',
+                    color: '#9AA5B1',
+                    fontStyle: 'italic'
+                  }}>
+                    Age • Breed (optional)
+                  </p>
+                </div>
+              </div>
+
+              {/* Horse 2 - Duplicate this card for each horse */}
+              <div style={{
+                background: 'rgba(255, 138, 92, 0.08)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 138, 92, 0.2)',
+                overflow: 'hidden',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+                transition: 'transform 0.3s, box-shadow 0.3s'
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 138, 92, 0.3)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.3)';
+              }}>
+                <div style={{
+                  width: '100%',
+                  height: '250px',
+                  background: 'linear-gradient(135deg, rgba(255, 138, 92, 0.2), rgba(255, 107, 61, 0.2))',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#9AA5B1',
+                  fontSize: '0.9rem',
+                  fontStyle: 'italic'
+                }}>
+                  [Upload horse photo to /public folder]
+                </div>
+                <div style={{padding: '1.5rem'}}>
+                  <h3 style={{
+                    fontFamily: 'Cinzel, serif',
+                    fontSize: '1.5rem',
+                    color: '#FF8A5C',
+                    marginBottom: '0.5rem',
+                    letterSpacing: '0.05em'
+                  }}>
+                    Horse Name
+                  </h3>
+                  <p style={{
+                    fontSize: '0.95rem',
+                    color: '#E5E9ED',
+                    lineHeight: '1.7',
+                    marginBottom: '0.75rem'
+                  }}>
+                    Add a brief description of this horse's personality, energy, and what they bring to the healing space.
+                  </p>
+                  <p style={{
+                    fontSize: '0.85rem',
+                    color: '#9AA5B1',
+                    fontStyle: 'italic'
+                  }}>
+                    Age • Breed (optional)
+                  </p>
+                </div>
+              </div>
+
+              {/* Add more horse cards by duplicating the above block */}
+
+            </div>
+
             <div id="booking" style={{
               width: '100px', 
               height: '3px', 
@@ -1365,7 +1528,7 @@ export default function App() {
                 letterSpacing: '0.05em',
                 textAlign: 'center'
               }}>
-                Cancellation Policy
+                Booking & Cancellation Policy
               </h3>
               
               <button
@@ -1406,82 +1569,193 @@ export default function App() {
                 textAlign: 'left',
                 animation: 'slideDown 0.3s ease-out'
               }}>
+                {/* Booking Section */}
+                <h4 style={{
+                  fontSize: '1.125rem',
+                  color: '#F8FAFB',
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  fontFamily: 'Cinzel, serif',
+                  letterSpacing: '0.05em'
+                }}>
+                  Booking
+                </h4>
                 <p style={{
-                  fontSize: '1.05rem',
+                  fontSize: '1rem',
                   color: '#E5E9ED',
                   lineHeight: '1.8',
-                  marginBottom: '1.25rem'
+                  marginBottom: '1.5rem'
                 }}>
-                  I understand that life happens and schedules change. To honor both your time and mine, please note the following:
+                  All sessions must be booked in advance. Full payment is required at the time of booking to secure your appointment. By booking a session, you acknowledge and agree to the terms outlined below.
                 </p>
 
-                <div style={{marginBottom: '1.25rem'}}>
-                  <p style={{
-                    fontSize: '1rem',
-                    color: '#CBD2D9',
-                    fontWeight: '600',
-                    marginBottom: '0.5rem'
-                  }}>
-                    • 24-Hour Notice
-                  </p>
+                {/* Cancellations & Rescheduling */}
+                <h4 style={{
+                  fontSize: '1.125rem',
+                  color: '#F8FAFB',
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  fontFamily: 'Cinzel, serif',
+                  letterSpacing: '0.05em',
+                  marginTop: '1.5rem'
+                }}>
+                  Cancellations & Rescheduling
+                </h4>
+                <p style={{
+                  fontSize: '1rem',
+                  color: '#E5E9ED',
+                  lineHeight: '1.8',
+                  marginBottom: '1rem'
+                }}>
+                  I understand that life happens. If you need to cancel or reschedule, please provide at least 48 hours' notice.
+                </p>
+
+                <div style={{marginBottom: '0.75rem'}}>
                   <p style={{
                     fontSize: '1rem',
                     color: '#9AA5B1',
                     lineHeight: '1.7',
                     marginLeft: '1.5rem'
                   }}>
-                    Cancellations or reschedules made with at least 24 hours' notice will receive a full refund or the option to reschedule at no charge.
+                    • Cancellations or rescheduling requests made with 48 hours' notice will receive a full refund or may be rescheduled without penalty.
                   </p>
                 </div>
 
-                <div style={{marginBottom: '1.25rem'}}>
-                  <p style={{
-                    fontSize: '1rem',
-                    color: '#CBD2D9',
-                    fontWeight: '600',
-                    marginBottom: '0.5rem'
-                  }}>
-                  • Late Cancellations
-                  </p>
+                <div style={{marginBottom: '0.75rem'}}>
                   <p style={{
                     fontSize: '1rem',
                     color: '#9AA5B1',
                     lineHeight: '1.7',
                     marginLeft: '1.5rem'
                   }}>
-                    Cancellations made with less than 24 hours' notice will be charged 50% of the session fee.
+                    • Cancellations made within 48 hours or less of the scheduled session are non-refundable.
                   </p>
                 </div>
 
-                <div style={{marginBottom: '1.5rem'}}>
-                  <p style={{
-                    fontSize: '1rem',
-                    color: '#CBD2D9',
-                    fontWeight: '600',
-                    marginBottom: '0.5rem'
-                  }}>
-                    • No-Shows
-                  </p>
+                <div style={{marginBottom: '1rem'}}>
                   <p style={{
                     fontSize: '1rem',
                     color: '#9AA5B1',
                     lineHeight: '1.7',
                     marginLeft: '1.5rem'
                   }}>
-                    No-shows or same-day cancellations will be charged the full session fee.
+                    • No-shows are considered a missed appointment and are non-refundable.
                   </p>
                 </div>
 
+                <p style={{
+                  fontSize: '0.95rem',
+                  color: '#CBD2D9',
+                  fontStyle: 'italic',
+                  lineHeight: '1.7',
+                  marginBottom: '1.5rem'
+                }}>
+                  This policy helps honor the time, energy, and preparation reserved for each client and horse.
+                </p>
+
+                {/* Late Arrivals */}
+                <h4 style={{
+                  fontSize: '1.125rem',
+                  color: '#F8FAFB',
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  fontFamily: 'Cinzel, serif',
+                  letterSpacing: '0.05em',
+                  marginTop: '1.5rem'
+                }}>
+                  Late Arrivals
+                </h4>
+                <p style={{
+                  fontSize: '1rem',
+                  color: '#E5E9ED',
+                  lineHeight: '1.8',
+                  marginBottom: '1.5rem'
+                }}>
+                  If you arrive late, your session will still end at the originally scheduled time to respect following appointments. The full session fee applies.
+                </p>
+
+                {/* Travel Sessions */}
+                <h4 style={{
+                  fontSize: '1.125rem',
+                  color: '#F8FAFB',
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  fontFamily: 'Cinzel, serif',
+                  letterSpacing: '0.05em',
+                  marginTop: '1.5rem'
+                }}>
+                  Travel Sessions
+                </h4>
+                <p style={{
+                  fontSize: '1rem',
+                  color: '#E5E9ED',
+                  lineHeight: '1.8',
+                  marginBottom: '1.5rem'
+                }}>
+                  For travel sessions, cancellations within 48 hours are non-refundable once travel has been confirmed. Travel fees are non-refundable once incurred.
+                </p>
+
+                {/* Horse Sessions */}
+                <h4 style={{
+                  fontSize: '1.125rem',
+                  color: '#F8FAFB',
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  fontFamily: 'Cinzel, serif',
+                  letterSpacing: '0.05em',
+                  marginTop: '1.5rem'
+                }}>
+                  Horse Sessions
+                </h4>
+                <p style={{
+                  fontSize: '1rem',
+                  color: '#E5E9ED',
+                  lineHeight: '1.8',
+                  marginBottom: '1.5rem'
+                }}>
+                  All equine-assisted sessions are guided by the horse's consent and well-being. If a horse chooses not to participate on the day of the session, the session may be adapted, at the practitioner's discretion.
+                </p>
+
+                {/* Weather & Safety */}
+                <h4 style={{
+                  fontSize: '1.125rem',
+                  color: '#F8FAFB',
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  fontFamily: 'Cinzel, serif',
+                  letterSpacing: '0.05em',
+                  marginTop: '1.5rem'
+                }}>
+                  Weather & Safety
+                </h4>
+                <p style={{
+                  fontSize: '1rem',
+                  color: '#E5E9ED',
+                  lineHeight: '1.8',
+                  marginBottom: '1.5rem'
+                }}>
+                  In the event of unsafe weather or conditions, sessions may be rescheduled to ensure the safety of both clients and horses.
+                </p>
+
+                {/* Energetic Boundaries */}
+                <h4 style={{
+                  fontSize: '1.125rem',
+                  color: '#F8FAFB',
+                  fontWeight: '600',
+                  marginBottom: '0.75rem',
+                  fontFamily: 'Cinzel, serif',
+                  letterSpacing: '0.05em',
+                  marginTop: '1.5rem'
+                }}>
+                  Energetic Boundaries
+                </h4>
                 <p style={{
                   fontSize: '1rem',
                   color: '#5EEAD4',
-                  fontStyle: 'italic',
-                  lineHeight: '1.7',
-                  marginTop: '1.5rem',
-                  paddingTop: '1.5rem',
-                  borderTop: '1px solid rgba(203, 210, 217, 0.15)'
+                  lineHeight: '1.8',
+                  fontStyle: 'italic'
                 }}>
-                  In cases of emergency or unexpected circumstances, please reach out—compassionate exceptions can be made. Thank you for respecting this policy and the sacred space we hold together.
+                  Sacred Fire Reiki sessions involve intentional energetic preparation. Late cancellations or no-shows disrupt this process and the availability of space for other clients.
                 </p>
               </div>
             )}
