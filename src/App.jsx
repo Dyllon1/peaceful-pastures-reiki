@@ -354,35 +354,10 @@ export default function App() {
               fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', 
               color: '#FF8A5C', 
               fontStyle: 'italic', 
-              margin: '0 0 0.75rem', 
+              margin: '0 0 2rem', 
               fontWeight: '500'
             }}>
               with Melissa Lynn
-            </p>
-            
-            <p style={{
-              fontSize: 'clamp(1.5rem, 4vw, 2rem)', 
-              color: '#F8FAFB', 
-              fontWeight: '700', 
-              margin: '0 0 0.5rem', 
-              padding: '1rem 2rem', 
-              background: 'rgba(255, 74, 28, 0.1)', 
-              borderRadius: '12px', 
-              border: '2px solid rgba(255, 74, 28, 0.3)', 
-              boxShadow: '0 4px 16px rgba(255, 74, 28, 0.2)', 
-              display: 'inline-block'
-            }}>
-              $125 · 60-minute session
-            </p>
-            
-            <p style={{
-              fontSize: 'clamp(0.9rem, 3vw, 1.125rem)', 
-              color: '#9AA5B1', 
-              fontStyle: 'italic', 
-              margin: '0.5rem 0 3rem', 
-              fontWeight: '400'
-            }}>
-              Payment by e-transfer
             </p>
 
             <div style={{
@@ -418,11 +393,21 @@ export default function App() {
               fontSize: 'clamp(2rem, 5vw, 2.75rem)', 
               color: '#F8FAFB', 
               fontWeight: '600', 
-              marginBottom: '3rem', 
+              marginBottom: '1rem', 
               letterSpacing: '0.08em'
             }}>
               SERVICES
             </h2>
+
+            <p style={{
+              fontSize: 'clamp(1rem, 3vw, 1.25rem)', 
+              color: '#9AA5B1', 
+              fontStyle: 'italic', 
+              margin: '0 0 3rem', 
+              fontWeight: '500'
+            }}>
+              Payment by e-transfer
+            </p>
 
             {/* Service 1: One-on-One Sacred Fire Reiki */}
             <div style={{
