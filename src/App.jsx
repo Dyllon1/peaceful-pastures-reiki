@@ -4,7 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState('splash');
-  const [currentPage, setCurrentPage] = useState('home'); // 'home', 'herd', or 'sessionInfo'
+  const [currentPage, setCurrentPage] = useState('home'); // 'home', 'herd', 'sessionInfo', or 'contact'
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState('');
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', notes: '' });
@@ -17,6 +17,8 @@ export default function App() {
   const [waiverAgreed, setWaiverAgreed] = useState(false);
   const [showWaiver, setShowWaiver] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [contactForm, setContactForm] = useState({ name: '', email: '', phone: '', message: '' });
+  const [contactMessage, setContactMessage] = useState('');
 
   const toggleService = (serviceId) => {
     setExpandedService(expandedService === serviceId ? null : serviceId);
@@ -497,7 +499,7 @@ export default function App() {
         <a className="nav-link" onClick={() => { setCurrentPage('home'); window.scrollTo(0, 0); setMenuOpen(false); }} role="button" tabIndex={0}>Home</a>
         <a className="nav-link" onClick={() => { setCurrentPage('herd'); window.scrollTo(0, 0); setMenuOpen(false); }} role="button" tabIndex={0}>Meet the Herd</a>
         <a className="nav-link" onClick={() => { setCurrentPage('sessionInfo'); window.scrollTo(0, 0); setMenuOpen(false); }} role="button" tabIndex={0}>Session Info</a>
-        <a className="nav-link" onClick={() => { setCurrentPage('home'); setTimeout(() => scrollToSection('contact'), 100); setMenuOpen(false); }} role="button" tabIndex={0}>Contact</a>
+        <a className="nav-link" onClick={() => { setCurrentPage('contact'); window.scrollTo(0, 0); setMenuOpen(false); }} role="button" tabIndex={0}>Contact</a>
       </div>
 
       {currentScreen === 'splash' && (
@@ -1619,6 +1621,348 @@ export default function App() {
                 onMouseLeave={e => {
                   e.currentTarget.style.transform = 'translateY(0)';
                   e.currentTarget.style.boxShadow = '0 8px 24px rgba(94, 234, 212, 0.4)';
+                }}
+              >
+                ← Back to Home
+              </button>
+
+            </div>
+          )}
+
+          {/* Contact Page */}
+          {currentPage === 'contact' && (
+            <div className="fade-in" style={{
+              background: 'rgba(0, 0, 0, 0.95)', 
+              borderRadius: '20px', 
+              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 138, 92, 0.3)', 
+              padding: '3rem 2.5rem 4rem', 
+              textAlign: 'center', 
+              backdropFilter: 'blur(10px)',
+              minHeight: '80vh'
+            }}>
+              
+              <h1 style={{
+                fontFamily: 'Cinzel, serif', 
+                fontSize: 'clamp(2rem, 6vw, 3.5rem)', 
+                color: '#FF8A5C', 
+                fontWeight: '700', 
+                marginBottom: '1rem', 
+                letterSpacing: '0.1em'
+              }}>
+                GET IN TOUCH
+              </h1>
+
+              <div style={{
+                width: '100px', 
+                height: '3px', 
+                background: 'linear-gradient(to right, transparent, #FF8A5C, transparent)', 
+                margin: '1.5rem auto 3rem'
+              }}></div>
+
+              <p style={{
+                fontSize: 'clamp(1rem, 3vw, 1.25rem)', 
+                color: '#CBD2D9', 
+                fontStyle: 'italic', 
+                margin: '0 auto 3rem',
+                maxWidth: '700px',
+                lineHeight: '1.8'
+              }}>
+                Have questions about Sacred Fire Reiki or ready to book your session? Reach out and I'll get back to you shortly.
+              </p>
+
+              {/* Contact Information */}
+              <div style={{
+                maxWidth: '600px',
+                margin: '0 auto 3rem',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1.5rem',
+                textAlign: 'left'
+              }}>
+                <div style={{
+                  padding: '1.5rem',
+                  background: 'rgba(255, 138, 92, 0.08)',
+                  borderRadius: '12px',
+                  border: '1px solid rgba(255, 138, 92, 0.2)'
+                }}>
+                  <h3 style={{
+                    fontFamily: 'Cinzel, serif',
+                    fontSize: '1.125rem',
+                    color: '#FF8A5C',
+                    marginBottom: '0.5rem',
+                    letterSpacing: '0.05em'
+                  }}>
+                    Email
+                  </h3>
+                  <a href="mailto:balancedheartsranch@yahoo.com" style={{
+                    fontSize: '1.125rem',
+                    color: '#E5E9ED',
+                    textDecoration: 'none',
+                    transition: 'color 0.2s'
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#FF8A5C'}
+                  onMouseLeave={e => e.currentTarget.style.color = '#E5E9ED'}>
+                    balancedheartsranch@yahoo.com
+                  </a>
+                </div>
+
+                <div style={{
+                  padding: '1.5rem',
+                  background: 'rgba(255, 138, 92, 0.08)',
+                  borderRadius: '12px',
+                  border: '1px solid rgba(255, 138, 92, 0.2)'
+                }}>
+                  <h3 style={{
+                    fontFamily: 'Cinzel, serif',
+                    fontSize: '1.125rem',
+                    color: '#FF8A5C',
+                    marginBottom: '0.5rem',
+                    letterSpacing: '0.05em'
+                  }}>
+                    Phone
+                  </h3>
+                  <a href="tel:+14038524324" style={{
+                    fontSize: '1.125rem',
+                    color: '#E5E9ED',
+                    textDecoration: 'none',
+                    transition: 'color 0.2s'
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#FF8A5C'}
+                  onMouseLeave={e => e.currentTarget.style.color = '#E5E9ED'}>
+                    (403) 852-4324
+                  </a>
+                </div>
+
+                <div style={{
+                  padding: '1.5rem',
+                  background: 'rgba(255, 138, 92, 0.08)',
+                  borderRadius: '12px',
+                  border: '1px solid rgba(255, 138, 92, 0.2)'
+                }}>
+                  <h3 style={{
+                    fontFamily: 'Cinzel, serif',
+                    fontSize: '1.125rem',
+                    color: '#FF8A5C',
+                    marginBottom: '0.5rem',
+                    letterSpacing: '0.05em'
+                  }}>
+                    Location
+                  </h3>
+                  <p style={{
+                    fontSize: '1.125rem',
+                    color: '#E5E9ED',
+                    margin: 0
+                  }}>
+                    Calgary, Alberta, Canada
+                  </p>
+                </div>
+              </div>
+
+              {/* Contact Form */}
+              <div style={{
+                maxWidth: '600px',
+                margin: '0 auto',
+                background: 'rgba(255, 138, 92, 0.05)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 138, 92, 0.2)',
+                padding: '2.5rem',
+                textAlign: 'left'
+              }}>
+                <h2 style={{
+                  fontFamily: 'Cinzel, serif',
+                  fontSize: '1.75rem',
+                  color: '#FF8A5C',
+                  marginBottom: '2rem',
+                  textAlign: 'center',
+                  letterSpacing: '0.05em'
+                }}>
+                  Send a Message
+                </h2>
+
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label style={{
+                    display: 'block',
+                    fontSize: '0.95rem',
+                    color: '#CBD2D9',
+                    marginBottom: '0.5rem',
+                    fontWeight: '600'
+                  }}>
+                    Name *
+                  </label>
+                  <input
+                    type="text"
+                    value={contactForm.name}
+                    onChange={(e) => setContactForm({...contactForm, name: e.target.value})}
+                    required
+                    style={{
+                      width: '100%',
+                      padding: '0.875rem',
+                      background: 'rgba(0, 0, 0, 0.4)',
+                      border: '1px solid rgba(255, 138, 92, 0.3)',
+                      borderRadius: '8px',
+                      color: '#E5E9ED',
+                      fontSize: '1rem',
+                      fontFamily: 'Inter, sans-serif'
+                    }}
+                  />
+                </div>
+
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label style={{
+                    display: 'block',
+                    fontSize: '0.95rem',
+                    color: '#CBD2D9',
+                    marginBottom: '0.5rem',
+                    fontWeight: '600'
+                  }}>
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    value={contactForm.email}
+                    onChange={(e) => setContactForm({...contactForm, email: e.target.value})}
+                    required
+                    style={{
+                      width: '100%',
+                      padding: '0.875rem',
+                      background: 'rgba(0, 0, 0, 0.4)',
+                      border: '1px solid rgba(255, 138, 92, 0.3)',
+                      borderRadius: '8px',
+                      color: '#E5E9ED',
+                      fontSize: '1rem',
+                      fontFamily: 'Inter, sans-serif'
+                    }}
+                  />
+                </div>
+
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label style={{
+                    display: 'block',
+                    fontSize: '0.95rem',
+                    color: '#CBD2D9',
+                    marginBottom: '0.5rem',
+                    fontWeight: '600'
+                  }}>
+                    Phone
+                  </label>
+                  <input
+                    type="tel"
+                    value={contactForm.phone}
+                    onChange={(e) => setContactForm({...contactForm, phone: e.target.value})}
+                    style={{
+                      width: '100%',
+                      padding: '0.875rem',
+                      background: 'rgba(0, 0, 0, 0.4)',
+                      border: '1px solid rgba(255, 138, 92, 0.3)',
+                      borderRadius: '8px',
+                      color: '#E5E9ED',
+                      fontSize: '1rem',
+                      fontFamily: 'Inter, sans-serif'
+                    }}
+                  />
+                </div>
+
+                <div style={{ marginBottom: '2rem' }}>
+                  <label style={{
+                    display: 'block',
+                    fontSize: '0.95rem',
+                    color: '#CBD2D9',
+                    marginBottom: '0.5rem',
+                    fontWeight: '600'
+                  }}>
+                    Message *
+                  </label>
+                  <textarea
+                    value={contactForm.message}
+                    onChange={(e) => setContactForm({...contactForm, message: e.target.value})}
+                    required
+                    rows="6"
+                    style={{
+                      width: '100%',
+                      padding: '0.875rem',
+                      background: 'rgba(0, 0, 0, 0.4)',
+                      border: '1px solid rgba(255, 138, 92, 0.3)',
+                      borderRadius: '8px',
+                      color: '#E5E9ED',
+                      fontSize: '1rem',
+                      fontFamily: 'Inter, sans-serif',
+                      resize: 'vertical'
+                    }}
+                  />
+                </div>
+
+                <button
+                  onClick={() => {
+                    // TODO: Connect to email service (EmailJS, Formspree, etc.)
+                    setContactMessage('Thank you! Your message has been received. I\'ll get back to you soon.');
+                    setContactForm({ name: '', email: '', phone: '', message: '' });
+                  }}
+                  disabled={!contactForm.name || !contactForm.email || !contactForm.message}
+                  style={{
+                    width: '100%',
+                    padding: '1.125rem',
+                    background: (contactForm.name && contactForm.email && contactForm.message) 
+                      ? 'linear-gradient(135deg, #FF4A1C, #FF6B3D)' 
+                      : 'rgba(82, 96, 109, 0.5)',
+                    color: (contactForm.name && contactForm.email && contactForm.message) ? 'white' : '#52606D',
+                    border: 'none',
+                    borderRadius: '12px',
+                    fontSize: '1.125rem',
+                    fontWeight: '700',
+                    cursor: (contactForm.name && contactForm.email && contactForm.message) ? 'pointer' : 'not-allowed',
+                    boxShadow: (contactForm.name && contactForm.email && contactForm.message) 
+                      ? '0 8px 24px rgba(255, 74, 28, 0.4)' 
+                      : 'none',
+                    transition: 'all 0.3s',
+                    fontFamily: 'Cinzel, serif',
+                    letterSpacing: '0.05em',
+                    opacity: (contactForm.name && contactForm.email && contactForm.message) ? 1 : 0.6
+                  }}
+                >
+                  SEND MESSAGE
+                </button>
+
+                {contactMessage && (
+                  <div style={{
+                    marginTop: '1.5rem',
+                    padding: '1rem',
+                    background: 'rgba(16, 185, 129, 0.1)',
+                    color: '#10B981',
+                    borderRadius: '8px',
+                    border: '1px solid rgba(16, 185, 129, 0.3)',
+                    fontSize: '0.95rem',
+                    textAlign: 'center'
+                  }}>
+                    {contactMessage}
+                  </div>
+                )}
+              </div>
+
+              {/* Back to Home Button */}
+              <button
+                onClick={() => setCurrentPage('home')}
+                style={{
+                  marginTop: '3rem',
+                  padding: '1rem 2.5rem',
+                  background: 'linear-gradient(135deg, #FF4A1C, #FF6B3D)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '12px',
+                  fontSize: '1.125rem',
+                  fontWeight: '700',
+                  cursor: 'pointer',
+                  boxShadow: '0 8px 24px rgba(255, 74, 28, 0.4)',
+                  transition: 'all 0.3s',
+                  fontFamily: 'Cinzel, serif',
+                  letterSpacing: '0.05em'
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(255, 74, 28, 0.5)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 74, 28, 0.4)';
                 }}
               >
                 ← Back to Home
