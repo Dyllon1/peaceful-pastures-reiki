@@ -187,69 +187,61 @@ export default function App() {
         @keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 1000px; } }
         .fade-in { animation: fadeIn 0.8s ease-out; }
         
-        @keyframes backgroundGlow {
-          0% { 
-            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 61, 0) 0%, rgba(0, 0, 0, 0) 50%);
-          }
-          5% { 
-            background: radial-gradient(circle at 30% 40%, rgba(255, 107, 61, 0.08) 0%, rgba(255, 74, 28, 0.04) 30%, rgba(0, 0, 0, 0) 60%);
-          }
-          12% { 
-            background: radial-gradient(circle at 30% 40%, rgba(255, 107, 61, 0.18) 0%, rgba(255, 74, 28, 0.10) 30%, rgba(0, 0, 0, 0) 60%);
-          }
-          18% { 
-            background: radial-gradient(circle at 30% 40%, rgba(255, 107, 61, 0.08) 0%, rgba(255, 74, 28, 0.04) 30%, rgba(0, 0, 0, 0) 60%);
-          }
-          22% { 
-            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 61, 0) 0%, rgba(0, 0, 0, 0) 50%);
-          }
-          
-          27% { 
-            background: radial-gradient(circle at 70% 60%, rgba(255, 138, 92, 0.08) 0%, rgba(255, 107, 61, 0.04) 35%, rgba(0, 0, 0, 0) 65%);
-          }
-          34% { 
-            background: radial-gradient(circle at 70% 60%, rgba(255, 138, 92, 0.16) 0%, rgba(255, 107, 61, 0.09) 35%, rgba(0, 0, 0, 0) 65%);
-          }
-          40% { 
-            background: radial-gradient(circle at 70% 60%, rgba(255, 138, 92, 0.08) 0%, rgba(255, 107, 61, 0.04) 35%, rgba(0, 0, 0, 0) 65%);
-          }
-          44% { 
-            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 61, 0) 0%, rgba(0, 0, 0, 0) 50%);
-          }
-          
-          49% { 
-            background: radial-gradient(circle at 40% 70%, rgba(255, 74, 28, 0.08) 0%, rgba(255, 107, 61, 0.04) 30%, rgba(0, 0, 0, 0) 60%);
-          }
-          56% { 
-            background: radial-gradient(circle at 40% 70%, rgba(255, 74, 28, 0.20) 0%, rgba(255, 107, 61, 0.11) 30%, rgba(0, 0, 0, 0) 60%);
-          }
-          62% { 
-            background: radial-gradient(circle at 40% 70%, rgba(255, 74, 28, 0.08) 0%, rgba(255, 107, 61, 0.04) 30%, rgba(0, 0, 0, 0) 60%);
-          }
-          66% { 
-            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 61, 0) 0%, rgba(0, 0, 0, 0) 50%);
-          }
-          
-          71% { 
-            background: radial-gradient(circle at 60% 30%, rgba(255, 107, 61, 0.08) 0%, rgba(255, 138, 92, 0.04) 35%, rgba(0, 0, 0, 0) 65%);
-          }
-          78% { 
-            background: radial-gradient(circle at 60% 30%, rgba(255, 107, 61, 0.17) 0%, rgba(255, 138, 92, 0.09) 35%, rgba(0, 0, 0, 0) 65%);
-          }
-          84% { 
-            background: radial-gradient(circle at 60% 30%, rgba(255, 107, 61, 0.08) 0%, rgba(255, 138, 92, 0.04) 35%, rgba(0, 0, 0, 0) 65%);
-          }
-          88% { 
-            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 61, 0) 0%, rgba(0, 0, 0, 0) 50%);
-          }
-          
-          100% { 
-            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 61, 0) 0%, rgba(0, 0, 0, 0) 50%);
-          }
+        @keyframes glow1 {
+          0%, 25%, 100% { opacity: 0; }
+          5% { opacity: 0.25; }
+          12.5% { opacity: 0; }
         }
         
-        .pattern-overlay {
-          animation: backgroundGlow 40s ease-in-out infinite;
+        @keyframes glow2 {
+          0%, 100% { opacity: 0; }
+          25% { opacity: 0; }
+          30% { opacity: 0.22; }
+          37.5% { opacity: 0; }
+          50%, 100% { opacity: 0; }
+        }
+        
+        @keyframes glow3 {
+          0%, 50% { opacity: 0; }
+          55% { opacity: 0.28; }
+          62.5% { opacity: 0; }
+          75%, 100% { opacity: 0; }
+        }
+        
+        @keyframes glow4 {
+          0%, 75% { opacity: 0; }
+          80% { opacity: 0.24; }
+          87.5% { opacity: 0; }
+          100% { opacity: 0; }
+        }
+        
+        .fire-glow {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+        }
+        
+        .glow-1 {
+          background: radial-gradient(circle at 30% 40%, rgba(255, 107, 61, 1) 0%, rgba(255, 74, 28, 0.6) 30%, transparent 60%);
+          animation: glow1 40s ease-in-out infinite;
+        }
+        
+        .glow-2 {
+          background: radial-gradient(circle at 70% 60%, rgba(255, 138, 92, 1) 0%, rgba(255, 107, 61, 0.6) 35%, transparent 65%);
+          animation: glow2 40s ease-in-out infinite;
+        }
+        
+        .glow-3 {
+          background: radial-gradient(circle at 40% 70%, rgba(255, 74, 28, 1) 0%, rgba(255, 107, 61, 0.6) 30%, transparent 60%);
+          animation: glow3 40s ease-in-out infinite;
+        }
+        
+        .glow-4 {
+          background: radial-gradient(circle at 60% 30%, rgba(255, 107, 61, 1) 0%, rgba(255, 138, 92, 0.6) 35%, transparent 65%);
+          animation: glow4 40s ease-in-out infinite;
         }
         
         .sticky-nav {
@@ -357,7 +349,12 @@ export default function App() {
       )}
 
       <div className="main-content">
-        <div className="pattern-overlay"></div>
+        <div className="pattern-overlay">
+          <div className="fire-glow glow-1"></div>
+          <div className="fire-glow glow-2"></div>
+          <div className="fire-glow glow-3"></div>
+          <div className="fire-glow glow-4"></div>
+        </div>
         <main style={{position: 'relative', zIndex: 1, maxWidth: '1000px', margin: '0 auto'}}>
           <div id="home" className="fade-in" style={{
             background: 'rgba(0, 0, 0, 0.95)', 
