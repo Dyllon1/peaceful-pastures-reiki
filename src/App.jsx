@@ -351,11 +351,12 @@ export default function App() {
             }}></div>
             
             <p style={{
-              fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', 
+              fontSize: 'clamp(1.5rem, 5vw, 2.25rem)', 
               color: '#FF8A5C', 
               fontStyle: 'italic', 
               margin: '0 0 2rem', 
-              fontWeight: '500'
+              fontWeight: '600',
+              letterSpacing: '0.03em'
             }}>
               with Melissa Lynn
             </p>
