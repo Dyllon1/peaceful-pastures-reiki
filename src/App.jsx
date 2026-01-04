@@ -16,6 +16,7 @@ export default function App() {
   const [showNav, setShowNav] = useState(false);
   const [waiverAgreed, setWaiverAgreed] = useState(false);
   const [showWaiver, setShowWaiver] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleService = (serviceId) => {
     setExpandedService(expandedService === serviceId ? null : serviceId);
@@ -347,36 +348,108 @@ export default function App() {
           z-index: 1000;
           padding: 1rem 2rem;
           display: flex;
-          justify-content: center;
+          justify-content: space-between;
           align-items: center;
-          gap: 2rem;
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-          opacity: 0;
-          transform: translateY(-100%);
-          transition: opacity 0.3s, transform 0.3s;
-        }
-        
-        .sticky-nav.visible {
           opacity: 1;
           transform: translateY(0);
+        }
+        
+        .nav-logo {
+          font-family: 'Cinzel', serif;
+          color: #FF6B3D;
+          font-size: 1.25rem;
+          font-weight: 600;
+          letter-spacing: 0.05em;
+        }
+        
+        .hamburger {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          cursor: pointer;
+          z-index: 1001;
+          padding: 0.5rem;
+        }
+        
+        .hamburger span {
+          width: 28px;
+          height: 3px;
+          background: #FF6B3D;
+          transition: all 0.3s;
+          border-radius: 2px;
+        }
+        
+        .hamburger.open span:nth-child(1) {
+          transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .hamburger.open span:nth-child(2) {
+          opacity: 0;
+        }
+        
+        .hamburger.open span:nth-child(3) {
+          transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        .nav-menu {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 280px;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.98);
+          backdrop-filter: blur(20px);
+          border-left: 1px solid rgba(255, 74, 28, 0.3);
+          transition: right 0.3s ease-in-out;
+          z-index: 999;
+          padding: 6rem 2rem 2rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+        
+        .nav-menu.open {
+          right: 0;
+        }
+        
+        .nav-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.7);
+          z-index: 998;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s;
+        }
+        
+        .nav-overlay.open {
+          opacity: 1;
+          pointer-events: auto;
         }
         
         .nav-link {
           color: #CBD2D9;
           text-decoration: none;
           font-weight: 600;
-          font-size: 0.95rem;
-          padding: 0.5rem 1rem;
+          font-size: 1.125rem;
+          padding: 1rem 1.5rem;
           border-radius: 8px;
           transition: all 0.2s;
           cursor: pointer;
           letter-spacing: 0.05em;
           font-family: 'Inter', sans-serif;
+          display: block;
+          border-left: 3px solid transparent;
         }
         
         .nav-link:hover {
           color: #FF6B3D;
-          background: rgba(255, 74, 28, 0.1);
+          background: rgba(255, 74, 28, 0.15);
+          border-left-color: #FF6B3D;
         }
         
         .nav-link.active {
@@ -407,12 +480,25 @@ export default function App() {
       `}</style>
 
       {/* Sticky Navigation */}
-      <nav className={`sticky-nav visible`} role="navigation" aria-label="Main navigation">
-        <a className="nav-link" onClick={() => { setCurrentPage('home'); window.scrollTo(0, 0); }} role="button" tabIndex={0}>Home</a>
-        <a className="nav-link" onClick={() => { setCurrentPage('herd'); window.scrollTo(0, 0); }} role="button" tabIndex={0}>Meet the Herd</a>
-        <a className="nav-link" onClick={() => { setCurrentPage('sessionInfo'); window.scrollTo(0, 0); }} role="button" tabIndex={0}>Session Info</a>
-        <a className="nav-link" onClick={() => { setCurrentPage('home'); setTimeout(() => scrollToSection('contact'), 100); }} role="button" tabIndex={0}>Contact</a>
+      <nav className={`sticky-nav`} role="navigation" aria-label="Main navigation">
+        <div className="nav-logo">SACRED FIRE REIKI</div>
+        <div className={`hamburger ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!menuOpen)} role="button" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </nav>
+
+      {/* Menu Overlay */}
+      <div className={`nav-overlay ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}></div>
+
+      {/* Slide-out Menu */}
+      <div className={`nav-menu ${menuOpen ? 'open' : ''}`}>
+        <a className="nav-link" onClick={() => { setCurrentPage('home'); window.scrollTo(0, 0); setMenuOpen(false); }} role="button" tabIndex={0}>Home</a>
+        <a className="nav-link" onClick={() => { setCurrentPage('herd'); window.scrollTo(0, 0); setMenuOpen(false); }} role="button" tabIndex={0}>Meet the Herd</a>
+        <a className="nav-link" onClick={() => { setCurrentPage('sessionInfo'); window.scrollTo(0, 0); setMenuOpen(false); }} role="button" tabIndex={0}>Session Info</a>
+        <a className="nav-link" onClick={() => { setCurrentPage('home'); setTimeout(() => scrollToSection('contact'), 100); setMenuOpen(false); }} role="button" tabIndex={0}>Contact</a>
+      </div>
 
       {currentScreen === 'splash' && (
         <div className="splash-screen">
