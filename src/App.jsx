@@ -188,28 +188,68 @@ export default function App() {
         .fade-in { animation: fadeIn 0.8s ease-out; }
         
         @keyframes backgroundGlow {
-          0%, 100% { 
+          0% { 
             background: radial-gradient(circle at 50% 50%, rgba(255, 107, 61, 0) 0%, rgba(0, 0, 0, 0) 50%);
           }
-          15% { 
-            background: radial-gradient(circle at 30% 40%, rgba(255, 107, 61, 0.15) 0%, rgba(255, 74, 28, 0.08) 30%, rgba(0, 0, 0, 0) 60%);
+          5% { 
+            background: radial-gradient(circle at 30% 40%, rgba(255, 107, 61, 0.08) 0%, rgba(255, 74, 28, 0.04) 30%, rgba(0, 0, 0, 0) 60%);
           }
-          30% { 
-            background: radial-gradient(circle at 70% 60%, rgba(255, 138, 92, 0.12) 0%, rgba(255, 107, 61, 0.06) 35%, rgba(0, 0, 0, 0) 65%);
+          12% { 
+            background: radial-gradient(circle at 30% 40%, rgba(255, 107, 61, 0.18) 0%, rgba(255, 74, 28, 0.10) 30%, rgba(0, 0, 0, 0) 60%);
           }
-          45% { 
-            background: radial-gradient(circle at 40% 70%, rgba(255, 74, 28, 0.18) 0%, rgba(255, 107, 61, 0.09) 30%, rgba(0, 0, 0, 0) 60%);
+          18% { 
+            background: radial-gradient(circle at 30% 40%, rgba(255, 107, 61, 0.08) 0%, rgba(255, 74, 28, 0.04) 30%, rgba(0, 0, 0, 0) 60%);
           }
-          60% { 
-            background: radial-gradient(circle at 60% 30%, rgba(255, 107, 61, 0.14) 0%, rgba(255, 138, 92, 0.07) 35%, rgba(0, 0, 0, 0) 65%);
+          22% { 
+            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 61, 0) 0%, rgba(0, 0, 0, 0) 50%);
           }
-          75% { 
-            background: radial-gradient(circle at 20% 50%, rgba(255, 138, 92, 0.16) 0%, rgba(255, 74, 28, 0.08) 30%, rgba(0, 0, 0, 0) 60%);
+          
+          27% { 
+            background: radial-gradient(circle at 70% 60%, rgba(255, 138, 92, 0.08) 0%, rgba(255, 107, 61, 0.04) 35%, rgba(0, 0, 0, 0) 65%);
+          }
+          34% { 
+            background: radial-gradient(circle at 70% 60%, rgba(255, 138, 92, 0.16) 0%, rgba(255, 107, 61, 0.09) 35%, rgba(0, 0, 0, 0) 65%);
+          }
+          40% { 
+            background: radial-gradient(circle at 70% 60%, rgba(255, 138, 92, 0.08) 0%, rgba(255, 107, 61, 0.04) 35%, rgba(0, 0, 0, 0) 65%);
+          }
+          44% { 
+            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 61, 0) 0%, rgba(0, 0, 0, 0) 50%);
+          }
+          
+          49% { 
+            background: radial-gradient(circle at 40% 70%, rgba(255, 74, 28, 0.08) 0%, rgba(255, 107, 61, 0.04) 30%, rgba(0, 0, 0, 0) 60%);
+          }
+          56% { 
+            background: radial-gradient(circle at 40% 70%, rgba(255, 74, 28, 0.20) 0%, rgba(255, 107, 61, 0.11) 30%, rgba(0, 0, 0, 0) 60%);
+          }
+          62% { 
+            background: radial-gradient(circle at 40% 70%, rgba(255, 74, 28, 0.08) 0%, rgba(255, 107, 61, 0.04) 30%, rgba(0, 0, 0, 0) 60%);
+          }
+          66% { 
+            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 61, 0) 0%, rgba(0, 0, 0, 0) 50%);
+          }
+          
+          71% { 
+            background: radial-gradient(circle at 60% 30%, rgba(255, 107, 61, 0.08) 0%, rgba(255, 138, 92, 0.04) 35%, rgba(0, 0, 0, 0) 65%);
+          }
+          78% { 
+            background: radial-gradient(circle at 60% 30%, rgba(255, 107, 61, 0.17) 0%, rgba(255, 138, 92, 0.09) 35%, rgba(0, 0, 0, 0) 65%);
+          }
+          84% { 
+            background: radial-gradient(circle at 60% 30%, rgba(255, 107, 61, 0.08) 0%, rgba(255, 138, 92, 0.04) 35%, rgba(0, 0, 0, 0) 65%);
+          }
+          88% { 
+            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 61, 0) 0%, rgba(0, 0, 0, 0) 50%);
+          }
+          
+          100% { 
+            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 61, 0) 0%, rgba(0, 0, 0, 0) 50%);
           }
         }
         
         .pattern-overlay {
-          animation: backgroundGlow 35s ease-in-out infinite;
+          animation: backgroundGlow 40s ease-in-out infinite;
         }
         
         .sticky-nav {
