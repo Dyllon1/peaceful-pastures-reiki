@@ -13,6 +13,8 @@ export default function App() {
   const [expandedService, setExpandedService] = useState(null);
   const [expandedInfo, setExpandedInfo] = useState(null);
   const [showNav, setShowNav] = useState(false);
+  const [waiverAgreed, setWaiverAgreed] = useState(false);
+  const [showWaiver, setShowWaiver] = useState(false);
 
   const toggleService = (serviceId) => {
     setExpandedService(expandedService === serviceId ? null : serviceId);
@@ -1678,22 +1680,143 @@ export default function App() {
                         }} 
                       />
                       
+                      {/* Waiver Agreement */}
+                      <div style={{
+                        marginTop: '2rem',
+                        padding: '1.5rem',
+                        background: 'rgba(255, 138, 92, 0.05)',
+                        borderRadius: '12px',
+                        border: '1px solid rgba(255, 138, 92, 0.2)'
+                      }}>
+                        <div style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          marginBottom: '1rem'
+                        }}>
+                          <h4 style={{
+                            fontFamily: 'Cinzel, serif',
+                            fontSize: '1.125rem',
+                            color: '#F8FAFB',
+                            margin: 0,
+                            letterSpacing: '0.05em'
+                          }}>
+                            Sacred Fire Reiki – Waiver & Informed Consent
+                          </h4>
+                          <button
+                            onClick={() => setShowWaiver(!showWaiver)}
+                            style={{
+                              padding: '0.5rem 1rem',
+                              background: 'rgba(255, 138, 92, 0.2)',
+                              border: '1px solid rgba(255, 138, 92, 0.3)',
+                              borderRadius: '6px',
+                              color: '#FF8A5C',
+                              fontSize: '0.875rem',
+                              fontWeight: '600',
+                              cursor: 'pointer',
+                              transition: 'all 0.2s',
+                              fontFamily: 'Inter, sans-serif'
+                            }}
+                            onMouseEnter={e => e.currentTarget.style.background = 'rgba(255, 138, 92, 0.3)'}
+                            onMouseLeave={e => e.currentTarget.style.background = 'rgba(255, 138, 92, 0.2)'}
+                          >
+                            {showWaiver ? 'Hide' : 'Read Full Waiver'}
+                          </button>
+                        </div>
+
+                        {showWaiver && (
+                          <div style={{
+                            padding: '1rem',
+                            background: 'rgba(0, 0, 0, 0.3)',
+                            borderRadius: '8px',
+                            marginBottom: '1rem',
+                            maxHeight: '300px',
+                            overflowY: 'auto',
+                            fontSize: '0.9rem',
+                            color: '#CBD2D9',
+                            lineHeight: '1.7'
+                          }}>
+                            <p style={{marginBottom: '1rem', fontSize: '0.95rem', color: '#E5E9ED', fontWeight: '600'}}>
+                              By booking a session, I acknowledge and agree to the following:
+                            </p>
+                            
+                            <p style={{marginBottom: '1rem'}}>
+                              I understand that Sacred Fire Reiki is a complementary, energy-based practice intended to support relaxation, balance, and overall well-being. Reiki is not a substitute for medical, psychological, psychiatric, or veterinary care, and no diagnosis or treatment is offered or implied. I am responsible for seeking appropriate professional care when needed.
+                            </p>
+
+                            <p style={{marginBottom: '1rem'}}>
+                              I understand that participation in Reiki sessions is voluntary, and I may withdraw consent or stop a session at any time.
+                            </p>
+
+                            <p style={{marginBottom: '1rem'}}>
+                              For equine-assisted sessions, I acknowledge that horses are living beings with their own autonomy and responses. I agree to follow all safety guidance and understand the inherent risks of being near horses. Interaction with horses is optional and guided by their consent and well-being.
+                            </p>
+
+                            <p style={{marginBottom: '1rem'}}>
+                              For travel sessions, I confirm that I am responsible for providing a safe environment for the session. Travel fees are separate and non-refundable once incurred.
+                            </p>
+
+                            <p style={{marginBottom: '1rem'}}>
+                              I release and hold harmless Sacred Fire Reiki, the practitioner, and any associated horses from liability arising from my participation, except in cases of gross negligence, in accordance with Alberta law.
+                            </p>
+
+                            <p style={{marginBottom: '0', fontWeight: '600', color: '#FF8A5C', fontSize: '0.95rem'}}>
+                              Minor / Guardian Consent
+                            </p>
+                            <p>
+                              If the participant is under 18 years of age, I confirm that I am the parent or legal guardian and consent to Sacred Fire Reiki sessions on their behalf. I understand and accept full responsibility for the minor's participation.
+                            </p>
+                          </div>
+                        )}
+
+                        <label style={{
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          gap: '0.75rem',
+                          cursor: 'pointer',
+                          fontSize: '0.95rem',
+                          color: '#E5E9ED',
+                          lineHeight: '1.6'
+                        }}>
+                          <input
+                            type="checkbox"
+                            checked={waiverAgreed}
+                            onChange={(e) => setWaiverAgreed(e.target.checked)}
+                            required
+                            style={{
+                              marginTop: '0.25rem',
+                              width: '18px',
+                              height: '18px',
+                              cursor: 'pointer',
+                              accentColor: '#FF6B3D'
+                            }}
+                          />
+                          <span>
+                            I have read and agree to the Sacred Fire Reiki Waiver & Informed Consent and, if applicable, confirm that I am the parent or legal guardian of the minor participant.
+                            <span style={{color: '#FF6B3D', fontWeight: '700'}}> *</span>
+                          </span>
+                        </label>
+                      </div>
+                      
                       <button 
-                        onClick={handleSubmit} 
+                        onClick={handleSubmit}
+                        disabled={!waiverAgreed}
                         style={{
                           width: '100%', 
-                          padding: '1.25rem 2rem', 
-                          background: 'linear-gradient(135deg, #FF4A1C, #FF6B3D)', 
-                          color: 'white', 
+                          padding: '1.25rem 2rem',
+                          marginTop: '1.5rem',
+                          background: waiverAgreed ? 'linear-gradient(135deg, #FF4A1C, #FF6B3D)' : 'rgba(82, 96, 109, 0.5)',
+                          color: waiverAgreed ? 'white' : '#52606D',
                           border: 'none', 
                           borderRadius: '12px', 
                           fontSize: '1.25rem', 
                           fontWeight: '700', 
-                          cursor: 'pointer', 
-                          boxShadow: '0 8px 24px rgba(255, 74, 28, 0.4)', 
+                          cursor: waiverAgreed ? 'pointer' : 'not-allowed',
+                          boxShadow: waiverAgreed ? '0 8px 24px rgba(255, 74, 28, 0.4)' : 'none',
                           transition: 'all 0.3s', 
                           fontFamily: 'Cinzel, serif', 
-                          letterSpacing: '0.05em'
+                          letterSpacing: '0.05em',
+                          opacity: waiverAgreed ? 1 : 0.6
                         }}
                       >
                         CONFIRM BOOKING — $125
