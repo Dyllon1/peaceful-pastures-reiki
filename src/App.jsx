@@ -187,89 +187,29 @@ export default function App() {
         @keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 1000px; } }
         .fade-in { animation: fadeIn 0.8s ease-out; }
         
-        @keyframes fireFlare1 {
-          0%, 70%, 100% { opacity: 0; transform: scale(0.5); }
-          10% { opacity: 0.6; transform: scale(1.4); }
-          20% { opacity: 0.4; transform: scale(1.2); }
+        @keyframes backgroundGlow {
+          0%, 100% { 
+            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 61, 0) 0%, rgba(0, 0, 0, 0) 50%);
+          }
+          15% { 
+            background: radial-gradient(circle at 30% 40%, rgba(255, 107, 61, 0.15) 0%, rgba(255, 74, 28, 0.08) 30%, rgba(0, 0, 0, 0) 60%);
+          }
+          30% { 
+            background: radial-gradient(circle at 70% 60%, rgba(255, 138, 92, 0.12) 0%, rgba(255, 107, 61, 0.06) 35%, rgba(0, 0, 0, 0) 65%);
+          }
+          45% { 
+            background: radial-gradient(circle at 40% 70%, rgba(255, 74, 28, 0.18) 0%, rgba(255, 107, 61, 0.09) 30%, rgba(0, 0, 0, 0) 60%);
+          }
+          60% { 
+            background: radial-gradient(circle at 60% 30%, rgba(255, 107, 61, 0.14) 0%, rgba(255, 138, 92, 0.07) 35%, rgba(0, 0, 0, 0) 65%);
+          }
+          75% { 
+            background: radial-gradient(circle at 20% 50%, rgba(255, 138, 92, 0.16) 0%, rgba(255, 74, 28, 0.08) 30%, rgba(0, 0, 0, 0) 60%);
+          }
         }
         
-        @keyframes fireFlare2 {
-          0%, 80%, 100% { opacity: 0; transform: scale(0.6); }
-          15% { opacity: 0.7; transform: scale(1.5); }
-          25% { opacity: 0.3; transform: scale(1.1); }
-        }
-        
-        @keyframes fireFlare3 {
-          0%, 75%, 100% { opacity: 0; transform: scale(0.4); }
-          12% { opacity: 0.65; transform: scale(1.6); }
-          22% { opacity: 0.35; transform: scale(1.3); }
-        }
-        
-        @keyframes fireFlare4 {
-          0%, 85%, 100% { opacity: 0; transform: scale(0.7); }
-          18% { opacity: 0.55; transform: scale(1.3); }
-          28% { opacity: 0.25; transform: scale(1.0); }
-        }
-        
-        .fire-flare {
-          position: absolute;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(255, 107, 61, 0.8) 0%, rgba(255, 74, 28, 0.5) 30%, rgba(255, 138, 92, 0.3) 50%, transparent 70%);
-          filter: blur(30px);
-          pointer-events: none;
-        }
-        
-        .flare-1 {
-          width: 400px;
-          height: 400px;
-          top: 10%;
-          left: 15%;
-          animation: fireFlare1 4s ease-in-out infinite;
-        }
-        
-        .flare-2 {
-          width: 350px;
-          height: 350px;
-          top: 55%;
-          right: 10%;
-          animation: fireFlare2 5s ease-in-out infinite;
-          animation-delay: 1.2s;
-        }
-        
-        .flare-3 {
-          width: 300px;
-          height: 300px;
-          top: 35%;
-          left: 65%;
-          animation: fireFlare3 4.5s ease-in-out infinite;
-          animation-delay: 2.5s;
-        }
-        
-        .flare-4 {
-          width: 380px;
-          height: 380px;
-          top: 70%;
-          left: 25%;
-          animation: fireFlare4 5.5s ease-in-out infinite;
-          animation-delay: 0.8s;
-        }
-        
-        .flare-5 {
-          width: 320px;
-          height: 320px;
-          top: 20%;
-          right: 25%;
-          animation: fireFlare1 4.2s ease-in-out infinite;
-          animation-delay: 3s;
-        }
-        
-        .flare-6 {
-          width: 360px;
-          height: 360px;
-          top: 80%;
-          right: 35%;
-          animation: fireFlare3 5.2s ease-in-out infinite;
-          animation-delay: 1.8s;
+        .pattern-overlay {
+          animation: backgroundGlow 35s ease-in-out infinite;
         }
         
         .sticky-nav {
@@ -377,15 +317,7 @@ export default function App() {
       )}
 
       <div className="main-content">
-        <div className="pattern-overlay">
-          {/* Fire Flare-ups */}
-          <div className="fire-flare flare-1"></div>
-          <div className="fire-flare flare-2"></div>
-          <div className="fire-flare flare-3"></div>
-          <div className="fire-flare flare-4"></div>
-          <div className="fire-flare flare-5"></div>
-          <div className="fire-flare flare-6"></div>
-        </div>
+        <div className="pattern-overlay"></div>
         <main style={{position: 'relative', zIndex: 1, maxWidth: '1000px', margin: '0 auto'}}>
           <div id="home" className="fade-in" style={{
             background: 'rgba(0, 0, 0, 0.95)', 
